@@ -8,8 +8,8 @@ This project is a set of training materials and labs for a "Getting Started" lev
 
 There are two sets of materials available
 
-- [Chapters](Chapters) which contain the lessons, broken up into chapters.
-- [Labs](Labs) which contain the source code used in the chapters.
+- [Chapters](https://github.com/openmainframeproject/cobol-programming-course/blob/master/COBOL%20Programming%20with%20VSCode.pdf) which contain the lessons, broken up into chapters.
+- [Labs](https://github.com/openmainframeproject/cobol-programming-course/tree/master/Labs) which contain the source code used in the chapters.
 
 ## Contributing
 
@@ -19,7 +19,7 @@ All contributions must align with the [Open Mainframe Project contribution guide
 
 ## Governance
 
-This project is openly governed, and in the process of establish it's governance processes. Stay tuned :-)
+This project is openly governed, and currently establishing its processes. Stay tuned :-)
 
 ## Credits
 
