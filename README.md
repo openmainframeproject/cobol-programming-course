@@ -19,7 +19,7 @@ All contributions must align with the [Open Mainframe Project contribution guide
 
 ## Governance
 
-This project is openly governed, and in the process of establish it's governance processes. Stay tuned :-)
+This project is openly governed, and currently establishing its processes. Stay tuned :-)
 
 ## Credits
 
