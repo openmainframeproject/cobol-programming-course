@@ -41,4 +41,4 @@ This project is openly governed as defined in [GOVERNANCE.md](GOVERNANCE.md).
 
 ## Credits
 
-Thank you to IBM for the initial contribution and Open Mainframe Project for hosting this project.
+The courseware materials were developed leveraging grant funds made available through American River College and proposed as a new project by IBM.
