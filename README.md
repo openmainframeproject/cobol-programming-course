@@ -21,6 +21,14 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 All contributions must align with the [Open Mainframe Project contribution guidelines](https://github.com/openmainframeproject/tac/blob/master/process/contribution_guidelines.md), including having a DCO signoff on all commits.
 
+# Discussion
+
+You can connect with the community in a variety of ways...
+
+- [COBOL Programming Course Discussion Mailing list](https://lists.openmainframeproject.org/g/cobol-course-discussion)
+- [#cobol-programming-course channel on Open Mainframe Project Slack](https://slack.openmainframeproject.org)
+- ['COBOL technical questions' category on Open Mainframe Project Community Forums](https://community.openmainframeproject.org/c/cobol-technical-questions/16)
+
 ## Providers
 
 These materials are being used by other organizations to provide COBOL training to the community. This project, nor Open Mainframe Project, doesn't endorse any one of these particular providers. If you are using these materials in your training materials, feel free [to edit and issue a pull request](https://github.com/openmainframeproject/cobol-programming-course/edit/governance-docs/README.md) to have it included.
