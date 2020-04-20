@@ -41,4 +41,4 @@ This project is openly governed as defined in [GOVERNANCE.md](GOVERNANCE.md).
 
 ## Credits
 
-The courseware materials were developed leveraging grant funds made available through American River College and proposed as a new project by IBM.
+The courseware materials were made available through a joint collaboration IBM, it's clients, and American River College and proposed as a new project by IBM.
