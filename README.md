@@ -31,9 +31,9 @@ You can connect with the community in a variety of ways...
 
 ## Providers
 
-These materials are being used by other organizations to provide COBOL training to the community. This project, nor Open Mainframe Project, doesn't endorse any one of these particular providers. If you are using these materials in your training materials, feel free [to edit and issue a pull request](https://github.com/openmainframeproject/cobol-programming-course/edit/governance-docs/README.md) to have it included.
+These materials are being used by other organizations to provide COBOL training to the community. This project, nor Open Mainframe Project, doesn't review, maintain, or endorse any one of these particular providers. If you are using these materials in your training materials, feel free [to edit and issue a pull request](https://github.com/openmainframeproject/cobol-programming-course/edit/governance-docs/README.md) to have it included.
 
-- IBM is provided a [free environment for completing the labs](http://ibm.biz/cobollabs).
+- IBM has provided a [free environment for completing the labs](http://ibm.biz/cobollabs).
 
 ## Governance
 
