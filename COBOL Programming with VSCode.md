@@ -82,9 +82,9 @@ Left-to-right: Ilicena, Suzy, Makenzie, Martin, Paul, and Tak
  
 ### [Chapter 1. Why COBOL?](#1-Why-COBOL)
  
-### [Chapter 2. VSCode with Z Open Editor and ZOWE extensions](#-2.-VSCode-with-Z-Open-Editor-and-ZOWE-extensions)
+### [Chapter 2. VSCode with Z Open Editor and ZOWE extensions](#2.-VSCode-with-Z-Open-Editor-and-ZOWE-extensions)
  
-### [Chapter 3. Installation of VSCode and extensions](#-3.-Installation-of-VSCode-and-extensions)
+### [Chapter 3. Installation of VSCode and extensions](#3.-Installation-of-VSCode-and-extensions)
 
 # 1. Why COBOL?
 
@@ -197,13 +197,15 @@ The IBM Z Open Editor can be installed into VS code by searching the Extensions 
 
 ## 2.2 Basic editing
 
-For the rest of this chapter we will use the CBL001.cobol sample program to demonstrate how rich of an experience editing COBOL in VSCode can be.  So, let's fire up VSCode, install IBM Z Open Editor (if it's not already) open up CBL001.cobol and get started.
+For the rest of this chapter we will use the CBL0001 sample program to demonstrate how rich of an experience editing COBOL in VSCode can be.  So, let's fire up VSCode, install IBM Z Open Editor (if it's not already) open up CBL001.cobol and get started.
 
 ### 2.2.1 Known file extensions
 
 For VSCode to use the capabilities of the IBM Z Open Editor, it needs to know that the file we are editing is in fact COBOL type.  VSCode accomplishes this by comparing the location and name of the file being opened against a list of known extensions to map the file to a known language.  For COBOL the following associations are used:
 
 - \*.COBOL\*
+
+- \*.CBL\*
 
 - \*.COB\*
 
@@ -503,23 +505,23 @@ In this chapter you have been introduced to VSCode and some of the extension too
 
 # Part 2 - Learning COBOL
 
-### [Chapter 4. Basic COBOL](#-4.-Basic-COBOL)
+### [Chapter 4. Basic COBOL](#4.-Basic-COBOL)
 
-### [Chapter 5. Data division](#-5.-Data-division)
+### [Chapter 5. Data division](#5.-Data-division)
 
-### [Chapter 6. File handling](#-6.-File-handling)
+### [Chapter 6. File handling](#6.-File-handling)
 
-### [Chapter 7. Program structure](#-7.-Program-structure)
+### [Chapter 7. Program structure](#7.-Program-structure)
 
-### [Chapter 8. File output](#-8.-File-output)
+### [Chapter 8. File output](#8.-File-output)
 
-### [Chapter 9. Conditional expressions](#-9.-Conditional-expressions)
+### [Chapter 9. Conditional expressions](#9.-Conditional-expressions)
 
-### [Chapter 10. Arithmetic expressions](#-10.-Arithmetic-expressions)
+### [Chapter 10. Arithmetic expressions](#10.-Arithmetic-expressions)
 
-### [Chapter 11. Data types](#-11.-Data-types)
+### [Chapter 11. Data types](#11.-Data-types)
 
-### [Chapter 12. Intrinsic functions](#-12.-Intrinsic-functions)
+### [Chapter 12. Intrinsic functions](#12.-Intrinsic-functions)
  
 
 # 4. Basic COBOL
@@ -2372,7 +2374,7 @@ WORKING-STORAGE.
 PROCEDURE DIVISION.
 ....
 ....
-MOVE 'AZ' TO STATE.
+MOVE 'AZ' TO USA-STATE.
 ....
 ....
 IF STATE = 'TX' DISPLAY 'The State is Texas'
@@ -2380,7 +2382,7 @@ IF STATE = 'TX' DISPLAY 'The State is Texas'
 END-IF.
 ....
 ....
-MOVE 'TX' TO STATE.
+MOVE 'TX' TO USA-STATE.
 ....
 ....
 IF STATE = 'TX' DISPLAY 'The State is Texas'
@@ -3179,11 +3181,11 @@ Refer to CBL0011 line 120 for the proper formatting of the function-name causing
  
 # Part 3 - VSCode alternatives and testing
 
-### [Chapter 13. Installing IBM Developer for Z](#-13.-Installing-IBM-Developer-for-Z)
+### [Chapter 13. Installing IBM Developer for Z](#13.-Installing-IBM-Developer-for-Z)
 
-### [Chapter 14. Enabling IBM Developer for Z to work with COBOL](#-14.-Enabling-IBM-Developer-for-Z-to-work-with-COBOL)
+### [Chapter 14. Enabling IBM Developer for Z to work with COBOL](#14.-Enabling-IBM-Developer-for-Z-to-work-with-COBOL)
 
-### [Chapter 15. Using ISPF to work with COBOL](#-15.-Using-ISPF-to-work-with-COBOL)
+### [Chapter 15. Using ISPF to work with COBOL](#15.-Using-ISPF-to-work-with-COBOL)
 
 ### [Chapter 16. Testing](#-16.-Testing)
 
