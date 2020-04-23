@@ -201,7 +201,7 @@ For the rest of this chapter we will use the CBL001.cobol sample program to demo
 
 ### 2.2.1 Known file extensions
 
-For VSCode to use the capabilities of the IBM Z Open Editor, it needs to know the that file we are editing is in fact COBOL type.  VSCode accomplishes this by comparing the location and name of the file being opened against a list of known extensions to map the file to a known language.  For COBOL the following associations are used:
+For VSCode to use the capabilities of the IBM Z Open Editor, it needs to know that the file we are editing is in fact COBOL type.  VSCode accomplishes this by comparing the location and name of the file being opened against a list of known extensions to map the file to a known language.  For COBOL the following associations are used:
 
 - \*.COBOL\*
 
