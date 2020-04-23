@@ -80,7 +80,7 @@ Left-to-right: Ilicena, Suzy, Makenzie, Martin, Paul, and Tak
 
 # Part 1 - Getting started
  
-### [Chapter 1. Why COBOL](#1-Why-COBOL)?
+### [Chapter 1. Why COBOL?](#1-Why-COBOL)
  
 ### [Chapter 2. VSCode with Z Open Editor and ZOWE extensions](#-2.-VSCode-with-Z-Open-Editor-and-ZOWE-extensions)
  
