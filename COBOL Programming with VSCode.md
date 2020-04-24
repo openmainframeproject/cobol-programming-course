@@ -989,7 +989,7 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
 - What’s New in Enterprise COBOL for z/OS V6.1:
 
-   [https://youtu.be/N_Zsd1W8hWc](https://youtu.be/N_Zsd1W8hWc)``
+   [https://youtu.be/N_Zsd1W8hWc](https://youtu.be/N_Zsd1W8hWc)
 
 - What’s New in Enterprise COBOL for z/OS V6.2:
 
@@ -3429,7 +3429,7 @@ This section will cover the necessary steps and information to download and inst
 
 From the link below, you will find the requirements for installing and running IDz on the different supported OS platforms: Windows, Linux, Mac and z/OS.  Select your proper platform and verify that your system meets the operating systems and hardware minimum requirements.
 
-- [https://www.ibm.com/support/pages/node/713257](https://www.ibm.com/support/pages/node/713257)``
+- [https://www.ibm.com/support/pages/node/713257](https://www.ibm.com/support/pages/node/713257)
 
 
 ### Software prerequisites
@@ -3907,8 +3907,7 @@ We've covered, in this chapter, less than 5% of what IDz has to offer for the z/
 
 - IBM instructional videos on IDz:
 
-   [https://developer.ibm.com/mainframe/videos/](https://developer.ibm.com/mainframe/videos/)``
-
+   [https://developer.ibm.com/mainframe/videos/](https://developer.ibm.com/mainframe/videos/)
 
 - Ongoing IBM (free) Remote Instructor-led training on IDz:
 
@@ -4364,7 +4363,7 @@ We've covered in this chapter less than 5% of what ISPF offers for the z/OS prof
 
 - A link to an excellent instructional video on ISPF:
 
-   [https://www.youtube.com/watch?v=vOiHiI7b9iY](https://www.youtube.com/watch?v=vOiHiI7b9iY)``
+   [https://www.youtube.com/watch?v=vOiHiI7b9iY](https://www.youtube.com/watch?v=vOiHiI7b9iY)
 
 \newpage
 
