@@ -58,7 +58,7 @@ Speaking with people that have worked on such systems, nowadays they have Java f
 
 From a software engineering perspective, that even makes sense.  Rewrites are always more expensive than planned, and always take longer than planned (OK, probably not always. But often.).  Never change a running system etc., unless very good technical and business reasons exist.
 
-# VSCode with Z Open Editor and ZOWE extensions
+# VSCode with Z Open Editor and Zowe extensions
 
 In this chapter we will explain how to use the IBM Z Open Editor extension for VSCode and how using it can help you develop COBOL source code in a feature rich environment.
 
@@ -115,7 +115,7 @@ The IBM Z Open Editor can be installed into VS code by searching the Extensions 
 
 ## Basic editing
 
-For the rest of this chapter we will use the CBL0001 sample program to demonstrate how rich of an experience editing COBOL in VSCode can be.  So, let's fire up VSCode, install IBM Z Open Editor (if it's not already) open up CBL001 and get started.
+For the rest of this chapter we will use the CBL0001 sample program to demonstrate how rich of an experience editing COBOL in VSCode can be.  So, let's fire up VSCode, install IBM Z Open Editor (if it's not already) open up CBL0001 and get started.
 
 ### Known file extensions
 
@@ -157,7 +157,7 @@ The first thing you will notice when editing COBOL source code is that VSCode wi
 
 ### Variable expansion
 
-As you browse through CBL001.COBOL type `CTRL + G` to jump to a specific line of code.  A small dialog will open asking you for the line you wish to jump to, type `68` and press the enter key.  VSCode will highlight that line of code and navigate you directly to it, as shown in Figure  1.
+As you browse through CBL0001 type `CTRL + G` to jump to a specific line of code.  A small dialog will open asking you for the line you wish to jump to, type `68` and press the enter key.  VSCode will highlight that line of code and navigate you directly to it, as shown in Figure  1.
 
 ![](Images/image006.png)
 
@@ -3332,7 +3332,7 @@ IBM provides a 60-day free, client trial license for this course. You can start 
 
 ## Basic editing in IDz
 
-For the rest of this chapter, we will use the CBL001.cbl sample program to demonstrate how rich of an experience editing COBOL in IDz can be.  The steps covered are simply informative, to help the reader better understand through examples and visuals and are not required for the reader to complete.
+For the rest of this chapter, we will use the CBL0001 sample program to demonstrate how rich of an experience editing COBOL in IDz can be.  The steps covered are simply informative, to help the reader better understand through examples and visuals and are not required for the reader to complete.
 
 
 ### Launch IDz
@@ -3737,7 +3737,7 @@ Depending on what 3270-emulation product you're using, launching the product and
  
 ## Basic editing
 
-For the rest of this chapter we will use the CBL001.cbl sample program to demonstrate editing COBOL using ISPF.  The steps covered are simply informative, to help the reader better understand through examples and visuals and are not required for the reader to complete.
+For the rest of this chapter we will use the CBL0001 sample program to demonstrate editing COBOL using ISPF.  The steps covered are simply informative, to help the reader better understand through examples and visuals and are not required for the reader to complete.
 
 
 ### Launch IDz
