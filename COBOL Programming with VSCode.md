@@ -1,6 +1,9 @@
 ---
 geometry:
 - margin=1in
+header-includes:
+- \hypersetup{colorlinks=true,
+              linkcolor=blue}
 ---
 # Part 1 - Getting started {.unnumbered}
 
