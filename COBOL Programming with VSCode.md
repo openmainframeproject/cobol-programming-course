@@ -275,6 +275,169 @@ Now that you see where the error is located, it can now be corrected.  As soon a
 
 In this chapter you have been able to go through some of the editing features of the Z Open Editor for VSCode. These capabilities make editing COBOL, PL/Iand JCL a lot friendlier and easier than some of the other editors in the market.
 
+\newpage
+
+# Zowe CLI and Zowe CLI Plug-ins
+
+In this chapter we will explain what a CLI is and why you would use it, how to use Zowe CLI interactively, how to abstract CLI commands into useful scripts, and how Zowe CLI enables the use of familiar open source tooling while developing COBOL applications on the mainframe. 
+
+- **What is a CLI and why would you use it?**
+
+- **What is Zowe CLI?**
+
+- **Zowe CLI interactive use**
+     - **Installing Zowe CLI**
+     - **Interactive Help**
+     - **Zowe Profiles**
+     - **Interacting with z/OS Data Sets**
+     - **Interacting with z/OS Jobs**
+
+- **Automating tasks using Zowe CLI**
+     - **Automated Job Submission**
+     - **Using Other Programming Languages and Continuous Integration**
+     - **Additional Examples**
+
+- **The world of modern open source tooling**
+
+- **Summary**
+
+## What is a CLI and why would you use it?
+
+CLI stands for Command Line Interface. It is a program that allows for user interaction through text based input. In the early days of computing, command line interfaces were the only means to interact with operating systems. The invention of the mouse and development of graphical user interfaces led to the experience we are familiar with today. Well-designed GUIs certainly yield an improved interactive experience. However, CLIs are still heavily used today and are very powerful. Windows shell and bash are common examples of terminals where command line tools are run interactively.
+
+If well-designed GUIs yield an improved interactive experience, why would you use a CLI? Simply put, automation. Command line interfaces can be used interactively allowing for quick exploration of available commands. They are also usually self-guided and some even offer modern help displays by launching content in a browser. But, they are also programmatic interfaces where command sequences and tasks can be easily abstracted into scripts.
+
+## What is Zowe CLI?
+
+Zowe CLI is an open source CLI for the mainframe. It is a tool that can be run on Windows, Linux, and Mac offering a means to interact with the mainframe from an environment where modern open source tooling is available. Cloud platforms like Amazon Web Services, Azure, and Google Cloud Platform all provide heavily used CLIs. The Zowe CLI helps make interacting with the mainframe like interacting with other cloud services. 
+
+At its core, Zowe CLI provides remote interaction with z/OS data sets & jobs, Unix System Services files, TSO and Console commands, and provisioning services. Zowe CLI is also an extensible technology and numerous plug-ins exist that extend its reach to z/OS subsystems and vendor software.
+
+Zowe CLI is a bridge tool between distributed systems and the mainframe. Pick your favorite language or open source tool and leverage it for mainframe development with the assistance of the Zowe CLI. Want to develop automation in Python? Want to write tests in Node? Want to run Jenkins pipelines for continuous integration? Want to use open source testing frameworks like Mocha or Facebook’s Jest? Want to leverage code quality tools like SonarQube? Go for it! 
+
+CLIs are useful for automating repeated tasks. For mainframe COBOL apps, Zowe CLI can help you automate your build, deployment, and testing processes. Check out this [blog](https://medium.com/zowe/continuous-integration-for-a-mainframe-app-800657e84e96) for more info and the sample code that made it possible! Zowe CLI can also help you to automate administrative tasks. 
+
+Most IDEs have integrated terminals as well so the CLI can be leveraged from your favorite distributed development environment, including VS Code! 
+
+## Zowe CLI interactive use
+
+The Zowe CLI can be leveraged for quick exploration of z/OS services as well as issuing commands that are not yet available in your IDE of choice. Before developing automation, it is common to first accomplish a commonly repeated task from the CLI interactively.
+
+### Installing Zowe CLI
+
+The Zowe CLI is a node package and is one of over 1.2 million node packages available on the public npm registry. After Node.js and npm are installed on the client machine, the core CLI can be installed by simply issuing `npm install -g @zowe/cli@zowe-v1-lts`. There is an alternative installation method if your workstation does not have access to the public registry. More details on installing Zowe CLI and Zowe CLI plug-ins are provided in a future section titled "Installation of Zowe CLI and plug-ins". 
+
+### Interactive Help
+
+To get started, you can simply open a terminal and issue zowe. This will yield the top level help. 
+
+![](Images/zowe-cli-help.png)
+
+*Figure 1. Zowe CLI Help
+
+In the example above, multiple extensions are installed. The structure of commands is `zowe <group> <action> <object>` followed by various parameters and options specific to the command. For example, a valid command is `zowe files list data-set "HLQ.*"`. This command will list data-sets matching a pattern of "HLQ.*". You can append `-h` to any command to find out more information. Frequently referring to the help can be difficult and time consuming so if your environment has access to a web browser, simply append `--help-web` or `--hw` to any command to launch interactive web help.
+
+![](Images/zowe-cli-web-help.png)
+
+*Figure 2. Zowe CLI Web Help
+
+Don’t have the CLI installed yet? You can also check out a copy of the web help for the core Zowe CLI and Zowe plug-ins [here](https://docs.zowe.org/stable/web_help/index.html).
+
+### Zowe Profiles
+Zowe client technologies like Zowe CLI and the Zowe Explorer VS Code Extension store connection information in files commonly known as profiles. This provides convenience as after profiles for services are created, users do not have to constantly provide this information. For the secure storage of credentials, there is the Secure Credential Store plug-in which is discussed more in a later section titled "Installation of Zowe CLI and plug-ins". The Secure Credential Store provides a means to store creds in the operating system’s secure credential vault.
+
+When creating profiles you can also specify the `prompt*` keyword to be prompted for your username and password so they will be masked on the command line. Figure 3 shows a sample command to create a zosmf profile. This will eliminate the need to provide these details on future commands.
+
+![](Images/zowe-cli-zosmf-profile-creation-command.png)
+
+*Figure 3. Zowe CLI z/OSMF Profile Creation Command
+
+### Interacting with z/OS Data Sets
+Zowe CLI provides a significant suite of z/OS data set interaction functionality. See the following figures for details on available actions and a sample list command.
+
+![](Images/zowe-cli-zos-files-actions.png)
+
+*Figure 4. Zowe CLI zos-files actions
+
+![](Images/zowe-cli-zos-files-list-ds-command.png)
+
+*Figure 5. Sample Zowe CLI zos-files list ds command
+
+### Interacting with z/OS Jobs
+Zowe CLI provides a significant suite of z/OS jobs interaction functionality. See the following figures for details on available actions and a sample job submission command. 
+
+![](Images/zowe-cli-zos-jobs-actions.png)
+
+*Figure 6. Zowe CLI zos-jobs actions
+
+![](Images/zowe-cli-zos-jobs-submit-ds-command.png)
+
+*Figure 7. Sample Zowe CLI zos-jobs submit ds command
+
+## Automating tasks using Zowe CLI
+Running commands interactively is a great way to learn the capabilities of the Zowe CLI. However, creating custom automation for your commonly repeated tasks and making use of valuable development tooling is where significant value lies. For COBOL development, significant time can be spent reviewing compiler output and testing programs. These repetitive tasks are excellent candidates for automation. 
+
+### Automated Job Submission
+Let’s investigate automating submitting a job and verifying the return code is 0. Of course, we could also parse the spool output for specific messages of interest but we will keep it simple for now. For this sample, we will leverage Node.js to develop a new automation suite. To start, I will create a package.json file to make it easy for others to manage and install the project. It will contain the list of dependencies for my project as well as the automation tasks I will develop. A quick way to create a package.json is to issue `npm init` and answer the prompts. Once created I will add a submitJob task. You can add whatever automation you want here. My final package.json is shown in the next figure. You can learn more about package.json files [here](https://docs.npmjs.com/creating-a-package-json-file).
+
+![](Images/sample-package-json.png)
+
+*Figure 8. Sample package.json
+
+Then I will create a config.json file to store all the variables I may wish to change for my project. In this case, we will set the job to submit and the maximum allowable return code for that job.
+
+![](Images/sample-config-json.png)
+
+*Figure 9. Sample config.json
+
+Next we will write our automation. The Zowe CLI was built with scripting in mind and can output responses in JSON format which can be easily parsed.
+
+![](Images/zowe-cli-response-format-json.png)
+
+*Figure 10. Sample Zowe CLI response format JSON output
+
+Now, instead of issuing this command and reviewing it to see if the retcode is less than or equal to 4, we want to automate it. See the implementation in a node script below.
+
+![](Images/script-to-submit-job-check-rc.png)
+
+*Figure 11. Sample code to submit job and verify output is less than or equal to a maximum allowable RC
+
+I had to make the investment to write this automation but for future job submissions I can simply issue `npm run submitJob`. IDEs like VS Code can visualize these tasks making my commonly repeated tasks as easy as clicking a button :). This job could compile, link, and/or run a COBOL program.
+
+![](Images/npm-script-button-click-and-run.png)
+
+*Figure 12. Vizualization of NPM script and sample run
+
+More advanced code automating the compilation, deployment to test environment, and testing of a COBOL CICS application is described in this [blog](https://medium.com/zowe/continuous-integration-for-a-mainframe-app-800657e84e96). 
+
+### Using Other Programming Languages and Continuous Integration
+Another good example of automating tasks using Zowe CLI is when you want to integrate other programming languages into your COBOL development. Similar to 3.4.1, you can use other languages such as Typescript to write a COBOL program generator and use Zowe CLI to create a "one-click" process for creating your program. The figure below is a representation of that "one-click" automated process where several tasks are executed such as creating your COBOL program, uploading it in mainframe, compiling it and running your JCL to test it.
+
+![](Images/one-click-cobol-build.png)
+
+*Figure 13. "One Click" COBOL build process
+
+You can then level-up this process by leveraging a CI/CD pipeline. What is a CI/CD pipeline? It is an automated way of building, testing, and deploying your application and you can do the same with your COBOL development. The figure below shows the pipeline for the same automated tasks that we did earlier.
+
+![](Images/CircleCI-pipeline.png)
+
+*Figure 14. CI/CD pipeline of the "one click" COBOL build process
+
+To know more about this topic, check [this](https://medium.com/@jessielaine.punongbayan/how-i-used-typescript-to-generate-my-cobol-programs-a2a180209148) out.
+
+### Additional Examples
+If you are looking for an example on how to use Zowe Explorer and Zowe CLI with Db2 Stored Procedures, check out this [blog](https://www.idug.org/p/bl/et/blogid=278&blogaid=1007?es_id=c5a317e73e).
+
+If you are interested in using open source tools in your development, you can review this [blog](https://medium.com/zowe/how-to-write-cleaner-and-safer-z-os-code-with-zowe-cli-and-sonarqube-6afb283348f9) where it talks about using Zowe CLI to leverage static code analysis tools when developing COBOL applications.
+
+For additional blogs and articles on leveraging Zowe technologies, check out https://medium.com/zowe/users/home.
+
+## The world of modern open source tooling
+We have only scratched the surface of using modern tools and languages for mainframe development and incorporating mainframe applications into enterprise DevOps pipelines. As a bridge tool, the Zowe CLI enables the use of a plethora of tools being developed by an enormous community for mainframe development. If you are new to mainframe, hopefully this offers some familiarity as you transition into this space. If you are an experienced mainframer, hopefully you find time to give some of these available technologies a try to see if they can help you.
+
+## Summary
+As both a user and programmatic interface, command line interfaces offer significant value in simplifying complex repeatable processes into single tasks. CLIs are commonly used when developing on popular cloud platforms like Amazon Web Services. The Zowe CLI is the CLI for the mainframe that has been extended via numerous plug-ins. Zowe CLI acts as a bridge tool enabling the use of distributed development tooling while working with mainframe applications. Numerous resources and articles are available for using Zowe CLI to create custom automation, build CI pipelines, and incorporate static analysis into your COBOL development processes. Development tooling created by the distributed open source community can now be effectively leveraged for mainframe development.
+
 # Installation of VSCode and extensions
 
 This chapter covers all aspects of download and installation of Visual Studio (VS) Code and any prerequisites that are needed.  It includes:
