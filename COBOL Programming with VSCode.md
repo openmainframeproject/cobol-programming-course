@@ -2330,9 +2330,9 @@ TRUE and FALSE are among the most common conditional states.
 
 A conditional-name is a programmer defined variable name with the TRUE condition state.  Conditional names are declared in the WORKING STORAGE SECTION with an 88-level number.  The purpose of 88-level is to improve readability by simplifying IF and PERFORM UNTIL statements.
 
-The 88-level conditional data-name is assigned a value.  The program can change the 88-level data-name to a different value.  A program expression referencing the 88-level data-name is only true when the current value of the 88-level data-name is equal to the WORKING-STORAGE 88-level conditional data-name assigned value. 
+The 88-level conditional data-name is assigned a value at compile time.  The program cannot change the 88-level data-name during program execution. However, the program can change the data name value in the level number above the 88-level conditional data-name.  01-level USA-STATE in Example 1. can be changed.  A program expression referencing the 88-level data-name is only true when the current value of the preceding level data name, USA-STATE, is equal to the WORKING-STORAGE 88-level conditional data-name assigned value. 
 
-Observe in Example 1. , only the 88-level data-name, STATE, follows IF where the 88-level data-name, STATE, is true when the value of STATE is TX.  Example 1.  writes, 'The State is not Texas', as a result of the first IF STATE because the value of STATE is AZ.  The second IF STATE writes, 'The State is Texas', because the value of STATE is equal to the WORKING-STORAGE assigned 88 level value of TX.
+Observe in Example 1.  'The State is not Texas' is written as a result of the first IF STATE because the value of USA-STATE is AZ which is not equal to the 88-level conditional data-name, TX.  The second IF STATE writes, 'The State is Texas' because the value of USA-STATE is equal to the assigned 88-level value of TX.
 
 
 ```
@@ -2361,8 +2361,9 @@ END-IF.
 ```
 *Example 1.  Using 88-level conditional name*
 
+Numerous 88-level conditional data-names can follow an 01-level data-name.  As a result an IF reference to 01-level data-name expression can have numerous values that would return true.
 
-Other level number data-names require the condition expression to include a Boolean operator as shown in Example 2. , where the expression is STATE equals some value.  The 88-level 'Conditional name', STATE, only required STATE as the expression where 'TX' is the only value that would result in true condition.
+Other level number data-names require the condition expression to include a Boolean operator as shown in Example 2. , where a value can be stored in the 05-level STATE data name to be compared with some other stored value.  Therefore, a little bit of extra coding is needed.
 
 
 ```
