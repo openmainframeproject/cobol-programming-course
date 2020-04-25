@@ -193,7 +193,7 @@ The language server protocol defines six broad capabilities that should be imple
 
 ### 2.1.3 Installing the IBM Z Open Editor for VS Code
 
-The IBM Z Open Editor can be installed into VS code by searching the Extensions Marketplace inside VSCode for "IBM Z Open Editor" and selecting install.  Once installed, the default editor will be enabled to provide a rich editing experience for COBOL, PL/I and JCL.  There is no need to use a specific editor for these languages. To see a more detailed instruction on installing this extension, visit Chapter 5 "Install VSCode and Extensions". 
+The IBM Z Open Editor can be installed into VS code by searching the Extensions Marketplace inside VSCode for "IBM Z Open Editor" and selecting install.  Once installed, the default editor will be enabled to provide a rich editing experience for COBOL, PL/I and JCL.  There is no need to use a specific editor for these languages. To see a more detailed instruction on installing this extension, visit Chapter 3 "Installation of VSCode and Extensions". 
 
 ## 2.2 Basic editing
 
@@ -789,7 +789,7 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
 ## 4.6 Lab 1
 
-In this lab exercise you will connect to an IBM Z system, view a simple COBOL hello world program in VSCode, submit JCL to compile the COBOL program, and view the output.  Refer to Chapter 3, “ Installation of VSCode and extensions”, to configure VSCode with the Zowe Explorer and Z Open Editor extensions if you have not already done so.
+In this lab exercise you will connect to an IBM Z system, view a simple COBOL hello world program in VSCode, submit JCL to compile the COBOL program, and view the output.  Refer to Chapter 3, “Installation of VSCode and extensions”, to configure VSCode with the Zowe Explorer and Z Open Editor extensions if you have not already done so.
 
 1. The lab assumes installation of VSCode with Z Open Editor and Zowe Explorer extensions as shown in Figure  2.
 
