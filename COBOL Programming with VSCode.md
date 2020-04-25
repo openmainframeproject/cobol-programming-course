@@ -1210,6 +1210,18 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 28.  The following URL is another excellent document describing the above VSCode and Zowe Explore details with examples:
    [https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe)
 
+## Lab - Zowe CLI & Automation
+In this lab exercise you will use the Zowe CLI to automate the compilation and testing of the COBOL program you reviewed in the previous lab. Refer to the section on the "Installation of Zowe CLI and Plug-ins" to install Zowe CLI if you have not already done so. Before developing the automation, we will first leverage the Zowe CLI interactively.
+
+### Zowe CLI - Interactive Usage
+In this section, we will use the Zowe CLI interactively to view data set members, submit jobs, and review spool output.
+
+1. Within VS Code, open the integrated terminal (Terminal -> New Terminal). In the terminal, issue `zowe --version` to confirm the Zowe CLI is installed as depicted in the following figure. If it is not installed, please refer to to the section on the "Installation of Zowe CLI and Plug-ins." Also notice that the default shell selected (outlined in red) is `bash`. I would recommend selecting the default shell as either `bash` or `cmd` for this lab.
+
+![](Images/zowe-cli-version.png)
+
+*Figure  29.  zowe --version command in VS Code Integrated Terminal (Shell selection outlined in red)*
+
 \newpage
 
 # Data division
