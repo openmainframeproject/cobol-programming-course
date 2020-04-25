@@ -1220,7 +1220,7 @@ In this section, we will use the Zowe CLI interactively to view data set members
 
 ![](Images/zowe-cli-version.png)
 
-*Figure  29.  zowe --version command in VS Code Integrated Terminal (Shell selection outlined in red)*
+*Figure  29.  `zowe --version` command in VS Code Integrated Terminal (Shell selection outlined in red)*
 
 2. In order for Zowe CLI to interact with z/OSMF the CLI must know the connection details such as host, port, username, password, etc. While you could enter this information on each command, Zowe provides the ability to store this information in configurations commonly known as profiles. Zowe CLI and the Zowe VS Code Extension share profiles. So if you created a connection profile in the first lab, you could naturally leverage it here. 
 
@@ -1330,6 +1330,33 @@ The Zowe CLI was built with scripting in mind. For example, you can use the `--r
 ![](Images/zowe-jobs-submit-ds-rfj.png)
 
 *Figure  36.  The `--rfj` flag allows for easy programmatic usage*
+
+### Zowe CLI - Programmatic Usage
+In this section, we will leverage the Zowe CLI programmatically to automate submitting the JCL to compile, link, and run the COBOL program and downloading the spool output. Once you have the content locally you could use any number of distributed scripting and testing tools to eliminate the need to manually review the spool content itself. Historically, in Mainframe we use REXX EXEC etc. for automation, but today we are going to use CLI and distributed tooling.
+
+1. Since we already have Node and npm installed, let’s just create a node project for our automation. To initialize a project, issue `npm init` in your project’s folder and follow the prompts. You can accept the defaults by just pressing enter. Only the description and author fields should be changed. See the following figure.
+
+![](Images/npm-init-example.png)
+
+*Figure  37.  Use of `npm init` to create `package.json` for the project*
+
+2. Now that we have our `package.json` simply replace the `test` script with a `clg` script that runs the following zowe command (replace your with your high level qualifier):
+
+```
+zowe jobs submit ds 'Z80462.JCL(HELLO)' -d .
+```
+
+You can name the script whatever you want. I only suggested `clg` because the `CLG` in the `IGYWCLG` proc (which is what the JCL leverages) stands for compile, link, go. Now, simply issue `npm run clg` in your terminal to leverage the automation to compile, link and run the COBOL program and download the output for review. An example of the completed `package.json` and command execution are shown in the following figure. 
+
+![](Images/npm-run-clg.png)
+
+*Figure  38.  Final `package.json` and `npm run clg` execution*
+
+3. If you prefer a graphical trigger that is also readily available in VS Code as shown in the following figure. Essentially, the CLI enables you to quickly build your own buttons for your custom z/OS tasks. You could also invoke a script rather than a single command to accomodate more complex scenarios.
+
+![](Images/npm-run-clg-button.png)
+
+*Figure  39.  `clg` task triggered via button*
 
 \newpage
 
