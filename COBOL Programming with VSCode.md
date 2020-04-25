@@ -353,13 +353,13 @@ To get started, you can simply open a terminal and issue zowe. This will yield t
 
 ![](Images/zowe-cli-help.png)
 
-*Figure 1. Zowe CLI Help
+*Figure 1. Zowe CLI Help*
 
 In the example above, multiple extensions are installed. The structure of commands is `zowe <group> <action> <object>` followed by various parameters and options specific to the command. For example, a valid command is `zowe files list data-set "HLQ.*"`. This command will list data-sets matching a pattern of "HLQ.*". You can append `-h` to any command to find out more information. Frequently referring to the help can be difficult and time consuming so if your environment has access to a web browser, simply append `--help-web` or `--hw` to any command to launch interactive web help.
 
 ![](Images/zowe-cli-web-help.png)
 
-*Figure 2. Zowe CLI Web Help
+*Figure 2. Zowe CLI Web Help*
 
 Don’t have the CLI installed yet? You can also check out a copy of the web help for the core Zowe CLI and Zowe plug-ins [here](https://docs.zowe.org/stable/web_help/index.html).
 
@@ -370,29 +370,29 @@ When creating profiles you can also specify the `prompt*` keyword to be prompted
 
 ![](Images/zowe-cli-zosmf-profile-creation-command.png)
 
-*Figure 3. Zowe CLI z/OSMF Profile Creation Command
+*Figure 3. Zowe CLI z/OSMF Profile Creation Command*
 
 ### Interacting with z/OS Data Sets
 Zowe CLI provides a significant suite of z/OS data set interaction functionality. See the following figures for details on available actions and a sample list command.
 
 ![](Images/zowe-cli-zos-files-actions.png)
 
-*Figure 4. Zowe CLI zos-files actions
+*Figure 4. Zowe CLI zos-files actions*
 
 ![](Images/zowe-cli-zos-files-list-ds-command.png)
 
-*Figure 5. Sample Zowe CLI zos-files list ds command
+*Figure 5. Sample Zowe CLI zos-files list ds command*
 
 ### Interacting with z/OS Jobs
 Zowe CLI provides a significant suite of z/OS jobs interaction functionality. See the following figures for details on available actions and a sample job submission command. 
 
 ![](Images/zowe-cli-zos-jobs-actions.png)
 
-*Figure 6. Zowe CLI zos-jobs actions
+*Figure 6. Zowe CLI zos-jobs actions*
 
 ![](Images/zowe-cli-zos-jobs-submit-ds-command.png)
 
-*Figure 7. Sample Zowe CLI zos-jobs submit ds command
+*Figure 7. Sample Zowe CLI zos-jobs submit ds command*
 
 ## Automating tasks using Zowe CLI
 Running commands interactively is a great way to learn the capabilities of the Zowe CLI. However, creating custom automation for your commonly repeated tasks and making use of valuable development tooling is where significant value lies. For COBOL development, significant time can be spent reviewing compiler output and testing programs. These repetitive tasks are excellent candidates for automation. 
@@ -402,31 +402,31 @@ Let’s investigate automating submitting a job and verifying the return code is
 
 ![](Images/sample-package-json.png)
 
-*Figure 8. Sample package.json
+*Figure 8. Sample package.json*
 
 Then I will create a config.json file to store all the variables I may wish to change for my project. In this case, we will set the job to submit and the maximum allowable return code for that job.
 
 ![](Images/sample-config-json.png)
 
-*Figure 9. Sample config.json
+*Figure 9. Sample config.json*
 
 Next we will write our automation. The Zowe CLI was built with scripting in mind and can output responses in JSON format which can be easily parsed.
 
 ![](Images/zowe-cli-response-format-json.png)
 
-*Figure 10. Sample Zowe CLI response format JSON output
+*Figure 10. Sample Zowe CLI response format JSON output*
 
 Now, instead of issuing this command and reviewing it to see if the retcode is less than or equal to 4, we want to automate it. See the implementation in a node script below.
 
 ![](Images/script-to-submit-job-check-rc.png)
 
-*Figure 11. Sample code to submit job and verify output is less than or equal to a maximum allowable RC
+*Figure 11. Sample code to submit job and verify output is less than or equal to a maximum allowable RC*
 
 I had to make the investment to write this automation but for future job submissions I can simply issue `npm run submitJob`. IDEs like VS Code can visualize these tasks making my commonly repeated tasks as easy as clicking a button :). This job could compile, link, and/or run a COBOL program.
 
 ![](Images/npm-script-button-click-and-run.png)
 
-*Figure 12. Vizualization of npm script and sample run
+*Figure 12. Vizualization of npm script and sample run*
 
 More advanced code automating the compilation, deployment to test environment, and testing of a COBOL CICS application is described in this [blog](https://medium.com/zowe/continuous-integration-for-a-mainframe-app-800657e84e96). 
 
@@ -435,13 +435,13 @@ Another good example of automating tasks using Zowe CLI is when you want to inte
 
 ![](Images/one-click-cobol-build.png)
 
-*Figure 13. "One Click" COBOL build process
+*Figure 13. "One Click" COBOL build process*
 
 You can then level-up this process by leveraging a CI/CD pipeline. What is a CI/CD pipeline? It is an automated way of building, testing, and deploying your application and you can do the same with your COBOL development. The figure below shows the pipeline for the same automated tasks that we did earlier.
 
 ![](Images/CircleCI-pipeline.png)
 
-*Figure 14. CI/CD pipeline of the "one click" COBOL build process
+*Figure 14. CI/CD pipeline of the "one click" COBOL build process*
 
 To know more about this topic, check [this](https://medium.com/@jessielaine.punongbayan/how-i-used-typescript-to-generate-my-cobol-programs-a2a180209148) out.
 
