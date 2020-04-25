@@ -771,7 +771,7 @@ This chapter introduces the basics of COBOL syntax. It then demonstrates how to 
      - **Professional manuals**
      - **Learn more about recent COBOL advancements**
 
-- **Lab 1**
+- **Lab**
 
 
 ## COBOL characteristics
@@ -1004,7 +1004,7 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
    [https://youtu.be/bRLKGeB6W2A](https://youtu.be/bRLKGeB6W2A)
 
-## Lab 1
+## Lab
 
 In this lab exercise you will connect to an IBM Z system, view a simple COBOL hello world program in VSCode, submit JCL to compile the COBOL program, and view the output.  Refer to "Installation of VSCode and extensions" to configure VSCode with the Zowe Explorer and Z Open Editor extensions if you have not already done so.
 
@@ -1240,7 +1240,7 @@ Following this chapter is a lab available to compile and execute the COBOL sourc
 
 - **MOVE and COMPUTE**
 
-- **Lab 2**
+- **Lab**
 
 ## Variables / Data-items
 
@@ -1366,7 +1366,7 @@ MOVE and COMPUTE reserved word statements alter the value of variable names.  Ea
 
 *Figure  2.  MOVE and COMPUTE example*
 
-## Lab 2
+## Lab
 
 **Note** : It may take a few seconds to load in all segments of this lab.  If files are not loading, hit the refresh button on the list that appears when hovering over the section bar.
 
@@ -1456,7 +1456,7 @@ An experienced COBOL programmer can answer the question, "How does an Enterprise
 
      - **Iterative processing of READ-NEXT-RECORD paragraph**
 
-- **Lab 3**
+- **Lab**
 
 
 ## COBOL code used for sequential file handling
@@ -1625,7 +1625,7 @@ Again, the READ-RECORD paragraph executes the COBOL READ statement, resulting in
 *Figure  7.  Iterative processing*
 
 
-## Lab 3
+## Lab
 
 The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL coding technique for reading all data records from a sequential file. If a step has an asterisk (\*) next to it, it will have a hint associated at the end of the lab content.
 
@@ -2293,7 +2293,7 @@ A capability of COBOL data output formatting that is worth noting but not covere
 
      - **PRINT-REC FROM sentences**
 
-- **Lab 4**
+- **Lab**
 
 ## Review of COBOL write output process
 
@@ -2394,7 +2394,7 @@ The COBOL MOVE sentence, on line 1, in the WRITE-HEADERS paragraph is collecting
 
 PRINT-REC is opened for output resulting in PRINT-REC FROM following through with a write PRINT-REC FROM a different header or defined data name layout.  The sentences on lines 5 and 6 write the PRINT-REC FROM defined header data names, HEADER-1 and HEADER-2, from Figure  3.   The PRINT-REC file descriptor data names in Figure  2. are effectively replaced with the content of the header data names in Figure  3. written to output.  The sentences on lines 7 and 8 result in a blank line written between headers.  The sentences on lines 9 and 10 write the PRINT-REC FROM defined HEADER-3 and HEADER-4 data names from Figure  3.  The PRINT-REC file descriptor data names in Figure  2. are effectively replaced with the content of the header data names in Figure  3.
 
-## Lab 4
+## Lab
 
 This lab utilizes two COBOL programs, CBL0004 and CBL0005, located within your id.CBL data set, as well as two JCL jobs, CBL0004J and CBL0005J, located within your id.JCL data set.  The JCL jobs are used to compile and execute the COBOL programs, as discussed in previous chapters.
 #### Using VSCode and Zowe Explorer
@@ -2474,7 +2474,7 @@ This chapter dives into how programs make decisions based upon the programmer wr
 
      - **Sign conditions**
 
-- **Lab 5**
+- **Lab**
 
  
 ## Boolean logic, operators, operands, and identifiers
@@ -2761,7 +2761,7 @@ The sign condition determines whether the algebraic value of a numeric operand i
 [IBM Knowledge Center - Enterprise COBOL for z/OS 4.2.0](https://www.ibm.com/support/knowledgecenter/en/SS6SG3_4.2.0/com.ibm.entcobol.doc_4.2/PGandLR/ref/rlpdsxco.htm)
 
  
-## Lab 5
+## Lab
 
 This lab requires two COBOL programs, CBL0006 and CBL0007 and two respective JCL Jobs, CBL0006J and CBL0007J, to compile and execute the COBOL programs. All of which are provided to you in your VSCode - Zowe Explorer.
 #### Using VSCode and Zowe Explorer:
@@ -2832,7 +2832,7 @@ This chapter aims to introduce the concept of implementing arithmetic expression
 
 - **Examples of COBOL arithmetic statements**
 
-- **Lab 6**
+- **Lab**
 
 
 ## What is an arithmetic expression?
@@ -2987,7 +2987,7 @@ The WRITE-TLIMIT-TBALANCE paragraph shown in Figure  5. is positioned within the
 
 <a name="_Ref36026709"></a>
 
-## Lab 6
+## Lab
 
 This lab requires two COBOL programs, CBL0008 and CBL0009 and two respective JCL Jobs, CBL0008J and CBL0009J, to compile and execute the COBOL programs. All of which are provided to you in your VSCode - Zowe Explorer.
 #### Using VSCode and Zowe Explorer
@@ -3056,7 +3056,7 @@ A COBOL programmer must be aware that the computer stored internal data represen
 
 - **COBOL DISPLAY vs COMPUTATIONAL**
 
-- **Lab 7**
+- **Lab**
 
 
 ## Data representation
@@ -3119,9 +3119,9 @@ COBOL can encode and process text data in EBCDIC or ASCII.  This means a COBOL p
 Enterprise COBOL for z/OS by default utilizes EBCDIC encoding.  However, it is possible to read and write ASCII in z/OS.  The EBCDIC format representation of numbers and alphabetic characters is in a DISPLAY format.  Packed decimal and zoned decimal are NOT in a DISPLAY format.  COBOL can describe packed decimal and zoned decimal fields using COMPUTATIONAL, COMP-1, COMP-2, COMP-3, COMP-4, and COMP-5 reserved words.
 
 
-## Lab 7
+## Lab
 
-Many of the previous COBOL lab programs you have worked with thus far are reading records containing two packed decimal fields, the client account limit and the client account balance.  In lab 6, the total of all client account limits and balances used a COMPUTE statement, where the COMP-3 fields contained the packed decimal internal data.
+Many of the previous COBOL lab programs you have worked with thus far are reading records containing two packed decimal fields, the client account limit and the client account balance.  In the Arithmetic expressions lab, the total of all client account limits and balances used a COMPUTE statement, where the COMP-3 fields contained the packed decimal internal data.
 
 What happens when an internal packed decimal field is not described using COMP-3? Without using COMP-3 to describe the field, the COBOL program treats the data as DISPLAY data (EBCDIC format). This lab demonstrates what happens during program execution without using COMP-3.
 
@@ -3186,7 +3186,7 @@ Previous COBOL industry specifications included intrinsic functions, which remai
 
 - **Use of intrinsic functions with reference modifiers**
 
-- **Lab 8**
+- **Lab**
 
 
 ## What is an intrinsic function?
@@ -3355,7 +3355,7 @@ LNAME(4:2)
 Reference modification, LNAME(1:1), would return only the first character of data item LNAME, while reference modification, LNAME(4:2), would return the fourth and fifth characters of LNAME as the result of starting in the fourth character position with a length of two.  If LNAME of value SMITH was the data item being referenced in the intrinsic function, the first reference would output, S.  Considering those same specs, the second reference would output, TH.
 
 
-## Lab 8
+## Lab
 
 This lab contains data that includes a last name, where last name is all upper-case.  It demonstrates the use of intrinsic functions together with reference modification to lower-case the last name characters, except the first character of the last name.
 
@@ -3368,11 +3368,11 @@ This lab requires two COBOL programs, CBL0011 and CBL0012 and two respective JCL
 
 2. Observe the report output, last name, with first character upper-case and the remaining characters lower-case. 
 
-   Figure  1. , below, illustrates the difference in output from lab 6 compared to this lab.  Notice that in the previous lab, the last names were listed in all capitalized characters, whereas, as previously stated, this lab output has only the first character of the last name capitalized.
+   Figure  1. , below, illustrates the difference in output from the Data types lab compared to this lab.  Notice that in the previous lab, the last names were listed in all capitalized characters, whereas, as previously stated, this lab output has only the first character of the last name capitalized.
 
 ![](Images/image170.jpg)
 
-*Figure  1.  Lab 8 vs. lab 7 output*
+*Figure  1.  Current lab vs. Data types lab output*
 
  
 
