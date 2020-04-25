@@ -2,6 +2,19 @@
 geometry:
 - margin=1in
 header-includes:
+- \lstset{basicstyle=\ttfamily,
+    stepnumber=2,
+    numbersep=5pt,
+    backgroundcolor=\color{black!10},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=true,
+    breakautoindent=true,
+    linewidth=\textwidth}
 - \hypersetup{colorlinks=true,
               linkcolor=blue}
 ---
@@ -409,7 +422,7 @@ I had to make the investment to write this automation but for future job submiss
 
 ![](Images/npm-script-button-click-and-run.png)
 
-*Figure 12. Vizualization of NPM script and sample run
+*Figure 12. Vizualization of npm script and sample run
 
 More advanced code automating the compilation, deployment to test environment, and testing of a COBOL CICS application is described in this [blog](https://medium.com/zowe/continuous-integration-for-a-mainframe-app-800657e84e96). 
 
@@ -440,6 +453,8 @@ We have only scratched the surface of using modern tools and languages for mainf
 
 ## Summary
 As both a user and programmatic interface, command line interfaces offer significant value in simplifying complex repeatable processes into single tasks. CLIs are commonly used when developing on popular cloud platforms like Amazon Web Services. The Zowe CLI is the CLI for the mainframe that has been extended via numerous plug-ins. Zowe CLI acts as a bridge tool enabling the use of distributed development tooling while working with mainframe applications. Numerous resources and articles are available for using Zowe CLI to create custom automation, build CI pipelines, and incorporate static analysis into your COBOL development processes. Development tooling created by the distributed open source community can now be effectively leveraged for mainframe development.
+
+\newpage
 
 # Installation of VSCode and extensions
 
@@ -586,6 +601,140 @@ Open VSCode and in the left side tool menu select **Extensions**.  From there, i
 ## Summary
 
 In this chapter you have been introduced to VSCode and some of the extension tools available to it.  We have walked through the process of installing the pre-requisite software, Node.js and Java SDK, as well as VSCode, Zowe Explorer and IBM Z Open Editor.  You have also been briefly introduced to the utility of these extensions in VSCode.  In the subsequent chapters we will delve deeper into how and when to use them and get some practice through lab assignments. 
+
+\newpage
+
+
+# Installation of Zowe CLI and Plug-ins
+
+This chapter covers all aspects of the download and installation of Zowe CLI and Zowe CLI plug-ins. 
+
+- **Install prerequisites - Node.js**
+
+- **Install Zowe CLI**
+     - **Public npm Registry**
+     - **Package from Zowe.org**
+
+- **Install Zowe CLI Plug-ins**
+     - **Public npm Registry**
+     - **Package from Zowe.org**
+
+- **Summary**
+
+## Install prerequisites - Node.js
+
+Before installing Zowe CLI, please ensure an LTS version of Node v8.0 or higher is installed. Please refer back to the section titled "Install Node.js" if you have not already completed it. Please also verify that you have a version of Node Package Manager (npm) that is compatible with your version of Node.js. For a list of compatible versions, see [https://nodejs.org/en/download/releases/](https://nodejs.org/en/download/releases/). npm is included with the Node.js installation. Issue the command `npm --version` to view the version of npm that is installed.
+
+## Install Zowe CLI
+There are two recommended methods for installing the Zowe CLI. If you have access to the public npm registry from your workstation, we recommend using that installation method as pulling updates is seamless. If you do not have access to this registry, we recommend downloading the package from zowe.org and installing from the bundled package.
+
+### Install from Public npm Registry
+Issue the following command in your terminal (e.g. Command Prompt or if you are using VS Code, Terminal -> New Terminal):
+
+```
+npm install -g @zowe/cli@zowe-v1-lts
+```
+
+If the command returns an EACCESS error, refer to [Resolving EACCESS permissions errors when installing packages globally](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally) in the npm documentation.
+If other issues are encountered in your environment, please review [known Zowe CLI issues](https://docs.zowe.org/stable/troubleshoot/cli/known-cli.html#known-zowe-cli-issues) for solutions.
+
+We also highly recommend installing the Secure Credential Store plug-in before using the CLI. The Secure Credential Store Plug-in for Zowe CLI lets you store your credentials securely in the default credential manager in your computer's operating system. On Linux, libsecret will need to be installed.
+
+If running Linux, please run the following command for your Linux distribution:
+
+- Debian/Ubuntu: `sudo apt-get install libsecret-1-dev`
+- Red Hat-based: `sudo yum install libsecret-devel`
+- Arch Linux: `sudo pacman -S libsecret`
+
+To install the Secure Credential Store Plug-in for Zowe CLI, issue the following command:
+
+```
+zowe plugins install @zowe/secure-credential-store-for-zowe-cli@zowe-v1-lts
+```
+
+User profiles, which contain connection information for interacting with various z/OS services, created after installing the plug-in will automatically store your credentials securely.
+
+To securely store credentials in existing user profiles (profiles that you created prior to installing the SCS plug-in), issue the following command:
+
+```
+zowe scs update
+```
+
+### Install from Bundled Package 
+Navigate to [Zowe.org Downloads](https://www.zowe.org/#download) and click the CLI Core button to download the core package which includes Zowe CLI and the Secure Credential Store plug-in. After accepting the EULA for Zowe, a package named `zowe-cli-package-v.r.m.zip` will be downloaded to your machine. Unzip the contents of `zowe-cli-package-v.r.m.zip` to a preferred location on your machine.
+
+Open your terminal (e.g. Command Prompt or if you are using VS Code, Terminal -> New Terminal), change your working directory to wherever you unzipped the contents, and issue the following command:
+
+```
+npm install -g zowe-cli.tgz
+```
+
+If the command returns an EACCESS error, refer to [Resolving EACCESS permissions errors when installing packages globally](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally) in the npm documentation.
+If other issues are encountered in your environment, please review [known Zowe CLI issues](https://docs.zowe.org/stable/troubleshoot/cli/known-cli.html#known-zowe-cli-issues) for solutions.
+
+The highly recommended Secure Credential Store Plug-in for Zowe CLI lets you store your credentials securely in the default credential manager in your computer's operating system. On Linux, libsecret will need to be installed.
+
+If running Linux, please run the following command for your Linux distribution:
+
+- Debian/Ubuntu: `sudo apt-get install libsecret-1-dev`
+- Red Hat-based: `sudo yum install libsecret-devel`
+- Arch Linux: `sudo pacman -S libsecret`
+
+To install the Secure Credential Store Plug-in for Zowe CLI, issue the following command from where you unzipped the core CLI package contents:
+
+```
+zowe plugins install secure-credential-store-for-zowe-cli.tgz
+```
+
+User profiles, which contain connection information for interacting with various z/OS services, created after installing the plug-in will automatically store your credentials securely.
+
+To securely store credentials in existing user profiles (profiles that you created prior to installing the SCS plug-in), issue the following command:
+
+```
+zowe scs update
+```
+
+## Install Zowe CLI Plug-ins
+Zowe CLI is an extendable technology that can be enhanced by installing plug-ins. Zowe offers a number of [plug-ins](https://docs.zowe.org/stable/user-guide/cli-extending.html). At the time of this writing, these include plug-ins for [CICS](https://www.npmjs.com/package/@zowe/cics-for-zowe-cli), [Db2](https://www.npmjs.com/package/@zowe/db2-for-zowe-cli), [FTP](https://www.npmjs.com/package/@zowe/zos-ftp-for-zowe-cli), [IMS](https://www.npmjs.com/package/@zowe/ims-for-zowe-cli), and [MQ](https://www.npmjs.com/package/@zowe/mq-for-zowe-cli). There are also many vendor plug-ins, many of which are available on the [public registry](https://www.npmjs.com/search?q=zowe-cli). At the time of this writing, these include plug-ins for [CA Endevor](https://www.npmjs.com/package/@broadcom/endevor-for-zowe-cli), [CA Endevor Bridge for Git](https://www.npmjs.com/package/@broadcom/endevor-bridge-for-git-for-zowe-cli), [CA File Master Plus](https://www.npmjs.com/package/@broadcom/file-master-plus-for-zowe-cli), [CA OPS/MVS](https://www.npmjs.com/package/@broadcom/ops-for-zowe-cli), [CA View](https://www.npmjs.com/package/@broadcom/caview-for-zowe-cli), [IBM CICS Bundle Generation and Deployment](https://www.npmjs.com/package/zowe-cli-cics-deploy-plugin), and [IBM z/OS Connect EE](https://www.npmjs.com/package/@zosconnect/zosconnect-zowe-cli).
+
+### Install from Public npm Registry 
+To install a Zowe CLI plug-in from the registry, simply locate the plug-in you wish to install, e.g. `@zowe/cics-for-zowe-cli`, find the distribution tag for the distribution you want to install, e.g. `zowe-v1-lts`, and issue the following command: 
+
+```
+zowe plugins install <name>@<distTag>
+```
+
+For example,
+
+```
+zowe plugins install @zowe/cics-for-zowe-cli@zowe-v1-lts
+```
+
+Multiple plug-ins can be installed in a single command. For example, to install all Zowe CLI plug-ins available from the Zowe organization, you could issue:
+
+```{.bash}
+zowe plugins install @zowe/cics-for-zowe-cli@zowe-v1-lts @zowe/ims-for-zowe-cli@zowe-v1-lts @zowe/mq-for-zowe-cli@zowe-v1-lts @zowe/zos-ftp-for-zowe-cli@zowe-v1-lts @zowe/db2-for-zowe-cli@zowe-v1-lts
+```
+
+Vendor plug-ins on the registry are installed in the same way. For example, to install the CA Endevor plug-in, you would issue
+
+```
+zowe plugins install @broadcom/endevor-for-zowe-cli@zowe-v1-lts
+```
+
+### Install from Bundled Package
+Navigate to [Zowe.org Downloads](https://www.zowe.org/#download) and click the CLI Plugins button to download the package which includes all Zowe CLI plug-ins for the Zowe organization. After accepting the EULA for Zowe, a package named `zowe-cli-plugins-v.r.m.zip` will be downloaded to your machine. Unzip the contents of `zowe-cli-plugins-v.r.m.zip` to a preferred location on your machine. You can select which plug-ins you want to install. The IBM Db2 plug-in requires [additional configuration](https://docs.zowe.org/stable/user-guide/cli-db2plugin.html#installing-from-a-local-package) when installing from a local package. To install all plug-ins you can issue:
+
+```
+zowe plugins install cics-for-zowe-cli.tgz zos-ftp-for-zowe-cli.tgz ims-for-zowe-cli.tgz mq-for-zowe-cli.tgz db2-for-zowe-cli.tgz
+```
+
+For offline installation of vendor plug-ins, please reach out to the specific vendor for details.
+
+## Summary
+In this chapter we walked through the process of installing the prerequisite software, Node.js and npm, as well as Zowe CLI and various plug-ins.
+
+\newpage
 
 # Part 2 - Learning COBOL
 
@@ -838,7 +987,7 @@ This section provides useful resources in the form of manuals and videos to assi
 
 ### Professional manuals
 
-As Enterprise COBOL experience advances, the need for the professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library – IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of April 2020, the current release of Enterprise COBOL is V6.3.  Highlight V6.3 tab, then select product documentation.
+As Enterprise COBOL experience advances, the need for the professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of April 2020, the current release of Enterprise COBOL is V6.3.  Highlight V6.3 tab, then select product documentation.
 
 [https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library](https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library)
 
@@ -950,7 +1099,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 *Figure  12.  Specified password*
 
-12. Select **False – Accept connections with self-signed certificates** to authorize workstation connection as shown in Figure  13.
+12. Select **False - Accept connections with self-signed certificates** to authorize workstation connection as shown in Figure  13.
 
 ![](Images/image073.png)
 
@@ -2739,7 +2888,7 @@ Arithmetic statements are utilized for computations.  Individual operations are 
 
 `COMPUTE z     = a + b / c \*\* d - e`
 
-`COMPUTE x y z = a + b / c \*\* d – e`
+`COMPUTE x y z = a + b / c \*\* d - e`
 
 Some arithmetic calculations might be more intuitive using arithmetic statements other than `COMPUTE` .  You might also prefer to use the `DIVIDE` statement (with its `REMAINDER` phrase) for division in which you want to process a remainder.  The `REM` intrinsic function also provides the ability to process a remainder.
 
@@ -3191,7 +3340,7 @@ Example 6.  shows used of COBOL function UPPER-CASE where an string or alphabeti
 ```
 MOVE FUNCTION UPPER-CASE("This is shouting!") TO SOME-FIELD
 DISPLAY SOME-FIELD
-Output – THIS IS SHOUTING!
+Output - THIS IS SHOUTING!
 ```
 
 *Example 6.  Character-handling intrinsic function*
@@ -4437,7 +4586,7 @@ The driver for building a CI/CD pipeline is to increase efficiency and speed of 
 
 ### Tests as the quality gatekeeper through phases of the pipeline
 
-As a software change is delivered through a CI/CD pipeline, it is important to ensure its quality and readiness to move on to the next phase.  Testing is the gatekeeper that can give confidence that this is the case – and can also flag up where it is not.
+As a software change is delivered through a CI/CD pipeline, it is important to ensure its quality and readiness to move on to the next phase.  Testing is the gatekeeper that can give confidence that this is the case - and can also flag up where it is not.
 
 This testing also needs to be carried out continuously, as each change is delivered.  'Continuous testing' has been described as being a process of "testing early, testing often, testing everywhere, and automate" ([https://www.guru99.com/continuous-testing.html](https://www.guru99.com/continuous-testing.html)).
 
@@ -4507,7 +4656,7 @@ With such extensive testing required, it might be thought that test automation w
 
  
 
-Surveys and user research carried out by the IBM CICS Transaction Server for z/OS organization have shown that between 92 and 95% of testing on the platform is entirely or mostly manual, which is in line with industry estimates that place the percentage of manual testing at around 80% ("Even today, 80 percent of enterprise testing is done manually." – Sandeep Johri, Tricentis CEO).  The manual testing can vary in nature from a test suite that just needs to be set up and run manually, to typing in a sequence of steps that are described in a hardcopy book of test cases.
+Surveys and user research carried out by the IBM CICS Transaction Server for z/OS organization have shown that between 92 and 95% of testing on the platform is entirely or mostly manual, which is in line with industry estimates that place the percentage of manual testing at around 80% ("Even today, 80 percent of enterprise testing is done manually." - Sandeep Johri, Tricentis CEO).  The manual testing can vary in nature from a test suite that just needs to be set up and run manually, to typing in a sequence of steps that are described in a hardcopy book of test cases.
 
  
 
