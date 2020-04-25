@@ -16,7 +16,7 @@ There are two sets of materials available
 The PDF is built using the following [pandoc](https://pandoc.org/) command. Note: pdflatex is required. [MiKTeX](https://miktex.org/) can be installed to accomodate this.
 
 ```
-pandoc "COBOL Programming with VSCode.md" -o "COBOL Programming with VSCode.pdf" --number-sections -s --toc -B Front_Matter.tex
+pandoc "COBOL Programming with VSCode.md" -o "COBOL Programming with VSCode.pdf" --number-sections -s --toc -B Front_Matter.tex --highlight-style tango --listings
 ```
 
 ## Contributing
