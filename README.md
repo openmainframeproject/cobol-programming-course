@@ -13,11 +13,13 @@ There are two sets of materials available
 
 ## Build
 
-The PDF is built using the following [pandoc](https://pandoc.org/) command. Note: pdflatex is required. [MiKTeX](https://miktex.org/) can be installed to accomodate this.
+The PDF is built using the following [pandoc](https://pandoc.org/) command. Note: pdflatex is required. [MiKTeX](https://miktex.org/) can be installed to accomodate this. 
 
 ```
-pandoc "COBOL Programming with VSCode.md" -o "COBOL Programming with VSCode.pdf" --number-sections -s --toc -B Front_Matter.tex --highlight-style tango --listings
+pandoc "COBOL Programming with VSCode.md" -o "COBOL Programming with VSCode.pdf" --number-sections --toc -B Front_Matter.tex --listings
 ```
+
+`Front_Matter.tex` contains the content before the table of contents. `COBOL Programming with VSCode.md` contains the body. The command combines the two, generates the section numbers and table of contents for the body, and outputs `COBOL Programming with VSCode.pdf`
 
 ## Contributing
 
