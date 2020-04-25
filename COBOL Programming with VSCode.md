@@ -3407,7 +3407,7 @@ Refer to CBL0011 line 120 for the proper formatting of the function-name causing
 
 \newpage
  
-# Part 3 - VSCode alternatives and testing
+# Part 3 - VSCode alternatives and testing {.unnumbered}
 
 # Installing IBM Developer for Z
 
