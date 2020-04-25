@@ -18,6 +18,8 @@ header-includes:
 - \hypersetup{colorlinks=true,
               linkcolor=blue}
 ---
+\newpage
+
 # Part 1 - Getting started {.unnumbered}
 
 # Why COBOL?
@@ -73,6 +75,8 @@ It's no secret that lots of banks still run millions of lines of COBOL on mainfr
 Speaking with people that have worked on such systems, nowadays they have Java front ends and wrappers which add functionality or more modern interfaces, they run the application on virtualized replicated servers, but in the end, everything runs through that single core logic.  And that core logic is rarely touched or changed, unless necessary.
 
 From a software engineering perspective, that even makes sense.  Rewrites are always more expensive than planned, and always take longer than planned (OK, probably not always. But often.).  Never change a running system etc., unless very good technical and business reasons exist.
+
+\newpage
 
 # VSCode with Z Open Editor and Zowe extensions
 
@@ -604,7 +608,6 @@ In this chapter you have been introduced to VSCode and some of the extension too
 
 \newpage
 
-
 # Installation of Zowe CLI and Plug-ins
 
 This chapter covers all aspects of the download and installation of Zowe CLI and Zowe CLI plug-ins. 
@@ -736,26 +739,7 @@ In this chapter we walked through the process of installing the prerequisite sof
 
 \newpage
 
-# Part 2 - Learning COBOL
-
-### [Basic COBOL](#Basic-COBOL)
-
-### [Data division](#Data-division)
-
-### [File handling](#File-handling)
-
-### [Program structure](#Program-structure)
-
-### [File output](#File-output)
-
-### [Conditional expressions](#Conditional-expressions)
-
-### [Arithmetic expressions](#Arithmetic-expressions)
-
-### [Data types](#Data-types)
-
-### [Intrinsic functions](#Intrinsic-functions)
- 
+# Part 2 - Learning COBOL {.unnumbered}
 
 # Basic COBOL
 
@@ -1226,6 +1210,8 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 28.  The following URL is another excellent document describing the above VSCode and Zowe Explore details with examples:
    [https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe)
 
+\newpage
+
 # Data division
 
 Understanding COBOL variables and program processing of variables are essential to effectively learning the COBOL language.  An experienced COBOL programmer must master characteristics of COBOL variables and the program processing using the variables introduced in this chapter.  The objective is to introduce the reader to the basics of COBOL variables while exposing the reader to the many advanced COBOL variable options.
@@ -1430,6 +1416,8 @@ Notice that this line tells you to focus on the GROSS-PAY picture clause in orde
 ![](Images/image124.png)
 
 *Figure  7.  Compare return codes*
+
+\newpage
 
 # File handling
 
@@ -1748,8 +1736,8 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 ![](Images/image140.png)
 
 *Figure  13.  Error in id.JCL(CBL0003J).jcl*
-#
 
+\newpage
 
 # Program structure
 
@@ -2279,6 +2267,7 @@ Finally, the RETURNING phrase is used to specify the variable that should be use
 
 In summary, this chapter should provide the necessary foundation to understand structured programming and how it relates to COBOL and its importance to understanding and maintaining code.  Many examples of how, when and why to implement key techniques have been provided and explained for further understanding.  You should be able to identify the basic differences between structured programming (COBOL) and OO programming (Java).  You should also understand the general concept of the best practices in the structure of the Procedure Division with reference to the design and content of paragraphs, program control options and ways to call other programs within the same system.
 
+\newpage
 
 # File output
 
@@ -2443,6 +2432,7 @@ This lab utilizes two COBOL programs, CBL0004 and CBL0005, located within your i
 
 *Figure  8.  Currency symbol added to output*
 
+\newpage
   
 # Conditional expressions
 
@@ -2816,6 +2806,7 @@ This lab requires two COBOL programs, CBL0006 and CBL0007 and two respective JCL
 
 ![](Images/image155.png)
 
+\newpage
  
 # Arithmetic expressions
 
@@ -3048,7 +3039,7 @@ This lab requires two COBOL programs, CBL0008 and CBL0009 and two respective JCL
 
 ![](Images/image169.png)
 
- 
+ \newpage
 
 # Data types
 
@@ -3161,6 +3152,7 @@ What happens when an internal packed decimal field is not described using COMP-3
 
  The ACCT-LIMIT PIC clause in the ACCT-FIELDS paragraph should be the same as the PIC clause for ACCT-BALANCE.
 
+\newpage
  
 # Intrinsic functions
 
@@ -3413,26 +3405,13 @@ Previous lab programs made use of a date/time intrinsic function.  The date/time
 
 Refer to CBL0011 line 120 for the proper formatting of the function-name causing   the compile error.
 
+\newpage
  
 # Part 3 - VSCode alternatives and testing
 
-### [Installing IBM Developer for Z](#Installing-IBM-Developer-for-Z)
-
-### [Enabling IBM Developer for Z to work with COBOL](#Enabling-IBM-Developer-for-Z-to-work-with-COBOL)
-
-### [Using ISPF to work with COBOL](#Using-ISPF-to-work-with-COBOL)
-
-### [Testing](#Testing)
-
-
-
 # Installing IBM Developer for Z
 
-This chapter covers all aspects of download and installation of IBM Developer for z/OS and any prerequisites that are needed.  It includes:
-
- 
-
- 
+This chapter covers all aspects of download and installation of IBM Developer for z/OS and any prerequisites that are needed.  It includes: 
 
 - **Install prerequisites**
 
@@ -3445,7 +3424,6 @@ This chapter covers all aspects of download and installation of IBM Developer fo
 - **Install product offerings through IM**
 
 - **Summary**
-
 
 ## Install prerequisites
 
@@ -3558,6 +3536,7 @@ Use the following steps to install IM packages:
 
 In this chapter we have walked through the process of downloading and installing IBM's Installation Manage.  Which was subsequently used to walk through a series of dialogs to install IDz. 
 
+\newpage
  
 # Enabling IBM Developer for Z to work with COBOL
 
@@ -3940,8 +3919,7 @@ We've covered, in this chapter, less than 5% of what IDz has to offer for the z/
 
    [https://developer.ibm.com/mainframe/idzrdz-remote-training/](https://developer.ibm.com/mainframe/idzrdz-remote-training/)
 
- 
-
+\newpage
 
 # Using ISPF to work with COBOL
 
@@ -4392,6 +4370,8 @@ We've covered in this chapter less than 5% of what ISPF offers for the z/OS prof
 - A link to an excellent instructional video on ISPF:
 
    [https://www.youtube.com/watch?v=vOiHiI7b9iY](https://www.youtube.com/watch?v=vOiHiI7b9iY)``
+
+\newpage
 
 # Testing
 
