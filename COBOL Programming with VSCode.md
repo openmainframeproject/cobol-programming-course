@@ -1255,7 +1255,7 @@ A list of COBOL variable name restrictions or rules are:
 
 - Must not contain a space as a part of the name.
 
-- Name contains letters (A-Z), digits (0-9), minus sign and hyphens (-).
+- Name contains letters (A-Z), digits (0-9), underscores (_) and hyphens (-).
 
 - Maximum length of 30 characters.
 
