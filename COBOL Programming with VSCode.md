@@ -932,8 +932,7 @@ The DATA DIVISION is where characteristics of data are defined in one of the fol
 
 - LINKAGE SECTION:
 
-   Describe data from another program.
-When defining data developed for internal processing.
+   Describes data from another program. When defining data developed for internal processing.
 
 - WORKING-STORAGE SECTION:
 
@@ -942,10 +941,6 @@ When defining data developed for internal processing.
 - LOCAL-STORAGE SECTION:
 
    Storage allocated each time a program is called and de-allocated when the program ends.
-
-- LINKAGE SECTION:
-
-   Describes data from another program.
 
 #### PROCEDURE DIVISION
 
