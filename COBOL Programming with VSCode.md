@@ -773,6 +773,10 @@ This chapter introduces the basics of COBOL syntax. It then demonstrates how to 
 
 - **Lab**
 
+- **Lab - Zowe CLI & Automation**
+    - **Zowe CLI - Interactive Usage**
+    - **Zowe CLI - Programmatic Usage**
+
 
 ## COBOL characteristics
 
@@ -1211,7 +1215,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
    [https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe)
 
 ## Lab - Zowe CLI & Automation
-In this lab exercise you will use the Zowe CLI to automate the compilation and testing of the COBOL program you reviewed in the previous lab. Refer to the section on the "Installation of Zowe CLI and Plug-ins" to install Zowe CLI if you have not already done so. Before developing the automation, we will first leverage the Zowe CLI interactively.
+In this lab exercise you will use the Zowe CLI to automate submitting the JCL to compile, link, and run the COBOL program and downloading the spool output. Refer to the section on the "Installation of Zowe CLI and Plug-ins" to install Zowe CLI if you have not already done so. Before developing the automation, we will first leverage the Zowe CLI interactively.
 
 ### Zowe CLI - Interactive Usage
 In this section, we will use the Zowe CLI interactively to view data set members, submit jobs, and review spool output.
@@ -1340,7 +1344,7 @@ In this section, we will leverage the Zowe CLI programmatically to automate subm
 
 *Figure  37.  Use of `npm init` to create `package.json` for the project*
 
-2. Now that we have our `package.json` simply replace the `test` script with a `clg` script that runs the following zowe command (replace your with your high level qualifier):
+2. Now that we have our `package.json` simply replace the `test` script with a `clg` script that runs the following zowe command (replace `Z80462` with your high level qualifier):
 
 ```
 zowe jobs submit ds 'Z80462.JCL(HELLO)' -d .
@@ -1352,7 +1356,7 @@ You can name the script whatever you want. I only suggested `clg` because the `C
 
 *Figure  38.  Final `package.json` and `npm run clg` execution*
 
-3. If you prefer a graphical trigger that is also readily available in VS Code as shown in the following figure. Essentially, the CLI enables you to quickly build your own buttons for your custom z/OS tasks. You could also invoke a script rather than a single command to accomodate more complex scenarios.
+3. If you prefer a graphical trigger, you can leverage VS Code as shown in the following figure. Essentially, the CLI enables you to quickly build your own buttons for your custom z/OS tasks. You could also invoke a script rather than a single command to accomodate more complex scenarios.
 
 ![](Images/npm-run-clg-button.png)
 
