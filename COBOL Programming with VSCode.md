@@ -506,11 +506,11 @@ COBOL Language Support recognises files with the extension .COB and .CBL as COBO
 
 ### Syntax Highlighting and Coloring
 
-The COBOL Language Support extension uses a third-party plugin to color keywords, paragraphs, and variables in different colors to make the code easier to navigate. The Code4z package contains the bitlang plugin which enables syntax coloring.
+The Code4z package enables coloring of keywords, paragraphs, and variables in different colors to make the code easier to navigate. 
 
 ### Syntax and Semantic Check
 
-The extension checks for mistakes and errors in COBOL code. The syntax check feature reviews the whole content of the code, highlights errors and suggests fixes.
+The COBOL Language Support extension checks for mistakes and errors in COBOL code. The syntax check feature reviews the whole content of the code, highlights errors and suggests fixes.
 
 ![](Images/code4z-img1.png)
 
@@ -520,7 +520,6 @@ The COBOL Language Support extension includes several features for ease of navig
 
 #### Breadcrumb View
 
-
 The breadcrumb view across the top of the editor shows where the current line of code exists within the structure of the COBOL source code. You can click each element on the bar to see that section of the code highlighted, or to select a code element within the section and navigate to it.
 
 ![](Images/code4z-img2.png)
@@ -528,7 +527,7 @@ The breadcrumb view across the top of the editor shows where the current line of
 #### Outline View
 
 
-The Bitlang extension included in the Code4z package adds the outline view to the sidebar. Outline view enables you to easily navigate through sections and individual variables and paragraphs.
+The Code4z package enables the outline view tab in the sidebar. Outline view enables you to easily navigate through sections and individual variables and paragraphs.
 
 #### Shortcuts
 
