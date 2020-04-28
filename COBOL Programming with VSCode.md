@@ -586,6 +586,8 @@ Open VSCode and in the left side tool menu select **Extensions**.  From there, i
 
 *Figure  3.  Install Zowe Explorer in VSCode*
 
+The Zowe communinity have a number of on-line video that walk through the steps required to install, configure and operate the Zowe Explorer, see [Zowe Explorer VSC Extension (part 1)](http://www.youtube.com/watch?v=G_WCsFZIWt4&t=0m38s).
+
 ### IBM Z Open Editor
 
 IBM Z Open Editor brings COBOL and PL/I language support to Microsoft VSCode.  It is one of the several next generation capabilities for an open development experience for z/OS®.  It also works in association with the Zowe Explorer plugin. For more information on IBM Z Open Editor, please visit:
