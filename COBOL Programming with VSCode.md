@@ -747,6 +747,8 @@ Jobs:
 
 For more information about Zowe Explorer and the different use cases, visit the GitHub repository: [https://github.com/zowe/vscode-extension-for-zowe](https://github.com/zowe/vscode-extension-for-zowe)
 
+\newpage
+
 # Installation of VSCode and extensions
 
 This chapter covers all aspects of download and installation of Visual Studio (VS) Code and any prerequisites that are needed.  It includes:
