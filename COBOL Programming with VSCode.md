@@ -512,7 +512,7 @@ The COBOL Language Support extension uses a third-party plugin to color keywords
 
 The extension checks for mistakes and errors in COBOL code. The syntax check feature reviews the whole content of the code, highlights errors and suggests fixes.
 
-![](Images/code4z-img1.gif)
+![](Images/code4z-img1.png)
 
 ### Navigation of Code
 
@@ -564,7 +564,7 @@ The **Go To Definition** and **Find All References** functionalities are also ex
 
 The COBOL Language Support extension provides live suggestions while you type for COBOL keywords, as well as variables and paragraphs which are already referenced in the code or in copybooks used by the program.
 
-![](Images/code4z-img5.gif)
+![](Images/code4z-img5.png)
 
 ## Zowe Explorer
 
@@ -588,13 +588,13 @@ To enable this feature, follow these steps:
 1. Click the **Gear Icon** at the bottom left and select **Settings**
 2. Click **User Settings** > **Extensions** > **Zowe Explorer Settings**
    Look for the **Zowe Security: Credential Key** field
-![](code4z-img6.png)
+![](Images/code4z-img6.png)
 3. Put Zowe-Plugin in the text box. This will trigger the Built-in Secure Credential Store.
 
 Alternatively, to enable this feature by editing settings.json, hover over the gear icon and click "Copy Setting as JSON".
 You can then paste that to settings.json and update the value to Zowe Plugin.
 
-![](code4z-img7.png)
+![](Images/code4z-img7.png)
 
 Note: If you are using Zowe CLI and you’ve installed the Secure-Credential-Store Plugin, the steps to activate it will still be the same.
 
@@ -603,35 +603,35 @@ Note: If you are using Zowe CLI and you’ve installed the Secure-Credential-Sto
 Follow these steps:
 
 1. Navigate to the Zowe Explorer tree on the right side and look for the + sign
-![](code4z-img8.jpg)
+![](Images/code4z-img8.jpg)
 
 2. Click on the + sign.
 A dialog box will appear and ask if you want to "Create a New Connection to z/OS".
 
 3. Press enter or click on that selection.
-![](code4z-img9.png)
+![](Images/code4z-img9.png)
 
 4. Enter a Profile name in the "Connection Name" field.
-![](code4z-img10.png)
+![](Images/code4z-img10.png)
 
 5. Enter the URL and Port that you received by email when you registered for the COBOL Course. The connection information that you need has a title of "IP address for VSCode extension".
-![](code4z-img11.png)
+![](Images/code4z-img11.png)
 
 6. Enter your Username. This is also included in the email.
-![](code4z-img12-18.png)
+![](Images/code4z-img12-18.png)
 Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
 
 7. Enter your Password.
-![](code4z-img13-19.png)
+![](Images/code4z-img13-19.png)
 
 Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
 
 8. Select True/False if you want to accept or reject Self-Signed Certificates.
-![](code4z-img14-20.png)
+![](Images/code4z-img14-20.png)
 
 If you are successful, you will receive this informational message:
 
-![](code4z-img15.png)
+![](Images/code4z-img15.png)
 
 #### Editing Profiles
 
@@ -642,28 +642,28 @@ Follow these steps:
 1. Add your profile to any of the Zowe Explorer Trees.
 
 2. Click on the pencil icon to edit your profile. A dialog box opens displaying the current information in your profile, which you can edit as required.
-![](code4z-img16.png)
+![](Images/code4z-img16.png)
 
 3. Edit the URL information if changes are required, or enter to confirm the information is still correct.
-![](code4z-img17.png)
+![](Images/code4z-img17.png)
 
 4. Edit your Username
-![](code4z-img12-18.png)
+![](Images/code4z-img12-18.png)
 
 Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
 
 5. Edit your Password
-![](code4z-img13-19.png)
+![](Images/code4z-img13-19.png)
 
 Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
 
 6. Edit your authorized connections
 
-* ![](code4z-img14-20.png)
+![](Images/code4z-img14-20.png)
 
 If you are successful, an information message will appear:
 
-![](code4z-img21.png)
+![](Images/code4z-img21.png)
 
 #### Deleting Profiles
 
@@ -676,30 +676,30 @@ Command Palette:
 1. Press **CTRL+SHIFT+P** or Click **View** > **Command Palette** to open the Command Palette
 
 2. Type "Zowe: Delete". This command allows you to permanently delete a profile.
-![](code4z-img22.png)
+![](Images/code4z-img22.png)
 
 3. Select the Profile that you want to delete
-![](code4z-img23.png)
+![](Images/code4z-img23.png)
 
 4. Confirm that you want to delete your profile
 
-![](code4z-img24-27.png)
+![](Images/code4z-img24-27.png)
 
 Once confirmed, the following message is displayed:
 
-![](code4z-img25-28.png)
+![](Images/code4z-img25-28.png)
 
 Zowe Explorer Tree:
 
 1. Right click on the profile and select Delete Profile
-![](code4z-img26.png)
+![](Images/code4z-img26.png)
 
 2. Confirm that you want to delete your profile
-![](code4z-img24-27.png)
+![](Images/code4z-img24-27.png)
 
 3. Once confirmed, the following message is displayed:
 
-![](code4z-img25-28.png)
+![](Images/code4z-img25-28.png)
 
 ### Using Zowe Explorer
 
