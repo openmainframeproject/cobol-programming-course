@@ -520,15 +520,18 @@ The COBOL Language Support extension includes several features for ease of navig
 
 #### Breadcrumb View
 
+
 The breadcrumb view across the top of the editor shows where the current line of code exists within the structure of the COBOL source code. You can click each element on the bar to see that section of the code highlighted, or to select a code element within the section and navigate to it.
 
 ![](Images/code4z-img2.png)
 
 #### Outline View
 
+
 The Bitlang extension included in the Code4z package adds the outline view to the sidebar. Outline view enables you to easily navigate through sections and individual variables and paragraphs.
 
 #### Shortcuts
+
 
 You can use the following shortcuts to navigate through your code:
 
@@ -542,11 +545,13 @@ These commands are also available if you right click anywhere in the code.
 
 #### Go To Definition
 
+
 While your cursor is placed on a variable or paragraph name, you can press **F12** or **CTRL+click** to use the **Go To Definition** functionality to display the point in the code where the variable or paragraph is defined.
 
 ![](Images/code4z-img3.png)
 
 #### Find All References
+
 
 The **Find All References** functionality (**SHIFT+ALT+F12**) highlights all references to a variable or paragraph and displays them in a list in the sidebar, so that you can easily navigate between them.
 
@@ -581,6 +586,7 @@ Profiles serve as a point-of-contact for Zowe Explorer and Mainframe. Profiles c
 
 #### Secure Credentials
 
+
 Zowe Explorer has a built in Secure Credential Store. This enables you to encrypt the credentials that are stored in your machine, and as a result secure your connection to the Mainframe.
 
 To enable this feature, follow these steps:
@@ -588,8 +594,10 @@ To enable this feature, follow these steps:
 1. Click the **Gear Icon** at the bottom left and select **Settings**
 2. Click **User Settings** > **Extensions** > **Zowe Explorer Settings**
    Look for the **Zowe Security: Credential Key** field
+
 ![](Images/code4z-img6.png)
-3. Put Zowe-Plugin in the text box. This will trigger the Built-in Secure Credential Store.
+
+3. Type **Zowe-Plugin** in the text box. This will trigger the Built-in Secure Credential Store.
 
 Alternatively, to enable this feature by editing settings.json, hover over the gear icon and click "Copy Setting as JSON".
 You can then paste that to settings.json and update the value to Zowe Plugin.
@@ -600,33 +608,42 @@ Note: If you are using Zowe CLI and you’ve installed the Secure-Credential-Sto
 
 #### Creating a New Profile
 
+
 Follow these steps:
 
-1. Navigate to the Zowe Explorer tree on the right side and look for the + sign
+1. Navigate to the Zowe Explorer tree on the right side and look for the + sign.
+
 ![](Images/code4z-img8.jpg)
 
 2. Click on the + sign.
 A dialog box will appear and ask if you want to "Create a New Connection to z/OS".
 
 3. Press enter or click on that selection.
+
 ![](Images/code4z-img9.png)
 
 4. Enter a Profile name in the "Connection Name" field.
+
 ![](Images/code4z-img10.png)
 
 5. Enter the URL and Port that you received by email when you registered for the COBOL Course. The connection information that you need has a title of "IP address for VSCode extension".
+
 ![](Images/code4z-img11.png)
 
 6. Enter your Username. This is also included in the email.
+
 ![](Images/code4z-img12-18.png)
+
 Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
 
 7. Enter your Password.
+
 ![](Images/code4z-img13-19.png)
 
 Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
 
 8. Select True/False if you want to accept or reject Self-Signed Certificates.
+
 ![](Images/code4z-img14-20.png)
 
 If you are successful, you will receive this informational message:
@@ -635,6 +652,7 @@ If you are successful, you will receive this informational message:
 
 #### Editing Profiles
 
+
 The Zowe Explorer v1.5.0 release introduces profile editing. This allows you to revise your existing profile information and continue using Zowe Explorer.
 
 Follow these steps:
@@ -642,17 +660,21 @@ Follow these steps:
 1. Add your profile to any of the Zowe Explorer Trees.
 
 2. Click on the pencil icon to edit your profile. A dialog box opens displaying the current information in your profile, which you can edit as required.
+
 ![](Images/code4z-img16.png)
 
 3. Edit the URL information if changes are required, or enter to confirm the information is still correct.
+
 ![](Images/code4z-img17.png)
 
-4. Edit your Username
+4. Edit your Username.
+
 ![](Images/code4z-img12-18.png)
 
 Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
 
-5. Edit your Password
+5. Edit your Password.
+
 ![](Images/code4z-img13-19.png)
 
 Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
@@ -667,6 +689,7 @@ If you are successful, an information message will appear:
 
 #### Deleting Profiles
 
+
 The Zowe Explorer v1.5.0 release introduces the option to delete profiles. This allows you to permanently delete unwanted profiles and clean up your files. You can delete profiles either using the command palette or in the tree.
 
 Follow these steps:
@@ -676,12 +699,14 @@ Command Palette:
 1. Press **CTRL+SHIFT+P** or Click **View** > **Command Palette** to open the Command Palette
 
 2. Type "Zowe: Delete". This command allows you to permanently delete a profile.
+
 ![](Images/code4z-img22.png)
 
-3. Select the Profile that you want to delete
+3. Select the Profile that you want to delete.
+
 ![](Images/code4z-img23.png)
 
-4. Confirm that you want to delete your profile
+4. Confirm that you want to delete your profile.
 
 ![](Images/code4z-img24-27.png)
 
@@ -691,10 +716,12 @@ Once confirmed, the following message is displayed:
 
 Zowe Explorer Tree:
 
-1. Right click on the profile and select Delete Profile
+1. Right click on the profile and select **Delete Profile**.
+
 ![](Images/code4z-img26.png)
 
-2. Confirm that you want to delete your profile
+2. Confirm that you want to delete your profile.
+
 ![](Images/code4z-img24-27.png)
 
 3. Once confirmed, the following message is displayed:
