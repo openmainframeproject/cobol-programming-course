@@ -1,102 +1,38 @@
-# COBOL Programming with VSCode
-### A beginner's guide to COBOL using modern tooling
-![](Images/cover.png)
+---
+geometry:
+- margin=1in
+header-includes:
+- \lstset{basicstyle=\ttfamily,
+    stepnumber=2,
+    numbersep=5pt,
+    backgroundcolor=\color{black!10},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=true,
+    breakautoindent=true,
+    linewidth=\textwidth}
+- \hypersetup{colorlinks=true,
+              linkcolor=blue}
+---
+\newpage
 
-# Preface
-## Abstract
+# Part 1 - Getting started {.unnumbered}
 
-One computer programming language was designed specifically for business, Common Business-Oriented Language, COBOL. Today COBOL remains as relevant as ever, handling $3 trillion in commerce every day.
-
- 
-This publication is aimed at beginners looking to build a working understanding of COBOL programming. It describes how to work with COBOL using modern tools including Visual Studio Code with Zowe and Z Open Editor extensions. It describes how to write, test, execute, and debug COBOL programs.
-
-The publication is structured as follows:
-### Part 1 - Getting started
-
-[Chapter 1. Why COBOL?](#Chapter-1-Why-COBOL)
-
-[Chapter 2. VSCode with Z Open Editor and ZOWE extensions](#Chapter-2-VSCode-with-Z-Open-Editor-and-ZOWE-extensions)
-
-[Chapter 3. Installation of VSCode and extensions](#Chapter-3-Installation-of-VSCode-and-extensions)
-### Part 2 - Learning COBOL
-
-[Chapter 4. Basic COBOL](#Chapter-4-Basic-COBOL)
-
-[Chapter 5. Data division](#Chapter-5-Data-division)
-
-[Chapter 6. File handling](#Chapter-6-File-handling)
-
-[Chapter 7. Program structure](#Chapter-7-Program-structure)
-
-[Chapter 8. File output](#Chapter-8-File-output)
-
-[Chapter 9. Conditional expressions](#Chapter-9-Conditional-expressions)
-
-[Chapter 10. Arithmetic expressions](#Chapter-10-Arithmetic-expressions)
-
-[Chapter 11. Data types](#Chapter-11-Data-types)
-
-[Chapter 12. Intrinsic functions](#Chapter-12-Intrinsic-functions)
-### Part 3 - VSCode alternatives and testing
-
-[Chapter 13. Installing IBM Developer for Z](#Chapter-13-Installing-IBM-Developer-for-Z)
-
-[Chapter 14. Enabling IBM Developer for Z to work with COBOL](#Chapter-14-Enabling-IBM-Developer-for-Z-to-work-with-COBOL)
-
-[Chapter 15. Using ISPF to work with COBOL](#Chapter-15-Using-ISPF-to-work-with-COBOL)
-
-[Chapter 16. Testing](#Chapter-16-Testing)
-
- 
-## Authors
-
-**Makenzie Manna** is an IBM Redbooks Project Leader in the United States.  She has 3 years of experience in the Computer Science Software Development field. She holds a Master's degree in Computer Science Software Development from Marist College. Her areas of expertise include mathematics, IBM Z and cloud computing.
-
-**Paul Newton** is a Consulting IT Specialist in the United States. He has 40 years of experience in the Information Technology field. He holds a degree in Information Systems from the University of Arizona. His areas of expertise include IBM Z, z/OS, and LinuxONE.  He has written extensively on implementation of z/OS based technology.
-
-**Jonathan Sayles** is a technical educator at IBM, where he conducts presentations, seminars and training courses, as well as producing educational materials. His more than 40 years in the IT education and computer industries encompass work within both academic and corporate development organizations. He has also been engaged as a software developer/designer/consultant, educator, and author, with a focus on relational database, IDE, and object technologies. In addition to authoring/publishing 16 books, Jon has written and published more than 150 articles in technical journals, and served as technical editor for several IT magazines. He is also co-author of IBM Redbook publications Transitioning: Informix 4GL to Enterprise Generation Language (EGL), SG24-6673 and z/OS Traditional Application Maintenance and Support, SG24-7868.
-
-**William Yates** is a Software engineer working for IBM UK. For the majority of his career he has working on the CICS TS product mainly as a software tester and now as Test Architect.  He has delivered technical content for many Redbooks, video courses and at conferences around the world.  He is also one of the leaders of the Galasa project, building an open source integration test framework for hybrid cloud applications available at [https://galasa.dev](https://galasa.dev/)
-
-## Acknowledgements
-
-Special thanks to the following people for participating in the residency to shape the content in this publication.
-
-- Dr. Tak Auyeung, Professor, American River College
-
-- Jeffrey Bisti, Z Ecosystem Architect, IBM
-
-- Ilicena Elliott, IT Specialist II, Employment Development Department
-
-- Martin Keen, Technical Content Services, IBM
-
-- Sudharsana Srinivasan, z Influencer Ecosystem Program Coordinator, IBM
-
-- Suzy Wong, Information Technology Specialist, DMV
-
-- ![](Images/image004.jpg)
-
-Left-to-right: Ilicena, Suzy, Makenzie, Martin, Paul, and Tak
-
-# Part 1 - Getting started
- 
-### [Chapter 1. Why COBOL?](#1-Why-COBOL)
- 
-### [Chapter 2. VSCode with Z Open Editor and ZOWE extensions](#2-VSCode-with-Z-Open-Editor-and-ZOWE-extensions)
- 
-### [Chapter 3. Installation of VSCode and extensions](#3-Installation-of-VSCode-and-extensions)
-
-# 1. Why COBOL?
+# Why COBOL?
 
 This chapter introduces COBOL, specifically with reference to its use in enterprise systems.
 
-- **1.1** **What is COBOL?**
+- **What is COBOL?** 
 
-- **1.2** **How is COBOL being used today?**
+- **How is COBOL being used today?**
 
-- **1.3** **Why should I care about COBOL?**
+- **Why should I care about COBOL?**
 
-## 1.1  What is COBOL?
+## What is COBOL?
 
 One computer programming language was designed specifically for business, Common Business-Oriented Language, COBOL.  COBOL has been transforming and supporting business globally since its invention in 1959.  COBOL is responsible for the efficient, reliable, secure and unseen day-to-day operation of the world's economy.  The day-to-day logic used to process our most critical data is frequently done using COBOL.
 
@@ -106,7 +42,7 @@ Many hundreds of programming languages were developed during the past 60 years w
 
 Continuously updated to incorporate modernized and proven programming paradigms and best practices, COBOL will remain a critical programming language into the foreseeable future.  Learning COBOL enables you to read and understand the day-to-day operation of critical systems.  COBOL knowledge and proficiency is a required skill to be a "full stack developer" in large enterprises.
 
-## 1.2 How is COBOL being used today?
+## How is COBOL being used today?
 
 COBOL is everywhere. You have probably used an application written in COBOL today. For example, consider the following statistics:
 
@@ -124,7 +60,7 @@ How pervasive is COBOL? Consider these mind-boggling facts:
 
 - 1,500,000,000 lines of new COBOL code is written each year.
 
-## 1.3 Why should I care about COBOL?
+## Why should I care about COBOL?
 
 The COBOL programming language, COBOL compiler optimization, and COBOL run time performance have over 50 years of technology advancements that contribute to the foundation of world's economy.  The core business logic of many large enterprises has decades of business improvement and tuning embedded in COBOL programs.
 
@@ -140,48 +76,50 @@ Speaking with people that have worked on such systems, nowadays they have Java f
 
 From a software engineering perspective, that even makes sense.  Rewrites are always more expensive than planned, and always take longer than planned (OK, probably not always. But often.).  Never change a running system etc., unless very good technical and business reasons exist.
 
-# 2. VSCode with Z Open Editor and ZOWE extensions
+\newpage
+
+# VSCode with Z Open Editor and Zowe extensions
 
 In this chapter we will explain how to use the IBM Z Open Editor extension for VSCode and how using it can help you develop COBOL source code in a feature rich environment.
 
 
-- **2.1** **Introduction to the IBM Z Open Editor**
+- **Introduction to the IBM Z Open Editor**
 
      - **What is the IBM Z Open Editor?** 
      - **The role of the Language Server Protocol**
      - **Installing the IBM Z Open Editor for VS Code**
 
-- **2.2** **Basic editing**
+- **Basic editing**
      - **Known file extensions**
      - **Margins**
      - **Variable expansion**
      - **Syntax highlighting**
 
-- **2.3** **Navigation of code**
+- **Navigation of code**
      - **Outline view**
      - **Breadcrumb view**
      - **Jump to declaration / reference**
 
-- **2.4** **Code-completion**
+- **Code-completion**
      - **COBOL reserved word completion**
      - **Variable completion**
      - **CICS, MQ, DB2 API completion**
 
-- **2.5** **Refactoring code**
+- **Refactoring code**
      - **Renaming variables**
      - **Handling errors**
 
-- **2.6** **Summary**
+- **Summary**
 
-## 2.1  Introduction to the IBM Z Open Editor
+## Introduction to the IBM Z Open Editor
 
 This section introduces the IBM Z Open Editor.
 
-### 2.1.1 What is the IBM Z Open Editor?
+### What is the IBM Z Open Editor?
 
 The IBM Z Open Editor is a free extension for Visual Studio Code (VSCode) that provides language support for COBOL, PL/I and JCL languages.  Along with this language support it also provides content assistance for applications that call CICS, MQ, IMS and DB2 APIs.  The source code doesn't even need to reside on z/OS, it could be in a source code repository, locally in a file or on z/OS.  Although this course focuses on COBOL as a source language, a lot of the functions we will discuss will also apply to PL/I and JCL.
 
-### 2.1.2 The role of the Language Server Protocol
+### The role of the Language Server Protocol
 
 Integrated development environments always want to provide a rich platform for all supported programming languages, however, the proliferation of programming languages and the speed at which new editors reach the market makes keeping pace difficult.  Each editor would need to provide an editor specific plugin for each language they wished to support, thus support for a certain language would differ between different editors. 
 
@@ -191,15 +129,15 @@ The language server protocol defines six broad capabilities that should be imple
 
 **Note:** More information on Language Server Protocol implementations can be found at: `https://langserver.org`
 
-### 2.1.3 Installing the IBM Z Open Editor for VS Code
+### Installing the IBM Z Open Editor for VS Code
 
-The IBM Z Open Editor can be installed into VS code by searching the Extensions Marketplace inside VSCode for "IBM Z Open Editor" and selecting install.  Once installed, the default editor will be enabled to provide a rich editing experience for COBOL, PL/I and JCL.  There is no need to use a specific editor for these languages. To see a more detailed instruction on installing this extension, visit Chapter 5 "Install VSCode and Extensions". 
+The IBM Z Open Editor can be installed into VS code by searching the Extensions Marketplace inside VSCode for "IBM Z Open Editor" and selecting install.  Once installed, the default editor will be enabled to provide a rich editing experience for COBOL, PL/I and JCL.  There is no need to use a specific editor for these languages. To see a more detailed instruction on installing this extension, refer to "Installation of VSCode and extensions". 
 
-## 2.2 Basic editing
+## Basic editing
 
-For the rest of this chapter we will use the CBL0001 sample program to demonstrate how rich of an experience editing COBOL in VSCode can be.  So, let's fire up VSCode, install IBM Z Open Editor (if it's not already) open up CBL001.cobol and get started.
+For the rest of this chapter we will use the CBL0001 sample program to demonstrate how rich of an experience editing COBOL in VSCode can be.  So, let's fire up VSCode, install IBM Z Open Editor (if it's not already) open up CBL0001 and get started.
 
-### 2.2.1 Known file extensions
+### Known file extensions
 
 For VSCode to use the capabilities of the IBM Z Open Editor, it needs to know that the file we are editing is in fact COBOL type.  VSCode accomplishes this by comparing the location and name of the file being opened against a list of known extensions to map the file to a known language.  For COBOL the following associations are used:
 
@@ -233,13 +171,13 @@ PROGA1.COBOL
 
 Will be assumed to be COBOL code.  This information is stored in the global VSCode settings.json file that can be accessed through VSCode preferences.  This allows for a user to tailor VSCode’s known extensions to a particular site naming convention.
 
-### 2.2.2 Margins
+### Margins
 
 The first thing you will notice when editing COBOL source code is that VSCode will have inserted five vertical lines down the file.  These lines segment each line of code into the areas reserved for sequence numbers, comment / continuation characters, area A and area B.  When coding without this basic aid I cannot recount the number of times I have made a compilation error because I started coding in the wrong column.  This alone is a very useful aid to a new COBOL programmer.  Move information about COBOL syntax and in particular the columns will be discussed later
 
-### 2.2.3 Variable expansion
+### Variable expansion
 
-As you browse through CBL001.COBOL type `CTRL + G` to jump to a specific line of code.  A small dialog will open asking you for the line you wish to jump to, type `68` and press the enter key.  VSCode will highlight that line of code and navigate you directly to it, as shown in Figure  1.
+As you browse through CBL0001 type `CTRL + G` to jump to a specific line of code.  A small dialog will open asking you for the line you wish to jump to, type `68` and press the enter key.  VSCode will highlight that line of code and navigate you directly to it, as shown in Figure  1.
 
 ![](Images/image006.png)
 
@@ -253,15 +191,15 @@ If you hover your mouse over the 'ACCT-NO-O' field a pop up will appear displayi
 
 Since this field is a 05-level variable nested within a 01-level variable, the pop up shows the declaration of the field as an eight-byte picture variable, the name of the parent structure and the file definition that it is within.  If you hold the CMD/Ctrl key while hovering over the field, then the pop up will additionally contain the line of code where the variable is defined as well as the following three lines of code.  These features can be extremely helpful when analyzing existing code.
 
-### 2.2.4 Syntax highlighting
+### Syntax highlighting
 
 The COBOL code that you are editing will also be highlighted to help you understand the different elements of the COBOL language.  Depending on the color theme that you have selected in VSCode, comments, COBOL reserved words, literal values and variables will be colored differently allowing you to spot obvious syntax issues early on before even submitting the code to a build.
 
-## 2.3 Navigation of code
+## Navigation of code
 
 Although the code examples we are using in this section are fairly small, the code that you could be writing could have hundreds or thousands of lines.  Being able to understand the general structure of the source code and being able to find your way around it without getting lost is a big advantage when editing COBOL. Fortunately, there are some great features to help you out, which we will discuss next.
 
-### 2.3.1 Outline view
+### Outline view
 
 Within the explorer side bar of VSCode, there is an outline view that will be populated whenever you are editing a COBOL file.  This view contains a collapsible look at each division, data structure and paragraph within your code.  This allows you to easily view the structure of the source code.  Clicking on a particular paragraph, division or data element will simultaneously move the editor to show that section of the code and highlight it, depicted in Figure  3.  This makes jumping to a specific part of the code very easy.
 
@@ -269,7 +207,7 @@ Within the explorer side bar of VSCode, there is an outline view that will be po
 
 *Figure  3.  Outline view in VSCode*
 
-### 2.3.2 Breadcrumb view
+### Breadcrumb view
 
 Similarly, the breadcrumb view across the top of the editor can show where the current line of code exists within the structure of the COBOL source code.  As you navigate the source code in the editor, the breadcrumb trail will automatically update to reflect where you are in the structure of the program and provides you a mechanism to move to a different element of the code.  Again, if you open CBL0001 in VSCode and jump to line 36, this line is a declaration of the field USA-STATE within the structure ACCT-FIELDS, in the FILE-SECTION of the DATA-DIVISION.  Across the top of the editor the breadcrumb trail will show the information displayed in Figure  4.
 
@@ -283,7 +221,7 @@ Clicking on any of the items in the breadcrumb trail will highlight that element
 
 *Figure  5.  Pop-up view of code via breadcrumb selection*
 
-### 2.3.3 Jump to declaration / reference
+### Jump to declaration / reference
 
 As you browse through code you will come across COBOL PERFORM statements or variable references.  Often you will need to navigate to the definition of that paragraph or variable to follow the execution of the code.  At line 50 of CBL0001 we see a set of perform statements.  Place the cursor within the name, READ-RECORD, on line 51, right click and select **Go to Definition** .  The editor then navigates to the READ-RECORD paragraph on line 62.  Instead of the right click, the same function can be reached by using the F12 key.
 
@@ -297,15 +235,15 @@ As you browse through code you will come across COBOL PERFORM statements or vari
 
 *Figure  6.  Finding paragraph/variable references in VSCode*
 
-## 2.4 Code-completion
+## Code-completion
 
 Code completion isn't exactly a new concept in most IDEs.  For example, the Eclipse editor has provided auto-completion for Java APIs for a long time.  The same key combination, **CTRL+SPACE** , triggers this auto-completion function while you are coding and can be used to help guide you through COBOL syntax and CICS, IMS API calls.
 
-### 2.4.1 COBOL reserved word completion
+### COBOL reserved word completion
 
 As you are typing a COBOL reserved word, you can type `CTRL+SPACE` and the IBM Z Open Editor will present, in a pop-up, a list of possible COBOL reserved words that you might be trying to use.  Using the cursor keys or the mouse allows you to select the correct recommended keyword and press enter to select it and the rest of the reserved word will be entered for you, aka auto-completed!
 
-### 2.4.2 Variable completion
+### Variable completion
 
 The same technique can be applied to variable completion.  This can be particularly useful when you are referencing a variable that exists multiple times within different structures.  In these cases, auto-completion can help you identify the variable you want to use.  As an example, create a new line within the WRITE-RECORD paragraph.  On the new line, enter the code `MOVE ACCT-BA` and then press **CTRL+SPACE** to invoke code auto-completion.  You should see a pop up similar to the one shown in Figure  7. below.
 
@@ -315,15 +253,15 @@ The same technique can be applied to variable completion.  This can be particula
 
 You can see that not only is the variable ACCT-BALANCE prompted as a potential candidate, but it also presents ACCT_BALANCE IN ACCT-FIELDS. 
 
-### 2.4.3 CICS, MQ, DB2 API completion
+### CICS, MQ, DB2 API completion
 
 The auto-completion of variables also extends to the CICS and DB2 APIs, known as EXEC CICS and EXEC SQL statements.  Although COBOL programming for DB2 and CICS is not a primary focus here, note that if you find yourself programming for either of these APIs that the capability is available.
 
-## 2.5 Refactoring code
+## Refactoring code
 
 Working with source code is seldom just about the initial creation, during a programs life cycle it will be changed and re-worked we often call this work refactoring.  This section explores renaming variables and handling errors.
 
-### 2.5.1 Renaming variables
+### Renaming variables
 
 During maintenance of existing code, you might need to refactor variable names or paragraph names.  Doing this manually can be a painful process, as you probably need to update both the original declaration and all the references within the source code.  Fortunately, there is a function for that, let's work through an example.  Back in CBL0001 hit **CTRL+G** to bring up the go to line function and go to line 29.  This is the declaration of the variable ACCT-NO.  Right click on the variable and select "**Find All References** ".  From this we can see that apart from the declaration, the variable is also referenced on line 68. So, if we rename the variable, we probably need to update this reference as well.  To perform the rename, ensure that the cursor is on the variable and then press **SHIFT/Fn+F2** .  This will bring up a small pop-up asking you to provide a new variable name, as shown in Figure  8.  Enter `ACCT-NO-TEST` and press **enter** .
 
@@ -333,7 +271,7 @@ During maintenance of existing code, you might need to refactor variable names o
 
 You will note that both the declaration of the variable and the reference on line 68 have been updated to the new value. As stated previously, the same process also works for paragraph names. For example, go ahead and refactor the name of the paragraph READ-RECORD to be READ-NEW-RECORD.
 
-### 2.5.2 Handling errors
+### Handling errors
 
 The IBM Z Open Editor plugin also provides a level of syntax checking for local source code.  Although not as thorough as the compiler, it is a method of quickly identifying basic errors in your code before submitting it for compilation.  To demonstrate, let's create an error and then see how the editor shows it to us.  First, open the problems view by selecting **View** and then **Problems** from the editor menu.  The problems view should open at the bottom of the window, as depicted in Figure  9.
 
@@ -353,34 +291,199 @@ Note that this line incorrectly identifies the second variable, which doesn't ex
 
 Now that you see where the error is located, it can now be corrected.  As soon as the error has been rectified, the problem disappears from the problem view.
 
-## 2.6 Summary
+## Summary
 
 In this chapter you have been able to go through some of the editing features of the Z Open Editor for VSCode. These capabilities make editing COBOL, PL/Iand JCL a lot friendlier and easier than some of the other editors in the market.
 
-# 3. Installation of VSCode and extensions
+\newpage
+
+# Zowe CLI and Zowe CLI Plug-ins
+
+In this chapter we will explain what a CLI is and why you would use it, how to use Zowe CLI interactively, how to abstract CLI commands into useful scripts, and how Zowe CLI enables the use of familiar open source tooling while developing COBOL applications on the mainframe. 
+
+- **What is a CLI and why would you use it?**
+
+- **What is Zowe CLI?**
+
+- **Zowe CLI interactive use**
+     - **Installing Zowe CLI**
+     - **Interactive Help**
+     - **Zowe Profiles**
+     - **Interacting with z/OS Data Sets**
+     - **Interacting with z/OS Jobs**
+
+- **Automating tasks using Zowe CLI**
+     - **Automated Job Submission**
+     - **Using Other Programming Languages and Continuous Integration**
+     - **Additional Examples**
+
+- **The world of modern open source tooling**
+
+- **Summary**
+
+## What is a CLI and why would you use it?
+
+CLI stands for Command Line Interface. It is a program that allows for user interaction through text based input. In the early days of computing, command line interfaces were the only means to interact with operating systems. The invention of the mouse and development of graphical user interfaces led to the experience we are familiar with today. Well-designed GUIs certainly yield an improved interactive experience. However, CLIs are still heavily used today and are very powerful. Windows shell and bash are common examples of terminals where command line tools are run interactively.
+
+If well-designed GUIs yield an improved interactive experience, why would you use a CLI? Simply put, automation. Command line interfaces can be used interactively allowing for quick exploration of available commands. They are also usually self-guided and some even offer modern help displays by launching content in a browser. But, they are also programmatic interfaces where command sequences and tasks can be easily abstracted into scripts.
+
+## What is Zowe CLI?
+
+Zowe CLI is an open source CLI for the mainframe. It is a tool that can be run on Windows, Linux, and Mac offering a means to interact with the mainframe from an environment where modern open source tooling is available. Cloud platforms like Amazon Web Services, Azure, and Google Cloud Platform all provide heavily used CLIs. The Zowe CLI helps make interacting with the mainframe like interacting with other cloud services. 
+
+At its core, Zowe CLI provides remote interaction with z/OS data sets & jobs, Unix System Services files, TSO and Console commands, and provisioning services. Zowe CLI is also an extensible technology and numerous plug-ins exist that extend its reach to z/OS subsystems and vendor software.
+
+Zowe CLI is a bridge tool between distributed systems and the mainframe. Pick your favorite language or open source tool and leverage it for mainframe development with the assistance of the Zowe CLI. Want to develop automation in Python? Want to write tests in Node? Want to run Jenkins pipelines for continuous integration? Want to use open source testing frameworks like Mocha or Facebook’s Jest? Want to leverage code quality tools like SonarQube? Go for it! 
+
+CLIs are useful for automating repeated tasks. For mainframe COBOL apps, Zowe CLI can help you automate your build, deployment, and testing processes. Check out this [blog](https://medium.com/zowe/continuous-integration-for-a-mainframe-app-800657e84e96) for more info and the sample code that made it possible! Zowe CLI can also help you to automate administrative tasks. 
+
+Most IDEs have integrated terminals as well so the CLI can be leveraged from your favorite distributed development environment, including VS Code! 
+
+## Zowe CLI interactive use
+
+The Zowe CLI can be leveraged for quick exploration of z/OS services as well as issuing commands that are not yet available in your IDE of choice. Before developing automation, it is common to first accomplish a commonly repeated task from the CLI interactively.
+
+### Installing Zowe CLI
+
+The Zowe CLI is a node package and is one of over 1.2 million node packages available on the public npm registry. After Node.js and npm are installed on the client machine, the core CLI can be installed by simply issuing `npm install -g @zowe/cli@zowe-v1-lts`. There is an alternative installation method if your workstation does not have access to the public registry. More details on installing Zowe CLI and Zowe CLI plug-ins are provided in a future section titled "Installation of Zowe CLI and plug-ins". 
+
+### Interactive Help
+
+To get started, you can simply open a terminal and issue zowe. This will yield the top level help. 
+
+![](Images/zowe-cli-help.png)
+
+*Figure 1. Zowe CLI Help*
+
+In the example above, multiple extensions are installed. The structure of commands is `zowe <group> <action> <object>` followed by various parameters and options specific to the command. For example, a valid command is `zowe files list data-set "HLQ.*"`. This command will list data-sets matching a pattern of "HLQ.*". You can append `-h` to any command to find out more information. Frequently referring to the help can be difficult and time consuming so if your environment has access to a web browser, simply append `--help-web` or `--hw` to any command to launch interactive web help.
+
+![](Images/zowe-cli-web-help.png)
+
+*Figure 2. Zowe CLI Web Help*
+
+Don’t have the CLI installed yet? You can also check out a copy of the web help for the core Zowe CLI and Zowe plug-ins [here](https://docs.zowe.org/stable/web_help/index.html).
+
+### Zowe Profiles
+Zowe client technologies like Zowe CLI and the Zowe Explorer VS Code Extension store connection information in files commonly known as profiles. This provides convenience as after profiles for services are created, users do not have to constantly provide this information. For the secure storage of credentials, there is the Secure Credential Store plug-in which is discussed more in a later section titled "Installation of Zowe CLI and plug-ins". The Secure Credential Store provides a means to store creds in the operating system’s secure credential vault.
+
+When creating profiles you can also specify the `prompt*` keyword to be prompted for your username and password so they will be masked on the command line. Figure 3 shows a sample command to create a zosmf profile. This will eliminate the need to provide these details on future commands.
+
+![](Images/zowe-cli-zosmf-profile-creation-command.png)
+
+*Figure 3. Zowe CLI z/OSMF Profile Creation Command*
+
+### Interacting with z/OS Data Sets
+Zowe CLI provides a significant suite of z/OS data set interaction functionality. See the following figures for details on available actions and a sample list command.
+
+![](Images/zowe-cli-zos-files-actions.png)
+
+*Figure 4. Zowe CLI zos-files actions*
+
+![](Images/zowe-cli-zos-files-list-ds-command.png)
+
+*Figure 5. Sample Zowe CLI zos-files list ds command*
+
+### Interacting with z/OS Jobs
+Zowe CLI provides a significant suite of z/OS jobs interaction functionality. See the following figures for details on available actions and a sample job submission command. 
+
+![](Images/zowe-cli-zos-jobs-actions.png)
+
+*Figure 6. Zowe CLI zos-jobs actions*
+
+![](Images/zowe-cli-zos-jobs-submit-ds-command.png)
+
+*Figure 7. Sample Zowe CLI zos-jobs submit ds command*
+
+## Automating tasks using Zowe CLI
+Running commands interactively is a great way to learn the capabilities of the Zowe CLI. However, creating custom automation for your commonly repeated tasks and making use of valuable development tooling is where significant value lies. For COBOL development, significant time can be spent reviewing compiler output and testing programs. These repetitive tasks are excellent candidates for automation. 
+
+### Automated Job Submission
+Let’s investigate automating submitting a job and verifying the return code is 0. Of course, we could also parse the spool output for specific messages of interest but we will keep it simple for now. For this sample, we will leverage Node.js to develop a new automation suite. To start, I will create a package.json file to make it easy for others to manage and install the project. It will contain the list of dependencies for my project as well as the automation tasks I will develop. A quick way to create a package.json is to issue `npm init` and answer the prompts. Once created I will add a submitJob task. You can add whatever automation you want here. My final package.json is shown in the next figure. You can learn more about package.json files [here](https://docs.npmjs.com/creating-a-package-json-file).
+
+![](Images/sample-package-json.png)
+
+*Figure 8. Sample package.json*
+
+Then I will create a config.json file to store all the variables I may wish to change for my project. In this case, we will set the job to submit and the maximum allowable return code for that job.
+
+![](Images/sample-config-json.png)
+
+*Figure 9. Sample config.json*
+
+Next we will write our automation. The Zowe CLI was built with scripting in mind and can output responses in JSON format which can be easily parsed.
+
+![](Images/zowe-cli-response-format-json.png)
+
+*Figure 10. Sample Zowe CLI response format JSON output*
+
+Now, instead of issuing this command and reviewing it to see if the retcode is less than or equal to 4, we want to automate it. See the implementation in a node script below.
+
+![](Images/script-to-submit-job-check-rc.png)
+
+*Figure 11. Sample code to submit job and verify output is less than or equal to a maximum allowable RC*
+
+I had to make the investment to write this automation but for future job submissions I can simply issue `npm run submitJob`. IDEs like VS Code can visualize these tasks making my commonly repeated tasks as easy as clicking a button :). This job could compile, link, and/or run a COBOL program.
+
+![](Images/npm-script-button-click-and-run.png)
+
+*Figure 12. Vizualization of npm script and sample run*
+
+More advanced code automating the compilation, deployment to test environment, and testing of a COBOL CICS application is described in this [blog](https://medium.com/zowe/continuous-integration-for-a-mainframe-app-800657e84e96). 
+
+### Using Other Programming Languages and Continuous Integration
+Another good example of automating tasks using Zowe CLI is when you want to integrate other programming languages into your COBOL development. Similar to 3.4.1, you can use other languages such as Typescript to write a COBOL program generator and use Zowe CLI to create a "one-click" process for creating your program. The figure below is a representation of that "one-click" automated process where several tasks are executed such as creating your COBOL program, uploading it in mainframe, compiling it and running your JCL to test it.
+
+![](Images/one-click-cobol-build.png)
+
+*Figure 13. "One Click" COBOL build process*
+
+You can then level-up this process by leveraging a CI/CD pipeline. What is a CI/CD pipeline? It is an automated way of building, testing, and deploying your application and you can do the same with your COBOL development. The figure below shows the pipeline for the same automated tasks that we did earlier.
+
+![](Images/CircleCI-pipeline.png)
+
+*Figure 14. CI/CD pipeline of the "one click" COBOL build process*
+
+To know more about this topic, check [this](https://medium.com/@jessielaine.punongbayan/how-i-used-typescript-to-generate-my-cobol-programs-a2a180209148) out.
+
+### Additional Examples
+If you are looking for an example on how to use Zowe Explorer and Zowe CLI with Db2 Stored Procedures, check out this [blog](https://www.idug.org/p/bl/et/blogid=278&blogaid=1007?es_id=c5a317e73e).
+
+If you are interested in using open source tools in your development, you can review this [blog](https://medium.com/zowe/how-to-write-cleaner-and-safer-z-os-code-with-zowe-cli-and-sonarqube-6afb283348f9) where it talks about using Zowe CLI to leverage static code analysis tools when developing COBOL applications.
+
+For additional blogs and articles on leveraging Zowe technologies, check out [https://medium.com/zowe/users/home](https://medium.com/zowe/users/home).
+
+## The world of modern open source tooling
+We have only scratched the surface of using modern tools and languages for mainframe development and incorporating mainframe applications into enterprise DevOps pipelines. As a bridge tool, the Zowe CLI enables the use of a plethora of tools being developed by an enormous community for mainframe development. If you are new to mainframe, hopefully this offers some familiarity as you transition into this space. If you are an experienced mainframer, hopefully you find time to give some of these available technologies a try to see if they can help you.
+
+## Summary
+As both a user and programmatic interface, command line interfaces offer significant value in simplifying complex repeatable processes into single tasks. CLIs are commonly used when developing on popular cloud platforms like Amazon Web Services. The Zowe CLI is the CLI for the mainframe that has been extended via numerous plug-ins. Zowe CLI acts as a bridge tool enabling the use of distributed development tooling while working with mainframe applications. Numerous resources and articles are available for using Zowe CLI to create custom automation, build CI pipelines, and incorporate static analysis into your COBOL development processes. Development tooling created by the distributed open source community can now be effectively leveraged for mainframe development.
+
+\newpage
+
+# Installation of VSCode and extensions
 
 This chapter covers all aspects of download and installation of Visual Studio (VS) Code and any prerequisites that are needed.  It includes:
 
-- **3.1** **Install prerequisites**
+- **Install prerequisites**
      - **Install node.js**
      - **Install Java SDK**
-- **3.2** **Install VSCode**
+- **Install VSCode**
 
-- **3.3** **Install VSCode extensions**
+- **Install VSCode extensions**
      - **Zowe Explorer**
      - **IBM Z Open Editor**
 
-- **3.4** **Summary**
+- **Summary**
 
-## 3.1 Install prerequisites
+## Install prerequisites
 
 This section will cover the necessary steps and information to download and install the prerequisites needed for the subsequent labs within this book.  This software is needed for one of more of the applications we will be utilizing in our labs throughout the book. The prerequisites include:
 
-- 3.1.1 - Install node.js
+- Install node.js
 
-- 3.1.2 - Install Java SDK
+- Install Java SDK
 
-### 3.1.1 Install node.js
+### Install node.js
 
 1. Check for node.js installation and verify that the version number is v8 or higher.
 
@@ -393,7 +496,7 @@ V12.16.1
 ```
 *Example 1.  Node.js version*
 
-If you do not see a version number after you submit the command, you do not have node.js installed, or if it shows a version less than v8, you should continue following these instructions.  If you do see a version number and it is v8 or higher, you can move on to section 3.1.2, Install Java SDK.
+If you do not see a version number after you submit the command, you do not have node.js installed, or if it shows a version less than v8, you should continue following these instructions.  If you do see a version number and it is v8 or higher, you can move on to section Install Java SDK.
 
 2. If node.js version is less than v8, or node isn't installed at all. 
 
@@ -407,7 +510,7 @@ This process will install the latest versions of Node.js and the node package ma
  
 **Note** : The version numbers in our examples are provided purely for reference and may not reflect the latest versions of the software.
 
-### 3.1.2 Install Java SDK
+### Install Java SDK
 
 1. Check for Java installation and verify that the version number is v8 or higher.
 
@@ -424,7 +527,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.241-b07, mixed mode)
 ```
 *Example 2.  Java version*
 
-If you do not see a version number after you submit the command, you do not have Java installed or if it shows a version less than v8, you should continue following these instructions.  The display format of the version number for Java is slightly different than what is displayed for node.js.  With Java, the second value in the displayed version number, i.e. the "8" in Example 2. , is the version number.  So, our example is showing Java SDK version 8.  If you do see a version number and it is v8 or higher, you can move on to section 3.2,  Install VSCode.
+If you do not see a version number after you submit the command, you do not have Java installed or if it shows a version less than v8, you should continue following these instructions.  The display format of the version number for Java is slightly different than what is displayed for node.js.  With Java, the second value in the displayed version number, i.e. the "8" in Example 2. , is the version number.  So, our example is showing Java SDK version 8.  If you do see a version number and it is v8 or higher, you can move on to section Install VSCode.
 
 2. If your version of Java displayed is less than v8, you need to uninstall the current version on your workstation and reinstall the correct version.  Follow the link below to uninstall instructions that represent your workstation operating system (OS).
 
@@ -449,7 +552,7 @@ If you do not see a version number after you submit the command, you do not have
 
 **Note** : You will be prompted to register a new Oracle account in order to download the installation file, please do so.  If you have an existing account, you may use that to log in and continue.
 
-## 3.2 Install VSCode
+## Install VSCode
 
 If you do not already have VSCode installed on your workstation, please do so now by following the download and installation instructions at the link below:
 
@@ -461,7 +564,7 @@ If you do not already have VSCode installed on your workstation, please do so no
 
 **Note** : Be sure to select the correct installation file for your workstations respective OS, shown in Figure  1.
 
-## 3.3 Install VSCode extensions
+## Install VSCode extensions
 
 This section introduces two VSCode extensions, Zowe Explorer and IBM Z Open Editor listed in Figure  2. , and instructions on how to install them.
 
@@ -469,7 +572,7 @@ This section introduces two VSCode extensions, Zowe Explorer and IBM Z Open Edit
 
 *Figure  2.  VSCode required extensions*
 
-### 3.3.1 Zowe Explorer
+### Zowe Explorer
 
 Zowe is a new, and the first open source framework for z/OS and provides solutions for development and operations teams to securely manage, control, script and develop on the mainframe like any other cloud platform.  Out of the box, the Zowe Explorer provides a lot of functionality allowing z/OS developers access to jobs, datasets and (USS) files on a z/OS server.  Backed by the Zowe CLI and z/OSMF, developers now have powerful features that makes it easy to work with z/OS within the familiar VSCode environment.  This extension can be used to edit COBOL and PL/I files opened on z/OS MVS™ and USS using the Zowe extension's Data Sets and USS views.  It can even run JCL and lets you browse job spool files.  For more information on Zowe Explorer and its interaction with z/OS please visit:
 
@@ -483,7 +586,7 @@ Open VSCode and in the left side tool menu select **Extensions**.  From there, i
 
 *Figure  3.  Install Zowe Explorer in VSCode*
 
-### 3.3.2 IBM Z Open Editor
+### IBM Z Open Editor
 
 IBM Z Open Editor brings COBOL and PL/I language support to Microsoft VSCode.  It is one of the several next generation capabilities for an open development experience for z/OS®.  It also works in association with the Zowe Explorer plugin. For more information on IBM Z Open Editor, please visit:
 
@@ -499,41 +602,155 @@ Open VSCode and in the left side tool menu select **Extensions**.  From there, i
 
 **Note** : There may be some limitations with IBM Z Open Editor if running a 32-bit Java version on Windows.
 
-## 3.4 Summary
+## Summary
 
 In this chapter you have been introduced to VSCode and some of the extension tools available to it.  We have walked through the process of installing the pre-requisite software, Node.js and Java SDK, as well as VSCode, Zowe Explorer and IBM Z Open Editor.  You have also been briefly introduced to the utility of these extensions in VSCode.  In the subsequent chapters we will delve deeper into how and when to use them and get some practice through lab assignments. 
 
-# Part 2 - Learning COBOL
+\newpage
 
-### [Chapter 4. Basic COBOL](#4-Basic-COBOL)
+# Installation of Zowe CLI and Plug-ins
 
-### [Chapter 5. Data division](#5-Data-division)
+This chapter covers all aspects of the download and installation of Zowe CLI and Zowe CLI plug-ins. 
 
-### [Chapter 6. File handling](#6-File-handling)
+- **Install prerequisites - Node.js**
 
-### [Chapter 7. Program structure](#7-Program-structure)
+- **Install Zowe CLI**
+     - **Public npm Registry**
+     - **Package from Zowe.org**
 
-### [Chapter 8. File output](#8-File-output)
+- **Install Zowe CLI Plug-ins**
+     - **Public npm Registry**
+     - **Package from Zowe.org**
 
-### [Chapter 9. Conditional expressions](#9-Conditional-expressions)
+- **Summary**
 
-### [Chapter 10. Arithmetic expressions](#10-Arithmetic-expressions)
+## Install prerequisites - Node.js
 
-### [Chapter 11. Data types](#11-Data-types)
+Before installing Zowe CLI, please ensure an LTS version of Node v8.0 or higher is installed. Please refer back to the section titled "Install Node.js" if you have not already completed it. Please also verify that you have a version of Node Package Manager (npm) that is compatible with your version of Node.js. For a list of compatible versions, see [https://nodejs.org/en/download/releases/](https://nodejs.org/en/download/releases/). npm is included with the Node.js installation. Issue the command `npm --version` to view the version of npm that is installed.
 
-### [Chapter 12. Intrinsic functions](#12-Intrinsic-functions)
- 
+## Install Zowe CLI
+There are two recommended methods for installing the Zowe CLI. If you have access to the public npm registry from your workstation, we recommend using that installation method as pulling updates is seamless. If you do not have access to this registry, we recommend downloading the package from zowe.org and installing from the bundled package.
 
-# 4. Basic COBOL
+### Install from Public npm Registry
+Issue the following command in your terminal (e.g. Command Prompt or if you are using VS Code, Terminal -> New Terminal):
+
+```
+npm install -g @zowe/cli@zowe-v1-lts
+```
+
+If the command returns an EACCESS error, refer to [Resolving EACCESS permissions errors when installing packages globally](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally) in the npm documentation.
+If other issues are encountered in your environment, please review [known Zowe CLI issues](https://docs.zowe.org/stable/troubleshoot/cli/known-cli.html#known-zowe-cli-issues) for solutions.
+
+We also highly recommend installing the Secure Credential Store plug-in before using the CLI. The Secure Credential Store Plug-in for Zowe CLI lets you store your credentials securely in the default credential manager in your computer's operating system. On Linux, libsecret will need to be installed.
+
+If running Linux, please run the following command for your Linux distribution:
+
+- Debian/Ubuntu: `sudo apt-get install libsecret-1-dev`
+- Red Hat-based: `sudo yum install libsecret-devel`
+- Arch Linux: `sudo pacman -S libsecret`
+
+To install the Secure Credential Store Plug-in for Zowe CLI, issue the following command:
+
+```
+zowe plugins install @zowe/secure-credential-store-for-zowe-cli@zowe-v1-lts
+```
+
+User profiles, which contain connection information for interacting with various z/OS services, created after installing the plug-in will automatically store your credentials securely.
+
+To securely store credentials in existing user profiles (profiles that you created prior to installing the SCS plug-in), issue the following command:
+
+```
+zowe scs update
+```
+
+### Install from Bundled Package 
+Navigate to [Zowe.org Downloads](https://www.zowe.org/#download) and click the CLI Core button to download the core package which includes Zowe CLI and the Secure Credential Store plug-in. After accepting the EULA for Zowe, a package named `zowe-cli-package-v.r.m.zip` will be downloaded to your machine. Unzip the contents of `zowe-cli-package-v.r.m.zip` to a preferred location on your machine.
+
+Open your terminal (e.g. Command Prompt or if you are using VS Code, Terminal -> New Terminal), change your working directory to wherever you unzipped the contents, and issue the following command:
+
+```
+npm install -g zowe-cli.tgz
+```
+
+If the command returns an EACCESS error, refer to [Resolving EACCESS permissions errors when installing packages globally](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally) in the npm documentation.
+If other issues are encountered in your environment, please review [known Zowe CLI issues](https://docs.zowe.org/stable/troubleshoot/cli/known-cli.html#known-zowe-cli-issues) for solutions.
+
+The highly recommended Secure Credential Store Plug-in for Zowe CLI lets you store your credentials securely in the default credential manager in your computer's operating system. On Linux, libsecret will need to be installed.
+
+If running Linux, please run the following command for your Linux distribution:
+
+- Debian/Ubuntu: `sudo apt-get install libsecret-1-dev`
+- Red Hat-based: `sudo yum install libsecret-devel`
+- Arch Linux: `sudo pacman -S libsecret`
+
+To install the Secure Credential Store Plug-in for Zowe CLI, issue the following command from where you unzipped the core CLI package contents:
+
+```
+zowe plugins install secure-credential-store-for-zowe-cli.tgz
+```
+
+User profiles, which contain connection information for interacting with various z/OS services, created after installing the plug-in will automatically store your credentials securely.
+
+To securely store credentials in existing user profiles (profiles that you created prior to installing the SCS plug-in), issue the following command:
+
+```
+zowe scs update
+```
+
+## Install Zowe CLI Plug-ins
+Zowe CLI is an extendable technology that can be enhanced by installing plug-ins. Zowe offers a number of [plug-ins](https://docs.zowe.org/stable/user-guide/cli-extending.html). At the time of this writing, these include plug-ins for [CICS](https://www.npmjs.com/package/@zowe/cics-for-zowe-cli), [Db2](https://www.npmjs.com/package/@zowe/db2-for-zowe-cli), [FTP](https://www.npmjs.com/package/@zowe/zos-ftp-for-zowe-cli), [IMS](https://www.npmjs.com/package/@zowe/ims-for-zowe-cli), and [MQ](https://www.npmjs.com/package/@zowe/mq-for-zowe-cli). There are also many vendor plug-ins, many of which are available on the [public registry](https://www.npmjs.com/search?q=zowe-cli). At the time of this writing, these include plug-ins for [CA Endevor](https://www.npmjs.com/package/@broadcom/endevor-for-zowe-cli), [CA Endevor Bridge for Git](https://www.npmjs.com/package/@broadcom/endevor-bridge-for-git-for-zowe-cli), [CA File Master Plus](https://www.npmjs.com/package/@broadcom/file-master-plus-for-zowe-cli), [CA OPS/MVS](https://www.npmjs.com/package/@broadcom/ops-for-zowe-cli), [CA View](https://www.npmjs.com/package/@broadcom/caview-for-zowe-cli), [IBM CICS Bundle Generation and Deployment](https://www.npmjs.com/package/zowe-cli-cics-deploy-plugin), and [IBM z/OS Connect EE](https://www.npmjs.com/package/@zosconnect/zosconnect-zowe-cli).
+
+### Install from Public npm Registry 
+To install a Zowe CLI plug-in from the registry, simply locate the plug-in you wish to install, e.g. `@zowe/cics-for-zowe-cli`, find the distribution tag for the distribution you want to install, e.g. `zowe-v1-lts`, and issue the following command: 
+
+```
+zowe plugins install <name>@<distTag>
+```
+
+For example,
+
+```
+zowe plugins install @zowe/cics-for-zowe-cli@zowe-v1-lts
+```
+
+Multiple plug-ins can be installed in a single command. For example, to install all Zowe CLI plug-ins available from the Zowe organization, you could issue:
+
+```{.bash}
+zowe plugins install @zowe/cics-for-zowe-cli@zowe-v1-lts @zowe/ims-for-zowe-cli@zowe-v1-lts @zowe/mq-for-zowe-cli@zowe-v1-lts @zowe/zos-ftp-for-zowe-cli@zowe-v1-lts @zowe/db2-for-zowe-cli@zowe-v1-lts
+```
+
+Vendor plug-ins on the registry are installed in the same way. For example, to install the CA Endevor plug-in, you would issue
+
+```
+zowe plugins install @broadcom/endevor-for-zowe-cli@zowe-v1-lts
+```
+
+### Install from Bundled Package
+Navigate to [Zowe.org Downloads](https://www.zowe.org/#download) and click the CLI Plugins button to download the package which includes all Zowe CLI plug-ins for the Zowe organization. After accepting the EULA for Zowe, a package named `zowe-cli-plugins-v.r.m.zip` will be downloaded to your machine. Unzip the contents of `zowe-cli-plugins-v.r.m.zip` to a preferred location on your machine. You can select which plug-ins you want to install. The IBM Db2 plug-in requires [additional configuration](https://docs.zowe.org/stable/user-guide/cli-db2plugin.html#installing-from-a-local-package) when installing from a local package. To install all plug-ins you can issue:
+
+```
+zowe plugins install cics-for-zowe-cli.tgz zos-ftp-for-zowe-cli.tgz ims-for-zowe-cli.tgz mq-for-zowe-cli.tgz db2-for-zowe-cli.tgz
+```
+
+For offline installation of vendor plug-ins, please reach out to the specific vendor for details.
+
+## Summary
+In this chapter we walked through the process of installing the prerequisite software, Node.js and npm, as well as Zowe CLI and various plug-ins.
+
+\newpage
+
+# Part 2 - Learning COBOL {.unnumbered}
+
+# Basic COBOL
 
 This chapter introduces the basics of COBOL syntax. It then demonstrates how to view and run a basic COBOL program in VSCode.
 
  
-- **4.1** **COBOL characteristics**
+- **COBOL characteristics**
      - **Enterprise COBOL**
      - **Chapter objectives**
 
-- **4.2** **What must a novice COBOL programmer know to be an experienced COBOL programmer?**
+- **What must a novice COBOL programmer know to be an experienced COBOL programmer?**
      - **What are the coding rules and the reference format?**
      - **What is the structure of COBOL?**
      - **What are COBOL reserved words?**
@@ -543,39 +760,39 @@ This chapter introduces the basics of COBOL syntax. It then demonstrates how to 
      - **What is a COBOL paragraph?**
      - **What is a COBOL section?**
 
-- **4.3** **COBOL Divisions**
+- **COBOL Divisions**
      - **COBOL Divisions structure**
      - **What are the four Divisions of COBOL?**
 
 
-- **4.4** **PROCEDURE DIVISION explained**
+- **PROCEDURE DIVISION explained**
 
-- **4.5** **Additional information**
+- **Additional information**
      - **Professional manuals**
      - **Learn more about recent COBOL advancements**
 
-- **4.6** **Lab 1**
+- **Lab**
 
 
-## 4.1 COBOL characteristics
+## COBOL characteristics
 
 COBOL is an English-like computer language enabling COBOL source code to be easier to read, understand, and maintain.  Learning to program in COBOL includes knowledge of COBOL source code rules, COBOL reserved words, COBOL structure, and the ability to locate and interpret professional COBOL documentation.  These COBOL characteristics must be understood, to be proficient in reading, writing, and maintaining COBOL programs.
 
-### 4.1.1 Enterprise COBOL
+### Enterprise COBOL
 
 COBOL is a standard and not owned by any company or organization.  "Enterprise COBOL" is the name for the COBOL programming language compiled and executed in the IBM Z Operating System, z/OS.  COBOL details and explanations in the following chapters apply to Enterprise COBOL.
 
 Enterprise COBOL has decades of advancements, including new functions, feature extensions, improved performance, application programming interfaces (APIs), etc. It works with modern infrastructure technologies with native support for JSON, XML, and Java®.
 
-### 4.1.2 Chapter objectives
+### Chapter objectives
 
 The object of the chapter is to expose the reader to COBOL terminology, coding rules, and syntax while the remaining chapters include greater detail with labs for practicing what is introduced in this chapter.
 
-## 4.2 What must a novice COBOL programmer know to be an experienced COBOL programmer?
+## What must a novice COBOL programmer know to be an experienced COBOL programmer?
 
 This section will provide the reader with the information needed to more thoroughly understand the questions and answers being asked in each subsequent heading.
 
-### 4.2.1 What are the coding rules and the reference format?
+### What are the coding rules and the reference format?
 
 COBOL source code is column dependent, meaning column rules are strictly enforced.   Each COBOL source code line has five areas, where each of these areas has a beginning and ending column.
 
@@ -629,7 +846,7 @@ The COBOL reference format is formatted as follows:
 
 - Can be blank or optionally used by programmer for any purpose.
 
-### 4.2.2 What is the structure of COBOL?
+### What is the structure of COBOL?
 
 COBOL is a hierarchy structure consisting and in the top-down order of:
 
@@ -643,7 +860,7 @@ COBOL is a hierarchy structure consisting and in the top-down order of:
 
 - Statements
 
-### 4.2.3 What are COBOL reserved words?
+### What are COBOL reserved words?
 
 COBOL programming language has many words with specific meaning to the COBOL compiler, referred to as reserved words.  These reserved words cannot be used as programmer chosen variable names or programmer chosen data type names.
 
@@ -652,7 +869,7 @@ A few COBOL reserved words pertinent to this book are: PERFORM, MOVE, COMPUTE, I
 [https://www.ibm.com/support/knowledgecenter/zh/SSZJPZ_9.1.0/com.ibm.swg.im.iis.ds.mfjob.dev.doc/topics/r_dmnjbref_COBOL_Reserved_Words.html](https://www.ibm.com/support/knowledgecenter/zh/SSZJPZ_9.1.0/com.ibm.swg.im.iis.ds.mfjob.dev.doc/topics/r_dmnjbref_COBOL_Reserved_Words.html)
 
 
-### 4.2.4 What is a COBOL statement?
+### What is a COBOL statement?
 
 Specific COBOL reserved words are used to change the execution flow based upon current conditions.  “Statements” only exist within the Procedure Division, the program processing logic.  Examples of COBOL reserved words used to change the execution flow are:
 
@@ -662,15 +879,15 @@ Specific COBOL reserved words are used to change the execution flow based upon c
 
 - Perform
 
-### 4.2.5 What is the meaning of a scope terminator?
+### What is the meaning of a scope terminator?
 
 A scope terminator can be explicit or implicit.  An explicit scope terminator marks the end of certain PROCEDURE DIVISION statements with the “END-” COBOL reserved word.  Any COBOL verb that is either, always conditional (IF, EVALUATE), or has a conditional clause (COMPUTE, PERFORM, READ) will have a matching scope terminator.  An implicit scope terminator is a period (.) that ends the scope of all previous statements that have not yet been ended.
 
-### 4.2.6 What is a COBOL sentence?
+### What is a COBOL sentence?
 
 A COBOL “Sentence” is one or more “Statements” followed by a period (.), where the period serves as a scope terminator.
 
-### 4.2.7 What is a COBOL paragraph?
+### What is a COBOL paragraph?
 
 A COBOL “Paragraph” is a user-defined or predefined name followed by a period.  A “Paragraph” consists of zero or more sentences and are the subdivision of a “Section” or “Division”, see Example 1. below.
 
@@ -678,15 +895,15 @@ A COBOL “Paragraph” is a user-defined or predefined name followed by a perio
 
 *Example 1.  Division -> paragraph -> sentences*
 
-### 4.2.8 What is a COBOL section?
+### What is a COBOL section?
 
 A “Section” is either a user-defined or a predefined name followed by a period and consists of zero or more sentences.  A “Section” is a collection of paragraphs. 
 
-## 4.3 COBOL Divisions
+## COBOL Divisions
 
 This section introduces the four COBOL Divisions and briefly describes their purpose and characteristics.
 
-### 4.3.1 COBOL Divisions structure
+### COBOL Divisions structure
 
 Divisions are subdivided into Sections.
 
@@ -698,14 +915,14 @@ Sentences consists of Statements.
 
 Statements begin with COBOL reserved words and can be subdivided into “Phrases”
 
-### 4.3.2 What are the four Divisions of COBOL?
-#### 1. IDENTIFICATION DIVISION
+### What are the four Divisions of COBOL?
+#### IDENTIFICATION DIVISION
 
 The IDENTIFICATION DIVISION identifies the program with a name and, optionally, gives other identifying information, such as the Author name, program compiled date (last modified), etc.
-#### 2. ENVIRONMENT DIVISION
+#### ENVIRONMENT DIVISION
 
 The ENVIRONMENT DIVISION describes the aspects of your program that depend on the computing environment, such as the computer configuration and the computer inputs and outputs.
-#### 3. DATA DIVISION
+#### DATA DIVISION
 
 The DATA DIVISION is where characteristics of data are defined in one of the following sections:
 
@@ -715,8 +932,7 @@ The DATA DIVISION is where characteristics of data are defined in one of the fol
 
 - LINKAGE SECTION:
 
-   Describe data from another program.
-When defining data developed for internal processing.
+   Describes data from another program. When defining data developed for internal processing.
 
 - WORKING-STORAGE SECTION:
 
@@ -726,15 +942,11 @@ When defining data developed for internal processing.
 
    Storage allocated each time a program is called and de-allocated when the program ends.
 
-- LINKAGE SECTION:
-
-   Describes data from another program.
-
-#### 4. PROCEDURE DIVISION
+#### PROCEDURE DIVISION
 
 The PROCEDURE DIVISION contains instructions related to the manipulation of data and interfaces with other procedures are specified.
 
-## 4.4 PROCEDURE DIVISION explained
+## PROCEDURE DIVISION explained
 
 The PROCEDURE DIVISION is where the work gets done in the program.  Statements are in the PROCEDURE DIVISION where they are actions to be taken by the program.  The PROCEDURE DIVISION is required for data to be processed by the program.  PROCEDURE DIVISION of a program is divided into sections and paragraphs, which contain sentences and statements, as described here:
 
@@ -748,13 +960,13 @@ The PROCEDURE DIVISION is where the work gets done in the program.  Statements a
 
 - **Phrase** - A small part of a statement (i.e. subdivision), analogous to an English adjective or preposition
 
-## 4.5 Additional information
+## Additional information
 
 This section provides useful resources in the form of manuals and videos to assist in learning more about the basics of COBOL.
 
-### 4.5.1 Professional manuals
+### Professional manuals
 
-As Enterprise COBOL experience advances, the need for the professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library – IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of April 2020, the current release of Enterprise COBOL is V6.3.  Highlight V6.3 tab, then select product documentation.
+As Enterprise COBOL experience advances, the need for the professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of April 2020, the current release of Enterprise COBOL is V6.3.  Highlight V6.3 tab, then select product documentation.
 
 [https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library](https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library)
 
@@ -773,7 +985,7 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
    [http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf)
 
-### 4.5.2 Learn more about recent COBOL advancements
+### Learn more about recent COBOL advancements
 
 - What’s New in Enterprise COBOL for z/OS V6.1:
 
@@ -787,9 +999,9 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
    [https://youtu.be/bRLKGeB6W2A](https://youtu.be/bRLKGeB6W2A)
 
-## 4.6 Lab 1
+## Lab
 
-In this lab exercise you will connect to an IBM Z system, view a simple COBOL hello world program in VSCode, submit JCL to compile the COBOL program, and view the output.  Refer to Chapter 3, “ Installation of VSCode and extensions”, to configure VSCode with the Zowe Explorer and Z Open Editor extensions if you have not already done so.
+In this lab exercise you will connect to an IBM Z system, view a simple COBOL hello world program in VSCode, submit JCL to compile the COBOL program, and view the output.  Refer to "Installation of VSCode and extensions" to configure VSCode with the Zowe Explorer and Z Open Editor extensions if you have not already done so.
 
 1. The lab assumes installation of VSCode with Z Open Editor and Zowe Explorer extensions as shown in Figure  2.
 
@@ -866,7 +1078,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 *Figure  12.  Specified password*
 
-12. Select **False – Accept connections with self-signed certificates** to authorize workstation connection as shown in Figure  13.
+12. Select **False - Accept connections with self-signed certificates** to authorize workstation connection as shown in Figure  13.
 
 ![](Images/image073.png)
 
@@ -993,17 +1205,19 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 28.  The following URL is another excellent document describing the above VSCode and Zowe Explore details with examples:
    [https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe)
 
-# 5. Data division
+\newpage
+
+# Data division
 
 Understanding COBOL variables and program processing of variables are essential to effectively learning the COBOL language.  An experienced COBOL programmer must master characteristics of COBOL variables and the program processing using the variables introduced in this chapter.  The objective is to introduce the reader to the basics of COBOL variables while exposing the reader to the many advanced COBOL variable options.
 
 Following this chapter is a lab available to compile and execute the COBOL source code provided later in the chapter.   Following the successful compile and execution of one provided program, a second provided COBOL program with a minor change is available to compile.  The second program has an embedded error and on compile will fail.  The failed compilation is an opportunity to identify the error associated with the significance of PICTURE clause data types associated with the operation of the COMPUTE statement (discussed in this chapter) and how to solve the error.
 
-- **5.1** **Variables / Data-items**
+- **Variables / Data-items**
 
      - **Variable / Data-item name restrictions and data types**
 
-- **5.2** **PICTURE clause**
+- **PICTURE clause**
 
      - **PIC clause symbols and data types**
 
@@ -1011,7 +1225,7 @@ Following this chapter is a lab available to compile and execute the COBOL sourc
 
      - **PICTURE clause character-string representation**
 
-- **5.3** **Literals**
+- **Literals**
 
      - **Figurative constants**
 
@@ -1019,16 +1233,16 @@ Following this chapter is a lab available to compile and execute the COBOL sourc
 
      - **Levels of data**
 
-- **5.4** **MOVE and COMPUTE**
+- **MOVE and COMPUTE**
 
-- **5.5** **Lab 2**
+- **Lab**
 
-## 5.1  Variables / Data-items
+## Variables / Data-items
 
 A COBOL variable, also known as a data-item, is a name and is chosen by the COBOL programmer.  The named variable is coded to hold data where the data value can vary, hence the generic term 'variable'. A COBOL variable name is also known as 'Data Name'.  A COBOL variable name has restrictions. 
 
 
-### 5.1.1 Variable / Data-item name restrictions and data types
+### Variable / Data-item name restrictions and data types
 
 A list of COBOL variable name restrictions or rules are:
 
@@ -1036,7 +1250,7 @@ A list of COBOL variable name restrictions or rules are:
 
 - Must not contain a space as a part of the name.
 
-- Name contains letters (A-Z), digits (0-9), minus sign and hyphens (-).
+- Name contains letters (A-Z), digits (0-9), underscores (_) and hyphens (-).
 
 - Maximum length of 30 characters.
 
@@ -1056,7 +1270,7 @@ A list of the most common COBOL data types are:
 
 - Alphanumeric Numeric and Alphabetic Combination
 
-## 5.2  PICTURE clause
+## PICTURE clause
 
 The COBOL reserved word, PICTURE (PIC), determines the length and data type of a programmer selected variable name. Data types described by PIC are commonly referred to as a picture clause or pic clause.  Some simple pic clauses are:
 
@@ -1068,7 +1282,7 @@ The COBOL reserved word, PICTURE (PIC), determines the length and data type of a
 
 - PIC X(4) - four alphanumeric values where length is four
 
-### 5.2.1 PIC clause symbols and data types
+### PIC clause symbols and data types
 
 The maximum length of a picture clause is dependent upon the data type and compiler options.  The PIC reserved word has many more data types beyond numeric (PIC 9) and alphanumeric (PIC X).  As an example, an alphabetic only data type is defined as PIC A.  Other PIC clause symbols are:
 
@@ -1079,7 +1293,7 @@ Where cs is any valid currency symbols such as the dollar sign ($).
 All PIC clause symbols are described in the [Enterprise COBOL for z/OS Language Reference manual](https://www.ibm.com/support/knowledgecenter/SS6SG3_4.2.0/com.ibm.entcobol.doc_4.2/PGandLR/igy3lr50.pdf). 
 
 
-### 5.2.2 Coding COBOL variable / data-item names
+### Coding COBOL variable / data-item names
 
 A PIC clause describes the data type of a variable/data-item name.  Coding a variable/data-item is done in the DATA DIVISION.  The COBOL code describing a variable/data-item name is accomplished using a level number and a picture clause.
 
@@ -1091,7 +1305,7 @@ A PIC clause describes the data type of a variable/data-item name.  Coding a var
 
 Figure  1. below is an example of COBOL level numbers with respective variable/data-item names and picture clause.
 
-### 5.2.3 PICTURE clause character-string representation
+### PICTURE clause character-string representation
 
 Some PIC clause symbols can appear only once in a PIC clause character-string, while other can appear more than once.  For example:
 
@@ -1103,11 +1317,11 @@ Some PIC clause symbols can appear only once in a PIC clause character-string, w
 
    `PIC $9,999V99`
 
-## 5.3  Literals
+## Literals
 
 A COBOL literal is constant data value, meaning the value will not change like a variable can. The COBOL statement, `DISPLAY "HELLO WORLD!",` is a COBOL reserved word, `DISPLAY` , followed by a literal, `HELLO WORLD!`
 
-### 5.3.1 Figurative constants
+### Figurative constants
 
 Figurative constants are reserved words that name and refer to specific constant values. Examples of figurative constants are:
 
@@ -1123,7 +1337,7 @@ Figurative constants are reserved words that name and refer to specific constant
 
 - NULL, NULLS
 
-### 5.3.2 Data relationships
+### Data relationships
 
 The relationships among all data to be used in a program is defined in the DATA DIVISION, through a system of level indicators and level-numbers.  A level indicator, with its descriptive entry, identifies each file in a program. Level indicators represent the highest level of any data hierarchy with which they are associated.  A level-number, with its descriptive entry, indicates the properties of specific data. Level-numbers can be used to describe a data hierarchy; they can indicate that this data has a special purpose.
 
@@ -1135,11 +1349,11 @@ A structured level number hierarchic relationship is available to all DATA DIVIS
 
 *Figure  1.  Level number hierarchic relationship*
 
-### 5.3.3 Levels of data
+### Levels of data
 
 After a record is defined, it can be subdivided to provide more detailed data references as seen in Figure  1.  A level number is a one-digit or two-digit integer between 01 and 49, or one of three special level numbers: 66, 77, or 88 where the variable names are assigned attributes different from the 01-49-level numbers.  The relationship between level numbers within a group item defines the hierarchy of data within that group.  A group item includes all group and elementary items that follow it until a level number less than or equal to the level number of that group is encountered. 
 
-## 5.4  MOVE and COMPUTE
+## MOVE and COMPUTE
 
 MOVE and COMPUTE reserved word statements alter the value of variable names.  Each MOVE shown in Figure  2. results in a literal stored in a 77-level variable name.  The COMPUTE statement, also shown in Figure  2. , stores the value of `HOURS * RATE` in `GROSS-PAY.`   All three variable names are assigned a numeric value data type using PIC 9, which is necessary for the operation of the COMPUTE statement.
 
@@ -1147,7 +1361,7 @@ MOVE and COMPUTE reserved word statements alter the value of variable names.  Ea
 
 *Figure  2.  MOVE and COMPUTE example*
 
-## 5.5  Lab 2
+## Lab
 
 **Note** : It may take a few seconds to load in all segments of this lab.  If files are not loading, hit the refresh button on the list that appears when hovering over the section bar.
 
@@ -1198,14 +1412,16 @@ Notice that this line tells you to focus on the GROSS-PAY picture clause in orde
 
 *Figure  7.  Compare return codes*
 
-# 6. File handling
+\newpage
 
-The previous chapter and lab focused on variables and moving literals into variables, then writing variable content using the COBOL DISPLAY statement.  Chapter 8 introduces reading records from files into variables, moving the variables to output variables, and writing the output variables to a different file. A simple COBOL program to read each record from a file and write each record to a different file is used to illustrate COBOL code necessary to read records from an input external data source and write records to an output external data source.
+# File handling
+
+The previous chapter and lab focused on variables and moving literals into variables, then writing variable content using the COBOL DISPLAY statement.  This section introduces reading records from files into variables, moving the variables to output variables, and writing the output variables to a different file. A simple COBOL program to read each record from a file and write each record to a different file is used to illustrate COBOL code necessary to read records from an input external data source and write records to an output external data source.
 
 An experienced COBOL programmer can answer the question, "How does an Enterprise COBOL program read data from an input external data source and write data to an output external data source?"  The objective of this chapter is to provide enough comprehensive information for the reader to be able to answer that question.
 
 
-- **6.1** **COBOL code used for sequential file handling**
+- **COBOL code used for sequential file handling**
 
      - **COBOL inputs and outputs**
 
@@ -1219,13 +1435,13 @@ An experienced COBOL programmer can answer the question, "How does an Enterprise
 
      - **ASSIGN clause**
 
-- **6.2** **PROCEDURE DIVISION sequential file handling**
+- **PROCEDURE DIVISION sequential file handling**
 
      - **Open input and output for read and write**
 
      - **Close input and output**
 
-- **6.3** **COBOL programming techniques to read and write records sequentially**
+- **COBOL programming techniques to read and write records sequentially**
 
      - **READ-NEXT-RECORD paragraph execution**
 
@@ -1235,10 +1451,10 @@ An experienced COBOL programmer can answer the question, "How does an Enterprise
 
      - **Iterative processing of READ-NEXT-RECORD paragraph**
 
-- **6.4** **Lab 3**
+- **Lab**
 
 
-## 6.1  COBOL code used for sequential file handling
+## COBOL code used for sequential file handling
 
 COBOL code used for sequential file handling involves:
 
@@ -1263,13 +1479,13 @@ COBOL code used for sequential file handling involves:
     - WRITE FROM statement
 
 
-### 6.1.1 COBOL inputs and outputs
+### COBOL inputs and outputs
 
 The ENVIRONMENT DIVISION and DATA DIVISION describes the inputs and outputs used in the PROCEDURE DIVISION program logic.  Previous chapters introduced variable descriptions in the DATA DIVISION and literals were moved into the defined variables.  The role of the ENVIRONMENT DIVISION and more specifically, the INPUT-OUTPUT SECTION, FILE-CONTROL paragraph introduces accessing external data sources where the data from external sources are moved into defined variables.
 
-### 6.1.2 FILE-CONTROL paragraph
+### FILE-CONTROL paragraph
 
-The FILE-CONTROL paragraph associates each COBOL internal file name with an external dataset name.   Within the FILE-CONTROL paragraph, the SELECT clause creates an internal file name and the ASSIGN clause creates an external dataset name.  Figure  1. shows the PRINT-LINE internal file name associated with the PRTLINE external dataset name and the ACCT-REC internal file name associated with the ACCTREC external dataset name.  Section 6.1.6 further explains the SELECT ASSIGN TO relationship.
+The FILE-CONTROL paragraph associates each COBOL internal file name with an external dataset name.   Within the FILE-CONTROL paragraph, the SELECT clause creates an internal file name and the ASSIGN clause creates an external dataset name.  Figure  1. shows the PRINT-LINE internal file name associated with the PRTLINE external dataset name and the ACCT-REC internal file name associated with the ACCTREC external dataset name.  Section titled Assign Clause further explains the SELECT ASSIGN TO relationship.
 
 ![](Images/image125.jpg)
 
@@ -1286,16 +1502,16 @@ The COBOL reserved word 'FD' is used to give the COBOL compiler more information
 *Figure  2.  FILE-SECTION*
 
 
-### 6.1.3 COBOL external data source
+### COBOL external data source
 
 Enterprise COBOL source code compiles and executes on IBM Z Mainframe hardware where z/OS is the operating system software.  z/OS stores data in both data sets and Unix files.  z/OS includes many data storage methods.  This chapter will focus on the z/OS sequential data storage method.  A sequential dataset is a collection of records.
 
-### 6.1.4 Data sets, records, and fields
+### Data sets, records, and fields
 
 A dataset has many records.  A record is a single line in the dataset and has a defined length.  Each record can be subdivided into fields where each field has a defined length.  Therefore, the sum of all field lengths would equal the length of the record.  Observe Figure  3.
 
 
-### 6.1.5 Blocks
+### Blocks
 
 Each record read by the program can result in disk storage access.   A program typically reads 1 record at a time in sequential order until all records are read.  When a record is read, the record retrieved from disk is stored in memory for program access.  When each next record read requires the need to retrieve the record from disk, system performance is impacted negatively.  Records can be blocked where a block is a group of records.  The result is when the first record is read, then an entire block of records is read into memory assuming the program will be reading the second, third, etc. records avoiding unnecessary disk retrievals and negative system performance.  The memory holding a record or block of records to be read by the program is known as a buffer.  COBOL BLOCK CONTAINS clause is available to specify the size of the block in the buffer.  Observe Figure  3.
 
@@ -1303,7 +1519,7 @@ Each record read by the program can result in disk storage access.   A program t
 
 *Figure  3.  Records, fields, and blocks*
 
-### 6.1.6 ASSIGN clause
+### ASSIGN clause
 
 While the SELECT clause name is an internal file name, the ASSIGN clause name is describing a data source external to the program.  z/OS uses Job Control Language, JCL, operations to tell the system what program to load and execute followed by input and output names needed by the program. The JCL input and output names are call DDNAMEs. The JCL DDNAME statement includes a JCL DD operation where DD is an abbreviation for Data Definition. On the same DDNAME statement is the system-controlled data set name.
 
@@ -1335,12 +1551,12 @@ JCL is a separate z/OS technical skill.  The introduction to COBOL explains just
 [https://www.ibm.com/support/knowledgecenter/zosbasics/com.ibm.zos.zjcl/zjclc_basicjclconcepts.htm](https://www.ibm.com/support/knowledgecenter/zosbasics/com.ibm.zos.zjcl/zjclc_basicjclconcepts.htm)
 
 
-## 6.2  PROCEDURE DIVISION sequential file handling
+## PROCEDURE DIVISION sequential file handling
 
 During COBOL program runtime, SELECT ASSIGN TO a JCL DDNAME is mandatory.  If the ASSIGN TO name fails to associate with a JCL DDNAME of the same spelling, at runtime, then a program runtime error occurs when the OPEN operation is attempted.  A message appears in the runtime output indicating the DDNAME was not found.  READ and WRITE are dependent upon successful completion of the OPEN operation.  The compiler cannot detect the runtime error because the compiler is unaware of the actual runtime JCL DDNAME dataset name subject to OPEN, READ, or WRITE.  The FD, File Descriptor, mapping of the data record fields requires a successful OPEN to be populated by subsequent READ or WRITE operations.
 
 
-### 6.2.1 Open input and output for read and write
+### Open input and output for read and write
 
 COBOL inputs and outputs must be opened to connect the selected internal name to the assigned external name.  Figure  4. opens the file name ACCT-REC as program input and file name PRINT-LINE as program output.
 
@@ -1348,7 +1564,7 @@ COBOL inputs and outputs must be opened to connect the selected internal name to
 
 *Figure  4.  OPEN-FILES*
 
-### 6.2.2 Close input and output
+### Close input and output
 
 COBOL inputs and outputs should be closed at program completion or better yet when the program is done reading from or writing to the internal file name.  Figure  5. closes the internal file name ACCT-REC and internal file name PRINT-LINE, then stops processing, STOP RUN.
 
@@ -1356,7 +1572,7 @@ COBOL inputs and outputs should be closed at program completion or better yet wh
 
 *Figure  5.  CLOSE-STOP*
 
-## 6.3  COBOL programming techniques to read and write records sequentially
+## COBOL programming techniques to read and write records sequentially
 
 When reading records, the program needs to first check for no records to be read or check for no more records to be read.  If a record exists, then the fields in the read record populate variable names defined by the FD clause.  COBOL uses a PERFORM statement for iteration.  In computer programming, iterative is used to describe a situation in which a sequence of instructions or statements can be executed multiple times. One pass through the sequence is called an iteration.  Iterative execution is also called a loop.  In other programming languages, ‘DO’ or ‘FOR’ statements are used for iterative execution.  COBOL uses a PERFORM statement for iterative execution.  Figure  6. shows four programmer chosen paragraph names in the PROCEDURE DIVISION.
 
@@ -1378,22 +1594,22 @@ READ-NEXT-RECORD repeatedly executes READ-RECORD and WRITE-RECORD until a last r
 ###
 
 
-### 6.3.1 READ-NEXT-RECORD paragraph execution
+### READ-NEXT-RECORD paragraph execution
 
 The READ-NEXT-RECORD paragraph is a COBOL programming technique used to read all records from a sequential file UNTIL the last record is read.  The paragraph contains a compounded sentence terminated by an implicit scope terminator, (.) period, on a separate line following the END-PERFORM statement.  The PERFORM UNTIL through END-PERFORM, explicit scope terminator, is repeatedly executed until LASTREC variable contains Y.  The first PERFORM READ-RECORD results in a branch to the READ-RECORD paragraph.  Observe #1 in Figure  7.
 
 
-### 6.3.2 READ-RECORD paragraph
+### READ-RECORD paragraph
 
 The READ-RECORD paragraph executes the COBOL READ statement resulting in the external sequential file populating the variables associated with ACCT-REC internal file name. If ‘AT END’ of records read, then Y is moved into the LASTREC variable.  The READ statement is terminated by an explicit scope terminator, END-READ.  The paragraph is terminated by an implicit scope terminator, (.) period.  Control is returned to READ-NEXT-RECORD paragraph to execute the next statement, PERFORM WRITE-RECORD.
 
-### 6.3.3 WRITE-RECORD paragraph
+### WRITE-RECORD paragraph
 
 The WRITE-RECORD paragraph contains several sentences terminated by an implicit scope terminator, (.) period.  The MOVE statements result in each input file variable name moved to an output file variable name.  The last sentence in the paragraph writes the collection of output file variable names, PRINT-REC.
 
 PRINT-REC is assigned to PRTREC.  JCL is used to execute the COBOL program.  An associated JCL PRTREC DDNAME redirects the written output to a z/OS controlled data set name, etc. using JCL DD operation on the JCL DDNAME statement.  Observe #2 in Figure  7.
 
-### 6.3.4 Iterative processing of READ-NEXT-RECORD paragraph
+### Iterative processing of READ-NEXT-RECORD paragraph
 
 Once all statements in the WRITE-RECORD paragraph are executed, then control is returned to the READ-NEXT-RECORD paragraph where the next sentence to be executed is the second PERFORM READ-RECORD statement.
 
@@ -1404,7 +1620,7 @@ Again, the READ-RECORD paragraph executes the COBOL READ statement, resulting in
 *Figure  7.  Iterative processing*
 
 
-## 6.4  Lab 3
+## Lab
 
 The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL coding technique for reading all data records from a sequential file. If a step has an asterisk (\*) next to it, it will have a hint associated at the end of the lab content.
 
@@ -1515,17 +1731,17 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 ![](Images/image140.png)
 
 *Figure  13.  Error in id.JCL(CBL0003J).jcl*
-#
 
+\newpage
 
-# 7. Program structure
+# Program structure
 
 
 In this chapter we discuss the concept of structured programming and how it relates to COBOL.  We highlight the key techniques within the COBOL language that allow you to write good well-structured programs.
 
  
 
-- **7.1** **Styles of programming**
+- **Styles of programming**
 
      - **What is structured programming**
 
@@ -1533,7 +1749,7 @@ In this chapter we discuss the concept of structured programming and how it rela
 
      - **COBOL programming style**
 
-- **7.2** **Structure of the Procedure Division**
+- **Structure of the Procedure Division**
 
      - **Program control and flow through a basic program**
 
@@ -1543,13 +1759,13 @@ In this chapter we discuss the concept of structured programming and how it rela
 
      - **Learning bad behavior using the GO TO keyword**
 
-- **7.3** **Paragraphs as blocks of code**
+- **Paragraphs as blocks of code**
 
      - **Designing the content of a paragraph**
 
      - **Order and naming of paragraphs**
 
-- **7.4** **Program control with paragraphs**
+- **Program control with paragraphs**
 
      - **PERFORM TIMES**
 
@@ -1559,7 +1775,7 @@ In this chapter we discuss the concept of structured programming and how it rela
 
      - **PERFORM VARYING**
 
-- **7.5** **Using subprograms**
+- **Using subprograms**
 
      - **Specifying the target program**
 
@@ -1567,15 +1783,15 @@ In this chapter we discuss the concept of structured programming and how it rela
 
      - **Specifying the return value**
 
-- **7.6** **Summary**
+- **Summary**
 
 
-## 7.1  Styles of programming
+## Styles of programming
 
 Before we discuss in more detail how to structure a program written in COBOL, it's important to understand the type of language COBOL is and how it's both different from other languages and how it affects the way you might structure your programs.
 
 
-### 7.1.1  What is structured programming
+### What is structured programming
 
 Structured programming is the name given to a set of programming styles that could include functional, procedural amongst others.  Structured programming technique results in program logic being easier to understand and maintain.  Examples of structured programming languages are C, PL/I, Python and of course, COBOL.  These languages, given specific control flow structures such as loops, functions and methods, allow a programmer to organize their code in a meaningful way.
 
@@ -1585,22 +1801,22 @@ Well-structured code is both easy to understand and to maintain.  It is highly l
 
  
 
-### 7.1.2 What is Object Orientated Programming
+### What is Object Orientated Programming
 
 Object Orientated programming, or OO programming, differs from structured programming, although it borrows a lot of the same concepts.  In OO programming, code is split up into multiple classes, each representing an actor within the system.  Each class is made up of variables and a sequence of methods.  Instantiations of a class or objects can execute methods of another object.  Each class within an OO program can be considered a structured program, as it will still contain methods and iteration constructs.  However, it is the composition of the program from a set of individual classes that makes OO programming different.  It is possible to write Object Orientated COBOL; however, it is not supported by some of the middleware products that provide COBOL APIs.  It is not generally used within the market and so it is not covered in this course.
 
 
-### 7.1.3 COBOL programming style
+### COBOL programming style
 
 COBOL doesn't directly have some of the components of a structured programming language as you may know them if you have studied a language like C or Java.  COBOL doesn't contain for or while loops, nor does it contain defined functions or methods.  Because COBOL is meant to be a language that is easy to read these concepts are embodied through the use of the PERFORM keyword and the concept of paragraphs.  This allows the programmer to still create these structures, but in a way that is easy to read and follow.
 
 
-## 7.2  Structure of the Procedure Division
+## Structure of the Procedure Division
 
 As you already know, a COBOL program is split into several divisions, including identification, environment and data.  However, this chapter concerns itself with how you structure the content of the procedure division to be easy to read, understandable and maintainable in the future.
 
 
-### 7.2.1 Program control and flow through a basic program
+### Program control and flow through a basic program
 
 Typically, execution in a COBOL program begins at the first statement within the procedure division and progresses sequentially through each line until it reaches the end of the source code.   For example, take a look at Example 1. Snippet from TOTEN1.  This is a simple program that displays a simple message counting to ten.
 
@@ -1627,7 +1843,7 @@ STOP RUN.
 Although this code is very simple to read, it's not very elegant, there is a lot of code repetition as the number is increased.  Obviously, we want to provide some structure to the program.  There are three keywords that we can use to transfer control to a different section of the source code and provide the structure we need.  These keywords are PERFORM, GO TO and CALL.
 
 
-### 7.2.2                Inline and out of line perform statements
+### Inline and out of line perform statements
 
 The PERFORM keyword is a very flexible element of the COBOL language, as it allows functions and loops to be entered.  At the most basic level, a PERFORM allows control to be transferred to another section of the code.  Once this section has executed, control returns to the following line of code.  Take the following example:
 
@@ -1662,7 +1878,7 @@ WRITE-NEW-RECORD.
 
 In this example, the three lines of code that constructed a new line of output and printed it has been extracted into a new paragraph called WRITE-NEW-RECORD.  This paragraph is then performed ten times by use of the PERFORM keyword.  Each time the PERFORM keyword is used, execution jumps to the paragraph WRITE-NEW-RECORD, executes the three lines contained within that paragraph before returning to the line following the PERFORM statement.  The concept of a paragraph will be covered later in this chapter in more depth.
 
-### 7.2.3 Using performs to code a loop
+### Using performs to code a loop
 
 The code we have built so far is still not optimal, the repetition of the perform statement ten times is inelegant and can be optimized.  Observe the following snippet of code:
 
@@ -1695,7 +1911,7 @@ for(int counter =0; counter<11; counter++){
 Although the COBOL version is perhaps more verbose than a for loop in other languages, it is easier to read, and remember you always have autocomplete (if you are using a good editor) to help you with the typing.
 
 
-### 7.2.4 Learning bad behavior using the GO TO keyword
+### Learning bad behavior using the GO TO keyword
 
 Programmers tend to have strong beliefs about choice of editor, tabs or spaces and many heated discussions have been had on such subjects.  However, if there is one thing that we can agree on, it is that use of GO TO is usually a bad idea.  To demonstrate why GO TO can be a poor idea, we will take a look at TOTEN2 again, and replace the second instance of the PERFORM keyword with a GO TO, shown in Example 5.
 
@@ -1758,7 +1974,7 @@ This example is using a mix of conditional and non-conditional GO TO statements,
 So why teach you something that we have said is messy and not advised?  Well, by giving you some understanding of its behavior, you will be better equipped when looking through existing code and maintaining it. 
 
 
-## 7.3  Paragraphs as blocks of code
+## Paragraphs as blocks of code
 
 So far in this section we have used a few examples of paragraphs without really explaining what they are, how they work and what they can be used for.  This section addresses that.
 
@@ -1772,7 +1988,7 @@ A paragraph is defined within the procedure division and starts at column eight 
 
 Considering that a program can be made up of multiple paragraphs and that the PERFORM keyword can be used to call the paragraph, either conditionally or as part of a loop, it is easy to see that good paragraph design really helps makes your COBOL more structured and readable.
 
-### 7.3.1 Designing the content of a paragraph
+### Designing the content of a paragraph
 
 There are no restrictions as to what content can go inside a paragraph, however, there are two main reasons why you might want to refactor code to be inside a paragraph:
 
@@ -1785,7 +2001,7 @@ There are no restrictions as to what content can go inside a paragraph, however,
 Remember that you can also perform other paragraphs within existing paragraphs.  This nested calling of paragraphs can again, help to structure your code. 
 
 
-### 7.3.2 Order and naming of paragraphs
+### Order and naming of paragraphs
 
 There is no requirement about the order that paragraphs should appear within a COBOL program.  A paragraph can be called from a point either before or after where it is declared.  Although there are no restrictions enforced by the language, there are some techniques that you can follow that will make larger programs easier to follow and understand. Some of these techniques and best practices are:
 
@@ -1852,11 +2068,11 @@ There is no requirement about the order that paragraphs should appear within a C
 *Example 9.  Explicitly closed paragraphs*
 
 
-## 7.4  Program control with paragraphs
+## Program control with paragraphs
 
 So far in this chapter we have discussed the importance of using paragraphs to structure your code.  In doing this, we have used the PERFORM keyword a few times to execute the paragraphs we had created.  Specifically, we used the keyword by itself and used it with the VARYING keyword to construct a loop.  In this section, we will discuss in more detail how the PERFORM keyword can be used.
 
-### 7.4.1 PERFORM TIMES
+### PERFORM TIMES
 
 Perhaps the simplest way of repeating a perform statement is to use the TIMES keyword to perform a paragraph or sections of code a static number of times, shown in Example 10.   
 
@@ -1876,7 +2092,7 @@ The required number of times that the code should be executed can either be a li
 *Example 11.  TIMES 2*
  
 
-### 7.4.2  PERFORM THROUGH
+### PERFORM THROUGH
 
 You may require a sequential list of paragraphs to be executed in turn, instead of performing them individually.  The THROUGH or THRU keyword can be used to list the start and end paragraphs of the list.  Execution will progress through each of the paragraphs as they appear in the source code, from beginning to end, before returning to the line following the initial perform statement, observe Example 12.
 
@@ -1901,7 +2117,7 @@ You may require a sequential list of paragraphs to be executed in turn, instead 
 
 **Note:** The use of the THRU keyword can also be used alongside the TIMES, UNTIL and VARYING keywords, to allow the list of paragraphs to be executed rather than just a single paragraph or blocks of code.
 
-### 7.4.3 PERFORM UNTIL
+### PERFORM UNTIL
 
 Adding the UNTIL keyword to a perform sentence allows you to iterate over a group of sentences until the Boolean condition is met.  Effectively allowing you to program while loops in COBOL, take this basic example:
 
@@ -1953,9 +2169,9 @@ While(counter != 10);
 *Example 16.  Java while loop*
  
 
-### 7.4.4 PERFORM VARYING
+### PERFORM VARYING
 
-We've already used the VARYING keyword earlier in Section 7.2.3 to code a loop, recall:
+We've already used the VARYING keyword earlier in the section titled Using performs to code a loop, recall:
 
 ```
 PERFORM VARYING COUNTER FROM 01 BY 1 UNTIL COUNTER EQUAL 11
@@ -1991,7 +2207,7 @@ for(int counter = 0; counter < 11; counter++){
 This is really, just two for loops nested within each other.  This construct is very useful when iterating over tables or nested record structures.  As for each loop of the outer varying loop, the inner loop will be executed five times.  As mentioned previously, the test of the condition will be assumed by COBOL to be at the beginning of the loop, however, it can be specified to be evaluated at the end of the loop by adding the phrase WITH TEST AFTER to the initial perform sentence.
 
  
-## 7.5  Using subprograms
+## Using subprograms
 
 So far, we have only examined the internal structure of a single COBOL program.  As programs increase in function and number, it is common that a programmer might want certain aspects of a programs function to be made available to other programs within the system.  Abstracting generic functions into their own program and allowing them to be called from other programs can reduce the amount of code duplication within a system and therefore decrease the cost of maintenance, as fixes to shared modules only need to be made once. 
 
@@ -2002,7 +2218,7 @@ So far, we have only examined the internal structure of a single COBOL program. 
 When calling another program, we need to consider three main concerns: how we will reference the program we wish to call, the parameters we want to send to the target program and the parameter that we wish the target program to return.
 
 
-### 7.5.1 Specifying the target program
+### Specifying the target program
 
 To call a target program we will use the keyword CALL followed by a reference to the target program we wish to call.  The two main ways to do this are by a literal value or by referencing a variable, shown in Example 20.
 
@@ -2018,7 +2234,7 @@ CALL PROGRAM-NAME ...
 It is also possible to reference the target platform by passing a pointer reference to the target program.  If you thought that passing a pointer reference to a function was only something that ultra-modern languages had, nope COBOL got there first!
 
 
-### 7.5.2 Specifying program variables
+### Specifying program variables
 
 Now that we have identified the name of the program we wish to call; we must identify the variables that the calling program might want to send.  These are individually specified by the USING keyword.  COBOL provides support to both pass by reference and pass by copy, as well as a pass by value concept.  Each of the supported passing techniques can be applied to all the data-items being passed or used selectively against different items.  
 
@@ -2037,60 +2253,61 @@ The BY CONTENT phrase allows a copy of the passed variable to be passed to the t
 You might also see the phrase, BY VALUE, being used in a CALL sentence.  BY VALUE is similar to BY CONTENT, as a copy of the content of the variable is passed.  The difference is that only a subset of COBOL datatypes are supported and you can only specify elementary data-items.  This is because BY VALUE is primarily used when COBOL is calling a program of another language (such as C).
 
 
-### 7.5.3 Specifying the return value
+### Specifying the return value
 
 Finally, the RETURNING phrase is used to specify the variable that should be used to store the return value.  This can be any elementary data-item declared within the data-division.  Note that this is optional.  Some programs might not return anything, or you might have passed values BY REFERENCE to the target program in which case updates to those variables will be visible once the target program returns.
 
 
-## 7.6  Summary
+## Summary
 
 In summary, this chapter should provide the necessary foundation to understand structured programming and how it relates to COBOL and its importance to understanding and maintaining code.  Many examples of how, when and why to implement key techniques have been provided and explained for further understanding.  You should be able to identify the basic differences between structured programming (COBOL) and OO programming (Java).  You should also understand the general concept of the best practices in the structure of the Procedure Division with reference to the design and content of paragraphs, program control options and ways to call other programs within the same system.
 
+\newpage
 
-# 8. File output
+# File output
 
 Designing a structured layout that is easy to read and understand is required to format output.  Designing a structured layout involves column headings and variable alignment using spaces, numeric format, currency format, etc.  This chapter aims to explain this concept utilizing example COBOL code to design column headings and align data names under the such headings. At the end of the chapter you are asked to complete a lab that practices implementation of the components covered.
 
 A capability of COBOL data output formatting that is worth noting but not covered in this chapter is that COBOL is a web enabled computer language.  COBOL includes easy and quick transformation of existing COBOL code to write JSON (JavaScript Object Notation) where the output is sub-sequentially formatted for a browser, a smartphone, etc. Frequently, the critical data accessed by a smart phone, such as a bank balance, is stored and controlled by z/OS where a COBOL program is responsible for retrieving and returning the bank balance to the smart phone.
 
-- **8.1** **Review of COBOL write output process**
+- **Review of COBOL write output process**
 
      - **ENVIRONMENT DIVISION**
 
-- **8.2** **FILE DESCRIPTOR**
+- **FILE DESCRIPTOR**
 
      - **FILLER**
 
-- **8.3** **Report and column headers**
+- **Report and column headers**
 
      - **HEADER-2**
 
-- **8.4** **PROCEDURE DIVISION**
+- **PROCEDURE DIVISION**
 
      - **MOVE sentence**
 
      - **PRINT-REC FROM sentences**
 
-- **8.5** **Lab 4**
+- **Lab**
 
-## 8.1  Review of COBOL write output process
+## Review of COBOL write output process
 
 This section briefly reviews certain aspects of the ENVIRONMENT DIVISION for the purpose of understanding how it ties together with the content of this chapter.
 
 
-### 8.1.1                ENVIRONMENT DIVISION
+### ENVIRONMENT DIVISION
 
-Chapter 7 covered the SELECT and respective ASSIGN programmer chosen names, whereas this chapter focuses on output.  Figure  1. shows a coding example using PRINT-LINE as the programmer chosen COBOL internal file name for output.
+The "File handling" section covered the SELECT and respective ASSIGN programmer chosen names, whereas this chapter focuses on output.  Figure  1. shows a coding example using PRINT-LINE as the programmer chosen COBOL internal file name for output.
 
 ![](Images/image141.jpg)
 
 *Figure  1.  SELECT and ASSIGN*
 
-## 8.2  FILE DESCRIPTOR
+## FILE DESCRIPTOR
 
-The File Description (FD), previously described in Chapter 8 under the FILE-CONTROL paragraph, entry represents the highest level of organization in the FILE SECTION.  The FD entry describes the layout of the file defined by a previous FILE-CONTROL SELECT statement.  Therefore, the FD entry connects the SELECT file name with a defined layout of the file name.  An example file descriptor, FD, for PRINT-LINE is shown in Figure  2.  What follows the file descriptor is a defined layout of PRINT-LINE. 
+The File Description (FD), previously described under the FILE-CONTROL paragraph section, entry represents the highest level of organization in the FILE SECTION.  The FD entry describes the layout of the file defined by a previous FILE-CONTROL SELECT statement.  Therefore, the FD entry connects the SELECT file name with a defined layout of the file name.  An example file descriptor, FD, for PRINT-LINE is shown in Figure  2.  What follows the file descriptor is a defined layout of PRINT-LINE. 
 
-### 8.2.1 FILLER
+### FILLER
 
 Observe the data name FILLER.  While most data fields have unique names, FILLER is a COBOL reserved word data name, that is useful for output formatting.  This is in part because FILLER allocates memory space without the need for a name.  Also, FILLER allocated memory has a defined length in the output line and may contain spaces or any literal.  Figure  2. shows multiple VALUE SPACES for FILLER.  SPACES create white space between data-items in the output which is valuable in keeping the code readable.  More specifically in Figure  2. FILLER PIC X(02) VALUE SPACES, represents the output line containing two spaces.
 
@@ -2099,7 +2316,7 @@ Observe the data name FILLER.  While most data fields have unique names, FILLER 
 *Figure  2.  FILLER*
 
 
-## 8.3  Report and column headers
+## Report and column headers
 
 Writing report or column headers requires a structured output layout designed by the programmer.  Figure  3. illustrates such a structure. The designed output structure layout is implemented within the DATA DIVISION and includes the headers listed and defined below.
 
@@ -2146,7 +2363,7 @@ Writing report or column headers requires a structured output layout designed by
 *Figure  3.  Designed output structure layout*
 
 
-### 8.3.1 HEADER-2
+### HEADER-2
 
 HEADER-2 includes the year, month, day of the report together with FILLER area, creating blank spaces between the year, month, and day, as you can see in Figure  3.  Figure  4. is an example of the data name layout used to store the values of CURRENT-DATE.  The information COBOL provides in CURRENT-DATE is used to populate the output file in HEADER-2.
 
@@ -2155,7 +2372,7 @@ HEADER-2 includes the year, month, day of the report together with FILLER area, 
 *Figure  4.  CURRENT-DATE intrinsic function*
 
 
-## 8.4  PROCEDURE DIVISION
+## PROCEDURE DIVISION
 
 Figures 1 through 4 are a designed data layout that includes a data line and report headers.  Using the storage mapped by the data line and report headers, COBOL processing logic can write the headers followed by each data line. Figure  5. is an example of an execution logic resulting used to write the header layout structure in a COBOL program.
 
@@ -2164,15 +2381,15 @@ Figures 1 through 4 are a designed data layout that includes a data line and rep
 *Figure  5.  Execution logic to write header layout structure*
 
 
-### 8.4.1 MOVE sentences
+### MOVE sentences
 
 The COBOL MOVE sentence, on line 1, in the WRITE-HEADERS paragraph is collecting the current date information from the system and storing that information in a defined data name layout, WS-CURRENT-DATE-DATA.  The use of the reserved word FUNCTION means whatever follows is a COBOL intrinsic function.  The sentences on lines 2, 3, and 4 are storing the date information, year, month and day, in HEADER-2 defined data name areas, HDR-YR, HDR-MO and HDR-DAY.  The sentence on line 11, the final sentence in the paragraph, writes spaces into the PRINT-REC area to clear out the line storage in preparation for writing the data lines.
 
-### 8.4.2 PRINT-REC FROM sentences
+### PRINT-REC FROM sentences
 
 PRINT-REC is opened for output resulting in PRINT-REC FROM following through with a write PRINT-REC FROM a different header or defined data name layout.  The sentences on lines 5 and 6 write the PRINT-REC FROM defined header data names, HEADER-1 and HEADER-2, from Figure  3.   The PRINT-REC file descriptor data names in Figure  2. are effectively replaced with the content of the header data names in Figure  3. written to output.  The sentences on lines 7 and 8 result in a blank line written between headers.  The sentences on lines 9 and 10 write the PRINT-REC FROM defined HEADER-3 and HEADER-4 data names from Figure  3.  The PRINT-REC file descriptor data names in Figure  2. are effectively replaced with the content of the header data names in Figure  3.
 
-## 8.5  Lab 4
+## Lab
 
 This lab utilizes two COBOL programs, CBL0004 and CBL0005, located within your id.CBL data set, as well as two JCL jobs, CBL0004J and CBL0005J, located within your id.JCL data set.  The JCL jobs are used to compile and execute the COBOL programs, as discussed in previous chapters.
 #### Using VSCode and Zowe Explorer
@@ -2210,20 +2427,21 @@ This lab utilizes two COBOL programs, CBL0004 and CBL0005, located within your i
 
 *Figure  8.  Currency symbol added to output*
 
+\newpage
   
-# 9. Conditional expressions
+# Conditional expressions
 
 This chapter dives into how programs make decisions based upon the programmer written logic.  Specifically, programs make these decisions within the PROCEDURE DIVISION of the source code.  We will expand on several topics regarding conditional expressions written in COBOL through useful explanations, examples and eventually practicing implementation through a lab. 
 
  
 
-- **9.1** **Boolean logic, operators, operands, and identifiers**
+- **Boolean logic, operators, operands, and identifiers**
 
      - **COBOL conditional expressions and operators**
 
      - **Examples of conditional expressions using Boolean operators**
 
-- **9.2** **Conditional expression reserved words and terminology**
+- **Conditional expression reserved words and terminology**
 
      - **IF, EVALUATE, PERFORM and SEARCH**
 
@@ -2231,9 +2449,9 @@ This chapter dives into how programs make decisions based upon the programmer wr
 
      - **Conditional names**
 
-- **9.3** **Conditional operators**
+- **Conditional operators**
 
-- **9.4** **Conditional expressions**
+- **Conditional expressions**
 
      - **IF ELSE (THEN) statements**
 
@@ -2243,7 +2461,7 @@ This chapter dives into how programs make decisions based upon the programmer wr
 
      - **SEARCH statements**
 
-- **9.5** **Conditions**
+- **Conditions**
 
      - **Relation conditions**
 
@@ -2251,17 +2469,17 @@ This chapter dives into how programs make decisions based upon the programmer wr
 
      - **Sign conditions**
 
-- **9.6** **Lab 5**
+- **Lab**
 
  
-## 9.1  Boolean logic, operators, operands, and identifiers
+## Boolean logic, operators, operands, and identifiers
 
 Programs make decisions based upon the programmer written logic.  Program decisions are made using Boolean logic where a conditional expression is either true or false, yes or no.  A simple example would be a variable named 'LANGUAGE'.   Many programming languages exist; therefore, the value of variable LANGUAGE could be Java, COBOL, etc...  Assume the value of LANGUAGE is COBOL.  Boolean logic is, IF LANGUAGE = COBOL, THEN DISPLAY COBOL, ELSE DISPLAY NOT COBOL.  IF triggers the Boolean logic to determine the condition of true/false, yes/no, applied to LANGUAGE = COBOL which is the conditional expression.  The result of IF condition executes what follows THEN when the condition is true and executes what follows ELSE when the condition is false.
 
 The Boolean IF verb operates on two operands or identifiers.  In the example above, LANGUAGE is an operand and COBOL is an operand.  A Boolean relational operator compares the values of each operand. 
 
 
-### 9.1.1 COBOL conditional expressions and operators
+### COBOL conditional expressions and operators
 
 Three of the most common type of COBOL conditional expressions are:
 
@@ -2291,7 +2509,7 @@ A list of COBOL Boolean relational operators for each of the common type of COBO
 *Figure  3.  Sign condition operators*
 
  
-### 9.1.2 Examples of conditional expressions using Boolean operators
+### Examples of conditional expressions using Boolean operators
 
 A simple conditional expression can be written as:
 
@@ -2314,19 +2532,19 @@ This conditional expression evaluates to false because while 5 > 1 is true, 1 > 
 This conditional expression evaluates to true because while 1 > 2 is false, 5 > 1 is true.  The OR operation requires only one of the expressions to be true to return true for the entire compounded condition expression.  More conditional operators used for relation, class, and sign conditions are discussed further on in the chapter.
 
  
-## 9.2  Conditional expression reserved words and terminology
+## Conditional expression reserved words and terminology
 
 Thus far in this book, we have touched upon the necessity and use of COBOL reserved words. This section aims to expand on the topic of reserved words, specifically ones that are used when processing conditional expressions.
 
-### 9.2.1 IF, EVALUATE, PERFORM and SEARCH
+### IF, EVALUATE, PERFORM and SEARCH
 
 These are COBOL reserved words available for the processing of conditional expressions, where a condition is a state that can be set or changed. 
 
-### 9.2.2 Conditional states
+### Conditional states
 
 TRUE and FALSE are among the most common conditional states.  
 
-### 9.2.3 Conditional names
+### Conditional names
 
 A conditional-name is a programmer defined variable name with the TRUE condition state.  Conditional names are declared in the WORKING STORAGE SECTION with an 88-level number.  The purpose of 88-level is to improve readability by simplifying IF and PERFORM UNTIL statements.
 
@@ -2392,7 +2610,7 @@ END-IF.
 ```
 *Example 2.  Without 88-level conditional name*
 
-## 9.3  Conditional operators
+## Conditional operators
 
 Relational operators compare numeric, character string, or logical data.  The result of the comparison, either true (1) or false (0), can be used to make a decision regarding program flow.  Table 1 displays a list of relational operators, how they can be written and their meaning.
 
@@ -2410,12 +2628,12 @@ IS LESS THAN OR EQUAL TO | IS <= | Is less than or equal to
 
 *Table 1.  Relational operator*
 
-## 9.4  Conditional expressions
+## Conditional expressions
 
 A conditional expression causes the object program to select alternative paths of control, depending on the truth value of a test.  Conditional expressions are specified in EVALUATE, IF, PERFORM, and SEARCH statements.
 
 
-### 9.4.1  IF ELSE (THEN) statements
+### IF ELSE (THEN) statements
 
 IF statements are used to implement or evaluate relational operations.  IF ELSE is used to code a choice between two processing actions and inclusion of the word THEN is optional.  When an IF statement is present, the statements following the IF statement are processed based on the truth of the conditional expression.  Statements are processed until an END-IF or an ELSE statement is encountered.  The ELSE statement can appear on any line before the END-IF.  IF statements, regardless of the number of lines, are explicitly terminated using END-IF.
 
@@ -2432,7 +2650,7 @@ END-IF.
 *Example 3.  IF, THEN, ELSE, END-IF statement*
 
 
-### 9.4.2 EVALUATE statements
+### EVALUATE statements
 
 EVALUATE statements are used to code a choice among three or more possible actions. The explicit terminator for an EVALUATE statement is END-EVALUATE.  The EVALUATE statement is an expanded form of the IF statement that allows you to avoid nesting IF statements, a common source of logic errors and debugging issues.  EVALUATE operates on both text string values and numerical variables.  Using the FACIAL-EXP conditional-name, observe the COBOL code implementing an EVALUATE statement, shown in Example 4.
 
@@ -2450,7 +2668,7 @@ END-EVALUATE
 ```
 *Example 4.  EVALUATE statement*
 
-### 9.4.3  PERFORM statements
+### PERFORM statements
 
 A PERFORM with UNTIL phrase is a conditional expression.  In the UNTIL phrase format, the procedures referred to are performed until the condition specified by the UNTIL phrase evaluates to true.  Using the FACIAL-EXP conditional-name, the SAY-SOMETHING-DIFFERENT paragraph is executed continuously UNTIL FACIAL-EXP contains 'HAPPY', observe Example 5.
 
@@ -2463,7 +2681,7 @@ END-PERFORM.
 *Example 5. PERFORM statement*
  
 
-### 9.4.4 SEARCH statements
+### SEARCH statements
 
 The SEARCH statement searches a table for an element that satisfies the specified condition and adjusts the associated index to indicate that element.  Tables, effectively an array of values, are created with an OCCURS clause applied to WORK-STORAGE data-names.  A WHEN clause is utilized in SEARCH statements to verify if the element searched for satisfies the specified condition.  Assuming FACIAL-EXP has many possible values, then SEARCH WHEN is an alternative conditional expression, observe Example 6.
 
@@ -2476,7 +2694,7 @@ END-SEARCH
 *Example 6. SEARCH WHEN statement*
            
 
-## 9.5  Conditions
+## Conditions
 
 A conditional expression can be specified in either simple conditions or complex conditions.  Both simple and complex conditions can be enclosed within any number of paired parentheses; the parentheses, however, do not change whether the condition is simple or complex.  This section will cover three of the five simple conditions:
 
@@ -2487,7 +2705,7 @@ A conditional expression can be specified in either simple conditions or complex
 - Sign
 
 
-### 9.5.1 Relation conditions
+### Relation conditions
 
 A relation condition specifies the comparison of two operands. The relational operator that joins the two operands specifies the type of comparison.  The relation condition is true if the specified relation exists between the two operands; the relation condition is false if the specified relation does not exist.  Provided, is a list of a few defined comparisons:
 
@@ -2500,7 +2718,7 @@ A relation condition specifies the comparison of two operands. The relational op
 - National comparisons - Two operands of class national
 
 
-### 9.5.2  Class conditions
+### Class conditions
 
 The class condition determines whether the content of a data item is alphabetic, alphabetic-lower, alphabetic-upper, numeric, DBCS, KANJI, or contains only the characters in the set of characters specified by the CLASS clause, as defined in the SPECIAL-NAMES paragraph of the environment division.  Provided below is a list of a few valid forms on the class condition for different types of data items.
 
@@ -2523,7 +2741,7 @@ The class condition determines whether the content of a data item is alphabetic,
     - IS KANJI or IS NOT KANJI
 
 
-### 9.5.3  Sign conditions
+### Sign conditions
 
 The sign condition determines whether the algebraic value of a numeric operand is greater than, less than, or equal to zero.  An unsigned operand is either POSITIVE or ZERO.  When a numeric conditional variable is defined with a sign, the following are available:
 
@@ -2538,7 +2756,7 @@ The sign condition determines whether the algebraic value of a numeric operand i
 [IBM Knowledge Center - Enterprise COBOL for z/OS 4.2.0](https://www.ibm.com/support/knowledgecenter/en/SS6SG3_4.2.0/com.ibm.entcobol.doc_4.2/PGandLR/ref/rlpdsxco.htm)
 
  
-## 9.6  Lab 5
+## Lab
 
 This lab requires two COBOL programs, CBL0006 and CBL0007 and two respective JCL Jobs, CBL0006J and CBL0007J, to compile and execute the COBOL programs. All of which are provided to you in your VSCode - Zowe Explorer.
 #### Using VSCode and Zowe Explorer:
@@ -2583,35 +2801,36 @@ This lab requires two COBOL programs, CBL0006 and CBL0007 and two respective JCL
 
 ![](Images/image155.png)
 
+\newpage
  
-# 10. Arithmetic expressions
+# Arithmetic expressions
 
 This chapter aims to introduce the concept of implementing arithmetic expressions in COBOL programs.  We will review the basic concept of arithmetic expressions, operators, statements, limitations, statement operands, as well as precedence of operation within the expressions.  You will be able to follow along with a comprehensive example exhibiting the usage of arithmetic expressions in a COBOL program that you have seen in previous chapters and labs.  Following the chapter is a lab to practice the implementation of what you have learned. 
 
  
 
-- **10.1** **What is an arithmetic expression?**
+- **What is an arithmetic expression?**
 
      - **Arithmetic operators**
 
      - **Arithmetic statements**
 
-- **10.2** **Arithmetic expression precedence rules**
+- **Arithmetic expression precedence rules**
 
      - **Parentheses**
 
-- **10.3** **Arithmetic expression limitations**
+- **Arithmetic expression limitations**
 
-- **10.4** **Arithmetic statement operands**
+- **Arithmetic statement operands**
 
      - **Size of operands**
 
-- **10.5** **Examples of COBOL arithmetic statements**
+- **Examples of COBOL arithmetic statements**
 
-- **10.6** **Lab 6**
+- **Lab**
 
 
-## 10.1 What is an arithmetic expression?
+## What is an arithmetic expression?
 
 Arithmetic expressions are used as operands of certain conditional and arithmetic statements.  An arithmetic expression can consist of any of the following items:
 
@@ -2632,7 +2851,7 @@ Arithmetic expressions are used as operands of certain conditional and arithmeti
 Identifiers and literals that appear in arithmetic expressions must represent either numeric elementary items or numeric literals on which arithmetic can be performed.  If the value of an expression to be raised to a power is zero, the exponent must have a value greater than zero. Otherwise, the size error condition exists. In any case where no real number exists as the result of an evaluation, the size error condition exists.
 
 
-### 10.1.1 Arithmetic operators
+### Arithmetic operators
 
 Five binary arithmetic operators and two unary arithmetic operators can be used in arithmetic expressions.  These operators are represented by specific characters that must be preceded and followed by a space.  However, no space is required between a left parenthesis and unary operator.  These binary and unary arithmetic operators are listed in Table 1.
 
@@ -2649,22 +2868,22 @@ Binary operator | Meaning | Unary operator | Meaning
 
 
  
-### 10.1.2  Arithmetic statements
+### Arithmetic statements
 
 Arithmetic statements are utilized for computations.  Individual operations are specified by the ADD, SUBTRACT, MULTIPLY, and DIVIDE statements.  These individual operations can be combined symbolically in a formula that uses the COMPUTE statement for ease of programming and performance.  The COMPUTE statement assigns the value of an arithmetic expression to one or more data items.  With the COMPUTE statement, arithmetic operations can be combined without the restrictions on receiving data items imposed by the rules for the ADD, SUBTRACT, MULTIPLY, and DIVIDE statements.  When arithmetic operations are combined, the COMPUTE statement can be more efficient than the separate arithmetic statements written in a series.  For these reasons, it is best practice to use the `COMPUTE` statement for most arithmetic evaluations rather than `ADD` , `SUBTRACT` , `MULTIPLY` , and `DIVIDE` statements.  Often, you can code only one `COMPUTE` statement instead of several individual arithmetic statements.  The `COMPUTE` statement assigns the result of an arithmetic expression to one or more data items, for example:
 
 `COMPUTE z     = a + b / c \*\* d - e`
 
-`COMPUTE x y z = a + b / c \*\* d – e`
+`COMPUTE x y z = a + b / c \*\* d - e`
 
 Some arithmetic calculations might be more intuitive using arithmetic statements other than `COMPUTE` .  You might also prefer to use the `DIVIDE` statement (with its `REMAINDER` phrase) for division in which you want to process a remainder.  The `REM` intrinsic function also provides the ability to process a remainder.
 
-## 10.2  Arithmetic expression precedence rules
+## Arithmetic expression precedence rules
 
 Order of operation rules have been hammered into your head throughout the years of learning mathematics, remember the classic PEMDAS (parentheses, exponents, multiply, divide, add, subtract)?  Arithmetic expressions in COBOL are not exempt from these rules and often use parentheses to specify the order in which elements are to be evaluated.
 
 
-### 10.2.1  Parentheses
+### Parentheses
 
 Parentheses are used to denote modifications to normal order of operations (precedence rules).  An arithmetic expression within the parentheses is evaluated first and result is used in the rest of the expression.  When expressions are contained within nested parentheses, evaluation proceeds from the least inclusive to the most inclusive set.  That means you work from the inner most expression within parentheses to the outer most.  The precedence for how to solve an arithmetic expression in Enterprise COBOL with parentheses is:
 
@@ -2687,18 +2906,18 @@ An arithmetic expression can begin only with a left parenthesis, a unary operato
 There must be a one-to-one correspondence between left and right parentheses in an arithmetic expression, with each left parenthesis placed to the left of its corresponding right parenthesis.  If the first operator in an arithmetic expression is a unary operator, it must be immediately preceded by a left parenthesis if that arithmetic expression immediately follows an identifier or another arithmetic expression.
 
 
-## 10.3      Arithmetic expression limitations
+## Arithmetic expression limitations
 
 Exponents in fixed-point exponential expressions cannot contain more than nine digits. The compiler will truncate any exponent with more than nine digits.  In the case of truncation, the compiler will issue a diagnostic message if the exponent is a literal or constant; if the exponent is a variable or data-name, a diagnostic message is issued at run time.
 
 
 Detailed explanation of fixed-point exponential expressions is an advanced topic and beyond the scope of the chapter.  However, reference is made to fixed-point exponential expressions for your awareness as you advance your experience level with COBOL programming and arithmetic applied to internal data representations.
 
-## 10.4      Arithmetic statement operands
+## Arithmetic statement operands
 
 The data descriptions of operands in an arithmetic statement need not be the same. Throughout the calculation, the compiler performs any necessary data conversion and decimal point alignment.
 
-### 10.4.1  Size of operands
+### Size of operands
 
 If the ARITH(COMPAT) compiler option is in effect, the maximum size of each operand is 18 decimal digits.  If the ARITH(EXTEND) compiler option is in effect, the maximum size of each operand is 31 decimal digits. 
 
@@ -2723,7 +2942,7 @@ In all arithmetic statements, it is important to define data with enough digits 
 Additionally, in the IBM Enterprise COBOL Language Reference, Chapter 20. "PROCEDURE DIVISION Statements", includes a detailed explanation of DIVIDE and COMPUTE statement capabilities applied to ROUNDING and ON SIZE ERROR handling.
 
  
-## 10.5      Examples of COBOL arithmetic statements
+## Examples of COBOL arithmetic statements
 
 In this section, COBOL source code used in previous labs will be modified to demonstrate arithmetic processing.  Figure  1. shows level number data-items in the WORKING-STORAGE section.  The data-items will be used to total client account limit and client account balance.  Observe that the initial value is ZERO.
 
@@ -2762,7 +2981,8 @@ The WRITE-TLIMIT-TBALANCE paragraph shown in Figure  5. is positioned within the
  
 
 <a name="_Ref36026709"></a>
-## 10.6      Lab 6
+
+## Lab
 
 This lab requires two COBOL programs, CBL0008 and CBL0009 and two respective JCL Jobs, CBL0008J and CBL0009J, to compile and execute the COBOL programs. All of which are provided to you in your VSCode - Zowe Explorer.
 #### Using VSCode and Zowe Explorer
@@ -2814,32 +3034,32 @@ This lab requires two COBOL programs, CBL0008 and CBL0009 and two respective JCL
 
 ![](Images/image169.png)
 
- 
+ \newpage
 
-# 11. Data types
+# Data types
 
  
 A COBOL programmer must be aware that the computer stored internal data representation and formatting can differ, where the difference must be defined in the COBOL source code.  Understanding the computer's internal data representation requires familiarity with binary, hexadecimal, ASCII, and EBCDIC.  Packed-Decimal is needed to explain COBOL Computational and Display data format.  This chapter aims to familiarize the reader with these different "types" of data representation. 
 
  
 
-- **11.1** **Data representation**
+- **Data representation**
 
      - **Numerical value representation**
 
      - **Text representations**
 
-- **11.2** **COBOL DISPLAY vs COMPUTATIONAL**
+- **COBOL DISPLAY vs COMPUTATIONAL**
 
-- **11.3** **Lab 7**
+- **Lab**
 
 
-## 11.1      Data representation
+## Data representation
 
 Data such as numerical values and text are internally represented by zeros and ones in most computers, including mainframe computers used by enterprises.  While data representation is a somewhat complex topic in computer science, a programmer does not always need to fully understand how various alternative representations work.  It is important, however, to understand the differences and how to specify a specific representation when needed.
 
  
-### 11.1.1  Numerical value representation
+### Numerical value representation
 
 COBOL has five computational (numerical) value representations.  The awareness of these representations is important due to two main reasons.  The first reason being, when a COBOL program needs to read or write data, it needs to understand how data is represented in the dataset.  The second reason is when there are specific requirements regarding the precision and range of values being processed.  The following sections describe each computational representation keyword.
 #### COMP-1
@@ -2868,7 +3088,7 @@ COMP-5 is based on COMP-4, but with the flexibility of specifying the position o
 
  
 
-### 11.1.2            Text representations
+### Text representations
 
 COBOL programs often need to represent text data such as names and addresses.
 #### EBCDIC
@@ -2889,14 +3109,14 @@ ASCII is mostly utilized by non-IBM computers.
 COBOL can encode and process text data in EBCDIC or ASCII.  This means a COBOL program can simultaneously process data captured in a census many decades ago while exporting data to a cloud service utilizing ASCII or Unicode.  It is important to point out, however, that the programmer must have the awareness and choose the appropriate encoding.
 
  
-## 11.2      COBOL DISPLAY vs COMPUTATIONAL
+## COBOL DISPLAY vs COMPUTATIONAL
 
 Enterprise COBOL for z/OS by default utilizes EBCDIC encoding.  However, it is possible to read and write ASCII in z/OS.  The EBCDIC format representation of numbers and alphabetic characters is in a DISPLAY format.  Packed decimal and zoned decimal are NOT in a DISPLAY format.  COBOL can describe packed decimal and zoned decimal fields using COMPUTATIONAL, COMP-1, COMP-2, COMP-3, COMP-4, and COMP-5 reserved words.
 
 
-## 11.3      Lab 7
+## Lab
 
-Many of the previous COBOL lab programs you have worked with thus far are reading records containing two packed decimal fields, the client account limit and the client account balance.  In lab 6, the total of all client account limits and balances used a COMPUTE statement, where the COMP-3 fields contained the packed decimal internal data.
+Many of the previous COBOL lab programs you have worked with thus far are reading records containing two packed decimal fields, the client account limit and the client account balance.  In the Arithmetic expressions lab, the total of all client account limits and balances used a COMPUTE statement, where the COMP-3 fields contained the packed decimal internal data.
 
 What happens when an internal packed decimal field is not described using COMP-3? Without using COMP-3 to describe the field, the COBOL program treats the data as DISPLAY data (EBCDIC format). This lab demonstrates what happens during program execution without using COMP-3.
 
@@ -2927,8 +3147,9 @@ What happens when an internal packed decimal field is not described using COMP-3
 
  The ACCT-LIMIT PIC clause in the ACCT-FIELDS paragraph should be the same as the PIC clause for ACCT-BALANCE.
 
+\newpage
  
-# 12. Intrinsic functions
+# Intrinsic functions
 
 Today’s COBOL is not your parents COBOL.  Today’s COBOL includes decades of feature/function rich advancements and performance improvements.  Decades of industry specifications are applied to COBOL to address the growing needs of businesses.  What Enterprise COBOL for z/OS promised and delivered, is decades of upward compatibility with new releases of hardware and operating system software.  The original DNA of COBOL evolved into a powerful, maintainable, trusted, and time-tested computer language with no end in sight. 
 
@@ -2940,13 +3161,13 @@ Previous COBOL industry specifications included intrinsic functions, which remai
 
  
 
-- **12.1** **What is an intrinsic function?**
+- **What is an intrinsic function?**
 
      - **Intrinsic function syntax**
 
      - **Categories of intrinsic functions**
 
-- **12.2** **Intrinsic functions in Enterprise COBOL for z/OS V6.3**
+- **Intrinsic functions in Enterprise COBOL for z/OS V6.3**
 
      - **Mathematical example**
 
@@ -2958,16 +3179,16 @@ Previous COBOL industry specifications included intrinsic functions, which remai
 
      - **Character-handling example**
 
-- **12.3** **Use of intrinsic functions with reference modifiers**
+- **Use of intrinsic functions with reference modifiers**
 
-- **12.4** **Lab 8**
+- **Lab**
 
 
-## 12.1      What is an intrinsic function?
+## What is an intrinsic function?
 
 Intrinsic functions are effectively re-usable code with simple syntax implementation and are another powerful COBOL capability.  Intrinsic functions enable desired logic processing with a single line of code.  They also provide capabilities for manipulating strings and numbers.  Because the value of an intrinsic function is derived automatically at the time of reference, you do not need to define these functions in the DATA DIVISION.
 
-### 12.1.1            Intrinsic function syntax
+### Intrinsic function syntax
 
 Written as:
 
@@ -2998,7 +3219,7 @@ The code shown in Example 1.  above, displays the following messages on the syst
 
  
 
-### 12.1.2  Categories of intrinsic functions
+### Categories of intrinsic functions
 
 The intrinsic functions can be grouped into six categories, based on the type of service performed.  They are as follows:
 
@@ -3026,12 +3247,12 @@ Intrinsic functions operate against alphanumeric, national, numeric, and integer
 
 - **Integer** functions are of class and category numeric.  The returned value is always considered to have an operational sign and is an integer intermediate result.  The number of digit positions in the value returned is determined by the function definition.
 
-## 12.2      Intrinsic functions in Enterprise COBOL for z/OS V6.3
+## Intrinsic functions in Enterprise COBOL for z/OS V6.3
 
 The current release of Enterprise COBOL for z/OS V6.3, includes 70 intrinsic functions.  Each one of these functions falling into one of the aforementioned six categories.  While an entire book could be written on intrinsic functions, a single example for each of the six categories are provided in this section.
 
 
-### 12.2.1  Mathematical example
+### Mathematical example
 
 Example 2. is storing into X the total of A + B + value resulting from C divided by D.  FUNCTION SUM enables the arithmetic operation.
 
@@ -3041,7 +3262,7 @@ Compute x = Function Sum(a b (c / d))
 
 *Example 2.  Mathematical intrinsic function*
 
-### 12.2.2            Statistical example
+### Statistical example
 
 Example 3. shows three COBOL functions, MEAN, MEDIAN, and RANGE where the arithmetic values are stored in Avg-Tax, Median-Tax, and Tax-Range using the data names with assigned pic clause values.
 
@@ -3062,7 +3283,7 @@ Example 3. shows three COBOL functions, MEAN, MEDIAN, and RANGE where the arithm
 *Example 3.  Statistical intrinsic function*
 
 
-### 12.2.3   Date/time example
+### Date/time example
 
 Example 4. shows usage of three COBOL functions, Current-Date, Integer-of-Date, and Date-of-Integer applied to MOVE, ADD, and COMPUTE statements.
 
@@ -3080,7 +3301,7 @@ Example 4. shows usage of three COBOL functions, Current-Date, Integer-of-Date, 
 *Example 4.  Date/time intrinsic function*
 
 
-### 12.2.4  Financial example
+### Financial example
 
 Example 5.  shows application of COBOL function ANNUITY financial algorithm where values for loan amount, payments, interest, and number of periods are input to ANNUITY function.
 
@@ -3098,7 +3319,7 @@ Example 5.  shows application of COBOL function ANNUITY financial algorithm wher
 *Example 5.  Financial intrinsic function*
 
 
-### 12.2.5  Character-handling example
+### Character-handling example
 
 Example 6.  shows used of COBOL function UPPER-CASE where an string or alphabetic variable processed by UPPER-CASE will translate any lower case characters to upper case.
 
@@ -3106,13 +3327,13 @@ Example 6.  shows used of COBOL function UPPER-CASE where an string or alphabeti
 ```
 MOVE FUNCTION UPPER-CASE("This is shouting!") TO SOME-FIELD
 DISPLAY SOME-FIELD
-Output – THIS IS SHOUTING!
+Output - THIS IS SHOUTING!
 ```
 
 *Example 6.  Character-handling intrinsic function*
  
 
-## 12.3      Use of intrinsic functions with reference modifiers
+## Use of intrinsic functions with reference modifiers
 
 A reference modification defines a data item by specifying the leftmost character position and an optional length for the data item, where a colon (:) is used to distinguish the leftmost character position from the optional length, as shown in Example 7.
 
@@ -3129,7 +3350,7 @@ LNAME(4:2)
 Reference modification, LNAME(1:1), would return only the first character of data item LNAME, while reference modification, LNAME(4:2), would return the fourth and fifth characters of LNAME as the result of starting in the fourth character position with a length of two.  If LNAME of value SMITH was the data item being referenced in the intrinsic function, the first reference would output, S.  Considering those same specs, the second reference would output, TH.
 
 
-## 12.4      Lab 8
+## Lab
 
 This lab contains data that includes a last name, where last name is all upper-case.  It demonstrates the use of intrinsic functions together with reference modification to lower-case the last name characters, except the first character of the last name.
 
@@ -3142,11 +3363,11 @@ This lab requires two COBOL programs, CBL0011 and CBL0012 and two respective JCL
 
 2. Observe the report output, last name, with first character upper-case and the remaining characters lower-case. 
 
-   Figure  1. , below, illustrates the difference in output from lab 6 compared to this lab.  Notice that in the previous lab, the last names were listed in all capitalized characters, whereas, as previously stated, this lab output has only the first character of the last name capitalized.
+   Figure  1. , below, illustrates the difference in output from the Data types lab compared to this lab.  Notice that in the previous lab, the last names were listed in all capitalized characters, whereas, as previously stated, this lab output has only the first character of the last name capitalized.
 
 ![](Images/image170.jpg)
 
-*Figure  1.  Lab 8 vs. lab 7 output*
+*Figure  1.  Current lab vs. Data types lab output*
 
  
 
@@ -3179,28 +3400,15 @@ Previous lab programs made use of a date/time intrinsic function.  The date/time
 
 Refer to CBL0011 line 120 for the proper formatting of the function-name causing   the compile error.
 
+\newpage
  
-# Part 3 - VSCode alternatives and testing
+# Part 3 - VSCode alternatives and testing {.unnumbered}
 
-### [Chapter 13. Installing IBM Developer for Z](#13-Installing-IBM-Developer-for-Z)
+# Installing IBM Developer for Z
 
-### [Chapter 14. Enabling IBM Developer for Z to work with COBOL](#14-Enabling-IBM-Developer-for-Z-to-work-with-COBOL)
+This chapter covers all aspects of download and installation of IBM Developer for z/OS and any prerequisites that are needed.  It includes: 
 
-### [Chapter 15. Using ISPF to work with COBOL](#15-Using-ISPF-to-work-with-COBOL)
-
-### [Chapter 16. Testing](#16-Testing)
-
-
-
-# 13. Installing IBM Developer for Z
-
-This chapter covers all aspects of download and installation of IBM Developer for z/OS and any prerequisites that are needed.  It includes:
-
- 
-
- 
-
-- **13.1** **Install prerequisites**
+- **Install prerequisites**
 
      - **Hardware prerequisites**
 
@@ -3208,31 +3416,30 @@ This chapter covers all aspects of download and installation of IBM Developer fo
 
      - **Download and install IBM's Installation Manager**
 
-- **13.2** **Install product offerings through IM**
+- **Install product offerings through IM**
 
-- **13.3** **Summary**
+- **Summary**
 
-
-## 13.1      Install prerequisites
+## Install prerequisites
 
 This section will cover the necessary steps and information to download and install the prerequisites needed for the installation of IBM Developer for z/OS.  This includes both hardware and software pre-requisites.  It is important to verify your workstation hardware and software meets the prerequisites below before attempting to install IBM Developer for z/OS (IDz).
 
 
-### 13.1.1  Hardware prerequisites
+### Hardware prerequisites
 
 From the link below, you will find the requirements for installing and running IDz on the different supported OS platforms: Windows, Linux, Mac and z/OS.  Select your proper platform and verify that your system meets the operating systems and hardware minimum requirements.
 
 - [https://www.ibm.com/support/pages/node/713257](https://www.ibm.com/support/pages/node/713257)``
 
 
-### 13.1.2  Software prerequisites
+### Software prerequisites
 
 Also found in the link above, are the software requirements for each supported OS platform.  After selecting your platform from the link, the software prerequisites are listed under the "Prerequisites" tab. 
 
 - You will use the Installation Manager to automate the process of installing IBM Developer for z/OS (IDz) by selecting it in the Install Packages window.
 
  
-### 13.1.3  Download and install IBM's Installation Manager
+### Download and install IBM's Installation Manager
 
 Use the following steps to download and install IBM's Installation Manager.
 
@@ -3270,7 +3477,7 @@ The process of installing Installation Manager runs unattended.  After it's fini
 
  
 
-## 13.2      Install product offerings through IM
+## Install product offerings through IM
 
 Use the following steps to install IM packages:
 
@@ -3320,17 +3527,18 @@ Use the following steps to install IM packages:
 
 **Note:** The version numbers in our examples are provided purely for reference and may not reflect the latest versions of the software.
 
-## 13.3      Summary
+## Summary
 
 In this chapter we have walked through the process of downloading and installing IBM's Installation Manage.  Which was subsequently used to walk through a series of dialogs to install IDz. 
 
+\newpage
  
-# 14. Enabling IBM Developer for Z to work with COBOL
+# Enabling IBM Developer for Z to work with COBOL
 
 In this chapter we will explain how to use IDz and its COBOL-specific language-sensitive-editor as an alternative to other editors mentioned in this book.  We will also cover how using the editor can help you develop COBOL source code in a feature rich environment.
  
 
-- **14.1** **Introduction to IDz**
+- **Introduction to IDz**
 
      - **What is IDz?**
 
@@ -3338,7 +3546,7 @@ In this chapter we will explain how to use IDz and its COBOL-specific language-s
 
      - **Installing the IDz client**
 
-- **14.2** **Basic editing in** IDz
+- **Basic editing in** IDz
 
      - **Launch IDz**
 
@@ -3360,17 +3568,17 @@ In this chapter we will explain how to use IDz and its COBOL-specific language-s
 
      - **Handling syntax errors - the IDz COBOL Parser**
 
-- **14.3** **Access to batch jobs - launch and view results in JES**
+- **Access to batch jobs - launch and view results in JES**
 
-- **14.4** **Summary**
+- **Summary**
 
 
-## 14.1  Introduction to IDz
+## Introduction to IDz
 
 This section introduces IDz - IBM's flagship Integrated Development Environment for both today's production z/OS application work - tomorrow's DevOps application work - and future work with modern architectures and component-based systems.
 
 
-### 14.1.1  What is IDz?
+### What is IDz?
 
 IBM Developer for z/OS Enterprise Edition is a comprehensive solution for creating and maintaining z/OS applications efficiently.  The rich set of COBOL, PL/I, C/C++, High Level Assembler (HLASM), JCL, DB/SQL - including Stored Procedures and Java development tools and optimized tooling for Batch, CICS, IMS and DB2 runtimes, provide z/OS application developers a modern development environment for enhanced productivity.
 
@@ -3388,7 +3596,7 @@ Typical uses for IDz include but are not limited to:
 
 - Intelligent and advanced remote edit / save and compile.
 
-### 14.1.2  IDz architecture
+### IDz architecture
 
 IDz has two basic components:
 
@@ -3403,7 +3611,7 @@ The IDz Client is installed on your machine, by you, while your company's system
 *`Figure  1.` `IDz client/server architecture`*
 
  
-### 14.1.3 Installing the IDz client
+### Installing the IDz client
 
 IBM provides a 60-day free, client trial license for this course. You can start the installation process from here:
 
@@ -3411,12 +3619,12 @@ IBM provides a 60-day free, client trial license for this course. You can start 
 
  
 
-## 14.2  Basic editing in IDz
+## Basic editing in IDz
 
-For the rest of this chapter, we will use the CBL001.cbl sample program to demonstrate how rich of an experience editing COBOL in IDz can be.  The steps covered are simply informative, to help the reader better understand through examples and visuals and are not required for the reader to complete.
+For the rest of this chapter, we will use the CBL0001 sample program to demonstrate how rich of an experience editing COBOL in IDz can be.  The steps covered are simply informative, to help the reader better understand through examples and visuals and are not required for the reader to complete.
 
 
-### 14.2.1  Launch IDz
+### Launch IDz
 
 - Upon launching IDz from your desktop, IDz will prompt you for a "workspace" directory, shown in Figure  2.
 
@@ -3429,7 +3637,7 @@ For the rest of this chapter, we will use the CBL001.cbl sample program to demon
 **Note:** a "Workspace" is a collection of folders on your PC that contain and manage your IDz client development environment, tools, preferences, etc.
 
 
-### 14.2.2 Overview of the IDz/Eclipse workspace and tools
+### Overview of the IDz/Eclipse workspace and tools
 
 When the product loads it will look something like Figure  3. 
 
@@ -3463,7 +3671,7 @@ Here are few terms and vocabulary that will be helpful at this point, illustrate
 *Figure  4.  The Workspace annotated*
 
 
-### 14.2.3 Accessing code on the mainframe - open a COBOL program
+### Accessing code on the mainframe - open a COBOL program
 
 If you're using the IBM mainframe you will have a TSO ID assigned (and password) along with a group of files called "Libraries" named:  `<TSOID>.CBL`  `<TSOID>.JCL`  `<TSOID>.LOAD` etc.  To access code on the mainframe you would:
 
@@ -3482,7 +3690,7 @@ When the warning message in Figure  5. appears:
 *Figure  5.  Warning message*
 
 
-### 14.2.4 COBOL program syntax highlighting
+### COBOL program syntax highlighting
 
 The first thing you'll notice is that the COBOL source is highlighted in Figure  6, designating:
 
@@ -3507,7 +3715,7 @@ The first thing you'll notice is that the COBOL source is highlighted in Figure 
 *Figure  6.  CBL0001 sample program*
 
 
-### 14.2.5 Navigating within a COBOL file
+### Navigating within a COBOL file
 
 The first thing you will want to do with an open COBOL program file is to navigate within the file. There are several options you can use for this:
 
@@ -3534,7 +3742,7 @@ The first thing you will want to do with an open COBOL program file is to naviga
  
 
 <a name="_Ref36213582"></a>
-### 14.2.6            Working with COBOL source
+### Working with COBOL source
 
 The Editor contains several dozen tools for doing efficient/effective development work with COBOL programs. None of the tools are difficult to use, but in this book, we concentrate on the tools & techniques needed for introductory COBOL programming.
 
@@ -3560,7 +3768,7 @@ Before doing any development, you could press (simultaneously) **Ctrl+Shift+M.**
      - To add a line, click your mouse-cursor at the right-most end of the line (but to the left of the green COBOL sequence numbers in columns 73 80) and press **Enter.**
 
  
-### 14.2.7 Saving your work
+### Saving your work
 
 There are various ways that you can save your work during your session. From simply closing the file (Figure  8. ) and selecting **Yes** , to using a "hot-key" combination such as:
 
@@ -3581,7 +3789,7 @@ There are various ways that you can save your work during your session. From sim
 **Note:** From Figure 8 - Select **Yes** to close and save your work, **No** to close the file without saving and **Cancel** to return to Edit without having saved.
 
 
-### 14.2.8  Working in Full Screen Mode
+### Working in Full Screen Mode
 
 While the COBOL programs you have learned from and worked with in this course are not colossal in size, there are times you may have noticed the benefit from working in Full Screen Mode.  Full Screen Mode allows you to see far more code at-a-glance, making it easier to both understand what a program does and make changes to the appropriate elements.
 
@@ -3600,7 +3808,7 @@ While the COBOL programs you have learned from and worked with in this course ar
 *Figure  10.  Source code in Full Screen mode*
 
 
-### 14.2.9 Code-completion (Content Assist)
+### Code-completion (Content Assist)
 
 Code-completion (or in Eclipse terms; "Content Assist") allows you to type partial text, press **Ctrl+Spacebar** and choose the completed COBOL keyword, variable name or COBOL paragraph label from a popup window, see Figure  11.  All variables with names that begin with "ACC" are displayed. 
 
@@ -3616,7 +3824,7 @@ You can also reference COBOL keywords by entering the beginning of the keyword a
 *Figure  12.  Pressing Ctrl+Spacebar to view & select COBOL keywords*
 
 
-### 14.2.10       Handling syntax errors - the IDz COBOL Parser
+### Handling syntax errors - the IDz COBOL Parser
 
 IDz also provides a level of syntax checking for its supported languages, including COBOL, JCL, SQL, PL/I, etc.  Although not as complete and authoritative as the mainframe COBOL compiler (which produces executable machine instructions), it is a method of quickly identifying syntax errors in your code and is helpful to see before submitting the source file for compilation. 
 
@@ -3639,7 +3847,7 @@ To demonstrate, let's create an error and then see how the editor shows it to us
 We can either choose to select the recommended change or do some more research on why that statement is considered invalid COBOL syntax.
 
 
-## 14.3  Access to batch jobs - launch and view results in JES
+## Access to batch jobs - launch and view results in JES
 
 After you have edited a program in the labs throughout this book, cleared up any syntax errors, saved and closed your file, you likely launched a JCL job to "compile and link" the code.  This is often termed a "build operation", as it creates an executable version of your COBOL program ready to test and/or run and produce business results.
 
@@ -3688,7 +3896,7 @@ The action of launching a batch job has been described in greater detail previou
 **Batch Job -** Work done on a mainframe in a non-interactive mode - overnight financial processing, updates to online databases and systems, etc.
 
  
-## 14.4  Summary
+## Summary
 
 In this chapter, you have been able to go through some of the key editing features of the IDz.  These capabilities make editing COBOL, PL/I, JCL, Assembler, SQL and several other z/OS software languages (Java, JavaScript, HTLM, JSON, etc.) a little easier.
 
@@ -3706,14 +3914,13 @@ We've covered, in this chapter, less than 5% of what IDz has to offer for the z/
 
    [https://developer.ibm.com/mainframe/idzrdz-remote-training/](https://developer.ibm.com/mainframe/idzrdz-remote-training/)
 
- 
+\newpage
 
-
-# 15. Using ISPF to work with COBOL
+# Using ISPF to work with COBOL
 
 In this chapter we will explain how to use the tools of ISPF to develop COBOL source code, submit and manage jobs.
 
-- **15.1** **Introduction to TSO/ISPF**
+- **Introduction to TSO/ISPF**
 
      - **What is TSO/ISPF?**
 
@@ -3725,7 +3932,7 @@ In this chapter we will explain how to use the tools of ISPF to develop COBOL so
 
      - **Accessing the 3270-Emulator**
 
-- **15.2** **Basic editing**
+- **Basic editing**
 
      - **Launch IDz**
 
@@ -3733,7 +3940,7 @@ In this chapter we will explain how to use the tools of ISPF to develop COBOL so
 
      - **Log in to ISPF**
 
-- **15.3** **Overview of the ISPF primary option menu**
+- **Overview of the ISPF primary option menu**
 
      - **What if my cursor becomes stuck in the user interface?**
 
@@ -3747,27 +3954,27 @@ In this chapter we will explain how to use the tools of ISPF to develop COBOL so
 
      - **Saving your work**
 
-- **15.4** **Access to batch jobs - launch and view results in JES**
+- **Access to batch jobs - launch and view results in JES**
 
      - **Steps - using the same basic workflow as edit**
 
-- **15.5** **Summary**
+- **Summary**
 
  
-## 15.1  Introduction to TSO/ISPF
+## Introduction to TSO/ISPF
 
 This section introduces TSO/ISPF, IBM's central z/OS tooling, used in nearly 100% of the world's mainframe facilities to do application development and systems administration.
 
-### 15.1.1  What is TSO/ISPF?
+### What is TSO/ISPF?
 
 Introduced in 1974, TSO/ISPF is a set of mainframe software components that built out almost all the mainframe systems and applications present in the business world yesterday and today.  TSO/ISPF tooling is accessed via 3270-data stream technology ("Emulation") products that are PF-Key (program function key) tools, living in a character-based (not GUI) user interface.
 
-### 15.1.2  TSO vs. ISPF
+### TSO vs. ISPF
 
 Technically, TSO (Time Sharing Option) is an application that runs directly on z/OS machines - and ISPF (Interactive Systems Programming Facility) is the user-interface to TSO tools and functionality.  Sometimes you will hear the term TSO, sometimes ISPF and sometimes TSO/ISPF.  From the standpoint of COBOL programming, you can consider these to be synonymous.  In this chapter, we will use the term ISPF (no one actually ever says "interactive systems programming facility" anyway).
 
 
-### 15.1.3 TSO/ISPF in the real world
+### TSO/ISPF in the real world
 
 Every company's ISPF uses a base set of tools and features, but then customizes the interface; adding, changing or uninstalling features they feel are necessary for optimal use in their business/technical environment.
 
@@ -3790,7 +3997,7 @@ Standard ISPF functionality includes:
     - Primary focus of this chapter.
 
 
-### 15.1.4  ISPF emulation architecture
+### ISPF emulation architecture
 
 There are two basic components:
 
@@ -3811,17 +4018,17 @@ The ISPF Emulation architecture is depicted in Figure  1.  Note that definitions
 *Figure  1.  `ISPF Emulation-z/OS architecture`*
 
  
-### 15.1.5 Accessing the 3270-Emulator
+### Accessing the 3270-Emulator
 
-Depending on what 3270-emulation product you're using, launching the product and setting it up will be different, and we can't cover all the alternatives in this book.  However, because we will be documenting the use of TSO/ISPF using IDz, that is what our examples will be based on utilizing.  To see a more detailed instruction on installing the client visit Chapter 13, Installing IBM Developer for Z. 
+Depending on what 3270-emulation product you're using, launching the product and setting it up will be different, and we can't cover all the alternatives in this book.  However, because we will be documenting the use of TSO/ISPF using IDz, that is what our examples will be based on utilizing.  To see a more detailed instruction on installing the client visit "Installing IBM Developer for Z". 
 
  
-## 15.2      Basic editing
+## Basic editing
 
-For the rest of this chapter we will use the CBL001.cbl sample program to demonstrate editing COBOL using ISPF.  The steps covered are simply informative, to help the reader better understand through examples and visuals and are not required for the reader to complete.
+For the rest of this chapter we will use the CBL0001 sample program to demonstrate editing COBOL using ISPF.  The steps covered are simply informative, to help the reader better understand through examples and visuals and are not required for the reader to complete.
 
 
-### 15.2.1 Launch IDz
+### Launch IDz
 
 - First, launch IDz from your desktop.
 
@@ -3832,7 +4039,7 @@ For the rest of this chapter we will use the CBL001.cbl sample program to demons
 - You will also be prompted for your TSO USERID and PASSWORD.
 
 
-### 15.2.2            Access TSO/ISPF from IDz
+### Access TSO/ISPF from IDz
 
 - After IDz has launched - from Remote Systems:
 
@@ -3843,7 +4050,7 @@ For the rest of this chapter we will use the CBL001.cbl sample program to demons
 *Figure  2.  Accessing IDz's built-in emulator*
 
 
-### 15.2.3            Log in to ISPF
+### Log in to ISPF
 
 After selecting Host Connection Emulator, you should see something like a mainframe 3270-Emulator screen that lists mainframe applications available on your system, shown in Figure  3. This screen is site-specific, so what you see may not look exactly like Figure 3, but you should see something like "TSO" or "LOGON".
 
@@ -3877,7 +4084,7 @@ Following a successfully entered password, you will see several system broadcast
 
  
 
-## 15.3 Overview of the ISPF primary option menu
+## Overview of the ISPF primary option menu
 
 After you’ve pressed **Enter** , you should see something like Figure  6. , the ISPF Primary Option Menu, or simply the "primary menu".
 
@@ -3920,7 +4127,7 @@ Every shop will have some small variation on the ISPF primary menu, but for now 
 *Figure  7.  Accessing edit - option 2 from the ISPF primary menu*
 
 
-### 15.3.1   What if my cursor becomes stuck in the user interface?
+### What if my cursor becomes stuck in the user interface?
 
 There are specific areas of 3270 screens designated for input, prefixed with:
 
@@ -3940,7 +4147,7 @@ If your cursor focus is not on the option line and you type, you will "freeze" t
 
  
 
-### 15.3.2  Edit entry panel
+### Edit entry panel
 
 Figure  9.  is an example of the edit entry panel.  This screen allows you to specify the location of what you wish to edit.  Note that you can create new programs and source files in TSO libraries (often referred to as Partitioned Data Sets (PDS).  That is outside the scope of this chapter.
 
@@ -3992,7 +4199,7 @@ When the file initially opens you will probably get some warning text, which can
 *Figure  12.  ISPF editor*
 
 
-### 15.3.3  ISPF edit
+### ISPF edit
 
 The layout of the ISPF Editor is shown in Figure  12. The prominent areas include:
 
@@ -4008,7 +4215,7 @@ Note that there are dozens of ISPF productivity techniques, but in this chapter,
 
  
 
-### 15.3.4   Navigating within a COBOL file
+### Navigating within a COBOL file
 
 The first thing you will want to do with an open COBOL program file is to navigate within the file. There are several options you can use for this:
 
@@ -4033,7 +4240,7 @@ The first thing you will want to do with an open COBOL program file is to naviga
 *Figure  13.  Issuing command line commands*
 
 
-### 15.3.5 Working with COBOL source - Prefix Area
+### Working with COBOL source - Prefix Area
 
 The ISPF editor contains several dozen tools for doing efficient/effective development work with COBOL programs.  All are easy to learn, but in this section will concentrate on the tools & editing techniques needed for introductory COBOL programming.
 #### Basic source editing functionality (see Figure  14. )
@@ -4077,7 +4284,7 @@ The ISPF editor contains several dozen tools for doing efficient/effective devel
 *Figure  14.  Series of Prefix Area commands "stacked" or issued simultaneously*
 
 
-### 15.3.6  Saving your work
+### Saving your work
 
 There are various ways that you can save your work:
 
@@ -4092,7 +4299,7 @@ There are various ways that you can save your work:
     - Note that you will be prompted to save or cancel changes to the file.
 
  >
-## 15.4 Access to batch jobs - launch and view results in JES
+## Access to batch jobs - launch and view results in JES
 
 After you have edited a program, cleared up any syntax errors, saved and closed your file, you will launch a JCL job to "compile and link" the code.  This is often termed a "build operation", as it creates an executable version of your COBOL program ready to test and/or run and produce business results.
 
@@ -4117,7 +4324,7 @@ This section demonstrates:
 **Batch Job -** Work done on a mainframe in a non-interactive mode - overnight financial processing, updates to online databases and systems, etc.
 
  
-### 15.4.1 Steps - using the same basic workflow as edit
+### Steps - using the same basic workflow as edit
 
 - From Option 2:
 
@@ -4147,7 +4354,7 @@ This section demonstrates:
 
  
 
-## 15.5      Summary
+## Summary
 
 In this chapter we have walked through some of the editing features using TSO/ISPF and the ISPF editor.  These capabilities ease editing COBOL, PL/I, JCL, Assembler, SQL and several other z/OS software languages (REXX, CLIST, etc.).
 
@@ -4159,7 +4366,9 @@ We've covered in this chapter less than 5% of what ISPF offers for the z/OS prof
 
    [https://www.youtube.com/watch?v=vOiHiI7b9iY](https://www.youtube.com/watch?v=vOiHiI7b9iY)``
 
-# 16. Testing
+\newpage
+
+# Testing
 
 In this chapter, we focus on the importance of thoroughly testing software to ensure its quality.  No language or program is exempt from the importance of testing and automated testing, including programs written in COBOL.  The chapter explains how this can only be achieved in an effective and efficient way by automating the testing as part of a continuous delivery pipeline and introduces a framework that can enable such automation.
 
@@ -4168,7 +4377,7 @@ We will look at some of the background to software testing and the different typ
 
  
 
-- **16.1** **Importance of testing**
+- **Importance of testing**
 
      - **What is testing and why do it?**
 
@@ -4178,7 +4387,7 @@ We will look at some of the background to software testing and the different typ
 
      - **The role of exploratory testing**
 
-- **16.2** **Basics of continuous integration, continuous delivery**
+- **Basics of continuous integration, continuous delivery**
 
      - **Introduction to DevOps and CI/CD pipelines**
 
@@ -4188,13 +4397,13 @@ We will look at some of the background to software testing and the different typ
 
      - **Managing the pipeline when test cases fail**
 
-- **16.3** **Testing on z/OS**
+- **Testing on z/OS**
 
      - **Importance of testing on z/OS**
 
      - **Challenges for test automation on z/OS**
 
-- **16.4** **Why does this matter?**
+- **Why does this matter?**
 
      - **Value of automated testing in continuous delivery**
 
@@ -4204,17 +4413,17 @@ We will look at some of the background to software testing and the different typ
 
      - **Use of automated testing for system reliability**
 
-- **16.5** **How can test automation be achieved on z/OS?**
+- **How can test automation be achieved on z/OS?**
 
 
-## 16.1      Importance of testing
+## Importance of testing
 
 If software is not tested, how can you or your users have confidence that it will behave as intended?
 
  
 
 >
-### 16.1.1  What is testing and why do it?
+### What is testing and why do it?
 
 Testing is the process of validating that software carries out the actions and provides the results that are expected.  It can, and should, encompass a number of different types of testing carried out at a number of different phases during the development lifecycle of the product, and potentially continue after the software has been released.  This allows errors and omissions in the software to be uncovered, as well as ensuring that it meets the user requirements.
 
@@ -4230,7 +4439,7 @@ Put simply, software testing can be described as verification of the system or a
 
  
 
-### 16.1.2 What is unit testing?
+### What is unit testing?
 
 Unit testing is the earliest phase of testing and validates that an individual unit or component of a software solution performs as designed.  Unit testing is typically carried out by the developer who wrote the code within the unit or component under test, along with other early validation activities such as static analysis and code review.  That is not to say that the unit tests created by the developer might also be re-run at later stages in the software lifecycle, to validate that the individual units still behave as intended.
 
@@ -4243,7 +4452,7 @@ Unit testing is important because the earlier defects can be found (or avoided),
 The unit tests that are created as part of unit testing can also be very important, if they are designed in such a way that they can be run and re-run later in the development cycle, to validate that the behavior of the software units is still correct.
 
  
-### 16.1.3 What is function/integration/system testing?
+### What is function/integration/system testing?
 
 Beyond the realm of unit testing, which is carried out by the developer, are a range of types of testing that typically fall into the realm of the tester.  These validate that when individual units of code are integrated together, or introduced into an existing software system, the overall system both continues to work correctly without any regressions and displays the new functionality that the new code is intended to enable.  There are a multitude of terms used to define these different types of testing, and in most organizations, there will be a sequence of test phases through which code will pass, each with their own names.
 
@@ -4280,7 +4489,7 @@ This chapter is not going to attempt to provide definitive definitions of the va
 A distinction should be made between types of **testing** and types of **tests** .  Unit tests for example can, and should, be run during later test phases, especially as part of regression testing.
 
 
-### 16.1.4   The role of exploratory testing
+### The role of exploratory testing
 
 Exploratory testing was defined by Cem Kaner in 1984 (see [http://www.kaner.com/pdfs/QAIExploring.pdf](http://www.kaner.com/pdfs/QAIExploring.pdf)) as, "a style of software testing that emphasizes the personal freedom and responsibility of the individual tester to continually optimize the quality of their work by treating test-related learning, test design, test execution, and test result interpretation as mutually supportive activities that run in parallel throughout the project."
 
@@ -4301,12 +4510,12 @@ Exploratory testing is often referred to as being a 'thinking' activity.  It is 
 This type of testing makes the best use of the skills of the tester, but clearly by its very nature does not lend itself to automation.  The value of automation of testing lies in freeing the tester from the need to manually carry out repetitive and un-thinking testing.
 
  
-## 16.2  Basics of continuous integration, continuous delivery
+## Basics of continuous integration, continuous delivery
 
 Continuous Integration and Continuous Delivery (CI/CD) are important practices within a DevOps approach, which allow software to be evolved and enhanced at a rate that meets the needs of the business and users, rather than being artificially delayed by long testing cycles which in turn result in a batching up of the delivery of software changes.
 
 
-### 16.2.1 Introduction to DevOps and CI/CD pipelines
+### Introduction to DevOps and CI/CD pipelines
 
 At its heart, DevOps refers to a building a greater collaboration between the software development and IT operations teams within an organization.  By working together, the systems development lifecycle of building, testing and releasing software can be shortened, and software changes can be continuously integrated and continuously delivered to provide value more rapidly and reliably.
 
@@ -4345,14 +4554,14 @@ Some of these building blocks are probably in place at many enterprises, but it 
 A DevOps pipeline can only be efficient, or indeed practical, if it can be automated. 
 
  
-### 16.2.2  Focus on efficiency and automation through the pipeline
+### Focus on efficiency and automation through the pipeline
 
 The driver for building a CI/CD pipeline is to increase efficiency and speed of delivery.  This means that all the steps in the pipeline need to be both quick and reliable and the only realistic way of achieving that is through automation. 
 
 
-### 16.2.3  Tests as the quality gatekeeper through phases of the pipeline
+### Tests as the quality gatekeeper through phases of the pipeline
 
-As a software change is delivered through a CI/CD pipeline, it is important to ensure its quality and readiness to move on to the next phase.  Testing is the gatekeeper that can give confidence that this is the case – and can also flag up where it is not.
+As a software change is delivered through a CI/CD pipeline, it is important to ensure its quality and readiness to move on to the next phase.  Testing is the gatekeeper that can give confidence that this is the case - and can also flag up where it is not.
 
 This testing also needs to be carried out continuously, as each change is delivered.  'Continuous testing' has been described as being a process of "testing early, testing often, testing everywhere, and automate" ([https://www.guru99.com/continuous-testing.html](https://www.guru99.com/continuous-testing.html)).
 
@@ -4389,7 +4598,7 @@ When we speak of testing in this chapter from this point on, we are referring to
 The key point is that anything that lends itself to automation should be automated, to allow time for these other activities where automation is genuinely not appropriate.  The fact that something is quite difficult to automate should not be used as an excuse for failing to automate it.
 
  
-### 16.2.4 Managing the pipeline when test cases fail
+### Managing the pipeline when test cases fail
 
 As noted above, if the tests are automated, but checking or reacting to their results is not, then that is only half of the story.  When building a CI/CD pipeline, thought should be given to what happens when test cases fail. 
 
@@ -4398,12 +4607,12 @@ As noted above, if the tests are automated, but checking or reacting to their re
 The diagnostics that will reveal the cause of the failure should be collected in a known location and made available in an easy way to the engineer who will investigate the problem.  The software change that caused the failure should be easily identifiable, and its progress through the pipeline should be halted, or reversed.  Other software changes that have not caused the failure should be able to continue unimpeded, unless they are only viable with the failing change, which should also be something the pipeline can detect and act upon.  Finally, it is possible that the failure could be due to a problem with the test or the test environment, and those possibilities must also be easy to detect and investigate.
 
  
-## 16.3  Testing on z/OS
+## Testing on z/OS
 
 Many organizations have chosen IBM Z for the most critical aspects of their businesses, especially in industries including banking, insurance, and retail, where disruptions cannot be tolerated.  This means that in addition to relying on the inherent reliability, security and resilience of the platform, such companies also carry out extensive testing before introducing any change.
 
 
-### 16.3.1 Importance of testing on z/OS
+### Importance of testing on z/OS
 
 Due to the mission critical nature of the software and applications running on z/OS, testing is vital to ensure that services can be provided uninterrupted, and that any change will both work as intended and not impact anything else.  This makes testing arguably more vital on z/OS than on any other platform.
 
@@ -4416,13 +4625,13 @@ The terminology used to describe the various phases of testing of z/OS applicati
 This means that the estimates for any project that makes changes to an application on z/OS, or for a new application, include a very large portion of effort allocated to testing.
 
 
-### 16.3.2  Challenges for test automation on z/OS
+### Challenges for test automation on z/OS
 
 With such extensive testing required, it might be thought that test automation would be widespread on z/OS.  However, test automation on z/OS has historically proved to be very difficult. 
 
  
 
-Surveys and user research carried out by the IBM CICS Transaction Server for z/OS organization have shown that between 92 and 95% of testing on the platform is entirely or mostly manual, which is in line with industry estimates that place the percentage of manual testing at around 80% ("Even today, 80 percent of enterprise testing is done manually." – Sandeep Johri, Tricentis CEO).  The manual testing can vary in nature from a test suite that just needs to be set up and run manually, to typing in a sequence of steps that are described in a hardcopy book of test cases.
+Surveys and user research carried out by the IBM CICS Transaction Server for z/OS organization have shown that between 92 and 95% of testing on the platform is entirely or mostly manual, which is in line with industry estimates that place the percentage of manual testing at around 80% ("Even today, 80 percent of enterprise testing is done manually." - Sandeep Johri, Tricentis CEO).  The manual testing can vary in nature from a test suite that just needs to be set up and run manually, to typing in a sequence of steps that are described in a hardcopy book of test cases.
 
  
 
@@ -4440,22 +4649,22 @@ The difficulty in achieving this has resulted in falling back to manual processe
 
  
 
-## 16.4  Why does this matter?
+## Why does this matter?
 
 Organizations that use z/OS for their mission-critical systems have enjoyed growth and success for many years.  So, does it matter if most of the testing is done manually?  In today's world, it is important to be able to respond very rapidly to new market opportunities and threats, and to have confidence in the quality and robustness of the services that you provide. 
 
  
-### 16.4.1  Value of automated testing in continuous delivery
+### Value of automated testing in continuous delivery
 
 As we have seen, if testing cannot be automated, then it is difficult if not impossible to gain the benefits of continuous delivery, reducing the agility of an organization and its ability to react and innovate quickly.  Even responding to a new competitive threat or compliance regulation might not be possible without a CI/CD pipeline and automated testing.
 
 
-### 16.4.2 Dangers of not automating testing
+### Dangers of not automating testing
 
 If an organization continues to test manually, then they run the risk that the test cycle will be too long to enable the required agility and speed to market, or the amount of testing will have to be reduced, leading to uncertainty over the quality of the software being delivered, or perhaps both.
 
 
-### 16.4.3  Risks of not adopting continuous delivery
+### Risks of not adopting continuous delivery
 
 If an organization does not adopt a continuous delivery approach, in which small changes can be constantly delivered and tested, then there is a tendency to save up all the changes until enough have been made to justify the large effort involved in testing a software release.  Not only does this mean that users endure a long wait for new function to become available, but if problems occur then it is harder to identify the cause and to isolate the failing component.
  
@@ -4463,12 +4672,12 @@ If an organization does not adopt a continuous delivery approach, in which small
 Even more damaging could be the impact of being unable to deliver function rapidly into the marketplace, and missing opportunities as a result.
 
 
-### 16.4.4  Use of automated testing for system reliability
+### Use of automated testing for system reliability
 
 With automated testing in place, it is easy to run the checks which ensure the software is working as expected.  So, whenever a change is introduced into the system, such as applying maintenance, a hardware upgrade, or updates to another component, there is automation available to verify that all is as it should be.  This also means that such changes can be made more easily and with more confidence.
 
  
-## 16.5 How can test automation be achieved on z/OS?
+## How can test automation be achieved on z/OS?
 
 Many organizations have built, or are now building, CI/CD pipelines for their z/OS applications, with considerable success.  These teams are looking to test automation to help them achieve an efficient pipeline. This chapter described an approach to test automation on z/OS, by using a framework for automating tests which offers deep integration with z/OS capabilities.
 
