@@ -553,6 +553,8 @@ The COBOL Language Support extension checks for mistakes and errors in COBOL cod
 
 ![](Images/code4z-img1.png)
 
+*Figure 1. The syntax and semantic check feature highlights an error.*
+
 ## Navigation of Code
 
 The Code4z package enables several features for ease of navigation through code.
@@ -562,6 +564,8 @@ The Code4z package enables several features for ease of navigation through code.
 The breadcrumb view across the top of the editor shows where the current line of code exists within the structure of the COBOL source code. You can click each element on the bar to see that section of the code highlighted, or to select a code element within the section and navigate to it.
 
 ![](Images/code4z-img2.png)
+
+*Figure 2. Breadcrumb view.*
 
 ### Outline View
 
@@ -585,11 +589,15 @@ While your cursor is placed on a variable or paragraph name, you can press **F12
 
 ![](Images/code4z-img3.png)
 
+*Figure 3. Go To Definition shows the point at which the USER-STREET variable is first defined.*
+
 ### Find All References
 
 The **Find All References** functionality (**SHIFT+ALT+F12**) highlights all references to a variable or paragraph and displays them in a list in the sidebar, so that you can easily navigate between them.
 
 ![](Images/code4z-img4.png)
+
+*Figure 4. Find All References lists all references to the USER-STREET variable in the code.*
 
 ## Copybook Support
 
@@ -605,11 +613,13 @@ The COBOL Language Support extension provides live suggestions while you type fo
 
 ![](Images/code4z-img5.png)
 
+*Figure 5. Autocomplete lists possible variables and keywords beginning with the typed string in a list.*
+
 ## Summary
 
 In this chapter you have been introduced to all the COBOL language support features of the Code4z package of open-source extensions for VS Code.
 
-/newpage
+\newpage
 
 # Zowe CLI and Zowe CLI Plug-ins
 
@@ -927,7 +937,7 @@ Open VSCode and in the left side tool menu select **Extensions**.  From there, i
 
 ## Summary
 
-In this chapter you have been introduced to VSCode and some of the extension tools available to it.  We have walked through the process of installing the pre-requisite software, Node.js and Java SDK, as well as VSCode, Zowe Explorer and IBM Z Open Editor.  You have also been briefly introduced to the utility of these extensions in VSCode.  In the subsequent chapters we will delve deeper into how and when to use them and get some practice through lab assignments. 
+In this chapter you have been introduced to VSCode and some of the extension tools available to it.  We have walked through the process of installing the pre-requisite software, Node.js and Java SDK, as well as VSCode, Zowe Explorer, IBM Z Open Editor and Code4z.  You have also been briefly introduced to the utility of these extensions in VSCode.  In the subsequent chapters we will delve deeper into how and when to use them and get some practice through lab assignments. 
 
 \newpage
 
