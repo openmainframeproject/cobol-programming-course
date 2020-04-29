@@ -2195,7 +2195,7 @@ This may seem complex, but compare it to this Java pseudo-code:
 
 ```
 for(int counter = 0; counter < 11; counter++){
-    for(int counter-2 = 0; counter < 5; counter++{
+    for(int counter2 = 0; counter2 < 5; counter2++{
        //move counter to msg-to-write
        //write print-rec
     }
