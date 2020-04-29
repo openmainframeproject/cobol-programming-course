@@ -775,6 +775,10 @@ This chapter introduces the basics of COBOL syntax. It then demonstrates how to 
 
 - **Lab**
 
+- **Lab - Zowe CLI & Automation**
+    - **Zowe CLI - Interactive Usage**
+    - **Zowe CLI - Programmatic Usage**
+
 
 ## COBOL characteristics
 
@@ -991,7 +995,7 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
 - What’s New in Enterprise COBOL for z/OS V6.1:
 
-   [https://youtu.be/N_Zsd1W8hWc](https://youtu.be/N_Zsd1W8hWc)``
+   [https://youtu.be/N_Zsd1W8hWc](https://youtu.be/N_Zsd1W8hWc)
 
 - What’s New in Enterprise COBOL for z/OS V6.2:
 
@@ -1206,6 +1210,154 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 28.  The following URL is another excellent document describing the above VSCode and Zowe Explore details with examples:
    [https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe)
+
+## Lab - Zowe CLI & Automation
+In this lab exercise you will use the Zowe CLI to automate submitting the JCL to compile, link, and run the COBOL program and downloading the spool output. Refer to the section on the "Installation of Zowe CLI and Plug-ins" to install Zowe CLI if you have not already done so. Before developing the automation, we will first leverage the Zowe CLI interactively.
+
+### Zowe CLI - Interactive Usage
+In this section, we will use the Zowe CLI interactively to view data set members, submit jobs, and review spool output.
+
+1. Within VS Code, open the integrated terminal (Terminal -> New Terminal). In the terminal, issue `zowe --version` to confirm the Zowe CLI is installed as depicted in the following figure. If it is not installed, please refer to to the section on the "Installation of Zowe CLI and Plug-ins." Also notice that the default shell selected (outlined in red) is `bash`. I would recommend selecting the default shell as either `bash` or `cmd` for this lab.
+
+![](Images/zowe-cli-version.png)
+
+*Figure  29.  `zowe --version` command in VS Code Integrated Terminal (Shell selection outlined in red)*
+
+2. In order for Zowe CLI to interact with z/OSMF the CLI must know the connection details such as host, port, username, password, etc. While you could enter this information on each command, Zowe provides the ability to store this information in configurations commonly known as profiles. Zowe CLI and the Zowe VS Code Extension share profiles. So if you created a connection profile in the first lab, you could naturally leverage it here. 
+
+To create a LearnCOBOL profile (and overwrite it if it already exists), issue the following command with your system details (using `prompt*` will prompt you for certain fields and not show input):
+
+```
+zowe profiles create zosmf LearnCOBOL --host 192.86.32.250 --port 10433 --ru false --user prompt* --pass prompt* 
+```
+
+Many profiles can be created for interacting with different z/OSMF instances. If this was not your first profile, you will want to set it as the default for the following lab exercises. Issue the following command:
+
+```
+zowe profiles set zosmf LearnCOBOL
+```
+
+The following figure demonstrates this sequence of commands.
+
+![](Images/create-and-set-zosmf-profile.png)
+
+*Figure  30.  Create and set z/OSMF profile (secure credential store plug-in is in use)*
+
+3. Confirm you can connect to z/OSMF by issuing the following command:
+
+```
+zowe zosmf check status
+```
+
+4. List data sets under your ID by issuing a command similar to (see sample output in the following figure):
+
+```
+zowe files list ds "Z80462.*"
+```
+
+You can also list all members in a partitioned data set by issuing a command similar to (see sample output in the following figure):
+
+```
+zowe files list am "Z80462.CBL"
+```
+
+![](Images/zowe-files-list-ds-and-am-commands.png)
+
+*Figure  31.  zowe files list ds and am commands*
+
+5. Next, we will download our COBOL and JCL data set members to our local machine. First, create and open a new folder in your file explorer. Note that you could also create a workspace to manage multiple projects. See the following figure for help:
+
+![](Images/vscode-add-folder.png)
+
+*Figure  32.  File explorer view to demonstrate opening a new folder*
+
+Once you have an empty folder opened, return to the integrated terminal, ensure you are in your folder, and issue commands similar to:
+
+```
+zowe files download am "Z80462.CBL" -e ".cbl"
+zowe files download am "Z80462.JCL" -e ".jcl"
+```
+
+Then open `hello.cbl` in your file explorer. A completed example is shown in the following figure:
+
+![](Images/zowe-files-download-am.png)
+
+*Figure  33.  Download and view data set members using the CLI*
+
+6. Next, we will submit the job in member `Z80462.JCL(HELLO)`. To submit the job, wait for it to complete, and view all spool content, issue:
+
+```
+zowe jobs submit ds "Z80462.JCL(HELLO)" --vasc
+```
+
+We could also perform this step in piecemeal to get the output from a specific spool file. See the next figure for an example of the upcoming commands. To submit the job and wait for it to enter OUTPUT status, issue:
+
+```
+zowe jobs submit ds "Z80462.JCL(HELLO)" --wfo
+```
+
+To list spool files associated with this job id, issue:
+
+```
+zowe jobs list sfbj JOB00906
+```
+
+where `JOB00906` was returned from the previous command.
+	
+To view a specific spool file (COBRUN:SYSOUT), issue:
+
+```
+zowe jobs view sfbi JOB00906 105
+```
+
+where `JOB00906` and `105` are obtained from the previous commands.
+
+![](Images/zowe-jobs-submit-ds-and-view-spool-output.png)
+
+*Figure  34.  Submit a job, wait for it to complete, then list spool files for the job, and view a specific spool file*
+
+If desired, you can also easily submit a job, wait for it to complete, and download the spool content using the following command (see the following figure for the completed state):
+
+```
+zowe jobs submit ds "Z80462.JCL(HELLO)" -d .
+```
+
+![](Images/zowe-jobs-submit-ds-and-download-spool-output.png)
+
+*Figure  35.  Submit a job, wait for it to complete, download and view spool files*
+
+The Zowe CLI was built with scripting in mind. For example, you can use the `--rfj` flag to receive output in JSON format for easy parsing. See the next figure for an example.
+
+![](Images/zowe-jobs-submit-ds-rfj.png)
+
+*Figure  36.  The `--rfj` flag allows for easy programmatic usage*
+
+### Zowe CLI - Programmatic Usage
+In this section, we will leverage the Zowe CLI programmatically to automate submitting the JCL to compile, link, and run the COBOL program and downloading the spool output. Once you have the content locally you could use any number of distributed scripting and testing tools to eliminate the need to manually review the spool content itself. Historically, in Mainframe we use REXX EXEC etc. for automation, but today we are going to use CLI and distributed tooling.
+
+1. Since we already have Node and npm installed, let’s just create a node project for our automation. To initialize a project, issue `npm init` in your project’s folder and follow the prompts. You can accept the defaults by just pressing enter. Only the description and author fields should be changed. See the following figure.
+
+![](Images/npm-init-example.png)
+
+*Figure  37.  Use of `npm init` to create `package.json` for the project*
+
+2. Now that we have our `package.json` simply replace the `test` script with a `clg` script that runs the following zowe command (replace `Z80462` with your high level qualifier):
+
+```
+zowe jobs submit ds 'Z80462.JCL(HELLO)' -d .
+```
+
+You can name the script whatever you want. I only suggested `clg` because the `CLG` in the `IGYWCLG` proc (which is what the JCL leverages) stands for compile, link, go. Now, simply issue `npm run clg` in your terminal to leverage the automation to compile, link and run the COBOL program and download the output for review. An example of the completed `package.json` and command execution are shown in the following figure. 
+
+![](Images/npm-run-clg.png)
+
+*Figure  38.  Final `package.json` and `npm run clg` execution*
+
+3. If you prefer a graphical trigger, you can leverage VS Code as shown in the following figure. Essentially, the CLI enables you to quickly build your own buttons for your custom z/OS tasks. You could also invoke a script rather than a single command to accomodate more complex scenarios.
+
+![](Images/npm-run-clg-button.png)
+
+*Figure  39.  `clg` task triggered via button*
 
 \newpage
 
@@ -3431,7 +3583,7 @@ This section will cover the necessary steps and information to download and inst
 
 From the link below, you will find the requirements for installing and running IDz on the different supported OS platforms: Windows, Linux, Mac and z/OS.  Select your proper platform and verify that your system meets the operating systems and hardware minimum requirements.
 
-- [https://www.ibm.com/support/pages/node/713257](https://www.ibm.com/support/pages/node/713257)``
+- [https://www.ibm.com/support/pages/node/713257](https://www.ibm.com/support/pages/node/713257)
 
 
 ### Software prerequisites
@@ -3909,8 +4061,7 @@ We've covered, in this chapter, less than 5% of what IDz has to offer for the z/
 
 - IBM instructional videos on IDz:
 
-   [https://developer.ibm.com/mainframe/videos/](https://developer.ibm.com/mainframe/videos/)``
-
+   [https://developer.ibm.com/mainframe/videos/](https://developer.ibm.com/mainframe/videos/)
 
 - Ongoing IBM (free) Remote Instructor-led training on IDz:
 
@@ -4366,7 +4517,7 @@ We've covered in this chapter less than 5% of what ISPF offers for the z/OS prof
 
 - A link to an excellent instructional video on ISPF:
 
-   [https://www.youtube.com/watch?v=vOiHiI7b9iY](https://www.youtube.com/watch?v=vOiHiI7b9iY)``
+   [https://www.youtube.com/watch?v=vOiHiI7b9iY](https://www.youtube.com/watch?v=vOiHiI7b9iY)
 
 \newpage
 
