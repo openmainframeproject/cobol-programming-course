@@ -2113,7 +2113,7 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
 1. If not already, open VSCode and select Zowe Explorer from the left sidebar.
 
-**Note** : If you are opening a new instance of VSCode (i.e. you closed out of it after the previous usage), you may need to 'Select a filter' again. You can do so by selecting the search icon () next to your named connection in the DATA SETS section and then reselecting the filter previously used. It should be in the listed filters after you have selected the search symbol.
+**Note** : If you are opening a new instance of VSCode (i.e. you closed out of it after the previous usage), you may need to 'Select a filter' again. You can do so by selecting the search icon ![](Images/image132.png) next to your named connection in the DATA SETS section and then reselecting the filter previously used. It should be in the listed filters after you have selected the search symbol.
 
  
 
