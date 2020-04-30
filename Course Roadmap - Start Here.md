@@ -41,7 +41,9 @@ Next Cobol webinar: Fri, May 1, 2020, 11:00-12:00 Noon EDT:
 [Open Mainframe Project Website - The Linux Foundation Projects](https://www.openmainframeproject.org/)
 
 Additional Course Resources:
+
 YouTube Video: [So you want to learn COBOL?](https://youtu.be/77o14aHUuSo)
+
 [An Introduction to the Zowe Virtual Desktop](https://medium.com/zowe/an-introduction-to-the-zowe-virtual-desktop-6e0140644875)
 
 [IBM Reference Manuals](https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library)
