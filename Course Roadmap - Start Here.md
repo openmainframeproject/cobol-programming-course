@@ -36,8 +36,11 @@ Next Cobol webinar: Fri, May 1, 2020, 11:00-12:00 Noon EDT:
 [Want to become a Tech Entrepreneur? Here’s how I did it & you can too](https://ibm.webex.com/recordingservice/sites/ibm/recording/play/16546b7dc0274b90a313f2fbe1f86706) - Webinar - Originally broadcast: 2020-04-23 - 1 hour
 
 [IBM Developer - COBOL](https://developer.ibm.com/technologies/cobol/)
+
 [IBM Z and LinuxONE Community](https://www.ibm.com/community/z/)
+
 [Master the Mainframe - Get hands-on Experience Across a Variety of Technologies](https://www.ibm.com/it-infrastructure/z/education/master-the-mainframe)
+
 [Open Mainframe Project Website - The Linux Foundation Projects](https://www.openmainframeproject.org/)
 
 Additional Course Resources:
@@ -55,13 +58,17 @@ YouTube Video: [So you want to learn COBOL?](https://youtu.be/77o14aHUuSo)
 [IBM Setting property groups | IBM Z® Open Editor](https://ibm.github.io/zopeneditor-about/Docs/setting_propertygroup.html#mvs-property-groups-using-the-zowe-cli)
 
 [Installing Zowe CLI from an online registry](https://docs.zowe.org/v1-1-x/user-guide/cli-installcli.html#installing-zowe-cli-from-a-local-package)
+
 [Installing Zowe CLI from source](https://github.com/zowe/zowe-cli#install-zowe-cli-from-source)
 
 [IBM z/OS MVS JCL Reference v2r3](https://www-01.ibm.com/servers/resourcelink/svc00100.nsf/pages/zOSV2R3SA231385/$file/ieab600_v2r3.pdf)
 
 [IBM DFSORT: ICETOOL Mini-User Guide](https://www.ibm.com/support/pages/sites/default/files/inline-files/$FILE/sorttool.pdf) - October, 2010 by Frank L. Yaeger
+
 [DFSORT′s Year 2000 Features (The New Generation)](https://www.ibm.com/support/pages/sites/default/files/inline-files/$FILE/sort2000.pdf) - October, 1998 by Frank L. Yaeger
+
 [IBM DFSORT Application Programming Guide v2r3](https://www-01.ibm.com/servers/resourcelink/svc00100.nsf/pages/zOSV2R3sc236878/$file/icea100_v2r3.pdf) - Full Manual
+
 Note: IBM DFSORT's ICETOOL can often replace the need to write COBOL program(s), when needing to (optionally) sort and tranform data contained in one or more input files to produce an output file.  All user guides written by Frank L. Yaeger on this subject are excellent.  Access the entire collection, [here](https://www.ibm.com/support/pages/dfsortmvs-downloads).
 
 Restoring a Fresh Copy of Lab Data (or Cobol) Files:
@@ -73,7 +80,9 @@ History:
 [Timeline and brief description of IBM Operating Systems. By Dave Morton, marspyrs. Dated: February, 2018](https://webfiles.uci.edu/scosel/_$OSTL37.5.pdf)
 
 Internet resources:
+
 [Beginner’s Guide: COBOL Made Easy](https://medium.com/modern-mainframe/beginners-guide-cobol-made-easy-introduction-ecf2f611ac76)
+
 [Awesome Mainframes - An Indexed Reference of Mainframe Links](https://github.com/FuzzyMainframes/Awesome-Mainframes/blob/master/README.md)
 
 Employment Opportunity - Cobol Programmers Needed Now!
