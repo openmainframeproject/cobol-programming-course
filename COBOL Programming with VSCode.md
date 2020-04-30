@@ -78,7 +78,225 @@ From a software engineering perspective, that even makes sense.  Rewrites are al
 
 \newpage
 
-# VSCode with Z Open Editor and Zowe extensions
+# VSCode with Zowe Explorer
+
+Zowe Explorer is an open-source extension for VS Code that lets developers and system administrators interact with z/OS mainframes using the VSC interface.
+
+- **Introduction to Zowe Explorer**
+- **Profiles in Zowe Explorer**
+     - **Secure Credentials**
+     - **Creating a New Profile**
+     - **Editing Profiles**
+     - **Deleting Profiles**
+- **Using Zowe Explorer**
+- **Summary**
+
+## Introduction to Zowe Explorer
+
+The Zowe Explorer extension modernizes the way developers and system administrators interact with z/OS mainframes. Working with data sets and USS files from VSC can be more convenient than using 3270 emulators. The extension provides the following benefits:
+
+* Create, modify, rename, copy and upload data sets directly to a z/OS mainframe.
+* Create, modify, rename and upload USS files directly to a z/OS mainframe.
+* Streamlined process to access data sets, USS files and jobs.
+* Create and use Zowe CLI `zosmf` compatible profiles.
+
+## Profiles in Zowe Explorer
+
+Profiles serve as a point-of-contact for Zowe Explorer and Mainframe. Profiles contain the URL for the API services that you want to connect to, and your credentials. The main profile information that you need for Zowe Explorer is the z/OSMF Connection.
+
+### Secure Credentials
+
+Zowe Explorer has a built in Secure Credential Store. This enables you to encrypt the credentials that are stored in your machine, and as a result secure your connection to the Mainframe.
+
+To enable this feature, follow these steps:
+
+1. Click the **Gear Icon** at the bottom left and select **Settings**
+2. Click **User Settings** > **Extensions** > **Zowe Explorer Settings**
+   Look for the **Zowe Security: Credential Key** field
+
+![](Images/code4z-img6.png)
+
+3. Type **Zowe-Plugin** in the text box. This will trigger the Built-in Secure Credential Store.
+
+Alternatively, to enable this feature by editing settings.json, hover over the gear icon and click "Copy Setting as JSON".
+You can then paste that to settings.json and update the value to Zowe Plugin.
+
+![](Images/code4z-img7.png)
+
+Note: If you are using Zowe CLI and you’ve installed the Secure-Credential-Store Plugin, the steps to activate it will still be the same.
+
+### Creating a New Profile
+
+Follow these steps:
+
+1. Navigate to the Zowe Explorer tree on the right side and look for the + sign.
+
+![](Images/code4z-img8.jpg)
+
+2. Click on the + sign.
+A dialog box will appear and ask if you want to "Create a New Connection to z/OS".
+
+3. Press enter or click on that selection.
+
+![](Images/code4z-img9.png)
+
+4. Enter a Profile name in the "Connection Name" field.
+
+![](Images/code4z-img10.png)
+
+5. Enter the URL and Port that you received by email when you registered for the COBOL Course. The connection information that you need has a title of "IP address for VSCode extension".
+
+![](Images/code4z-img11.png)
+
+6. Enter your Username. This is also included in the email.
+
+![](Images/code4z-img12-18.png)
+
+Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
+
+7. Enter your Password.
+
+![](Images/code4z-img13-19.png)
+
+Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
+
+8. Select True/False if you want to accept or reject Self-Signed Certificates.
+
+![](Images/code4z-img14-20.png)
+
+If you are successful, you will receive this informational message:
+
+![](Images/code4z-img15.png)
+
+### Editing Profiles
+
+The Zowe Explorer v1.5.0 release introduces profile editing. This allows you to revise your existing profile information and continue using Zowe Explorer.
+
+Follow these steps:
+
+1. Add your profile to any of the Zowe Explorer Trees.
+
+2. Click on the pencil icon to edit your profile. A dialog box opens displaying the current information in your profile, which you can edit as required.
+
+![](Images/code4z-img16.png)
+
+3. Edit the URL information if changes are required, or enter to confirm the information is still correct.
+
+![](Images/code4z-img17.png)
+
+4. Edit your Username.
+
+![](Images/code4z-img12-18.png)
+
+Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
+
+5. Edit your Password.
+
+![](Images/code4z-img13-19.png)
+
+Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
+
+6. Edit your authorized connections
+
+![](Images/code4z-img14-20.png)
+
+If you are successful, an information message will appear:
+
+![](Images/code4z-img21.png)
+
+### Deleting Profiles
+
+The Zowe Explorer v1.5.0 release introduces the option to delete profiles. This allows you to permanently delete unwanted profiles and clean up your files. You can delete profiles either using the command palette or in the tree.
+
+Follow these steps:
+
+Command Palette:
+
+1. Press **CTRL+SHIFT+P** or Click **View** > **Command Palette** to open the Command Palette
+
+2. Type "Zowe: Delete". This command allows you to permanently delete a profile.
+
+![](Images/code4z-img22.png)
+
+3. Select the Profile that you want to delete.
+
+![](Images/code4z-img23.png)
+
+4. Confirm that you want to delete your profile.
+
+![](Images/code4z-img24-27.png)
+
+Once confirmed, the following message is displayed:
+
+![](Images/code4z-img25-28.png)
+
+Zowe Explorer Tree:
+
+1. Right click on the profile and select **Delete Profile**.
+
+![](Images/code4z-img26.png)
+
+2. Confirm that you want to delete your profile.
+
+![](Images/code4z-img24-27.png)
+
+3. Once confirmed, the following message is displayed:
+
+![](Images/code4z-img25-28.png)
+
+## Using Zowe Explorer
+
+Zowe Explorer allows you to work with data sets, Unix System Service (USS) files, and jobs. 
+
+Zowe Explorer offers the following functions: 
+
+Data sets
+
+* View data sets and use multiple filters.
+View multiple data sets simultaneously and apply filters to show specific data sets.
+
+* Rename data sets
+
+* Copy data sets
+
+* Download, edit, and upload existing PDS members
+Instantly pull data sets and data set members from the mainframe, edit them and upload back.
+
+* Create and delete both data sets and data set members
+
+* View, access, and work with multiple profiles simultaneously.
+
+* Submit a JCL.
+You can submit a JCL from a chosen data set.
+
+USS Files
+
+* View multiple Unix System Services (USS) files simultaneously.
+
+* Rename USS files.
+
+* Download, edit, and upload existing USS files.
+You can instantly pull USS files from the mainframe, edit them and upload back.
+
+* Create and delete USS files and directories.
+
+* View, access, and work with multiple profiles simultaneously.
+
+Jobs:
+
+* View multiple jobs simultaneously.
+
+* Download spool content onto your computer.
+
+For more information about Zowe Explorer and the different use cases, visit the GitHub repository: [https://github.com/zowe/vscode-extension-for-zowe](https://github.com/zowe/vscode-extension-for-zowe)
+
+## Summary
+
+In this section you have learned how to create and work with Zowe compatible `zosmf` profiles and learned about the basic features of the Zowe Explorer extension.
+
+\newpage
+
+# VSCode with Z Open Editor
 
 In this chapter we will explain how to use the IBM Z Open Editor extension for VSCode and how using it can help you develop COBOL source code in a feature rich environment.
 
@@ -297,6 +515,112 @@ In this chapter you have been able to go through some of the editing features of
 
 \newpage
 
+# VS Code with Code4z Open-Source Extension Package
+
+This section introduces the Code4z extension package, in particular the COBOL Language Support extension.
+
+- **What is Code4z?**
+- **Known File Extensions**
+- **Syntax Highlighting and Coloring**
+- **Syntax and Semantic Check**
+- **Navigation of Code**
+     - **Breadcrumb View**
+     - **Outline View**
+     - **Shortcuts**
+     - **Go To Definition**
+     - **Find All References**
+- **Copybook Support**
+- **Autocomplete**
+- **Summary**
+
+## What is Code4z?
+
+Code4z is an all-in-one, open-source mainframe extension package for Visual Studio Code. The Code4z package contains extensions which provide language support for COBOL and High Level Assembler language, a debugger for COBOL programs running on a CICS region, as well as tools which enable developers to access mainframe data sets and CA Endevor code repositories using the Visual Studio Code interface. This guide focuses on the COBOL Language Support extension. The Zowe Explorer extension is also included in the Code4z package.
+
+The COBOL Language Support extension leverages the Language Server Protocol to provide autocomplete, highlighting, and diagnostic features for COBOL code. Together with Zowe Explorer, you can load COBOL code from a mainframe data set, and edit it leveraging the LSP features of the extension. Once you finish editing, you can save the file back on the mainframe, and store a copy locally.
+
+## Known File Extensions
+
+Code4z recognises files with the extension .COB and .CBL as COBOL files. This applies to both local files and files held in a PDS on the mainframe. COBOL Language Support features are automatically enabled when you open any file with an extension identifying it as a COBOL file.
+
+## Syntax Highlighting and Coloring
+
+The Code4z package enables coloring of keywords, paragraphs, and variables in different colors to make the code easier to navigate. 
+
+## Syntax and Semantic Check
+
+The COBOL Language Support extension checks for mistakes and errors in COBOL code. The syntax check feature reviews the whole content of the code, highlights errors and suggests fixes.
+
+![](Images/code4z-img1.png)
+
+*Figure 1. The syntax and semantic check feature highlights an error.*
+
+## Navigation of Code
+
+The Code4z package enables several features for ease of navigation through code.
+
+### Breadcrumb View
+
+The breadcrumb view across the top of the editor shows where the current line of code exists within the structure of the COBOL source code. You can click each element on the bar to see that section of the code highlighted, or to select a code element within the section and navigate to it.
+
+![](Images/code4z-img2.png)
+
+*Figure 2. Breadcrumb view.*
+
+### Outline View
+
+The Code4z package enables the outline view tab in the sidebar. Outline view enables you to easily navigate through sections and individual variables and paragraphs.
+
+### Shortcuts
+
+You can use the following shortcuts to navigate through your code:
+
+* **CTRL+ALT+,** moves you one section back.
+* **CTRL+ALT+.** moves you one section forward.
+* **CTRL+ALT+D** takes you to the data division.
+* **CTRL+ALT+P** takes you to the procedure division.
+* **CTRL+ALT+W** takes you to the working storage section.
+
+These commands are also available if you right click anywhere in the code.
+
+### Go To Definition
+
+While your cursor is placed on a variable or paragraph name, you can press **F12** or **CTRL+click** to use the **Go To Definition** functionality to display the point in the code where the variable or paragraph is defined.
+
+![](Images/code4z-img3.png)
+
+*Figure 3. Go To Definition shows the point at which the USER-STREET variable is first defined.*
+
+### Find All References
+
+The **Find All References** functionality (**SHIFT+ALT+F12**) highlights all references to a variable or paragraph and displays them in a list in the sidebar, so that you can easily navigate between them.
+
+![](Images/code4z-img4.png)
+
+*Figure 4. Find All References lists all references to the USER-STREET variable in the code.*
+
+## Copybook Support
+
+Copybooks are pieces of source code stored in separate data sets which are referenced in a program. The COBOL Language Support extension enables you to download all copybooks referenced in your program from the mainframe to a folder on your machine. In order for this feature to work, you need to set up and configure a Zowe CLI `zosmf` profile.
+
+The COBOL Language Support extension helps to ensure that copybooks called in the code remain compatible through semantic analysis of keywords, variables, and paragraphs within copybooks, and ensures the consistency of code by defining variables and paragraphs across copybooks. The extension also helps to protect against unwanted errors caused by recursive or missing copybooks.
+
+The **Go To Definition** and **Find All References** functionalities are also extended to work for occurrences of variables and paragraphs from copybooks called in the program as well as from the program itself.
+
+## Autocomplete
+
+The COBOL Language Support extension provides live suggestions while you type for COBOL keywords, as well as variables and paragraphs which are already referenced in the code or in copybooks used by the program.
+
+![](Images/code4z-img5.png)
+
+*Figure 5. Autocomplete lists possible variables and keywords beginning with the typed string in a list.*
+
+## Summary
+
+In this chapter you have been introduced to all the COBOL language support features of the Code4z package of open-source extensions for VS Code.
+
+\newpage
+
 # Zowe CLI and Zowe CLI Plug-ins
 
 In this chapter we will explain what a CLI is and why you would use it, how to use Zowe CLI interactively, how to abstract CLI commands into useful scripts, and how Zowe CLI enables the use of familiar open source tooling while developing COBOL applications on the mainframe. 
@@ -472,6 +796,7 @@ This chapter covers all aspects of download and installation of Visual Studio (V
 - **Install VSCode extensions**
      - **Zowe Explorer**
      - **IBM Z Open Editor**
+     - **Code4z**
 
 - **Summary**
 
@@ -604,9 +929,17 @@ Open VSCode and in the left side tool menu select **Extensions**.  From there, i
 
 **Note** : There may be some limitations with IBM Z Open Editor if running a 32-bit Java version on Windows.
 
+### Code4z
+
+Code4z is an all-in-one, open-source mainframe extension package for developers working with z/OS applications, suitable for all levels of mainframe experience, even beginners. Mainframe application developers can use the Code4z package for a modern, familiar, and seamless experience, which helps to overcome some developers' reservations or concerns about the traditional mainframe user experience. To find out more about Code4z, please visit [https://github.com/BroadcomMFD/code4z](https://github.com/BroadcomMFD/code4z).
+
+#### Install Code4z
+
+Open VSCode and in the left side tool menu select **Extensions**.  From there, in the "Search Extensions in Marketplace" search field, type `Code4z`.  Search results will begin populating, select **" Code4z "** and click **install**.
+
 ## Summary
 
-In this chapter you have been introduced to VSCode and some of the extension tools available to it.  We have walked through the process of installing the pre-requisite software, Node.js and Java SDK, as well as VSCode, Zowe Explorer and IBM Z Open Editor.  You have also been briefly introduced to the utility of these extensions in VSCode.  In the subsequent chapters we will delve deeper into how and when to use them and get some practice through lab assignments. 
+In this chapter you have been introduced to VSCode and some of the extension tools available to it.  We have walked through the process of installing the pre-requisite software, Node.js and Java SDK, as well as VSCode, Zowe Explorer, IBM Z Open Editor and Code4z.  You have also been briefly introduced to the utility of these extensions in VSCode.  In the subsequent chapters we will delve deeper into how and when to use them and get some practice through lab assignments. 
 
 \newpage
 
