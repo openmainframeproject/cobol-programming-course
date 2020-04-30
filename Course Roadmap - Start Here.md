@@ -2,7 +2,7 @@ Welcome to the Open Mainframe Project, Cobol Programming Course!
 
 To get the greatest benefit out of this course, please follow the instructions that follow, STEP by STEP.
 
-Request your mainframe credentials: here
+Request your mainframe credentials: [here](https://www-01.ibm.com/events/wwe/ast/mtm/cobolvscode.nsf/enrollall?openform)
 
 The return email should direct them: here
 
