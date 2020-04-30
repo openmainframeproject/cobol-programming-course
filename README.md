@@ -13,7 +13,13 @@ There are two sets of materials available
 
 ## Build
 
-You can use [pandoc](https://pandoc.org/) to convert the markdown files provided to any other format such as DOCX, PDF, or HTML.
+The PDF is built using the following [pandoc](https://pandoc.org/) command. Note: pdflatex is required. [MiKTeX](https://miktex.org/) can be installed to accomodate this. 
+
+```
+pandoc "COBOL Programming with VSCode.md" -o "COBOL Programming with VSCode.pdf" --number-sections --toc -B Front_Matter.tex --listings
+```
+
+`Front_Matter.tex` contains the content before the table of contents. `COBOL Programming with VSCode.md` contains the body. The command combines the two, generates the section numbers and table of contents for the body, and outputs `COBOL Programming with VSCode.pdf`
 
 ## Contributing
 
@@ -31,9 +37,10 @@ You can connect with the community in a variety of ways...
 
 ## Providers
 
-These materials are being used by other organizations to provide COBOL training to the community. This project, nor Open Mainframe Project, doesn't endorse any one of these particular providers. If you are using these materials in your training materials, feel free [to edit and issue a pull request](https://github.com/openmainframeproject/cobol-programming-course/edit/governance-docs/README.md) to have it included.
+These materials are being used by other organizations to provide COBOL training to the community. This project, nor Open Mainframe Project, doesn't review, maintain, or endorse any one of these particular providers. If you are using these materials in your training materials, feel free [to edit and issue a pull request](https://github.com/openmainframeproject/cobol-programming-course/edit/governance-docs/README.md) to have it included.
 
-- IBM is provided a [free environment for completing the labs](http://ibm.biz/cobollabs).
+- IBM has provided a [free environment for completing the labs](http://ibm.biz/cobollabs).
+- IBM has provided a [free trial to IDz environment](https://developer.ibm.com/mainframe/products/ibm-z-open-development).
 
 ## Governance
 
@@ -41,4 +48,4 @@ This project is openly governed as defined in [GOVERNANCE.md](GOVERNANCE.md).
 
 ## Credits
 
-The courseware materials were developed leveraging grant funds made available through American River College and proposed as a new project by IBM.
+The courseware materials were made available through a joint collaboration IBM, it's clients, and American River College and proposed as a new project by IBM.
