@@ -24,8 +24,8 @@ FAQ:
 
 **IBM Resources:**
 
-**COBOL Fridays:**
-[A Beginner's Practical Approach to COBOL](https://developer.ibm.com/technologies/cobol/videos/cobol-programming-with-vscode-course-launch-webinar) - Webinar - Originally broadcast: 2020-04-17 - 1 hour
+**COBOL Fridays:** 
+[A Beginner's Practical Approach to COBOL](https://developer.ibm.com/technologies/cobol/videos/cobol-programming-with-vscode-course-launch-webinar) - Webinar - Originally broadcast: 2020-04-17 - 1 hour 
 [Get hands on! Run a COBOL program](https://developer.ibm.com/technologies/cobol/videos/get-hands-on-run-a-cobol-program) - Webinar - Originally broadcast: 2020-04-24 - 45 minutes
 
 Next Cobol webinar: Fri, May 1, 2020, 11:00-12:00 Noon EDT:
