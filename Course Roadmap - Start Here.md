@@ -11,8 +11,11 @@ Download the [PDF Version](https://github.com/openmainframeproject/cobol-program
 Please follow the Course Manual instructions, STEP by STEP and always substitute your Z8xxxx id, issued above, in place of the example id, Z99998, wherever it is mentioned (as an example) in the class instruction manual. It is never a good practice to embed passwords into parameter files. Leave your password blank, when prompted, if blank is allowed. The system will prompt you for your password, if and when it is necessary.
 
 The following IP addresses are needed for this course.  The class instruction manual will explain when and where they are needed:
+
 IP address for VSCode extension: https://192.86.32.250:10443  (This is not a link meant to be clicked on!)
+
 IP address for TN3270: 192.86.32.250 Port 623
+
 IP address for IDz: 192.86.32.250 Port 4035
 
 Additionally, the slack channel for questions and discussion is: [here](https://openmainframeproject.slack.com/)
@@ -78,7 +81,7 @@ Download data file from Labs folder from here: https://github.com/openmainframep
 [More education from IBM](http://ibm.biz/zOSclass)
 
 History:
-[Timeline and brief description of IBM Operating Systems. By Dave Morton, marspyrs. Dated: February, 2018](https://webfiles.uci.edu/scosel/_$OSTL37.5.pdf)
+[Timeline and brief description of IBM Operating Systems](https://webfiles.uci.edu/scosel/_$OSTL37.5.pdf) by Dave Morton "marspyrs" - Dated: February, 2018.
 
 Internet resources:
 
