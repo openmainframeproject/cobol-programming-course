@@ -6,10 +6,14 @@ This project is a set of training materials and labs for a "Getting Started" lev
 
 ## How to use
 
-There are two sets of materials available
+To begin, select a recent [release](https://github.com/openmainframeproject/cobol-programming-course/releases) of the course. Under a given release, you should see two assets.
 
-- [Chapters](https://github.com/openmainframeproject/cobol-programming-course/blob/master/COBOL%20Programming%20with%20VSCode.pdf) which contain the lessons, broken up into chapters.
-- [Labs](https://github.com/openmainframeproject/cobol-programming-course/tree/master/Labs) which contain the source code used in the chapters.
+- The COBOL Programming with VSCode PDF asset contains the course instructions.
+- The Source code asset contains everything that was in the project when the release was published. Once you unzip this folder, notice the Labs folder. This folder contains source code used in the course.
+
+To complete the lab, you will also need select a [provider](#providers) below and follow their registration process. Once complete, you should be given system details to use in the course.
+
+If you run into any issues, please don't hesitate to reach out on our [slack channel](https://openmainframeproject.slack.com/archives/C011NE32Z1T).
 
 ## Discussion
 
