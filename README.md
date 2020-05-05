@@ -1,6 +1,8 @@
-# COBOL Programming Course
+![](https://github.com/openmainframeproject/artwork/raw/master/projects/cobol-programming-course/cobol-programming-course-color.png)
 
 ![License](https://img.shields.io/github/license/OpenMainframeProject/cobol-programming-course)
+
+# COBOL Programming Course
 
 This project is a set of training materials and labs for a "Getting Started" level course on COBOL.
 
