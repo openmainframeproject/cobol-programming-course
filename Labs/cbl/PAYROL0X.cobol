@@ -1,5 +1,5 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. PAYROL00.
+       PROGRAM-ID. PAYROL0X.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
       ****** Variables for the report
