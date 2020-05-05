@@ -1,7 +1,7 @@
       *-----------------------
        IDENTIFICATION DIVISION.
       *-----------------------
-       PROGRAM-ID.    CBL0010
+       PROGRAM-ID.    CBL0011
        AUTHOR.        Otto B. Intrisic.
       *--------------------
        ENVIRONMENT DIVISION.
