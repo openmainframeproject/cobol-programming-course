@@ -136,7 +136,7 @@ USS Files
 
 * Rename USS files
 
-Jobs:
+Jobs
 
 * View multiple jobs simultaneously
 
@@ -144,7 +144,7 @@ Jobs:
 
 * Interact with jobs from multiple systems simultaneously
 
-For more information about Zowe Explorer and the different use cases, visit the GitHub repository: [https://github.com/zowe/vscode-extension-for-zowe](https://github.com/zowe/vscode-extension-for-zowe)
+For more information about Zowe Explorer and the different use cases, visit the [marketplace](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe)
 
 ## Profiles in Zowe Explorer
 
