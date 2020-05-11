@@ -93,7 +93,7 @@ Zowe Explorer is an open-source extension for VS Code that lets developers and s
 
 ## Introduction to Zowe Explorer
 
-The Zowe Explorer extension modernizes the way developers and system administrators interact with z/OS mainframes. Working with data sets and USS files from VSC can be more convenient than using 3270 emulators. The extension provides the following benefits:
+The Zowe Explorer extension modernizes the way developers and system administrators interact with z/OS mainframes. Working with data sets and USS files from VS Code can be more convenient than using 3270 emulators. The extension provides the following benefits:
 
 * Create, modify, rename, copy and upload data sets directly to a z/OS mainframe.
 * Create, modify, rename and upload USS files directly to a z/OS mainframe.
@@ -110,46 +110,45 @@ Zowe Explorer offers the following functions:
 
 Data sets
 
-* View data sets and use multiple filters. View multiple data sets simultaneously and apply filters to show specific data sets.
+* Search for data sets matching desired filters and view their contents
+
+* Download, edit, and upload existing PDS members
+
+* Create and delete both data sets and data set members
+
+* Interact with data sets from multiple systems simultaneously
 
 * Rename data sets
 
 * Copy data sets
 
-* Download, edit, and upload existing PDS members
-Instantly pull data sets and data set members from the mainframe, edit them and upload back.
-
-* Create and delete both data sets and data set members
-
-* View, access, and work with multiple profiles simultaneously.
-
-* Submit a JCL.
-You can submit a JCL from a chosen data set.
+* Submit JCL from a chosen data set member
 
 USS Files
 
-* View multiple Unix System Services (USS) files simultaneously.
+* View multiple Unix System Services (USS) files simultaneously
 
-* Rename USS files.
+* Download, edit, and upload existing USS files
 
-* Download, edit, and upload existing USS files.
-You can instantly pull USS files from the mainframe, edit them and upload back.
+* Create and delete USS files and directories
 
-* Create and delete USS files and directories.
+* Interact with USS files from multiple systems simultaneously
 
-* View, access, and work with multiple profiles simultaneously.
+* Rename USS files
 
 Jobs:
 
-* View multiple jobs simultaneously.
+* View multiple jobs simultaneously
 
-* Download spool content onto your computer.
+* Download spool content
+
+* Interact with jobs from multiple systems simultaneously
 
 For more information about Zowe Explorer and the different use cases, visit the GitHub repository: [https://github.com/zowe/vscode-extension-for-zowe](https://github.com/zowe/vscode-extension-for-zowe)
 
 ## Profiles in Zowe Explorer
 
-Profiles serve as a point-of-contact for Zowe Explorer and Mainframe. Profiles contain the URL for the API services that you want to connect to, and your credentials. The main profile information that you need for Zowe Explorer is the z/OSMF Connection.
+Profiles serve as a point-of-contact for Zowe Explorer and the Mainframe. Profiles contain the URL for the API services that you want to connect to, and your credentials. The main profile information that you need for Zowe Explorer is the z/OSMF Connection. If you have the Zowe Explorer installed, you can follow the steps in this section to connect to the mainframe.
 
 ### Secure Credentials
 
@@ -207,7 +206,7 @@ Note: You can leave this blank if you do not want to save your credentials in yo
 
 Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
 
-8. Select True/False if you want to accept or reject Self-Signed Certificates.
+8. Select True/False if you want to accept or reject Self-Signed Certificates. For this course, please select false.
 
 ![](Images/code4z-img14-20.png)
 
@@ -293,7 +292,7 @@ Zowe Explorer Tree:
 
 ## Summary
 
-In this section you have learned how to create and work with Zowe compatible `zosmf` profiles and learned about the basic features of the Zowe Explorer extension.
+In this section you have learned the basic features of the Zowe Explorer extension and how to create and work with Zowe compatible `zosmf` profiles.
 
 \newpage
 
