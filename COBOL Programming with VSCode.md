@@ -98,7 +98,7 @@ The Zowe Explorer extension modernizes the way developers and system administrat
 * Create, modify, rename, copy and upload data sets directly to a z/OS mainframe.
 * Create, modify, rename and upload USS files directly to a z/OS mainframe.
 * Streamlined process to access data sets, USS files and jobs.
-* Create and use Zowe CLI `zosmf` compatible profiles.
+* Easy interact with multiple z/OS systems
 
 The Zowe Explorer can be installed into VS Code by searching the Extensions Marketplace inside VS Code for "Zowe Explorer" and selecting install. To see more detailed instructions on installing this extension, refer to "Installation of VSCode and Extensions".
 
