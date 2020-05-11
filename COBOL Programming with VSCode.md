@@ -83,12 +83,12 @@ From a software engineering perspective, that even makes sense.  Rewrites are al
 Zowe Explorer is an open-source extension for VS Code that lets developers and system administrators interact with z/OS mainframes using the VSC interface.
 
 - **Introduction to Zowe Explorer**
+- **Using Zowe Explorer**
 - **Profiles in Zowe Explorer**
      - **Secure Credentials**
      - **Creating a New Profile**
      - **Editing Profiles**
      - **Deleting Profiles**
-- **Using Zowe Explorer**
 - **Summary**
 
 ## Introduction to Zowe Explorer
@@ -99,6 +99,51 @@ The Zowe Explorer extension modernizes the way developers and system administrat
 * Create, modify, rename and upload USS files directly to a z/OS mainframe.
 * Streamlined process to access data sets, USS files and jobs.
 * Create and use Zowe CLI `zosmf` compatible profiles.
+
+## Using Zowe Explorer
+
+Zowe Explorer allows you to work with data sets, Unix System Service (USS) files, and jobs. 
+
+Zowe Explorer offers the following functions: 
+
+Data sets
+
+* View data sets and use multiple filters. View multiple data sets simultaneously and apply filters to show specific data sets.
+
+* Rename data sets
+
+* Copy data sets
+
+* Download, edit, and upload existing PDS members
+Instantly pull data sets and data set members from the mainframe, edit them and upload back.
+
+* Create and delete both data sets and data set members
+
+* View, access, and work with multiple profiles simultaneously.
+
+* Submit a JCL.
+You can submit a JCL from a chosen data set.
+
+USS Files
+
+* View multiple Unix System Services (USS) files simultaneously.
+
+* Rename USS files.
+
+* Download, edit, and upload existing USS files.
+You can instantly pull USS files from the mainframe, edit them and upload back.
+
+* Create and delete USS files and directories.
+
+* View, access, and work with multiple profiles simultaneously.
+
+Jobs:
+
+* View multiple jobs simultaneously.
+
+* Download spool content onto your computer.
+
+For more information about Zowe Explorer and the different use cases, visit the GitHub repository: [https://github.com/zowe/vscode-extension-for-zowe](https://github.com/zowe/vscode-extension-for-zowe)
 
 ## Profiles in Zowe Explorer
 
@@ -243,52 +288,6 @@ Zowe Explorer Tree:
 3. Once confirmed, the following message is displayed:
 
 ![](Images/code4z-img25-28.png)
-
-## Using Zowe Explorer
-
-Zowe Explorer allows you to work with data sets, Unix System Service (USS) files, and jobs. 
-
-Zowe Explorer offers the following functions: 
-
-Data sets
-
-* View data sets and use multiple filters.
-View multiple data sets simultaneously and apply filters to show specific data sets.
-
-* Rename data sets
-
-* Copy data sets
-
-* Download, edit, and upload existing PDS members
-Instantly pull data sets and data set members from the mainframe, edit them and upload back.
-
-* Create and delete both data sets and data set members
-
-* View, access, and work with multiple profiles simultaneously.
-
-* Submit a JCL.
-You can submit a JCL from a chosen data set.
-
-USS Files
-
-* View multiple Unix System Services (USS) files simultaneously.
-
-* Rename USS files.
-
-* Download, edit, and upload existing USS files.
-You can instantly pull USS files from the mainframe, edit them and upload back.
-
-* Create and delete USS files and directories.
-
-* View, access, and work with multiple profiles simultaneously.
-
-Jobs:
-
-* View multiple jobs simultaneously.
-
-* Download spool content onto your computer.
-
-For more information about Zowe Explorer and the different use cases, visit the GitHub repository: [https://github.com/zowe/vscode-extension-for-zowe](https://github.com/zowe/vscode-extension-for-zowe)
 
 ## Summary
 
