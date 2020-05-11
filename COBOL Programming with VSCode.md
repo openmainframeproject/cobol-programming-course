@@ -80,7 +80,7 @@ From a software engineering perspective, that even makes sense.  Rewrites are al
 
 # VSCode with Zowe Explorer
 
-Zowe Explorer is an open-source extension for VS Code that lets developers and system administrators interact with z/OS mainframes using the VSC interface.
+Zowe Explorer is an open-source extension for VS Code that lets developers and system administrators interact with z/OS mainframes.
 
 - **Introduction to Zowe Explorer**
 - **Using Zowe Explorer**
