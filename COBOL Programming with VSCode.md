@@ -1352,19 +1352,36 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
 ## Lab
 
-In this lab exercise you will connect to an IBM Z system, view a simple COBOL hello world program in VSCode, submit JCL to compile the COBOL program, and view the output.  Refer to "Installation of VSCode and extensions" to configure VSCode with the Zowe Explorer and Z Open Editor extensions if you have not already done so.
+In this lab exercise you will connect to an IBM Z system, view a simple COBOL hello world program in VSCode, submit JCL to compile the COBOL program, and view the output.  Refer to "Installation of VSCode and extensions" to configure VSCode if you have not already done so. You can either use Z Open Editor and Zowe Explorer, or Code4z.
 
-1. The lab assumes installation of VSCode with Z Open Editor and Zowe Explorer extensions as shown in Figure  2.
+1. The lab assumes installation of VSCode with either Z Open Editor and Zowe Explorer extensions, as shown in Figure  2a, or the Code4z extension pack, as shown in Figure  2b.
 
-   Click the **Extensions** icon. List should include:
+   Click the **Extensions** icon. If you installed Z Open Editor and Zowe Explorer, the list should include:
 
    1. IBM Z Open Editor
    2. Zowe Explorer
- 
 
 ![](Images/image044.png)
 
-*Figure  2.  VSCode extensions*
+*Figure  2a.  The Z Open Editor and Zowe Explorer VSCode extensions*
+
+   If you installed Code4z, the list should include:
+
+   1. COBOL
+   2. COBOL Language Support
+   3. Code4z
+   4. Debugger for Mainframe
+   5. Explorer for Endevor
+   6. HLASM Language Support
+   7. Zowe Explorer
+
+   In these exercises, you will only use the COBOL Language Support and Zowe Explorer extensions.
+
+![](Images/image044b.png)
+
+*Figure  2b.  The Code4z package of VS Code extensions.*
+
+   **Note:** If your list contains both Z Open Editor and COBOL Language Support, disable one of them, by clicking on the **cog** icon next to the extension in the extensions list, and selecting **disable**.
 
 2. Click the Zowe Explorer icon as shown in Figure  3.
 
