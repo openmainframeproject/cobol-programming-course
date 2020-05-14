@@ -80,29 +80,75 @@ From a software engineering perspective, that even makes sense.  Rewrites are al
 
 # VSCode with Zowe Explorer
 
-Zowe Explorer is an open-source extension for VS Code that lets developers and system administrators interact with z/OS mainframes using the VSC interface.
+Zowe Explorer is an open-source extension for VS Code that lets developers and system administrators interact with z/OS mainframes.
 
 - **Introduction to Zowe Explorer**
+- **Using Zowe Explorer**
 - **Profiles in Zowe Explorer**
      - **Secure Credentials**
      - **Creating a New Profile**
      - **Editing Profiles**
      - **Deleting Profiles**
-- **Using Zowe Explorer**
 - **Summary**
 
 ## Introduction to Zowe Explorer
 
-The Zowe Explorer extension modernizes the way developers and system administrators interact with z/OS mainframes. Working with data sets and USS files from VSC can be more convenient than using 3270 emulators. The extension provides the following benefits:
+The Zowe Explorer extension modernizes the way developers and system administrators interact with z/OS mainframes. Working with data sets and USS files from VS Code can be more convenient than using 3270 emulators. The extension provides the following benefits:
 
 * Create, modify, rename, copy and upload data sets directly to a z/OS mainframe.
 * Create, modify, rename and upload USS files directly to a z/OS mainframe.
 * Streamlined process to access data sets, USS files and jobs.
-* Create and use Zowe CLI `zosmf` compatible profiles.
+* Easy interact with multiple z/OS systems
+
+The Zowe Explorer can be installed into VS Code by searching the Extensions Marketplace inside VS Code for "Zowe Explorer" and selecting install. To see more detailed instructions on installing this extension, refer to "Installation of VSCode and Extensions".
+
+## Using Zowe Explorer
+
+Zowe Explorer allows you to work with data sets, Unix System Service (USS) files, and jobs. 
+
+Zowe Explorer offers the following functions: 
+
+Data sets
+
+* Search for data sets matching desired filters and view their contents
+
+* Download, edit, and upload existing PDS members
+
+* Create and delete both data sets and data set members
+
+* Interact with data sets from multiple systems simultaneously
+
+* Rename data sets
+
+* Copy data sets
+
+* Submit JCL from a chosen data set member
+
+USS Files
+
+* View multiple Unix System Services (USS) files simultaneously
+
+* Download, edit, and upload existing USS files
+
+* Create and delete USS files and directories
+
+* Interact with USS files from multiple systems simultaneously
+
+* Rename USS files
+
+Jobs
+
+* View multiple jobs simultaneously
+
+* Download spool content
+
+* Interact with jobs from multiple systems simultaneously
+
+For more information about Zowe Explorer and the different use cases, visit the [marketplace](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe)
 
 ## Profiles in Zowe Explorer
 
-Profiles serve as a point-of-contact for Zowe Explorer and Mainframe. Profiles contain the URL for the API services that you want to connect to, and your credentials. The main profile information that you need for Zowe Explorer is the z/OSMF Connection.
+Profiles serve as a point-of-contact for Zowe Explorer and the Mainframe. Profiles contain the URL for the API services that you want to connect to, and your credentials. The main profile information that you need for Zowe Explorer is the z/OSMF Connection. If you have the Zowe Explorer installed, you can follow the steps in this section to connect to the mainframe.
 
 ### Secure Credentials
 
@@ -160,7 +206,7 @@ Note: You can leave this blank if you do not want to save your credentials in yo
 
 Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
 
-8. Select True/False if you want to accept or reject Self-Signed Certificates.
+8. Select True/False if you want to accept or reject Self-Signed Certificates. For this course, please select false.
 
 ![](Images/code4z-img14-20.png)
 
@@ -244,55 +290,9 @@ Zowe Explorer Tree:
 
 ![](Images/code4z-img25-28.png)
 
-## Using Zowe Explorer
-
-Zowe Explorer allows you to work with data sets, Unix System Service (USS) files, and jobs. 
-
-Zowe Explorer offers the following functions: 
-
-Data sets
-
-* View data sets and use multiple filters.
-View multiple data sets simultaneously and apply filters to show specific data sets.
-
-* Rename data sets
-
-* Copy data sets
-
-* Download, edit, and upload existing PDS members
-Instantly pull data sets and data set members from the mainframe, edit them and upload back.
-
-* Create and delete both data sets and data set members
-
-* View, access, and work with multiple profiles simultaneously.
-
-* Submit a JCL.
-You can submit a JCL from a chosen data set.
-
-USS Files
-
-* View multiple Unix System Services (USS) files simultaneously.
-
-* Rename USS files.
-
-* Download, edit, and upload existing USS files.
-You can instantly pull USS files from the mainframe, edit them and upload back.
-
-* Create and delete USS files and directories.
-
-* View, access, and work with multiple profiles simultaneously.
-
-Jobs:
-
-* View multiple jobs simultaneously.
-
-* Download spool content onto your computer.
-
-For more information about Zowe Explorer and the different use cases, visit the GitHub repository: [https://github.com/zowe/vscode-extension-for-zowe](https://github.com/zowe/vscode-extension-for-zowe)
-
 ## Summary
 
-In this section you have learned how to create and work with Zowe compatible `zosmf` profiles and learned about the basic features of the Zowe Explorer extension.
+In this section you have learned the basic features of the Zowe Explorer extension and how to create and work with Zowe compatible `zosmf` profiles.
 
 \newpage
 
@@ -538,6 +538,8 @@ This section introduces the Code4z extension package, in particular the COBOL La
 Code4z is an all-in-one, open-source mainframe extension package for Visual Studio Code. The Code4z package contains extensions which provide language support for COBOL and High Level Assembler language, a debugger for COBOL programs running on a CICS region, as well as tools which enable developers to access mainframe data sets and CA Endevor code repositories using the Visual Studio Code interface. This guide focuses on the COBOL Language Support extension. The Zowe Explorer extension is also included in the Code4z package.
 
 The COBOL Language Support extension leverages the Language Server Protocol to provide autocomplete, highlighting, and diagnostic features for COBOL code. Together with Zowe Explorer, you can load COBOL code from a mainframe data set, and edit it leveraging the LSP features of the extension. Once you finish editing, you can save the file back on the mainframe, and store a copy locally.
+
+The Code4z Extension Pack can be installed into VS Code by searching the Extensions Marketplace inside VS Code for "Code4z" and selecting install. The extension pack contains a number of extensions that can be leveraged when working with the mainframe, including the COBOL Language Support extension which provides similar functionality to the Z Open Editor extension discussed earlier. Therefore, ensure only one of these two extensions is enabled. Other extensions included in the pack will work with either COBOL Language Support or Z Open Editor. To see more detailed instructions on installing this extension, refer to "Installation of VSCode and Extensions".
 
 ## Known File Extensions
 
@@ -936,6 +938,8 @@ Code4z is an all-in-one, open-source mainframe extension package for developers 
 #### Install Code4z
 
 Open VSCode and in the left side tool menu select **Extensions**.  From there, in the "Search Extensions in Marketplace" search field, type `Code4z`.  Search results will begin populating, select **" Code4z "** and click **install**.
+
+The extension pack contains a number of extensions that can be leveraged when working with the mainframe, including the COBOL Language Support extension which provides similar functionality to the Z Open Editor extension. Therefore, ensure only one of these extensions is enabled. Extensions can be disabled within VS Code by locating the extension in the Extensions menu, clicking the settings gear, and selecting `Disable`. Other extensions included in the Code4z pack will work with either COBOL Language Support or Z Open Editor.
 
 ## Summary
 
@@ -1586,7 +1590,7 @@ In this section, we will use the Zowe CLI interactively to view data set members
 To create a LearnCOBOL profile (and overwrite it if it already exists), issue the following command with your system details (using `prompt*` will prompt you for certain fields and not show input):
 
 ```
-zowe profiles create zosmf LearnCOBOL --host 192.86.32.250 --port 10443 --ru false --user prompt* --pass prompt* 
+zowe profiles create zosmf LearnCOBOL --host 192.86.32.250 --port 10443 --ru false --user prompt* --pass prompt* --ow 
 ```
 
 Many profiles can be created for interacting with different z/OSMF instances. If this was not your first profile, you will want to set it as the default for the following lab exercises. Issue the following command:
