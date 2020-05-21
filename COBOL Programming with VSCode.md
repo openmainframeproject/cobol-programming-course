@@ -3802,7 +3802,7 @@ Example 3. shows three COBOL functions, MEAN, MEDIAN, and RANGE where the arithm
 01  Median-Tax      Pic 99v999.
 01  Tax-Range       Pic 99v999.
 . . .
-    Compute Ave-Tax      = Function Mean   (Tax-S Tax-T Tax-W Tax-   B)
+    Compute Ave-Tax      = Function Mean   (Tax-S Tax-T Tax-W Tax-B)
     Compute Median-Tax   = Function Median (Tax-S Tax-T Tax-W Tax-B)
     Compute Tax-Range    = Function Range  (Tax-S Tax-T Tax-W Tax-B)
 ```
