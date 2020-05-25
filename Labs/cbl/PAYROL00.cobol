@@ -25,6 +25,7 @@
        77  RATE       PIC 9(3).
        77  HOURS      PIC 9(3).
        77  GROSS-PAY  PIC 9(5).
+
       * PIC X(15) -- fiftheen alphanumeric characters
       * PIC 9(3)  -- three-digit value
       *------------------
