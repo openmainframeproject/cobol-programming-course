@@ -1,5 +1,5 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID.    ADDONE.
+       PROGRAM-ID.    COBOL.
        AUTHOR.        STUDENT.
       *
        ENVIRONMENT DIVISION.

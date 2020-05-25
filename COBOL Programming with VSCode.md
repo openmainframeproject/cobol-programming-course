@@ -78,7 +78,225 @@ From a software engineering perspective, that even makes sense.  Rewrites are al
 
 \newpage
 
-# VSCode with Z Open Editor and Zowe extensions
+# VSCode with Zowe Explorer
+
+Zowe Explorer is an open-source extension for VS Code that lets developers and system administrators interact with z/OS mainframes.
+
+- **Introduction to Zowe Explorer**
+- **Using Zowe Explorer**
+- **Profiles in Zowe Explorer**
+     - **Secure Credentials**
+     - **Creating a New Profile**
+     - **Editing Profiles**
+     - **Deleting Profiles**
+- **Summary**
+
+## Introduction to Zowe Explorer
+
+The Zowe Explorer extension modernizes the way developers and system administrators interact with z/OS mainframes. Working with data sets and USS files from VS Code can be more convenient than using 3270 emulators. The extension provides the following benefits:
+
+* Create, modify, rename, copy and upload data sets directly to a z/OS mainframe.
+* Create, modify, rename and upload USS files directly to a z/OS mainframe.
+* Streamlined process to access data sets, USS files and jobs.
+* Easy interact with multiple z/OS systems
+
+The Zowe Explorer can be installed into VS Code by searching the Extensions Marketplace inside VS Code for "Zowe Explorer" and selecting install. To see more detailed instructions on installing this extension, refer to "Installation of VSCode and Extensions".
+
+## Using Zowe Explorer
+
+Zowe Explorer allows you to work with data sets, Unix System Service (USS) files, and jobs. 
+
+Zowe Explorer offers the following functions: 
+
+Data sets
+
+* Search for data sets matching desired filters and view their contents
+
+* Download, edit, and upload existing PDS members
+
+* Create and delete both data sets and data set members
+
+* Interact with data sets from multiple systems simultaneously
+
+* Rename data sets
+
+* Copy data sets
+
+* Submit JCL from a chosen data set member
+
+USS Files
+
+* View multiple Unix System Services (USS) files simultaneously
+
+* Download, edit, and upload existing USS files
+
+* Create and delete USS files and directories
+
+* Interact with USS files from multiple systems simultaneously
+
+* Rename USS files
+
+Jobs
+
+* View multiple jobs simultaneously
+
+* Download spool content
+
+* Interact with jobs from multiple systems simultaneously
+
+For more information about Zowe Explorer and the different use cases, visit the [marketplace](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe)
+
+## Profiles in Zowe Explorer
+
+Profiles serve as a point-of-contact for Zowe Explorer and the Mainframe. Profiles contain the URL for the API services that you want to connect to, and your credentials. The main profile information that you need for Zowe Explorer is the z/OSMF Connection. If you have the Zowe Explorer installed, you can follow the steps in this section to connect to the mainframe.
+
+### Secure Credentials
+
+Zowe Explorer has a built in Secure Credential Store. This enables you to encrypt the credentials that are stored in your machine, and as a result secure your connection to the Mainframe.
+
+To enable this feature, follow these steps:
+
+1. Click the **Gear Icon** at the bottom left and select **Settings**
+2. Click **User Settings** > **Extensions** > **Zowe Explorer Settings**
+   Look for the **Zowe Security: Credential Key** field
+
+![](Images/code4z-img6.png)
+
+3. Type **Zowe-Plugin** in the text box. This will trigger the Built-in Secure Credential Store.
+
+Alternatively, to enable this feature by editing settings.json, hover over the gear icon and click "Copy Setting as JSON".
+You can then paste that to settings.json and update the value to Zowe Plugin.
+
+![](Images/code4z-img7.png)
+
+Note: If you are using Zowe CLI and you’ve installed the Secure-Credential-Store Plugin, the steps to activate it will still be the same.
+
+### Creating a New Profile
+
+Follow these steps:
+
+1. Navigate to the Zowe Explorer tree on the right side and look for the + sign.
+
+![](Images/code4z-img8.jpg)
+
+2. Click on the + sign.
+A dialog box will appear and ask if you want to "Create a New Connection to z/OS".
+
+3. Press enter or click on that selection.
+
+![](Images/code4z-img9.png)
+
+4. Enter a Profile name in the "Connection Name" field.
+
+![](Images/code4z-img10.png)
+
+5. Enter the URL and Port that you received by email when you registered for the COBOL Course. The connection information that you need has a title of "IP address for VSCode extension".
+
+![](Images/code4z-img11.png)
+
+6. Enter your Username. This is also included in the email.
+
+![](Images/code4z-img12-18.png)
+
+Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
+
+7. Enter your Password.
+
+![](Images/code4z-img13-19.png)
+
+Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
+
+8. Select True/False if you want to accept or reject Self-Signed Certificates. For this course, please select false.
+
+![](Images/code4z-img14-20.png)
+
+If you are successful, you will receive this informational message:
+
+![](Images/code4z-img15.png)
+
+### Editing Profiles
+
+The Zowe Explorer v1.5.0 release introduces profile editing. This allows you to revise your existing profile information and continue using Zowe Explorer.
+
+Follow these steps:
+
+1. Add your profile to any of the Zowe Explorer Trees.
+
+2. Click on the pencil icon to edit your profile. A dialog box opens displaying the current information in your profile, which you can edit as required.
+
+![](Images/code4z-img16.png)
+
+3. Edit the URL information if changes are required, or enter to confirm the information is still correct.
+
+![](Images/code4z-img17.png)
+
+4. Edit your Username.
+
+![](Images/code4z-img12-18.png)
+
+Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
+
+5. Edit your Password.
+
+![](Images/code4z-img13-19.png)
+
+Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
+
+6. Edit your authorized connections
+
+![](Images/code4z-img14-20.png)
+
+If you are successful, an information message will appear:
+
+![](Images/code4z-img21.png)
+
+### Deleting Profiles
+
+The Zowe Explorer v1.5.0 release introduces the option to delete profiles. This allows you to permanently delete unwanted profiles and clean up your files. You can delete profiles either using the command palette or in the tree.
+
+Follow these steps:
+
+Command Palette:
+
+1. Press **CTRL+SHIFT+P** or Click **View** > **Command Palette** to open the Command Palette
+
+2. Type "Zowe: Delete". This command allows you to permanently delete a profile.
+
+![](Images/code4z-img22.png)
+
+3. Select the Profile that you want to delete.
+
+![](Images/code4z-img23.png)
+
+4. Confirm that you want to delete your profile.
+
+![](Images/code4z-img24-27.png)
+
+Once confirmed, the following message is displayed:
+
+![](Images/code4z-img25-28.png)
+
+Zowe Explorer Tree:
+
+1. Right click on the profile and select **Delete Profile**.
+
+![](Images/code4z-img26.png)
+
+2. Confirm that you want to delete your profile.
+
+![](Images/code4z-img24-27.png)
+
+3. Once confirmed, the following message is displayed:
+
+![](Images/code4z-img25-28.png)
+
+## Summary
+
+In this section you have learned the basic features of the Zowe Explorer extension and how to create and work with Zowe compatible `zosmf` profiles.
+
+\newpage
+
+# VSCode with Z Open Editor
 
 In this chapter we will explain how to use the IBM Z Open Editor extension for VSCode and how using it can help you develop COBOL source code in a feature rich environment.
 
@@ -297,6 +515,114 @@ In this chapter you have been able to go through some of the editing features of
 
 \newpage
 
+# VS Code with Code4z Open-Source Extension Package
+
+This section introduces the Code4z extension package, in particular the COBOL Language Support extension.
+
+- **What is Code4z?**
+- **Known File Extensions**
+- **Syntax Highlighting and Coloring**
+- **Syntax and Semantic Check**
+- **Navigation of Code**
+     - **Breadcrumb View**
+     - **Outline View**
+     - **Shortcuts**
+     - **Go To Definition**
+     - **Find All References**
+- **Copybook Support**
+- **Autocomplete**
+- **Summary**
+
+## What is Code4z?
+
+Code4z is an all-in-one, open-source mainframe extension package for Visual Studio Code. The Code4z package contains extensions which provide language support for COBOL and High Level Assembler language, a debugger for COBOL programs running on a CICS region, as well as tools which enable developers to access mainframe data sets and CA Endevor code repositories using the Visual Studio Code interface. This guide focuses on the COBOL Language Support extension. The Zowe Explorer extension is also included in the Code4z package.
+
+The COBOL Language Support extension leverages the Language Server Protocol to provide autocomplete, highlighting, and diagnostic features for COBOL code. Together with Zowe Explorer, you can load COBOL code from a mainframe data set, and edit it leveraging the LSP features of the extension. Once you finish editing, you can save the file back on the mainframe, and store a copy locally.
+
+The Code4z Extension Pack can be installed into VS Code by searching the Extensions Marketplace inside VS Code for "Code4z" and selecting install. The extension pack contains a number of extensions that can be leveraged when working with the mainframe, including the COBOL Language Support extension which provides similar functionality to the Z Open Editor extension discussed earlier. Therefore, ensure only one of these two extensions is enabled. Other extensions included in the pack will work with either COBOL Language Support or Z Open Editor. To see more detailed instructions on installing this extension, refer to "Installation of VSCode and Extensions".
+
+## Known File Extensions
+
+Code4z recognises files with the extension .COB and .CBL as COBOL files. This applies to both local files and files held in a PDS on the mainframe. COBOL Language Support features are automatically enabled when you open any file with an extension identifying it as a COBOL file.
+
+## Syntax Highlighting and Coloring
+
+The Code4z package enables coloring of keywords, paragraphs, and variables in different colors to make the code easier to navigate. 
+
+## Syntax and Semantic Check
+
+The COBOL Language Support extension checks for mistakes and errors in COBOL code. The syntax check feature reviews the whole content of the code, highlights errors and suggests fixes.
+
+![](Images/code4z-img1.png)
+
+*Figure 1. The syntax and semantic check feature highlights an error.*
+
+## Navigation of Code
+
+The Code4z package enables several features for ease of navigation through code.
+
+### Breadcrumb View
+
+The breadcrumb view across the top of the editor shows where the current line of code exists within the structure of the COBOL source code. You can click each element on the bar to see that section of the code highlighted, or to select a code element within the section and navigate to it.
+
+![](Images/code4z-img2.png)
+
+*Figure 2. Breadcrumb view.*
+
+### Outline View
+
+The Code4z package enables the outline view tab in the sidebar. Outline view enables you to easily navigate through sections and individual variables and paragraphs.
+
+### Shortcuts
+
+You can use the following shortcuts to navigate through your code:
+
+* **CTRL+ALT+,** moves you one section back.
+* **CTRL+ALT+.** moves you one section forward.
+* **CTRL+ALT+D** takes you to the data division.
+* **CTRL+ALT+P** takes you to the procedure division.
+* **CTRL+ALT+W** takes you to the working storage section.
+
+These commands are also available if you right click anywhere in the code.
+
+### Go To Definition
+
+While your cursor is placed on a variable or paragraph name, you can press **F12** or **CTRL+click** to use the **Go To Definition** functionality to display the point in the code where the variable or paragraph is defined.
+
+![](Images/code4z-img3.png)
+
+*Figure 3. Go To Definition shows the point at which the USER-STREET variable is first defined.*
+
+### Find All References
+
+The **Find All References** functionality (**SHIFT+ALT+F12**) highlights all references to a variable or paragraph and displays them in a list in the sidebar, so that you can easily navigate between them.
+
+![](Images/code4z-img4.png)
+
+*Figure 4. Find All References lists all references to the USER-STREET variable in the code.*
+
+## Copybook Support
+
+Copybooks are pieces of source code stored in separate data sets which are referenced in a program. The COBOL Language Support extension enables you to download all copybooks referenced in your program from the mainframe to a folder on your machine. In order for this feature to work, you need to set up and configure a Zowe CLI `zosmf` profile.
+
+The COBOL Language Support extension helps to ensure that copybooks called in the code remain compatible through semantic analysis of keywords, variables, and paragraphs within copybooks, and ensures the consistency of code by defining variables and paragraphs across copybooks. The extension also helps to protect against unwanted errors caused by recursive or missing copybooks.
+
+The **Go To Definition** and **Find All References** functionalities are also extended to work for occurrences of variables and paragraphs from copybooks called in the program as well as from the program itself.
+
+## Autocomplete
+
+The COBOL Language Support extension provides live suggestions while you type for COBOL keywords, as well as variables and paragraphs which are already referenced in the code or in copybooks used by the program.
+
+![](Images/code4z-img5.png)
+
+*Figure 5. Autocomplete lists possible variables and keywords beginning with the typed string in a list.*
+
+## Summary
+
+In this chapter you have been introduced to all the COBOL language support features of the Code4z package of open-source extensions for VS Code.
+
+\newpage
+
 # Zowe CLI and Zowe CLI Plug-ins
 
 In this chapter we will explain what a CLI is and why you would use it, how to use Zowe CLI interactively, how to abstract CLI commands into useful scripts, and how Zowe CLI enables the use of familiar open source tooling while developing COBOL applications on the mainframe. 
@@ -472,6 +798,7 @@ This chapter covers all aspects of download and installation of Visual Studio (V
 - **Install VSCode extensions**
      - **Zowe Explorer**
      - **IBM Z Open Editor**
+     - **Code4z**
 
 - **Summary**
 
@@ -586,6 +913,8 @@ Open VSCode and in the left side tool menu select **Extensions**.  From there, i
 
 *Figure  3.  Install Zowe Explorer in VSCode*
 
+The Zowe communinity have a number of on-line video that walk through the steps required to install, configure and operate the Zowe Explorer, see [Zowe Explorer VSC Extension (part 1)](http://www.youtube.com/watch?v=G_WCsFZIWt4&t=0m38s).
+
 ### IBM Z Open Editor
 
 IBM Z Open Editor brings COBOL and PL/I language support to Microsoft VSCode.  It is one of the several next generation capabilities for an open development experience for z/OS®.  It also works in association with the Zowe Explorer plugin. For more information on IBM Z Open Editor, please visit:
@@ -602,9 +931,19 @@ Open VSCode and in the left side tool menu select **Extensions**.  From there, i
 
 **Note** : There may be some limitations with IBM Z Open Editor if running a 32-bit Java version on Windows.
 
+### Code4z
+
+Code4z is an all-in-one, open-source mainframe extension package for developers working with z/OS applications, suitable for all levels of mainframe experience, even beginners. Mainframe application developers can use the Code4z package for a modern, familiar, and seamless experience, which helps to overcome some developers' reservations or concerns about the traditional mainframe user experience. To find out more about Code4z, please visit [https://github.com/BroadcomMFD/code4z](https://github.com/BroadcomMFD/code4z).
+
+#### Install Code4z
+
+Open VSCode and in the left side tool menu select **Extensions**.  From there, in the "Search Extensions in Marketplace" search field, type `Code4z`.  Search results will begin populating, select **" Code4z "** and click **install**.
+
+The extension pack contains a number of extensions that can be leveraged when working with the mainframe, including the COBOL Language Support extension which provides similar functionality to the Z Open Editor extension. Therefore, ensure only one of these extensions is enabled. Extensions can be disabled within VS Code by locating the extension in the Extensions menu, clicking the settings gear, and selecting `Disable`. Other extensions included in the Code4z pack will work with either COBOL Language Support or Z Open Editor.
+
 ## Summary
 
-In this chapter you have been introduced to VSCode and some of the extension tools available to it.  We have walked through the process of installing the pre-requisite software, Node.js and Java SDK, as well as VSCode, Zowe Explorer and IBM Z Open Editor.  You have also been briefly introduced to the utility of these extensions in VSCode.  In the subsequent chapters we will delve deeper into how and when to use them and get some practice through lab assignments. 
+In this chapter you have been introduced to VSCode and some of the extension tools available to it.  We have walked through the process of installing the pre-requisite software, Node.js and Java SDK, as well as VSCode, Zowe Explorer, IBM Z Open Editor and Code4z.  You have also been briefly introduced to the utility of these extensions in VSCode.  In the subsequent chapters we will delve deeper into how and when to use them and get some practice through lab assignments. 
 
 \newpage
 
@@ -773,6 +1112,10 @@ This chapter introduces the basics of COBOL syntax. It then demonstrates how to 
 
 - **Lab**
 
+- **Lab - Zowe CLI & Automation**
+    - **Zowe CLI - Interactive Usage**
+    - **Zowe CLI - Programmatic Usage**
+
 
 ## COBOL characteristics
 
@@ -804,9 +1147,11 @@ COBOL source text must be written in COBOL reference format.  Reference format c
 
 
 The COBOL reference format is formatted as follows:
+
 #### Sequence Number Area (columns 1 - 6)
 
 - Blank or reserved for line sequence numbers.
+
 #### Indicator Area (column 7)
 
 - A multi-purpose area:
@@ -818,6 +1163,7 @@ The COBOL reference format is formatted as follows:
     - Debugging line (D or d) 
 
     - Source listing formatting (a slash symbol)
+
 #### Area A (columns 8 - 11)
 
 - Certain items must begin in Area A, they are:
@@ -831,6 +1177,7 @@ The COBOL reference format is formatted as follows:
     - Paragraph names
 
 - Column 8 is referred to as the A Margin
+
 #### Area B (columns 12 - 72)
 
 - Certain items must begin in Area B, they are:
@@ -840,6 +1187,7 @@ The COBOL reference format is formatted as follows:
     - Continuation lines
 
 - Column 12 is referred to as the B Margin
+
 #### Identification Area (columns 73 - 80)
 
 - Ignored by the compiler.
@@ -916,12 +1264,15 @@ Sentences consists of Statements.
 Statements begin with COBOL reserved words and can be subdivided into “Phrases”
 
 ### What are the four Divisions of COBOL?
+
 #### IDENTIFICATION DIVISION
 
 The IDENTIFICATION DIVISION identifies the program with a name and, optionally, gives other identifying information, such as the Author name, program compiled date (last modified), etc.
+
 #### ENVIRONMENT DIVISION
 
 The ENVIRONMENT DIVISION describes the aspects of your program that depend on the computing environment, such as the computer configuration and the computer inputs and outputs.
+
 #### DATA DIVISION
 
 The DATA DIVISION is where characteristics of data are defined in one of the following sections:
@@ -1001,19 +1352,36 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
 ## Lab
 
-In this lab exercise you will connect to an IBM Z system, view a simple COBOL hello world program in VSCode, submit JCL to compile the COBOL program, and view the output.  Refer to "Installation of VSCode and extensions" to configure VSCode with the Zowe Explorer and Z Open Editor extensions if you have not already done so.
+In this lab exercise you will connect to an IBM Z system, view a simple COBOL hello world program in VSCode, submit JCL to compile the COBOL program, and view the output.  Refer to "Installation of VSCode and extensions" to configure VSCode if you have not already done so. You can either use Z Open Editor and Zowe Explorer, or Code4z.
 
-1. The lab assumes installation of VSCode with Z Open Editor and Zowe Explorer extensions as shown in Figure  2.
+1. The lab assumes installation of VSCode with either Z Open Editor and Zowe Explorer extensions, as shown in Figure  2a, or the Code4z extension pack, as shown in Figure  2b.
 
-   Click the **Extensions** icon. List should include:
+   Click the **Extensions** icon. If you installed Z Open Editor and Zowe Explorer, the list should include:
 
    1. IBM Z Open Editor
    2. Zowe Explorer
- 
 
 ![](Images/image044.png)
 
-*Figure  2.  VSCode extensions*
+*Figure  2a.  The Z Open Editor and Zowe Explorer VSCode extensions*
+
+   If you installed Code4z, the list should include:
+
+   1. COBOL
+   2. COBOL Language Support
+   3. Code4z
+   4. Debugger for Mainframe
+   5. Explorer for Endevor
+   6. HLASM Language Support
+   7. Zowe Explorer
+
+   In these exercises, you will only use the COBOL Language Support and Zowe Explorer extensions.
+
+![](Images/image044b.png)
+
+*Figure  2b.  The Code4z package of VS Code extensions.*
+
+   **Note:** If your list contains both Z Open Editor and COBOL Language Support, disable one of them, by clicking on the **cog** icon next to the extension in the extensions list, and selecting **disable**.
 
 2. Click the Zowe Explorer icon as shown in Figure  3.
 
@@ -1204,6 +1572,154 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 28.  The following URL is another excellent document describing the above VSCode and Zowe Explore details with examples:
    [https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe)
+
+## Lab - Zowe CLI & Automation
+In this lab exercise you will use the Zowe CLI to automate submitting the JCL to compile, link, and run the COBOL program and downloading the spool output. Refer to the section on the "Installation of Zowe CLI and Plug-ins" to install Zowe CLI if you have not already done so. Before developing the automation, we will first leverage the Zowe CLI interactively.
+
+### Zowe CLI - Interactive Usage
+In this section, we will use the Zowe CLI interactively to view data set members, submit jobs, and review spool output.
+
+1. Within VS Code, open the integrated terminal (Terminal -> New Terminal). In the terminal, issue `zowe --version` to confirm the Zowe CLI is installed as depicted in the following figure. If it is not installed, please refer to to the section on the "Installation of Zowe CLI and Plug-ins." Also notice that the default shell selected (outlined in red) is `bash`. I would recommend selecting the default shell as either `bash` or `cmd` for this lab.
+
+![](Images/zowe-cli-version.png)
+
+*Figure  29.  `zowe --version` command in VS Code Integrated Terminal (Shell selection outlined in red)*
+
+2. In order for Zowe CLI to interact with z/OSMF the CLI must know the connection details such as host, port, username, password, etc. While you could enter this information on each command, Zowe provides the ability to store this information in configurations commonly known as profiles. Zowe CLI and the Zowe VS Code Extension share profiles. So if you created a connection profile in the first lab, you could naturally leverage it here. 
+
+To create a LearnCOBOL profile (and overwrite it if it already exists), issue the following command with your system details (using `prompt*` will prompt you for certain fields and not show input):
+
+```
+zowe profiles create zosmf LearnCOBOL --host 192.86.32.250 --port 10443 --ru false --user prompt* --pass prompt* --ow 
+```
+
+Many profiles can be created for interacting with different z/OSMF instances. If this was not your first profile, you will want to set it as the default for the following lab exercises. Issue the following command:
+
+```
+zowe profiles set zosmf LearnCOBOL
+```
+
+The following figure demonstrates this sequence of commands.
+
+![](Images/create-and-set-zosmf-profile.png)
+
+*Figure  30.  Create and set z/OSMF profile (secure credential store plug-in is in use)*
+
+3. Confirm you can connect to z/OSMF by issuing the following command:
+
+```
+zowe zosmf check status
+```
+
+4. List data sets under your ID by issuing a command similar to (see sample output in the following figure):
+
+```
+zowe files list ds "Z80462.*"
+```
+
+You can also list all members in a partitioned data set by issuing a command similar to (see sample output in the following figure):
+
+```
+zowe files list am "Z80462.CBL"
+```
+
+![](Images/zowe-files-list-ds-and-am-commands.png)
+
+*Figure  31.  zowe files list ds and am commands*
+
+5. Next, we will download our COBOL and JCL data set members to our local machine. First, create and open a new folder in your file explorer. Note that you could also create a workspace to manage multiple projects. See the following figure for help:
+
+![](Images/vscode-add-folder.png)
+
+*Figure  32.  File explorer view to demonstrate opening a new folder*
+
+Once you have an empty folder opened, return to the integrated terminal, ensure you are in your folder, and issue commands similar to:
+
+```
+zowe files download am "Z80462.CBL" -e ".cbl"
+zowe files download am "Z80462.JCL" -e ".jcl"
+```
+
+Then open `hello.cbl` in your file explorer. A completed example is shown in the following figure:
+
+![](Images/zowe-files-download-am.png)
+
+*Figure  33.  Download and view data set members using the CLI*
+
+6. Next, we will submit the job in member `Z80462.JCL(HELLO)`. To submit the job, wait for it to complete, and view all spool content, issue:
+
+```
+zowe jobs submit ds "Z80462.JCL(HELLO)" --vasc
+```
+
+We could also perform this step in piecemeal to get the output from a specific spool file. See the next figure for an example of the upcoming commands. To submit the job and wait for it to enter OUTPUT status, issue:
+
+```
+zowe jobs submit ds "Z80462.JCL(HELLO)" --wfo
+```
+
+To list spool files associated with this job id, issue:
+
+```
+zowe jobs list sfbj JOB00906
+```
+
+where `JOB00906` was returned from the previous command.
+	
+To view a specific spool file (COBRUN:SYSOUT), issue:
+
+```
+zowe jobs view sfbi JOB00906 105
+```
+
+where `JOB00906` and `105` are obtained from the previous commands.
+
+![](Images/zowe-jobs-submit-ds-and-view-spool-output.png)
+
+*Figure  34.  Submit a job, wait for it to complete, then list spool files for the job, and view a specific spool file*
+
+If desired, you can also easily submit a job, wait for it to complete, and download the spool content using the following command (see the following figure for the completed state):
+
+```
+zowe jobs submit ds "Z80462.JCL(HELLO)" -d .
+```
+
+![](Images/zowe-jobs-submit-ds-and-download-spool-output.png)
+
+*Figure  35.  Submit a job, wait for it to complete, download and view spool files*
+
+The Zowe CLI was built with scripting in mind. For example, you can use the `--rfj` flag to receive output in JSON format for easy parsing. See the next figure for an example.
+
+![](Images/zowe-jobs-submit-ds-rfj.png)
+
+*Figure  36.  The `--rfj` flag allows for easy programmatic usage*
+
+### Zowe CLI - Programmatic Usage
+In this section, we will leverage the Zowe CLI programmatically to automate submitting the JCL to compile, link, and run the COBOL program and downloading the spool output. Once you have the content locally you could use any number of distributed scripting and testing tools to eliminate the need to manually review the spool content itself. Historically, in Mainframe we use REXX EXEC etc. for automation, but today we are going to use CLI and distributed tooling.
+
+1. Since we already have Node and npm installed, let’s just create a node project for our automation. To initialize a project, issue `npm init` in your project’s folder and follow the prompts. You can accept the defaults by just pressing enter. Only the description and author fields should be changed. See the following figure.
+
+![](Images/npm-init-example.png)
+
+*Figure  37.  Use of `npm init` to create `package.json` for the project*
+
+2. Now that we have our `package.json` simply replace the `test` script with a `clg` script that runs the following zowe command (replace `Z80462` with your high level qualifier):
+
+```
+zowe jobs submit ds 'Z80462.JCL(HELLO)' -d .
+```
+
+You can name the script whatever you want. I only suggested `clg` because the `CLG` in the `IGYWCLG` proc (which is what the JCL leverages) stands for compile, link, go. Now, simply issue `npm run clg` in your terminal to leverage the automation to compile, link and run the COBOL program and download the output for review. An example of the completed `package.json` and command execution are shown in the following figure. 
+
+![](Images/npm-run-clg.png)
+
+*Figure  38.  Final `package.json` and `npm run clg` execution*
+
+3. If you prefer a graphical trigger, you can leverage VS Code as shown in the following figure. Essentially, the CLI enables you to quickly build your own buttons for your custom z/OS tasks. You could also invoke a script rather than a single command to accomodate more complex scenarios.
+
+![](Images/npm-run-clg-button.png)
+
+*Figure  39.  `clg` task triggered via button*
 
 \newpage
 
@@ -1626,7 +2142,7 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
 1. If not already, open VSCode and select Zowe Explorer from the left sidebar.
 
-**Note** : If you are opening a new instance of VSCode (i.e. you closed out of it after the previous usage), you may need to 'Select a filter' again. You can do so by selecting the search icon () next to your named connection in the DATA SETS section and then reselecting the filter previously used. It should be in the listed filters after you have selected the search symbol.
+**Note** : If you are opening a new instance of VSCode (i.e. you closed out of it after the previous usage), you may need to 'Select a filter' again. You can do so by selecting the search icon ![](Images/image132.png) next to your named connection in the DATA SETS section and then reselecting the filter previously used. It should be in the listed filters after you have selected the search symbol.
 
  
 
@@ -2195,7 +2711,7 @@ This may seem complex, but compare it to this Java pseudo-code:
 
 ```
 for(int counter = 0; counter < 11; counter++){
-    for(int counter-2 = 0; counter < 5; counter++{
+    for(int counter2 = 0; counter2 < 5; counter2++{
        //move counter to msg-to-write
        //write print-rec
     }
@@ -2392,6 +2908,7 @@ PRINT-REC is opened for output resulting in PRINT-REC FROM following through wit
 ## Lab
 
 This lab utilizes two COBOL programs, CBL0004 and CBL0005, located within your id.CBL data set, as well as two JCL jobs, CBL0004J and CBL0005J, located within your id.JCL data set.  The JCL jobs are used to compile and execute the COBOL programs, as discussed in previous chapters.
+
 #### Using VSCode and Zowe Explorer
 
 1. Submit job: CBL0004J
@@ -2759,6 +3276,7 @@ The sign condition determines whether the algebraic value of a numeric operand i
 ## Lab
 
 This lab requires two COBOL programs, CBL0006 and CBL0007 and two respective JCL Jobs, CBL0006J and CBL0007J, to compile and execute the COBOL programs. All of which are provided to you in your VSCode - Zowe Explorer.
+
 #### Using VSCode and Zowe Explorer:
 
 1. Take a moment and look over the source code of the two COBOL programs provided: CBL0006 and CBL0007. 
@@ -2985,6 +3503,7 @@ The WRITE-TLIMIT-TBALANCE paragraph shown in Figure  5. is positioned within the
 ## Lab
 
 This lab requires two COBOL programs, CBL0008 and CBL0009 and two respective JCL Jobs, CBL0008J and CBL0009J, to compile and execute the COBOL programs. All of which are provided to you in your VSCode - Zowe Explorer.
+
 #### Using VSCode and Zowe Explorer
 
 1. Take a moment and look over the source code of the two COBOL programs provided: CBL0008 and CBL0009.
@@ -3062,9 +3581,11 @@ Data such as numerical values and text are internally represented by zeros and o
 ### Numerical value representation
 
 COBOL has five computational (numerical) value representations.  The awareness of these representations is important due to two main reasons.  The first reason being, when a COBOL program needs to read or write data, it needs to understand how data is represented in the dataset.  The second reason is when there are specific requirements regarding the precision and range of values being processed.  The following sections describe each computational representation keyword.
+
 #### COMP-1
 
 This is also known as a single-precision floating point number representation.  Due to the floating-point nature, a COMP-1 value can be very small and close to zero, or it can be very large (about 10 to the power of 38).  However, a COMP-1 value has limited precision.  This means that even though a COMP-1 value can be up to 10 to the power of 38, it can only maintain about seven significant decimal digits.  Any value that has more than seven significant digits are rounded.  This means that a COMP-1 value cannot exactly represent a bank balance like $1,234,567.89 because this value has nine significant digits.  Instead, the amount is rounded.  The main application of COMP-1 is for scientific numerical value storage as well as computation.
+
 #### COMP-2
 
 This is also known as a double-precision floating point number representation.  COMP-2 extends the range of value that can be represented compared to COMP-1.  COMP-2 can represent values up to about 10 to the power of 307.  Like COMP-1, COMP-2 values also have a limited precision.  Due to the expanded format, COMP-2 has more significant digits, approximately 15 decimal digits.  This means that once a value reaches certain quadrillions (with no decimal places), it can no longer be exactly represented in COMP-2.
@@ -3072,6 +3593,7 @@ This is also known as a double-precision floating point number representation.  
  
 
 COMP-2 supersedes COMP-1 for more precise scientific data storage as well as computation.  Note that COMP-1 and COMP-2 have limited applications in financial data representation or computation.
+
 #### COMP-3
 
 This is also known as packed BCD (binary coded decimal) representation.  This is, by far, the most utilized numerical value representation in COBOL programs.  Packed BCD is also somewhat unique and native to mainframe computers such as the IBM z architecture.
@@ -3079,9 +3601,11 @@ This is also known as packed BCD (binary coded decimal) representation.  This is
  
 
 Unlike COMP-1 or COMP-2, packed BCD has no inherent precision limitation that is independent to the range of values.  This is because COMP-3 is a variable width format that depends on the actual value format.  COMP-3 exactly represents values with decimal places.  A COMP-3 value can have up to 31 decimal digits.
+
 #### COMP-4
 
 COMP-4 is only capable of representing integers.  Compared to COMP-1 and COMP-2, COMP-4 can store and compute with integer values exactly (unless a division is involved).  Although COMP-3 can also be used to represent integer values, COMP-4 is more compact.
+
 #### COMP-5
 
 COMP-5 is based on COMP-4, but with the flexibility of specifying the position of a decimal point.  COMP-5 has the space efficiency of COMP-4, and the exactness of COMP-3.  Unlike COMP-3, however, a COMP-5 value cannot exceed 18 decimal digits.
@@ -3091,11 +3615,13 @@ COMP-5 is based on COMP-4, but with the flexibility of specifying the position o
 ### Text representations
 
 COBOL programs often need to represent text data such as names and addresses.
+
 #### EBCDIC
 
 Extended Binary Coded Decimal Interchange Code (EBCDIC) is an eight binary digits character encoding standard, where the eight digital positions are divided into two pieces.  EBCDIC was devised in the early 1960’s for IBM computers.  EBCDIC is used to encode text data so that text can be printed or displayed correctly on devices that also understand EBCDIC.   
 
 #### ASCII
+
 American Standard Code for Information Interchange, ASCII, is another binary digit character encoding standard. 
 
 #### EBCDIC vs ASCII
@@ -3276,7 +3802,7 @@ Example 3. shows three COBOL functions, MEAN, MEDIAN, and RANGE where the arithm
 01  Median-Tax      Pic 99v999.
 01  Tax-Range       Pic 99v999.
 . . .
-    Compute Ave-Tax      = Function Mean   (Tax-S Tax-T Tax-W Tax-   B)
+    Compute Ave-Tax      = Function Mean   (Tax-S Tax-T Tax-W Tax-B)
     Compute Median-Tax   = Function Median (Tax-S Tax-T Tax-W Tax-B)
     Compute Tax-Range    = Function Range  (Tax-S Tax-T Tax-W Tax-B)
 ```
@@ -3355,6 +3881,7 @@ Reference modification, LNAME(1:1), would return only the first character of dat
 This lab contains data that includes a last name, where last name is all upper-case.  It demonstrates the use of intrinsic functions together with reference modification to lower-case the last name characters, except the first character of the last name.
 
 This lab requires two COBOL programs, CBL0011 and CBL0012 and two respective JCL Jobs, CBL0011J and CBL0012J, to compile and execute the COBOL programs. All of which are provided to you in your VSCode - Zowe Explorer.
+
 #### Using VSCode and Zowe Explorer
 
 1. Submit job, CBL0011J.
@@ -3749,6 +4276,7 @@ The Editor contains several dozen tools for doing efficient/effective developmen
  
 
 Before doing any development, you could press (simultaneously) **Ctrl+Shift+M.** This hot-key combination turns on COBOL line-number management - and will keep the sequence numbers in columns 7380 from shifting to the left and causing syntax errors.
+
 #### Basic source editing functionality:
 
 - How to change an existing line:
@@ -4242,6 +4770,7 @@ The first thing you will want to do with an open COBOL program file is to naviga
 ### Working with COBOL source - Prefix Area
 
 The ISPF editor contains several dozen tools for doing efficient/effective development work with COBOL programs.  All are easy to learn, but in this section will concentrate on the tools & editing techniques needed for introductory COBOL programming.
+
 #### Basic source editing functionality (see Figure  14. )
 
 - Change an existing line:

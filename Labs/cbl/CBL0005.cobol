@@ -1,7 +1,7 @@
       *-----------------------
        IDENTIFICATION DIVISION.
       *-----------------------
-       PROGRAM-ID.    CBL0004
+       PROGRAM-ID.    CBL0005
        AUTHOR.        Otto B. Formatted
       *--------------------
        ENVIRONMENT DIVISION.
