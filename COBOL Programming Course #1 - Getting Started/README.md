@@ -4,12 +4,18 @@
 
 # COBOL Programming Course
 
-This project is a set of training materials and labs for COBOL on z/OS.
+This project is a set of training materials and labs for a "Getting Started" level course on COBOL.
 
 ## How to use
 
-The following books are available within this repository. To get started, follow the steps in their README.
-[COBOL Programming Course #1 - Getting Started]
+To begin, select a recent [release](https://github.com/openmainframeproject/cobol-programming-course/releases) of the course. Under a given release, you should see two assets.
+
+- The COBOL Programming with VSCode PDF asset contains the course instructions.
+- The Source code asset contains everything that was in the project when the release was published.
+
+To complete the course, you will also need to do one of the following: 
+- Select a [provider](#providers) below and follow their registration process. Once complete, you should be given system details to use in the course.
+- Upload the source code for the course (located in the Labs folder) to your mainframe environment.
 
 If you run into any issues, please don't hesitate to reach out on our [slack channel](https://openmainframeproject.slack.com/archives/C011NE32Z1T).
 
