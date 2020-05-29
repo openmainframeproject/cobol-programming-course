@@ -1,3 +1,24 @@
+---
+geometry:
+- margin=1in
+header-includes:
+- \lstset{basicstyle=\ttfamily,
+    stepnumber=2,
+    numbersep=5pt,
+    backgroundcolor=\color{black!10},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=true,
+    breakautoindent=true,
+    linewidth=\textwidth}
+- \hypersetup{colorlinks=true,
+              linkcolor=blue}
+---
+\newpage
 # Testing
 
 In this chapter, we focus on the importance of thoroughly testing software to ensure its quality.  No language or program is exempt from the importance of testing and automated testing, including programs written in COBOL.  The chapter explains how this can only be achieved in an effective and efficient way by automating the testing as part of a continuous delivery pipeline and introduces a framework that can enable such automation.
