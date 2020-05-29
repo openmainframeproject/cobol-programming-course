@@ -5,7 +5,7 @@ This directory contains implementations of COBOL Programming Course #1 using com
 ## How to get started
 
 There are currently no official releases of COBOL Programming Course #1 using commercial tooling. All content remains in development. However, you can view and contribute to the following implementations:
-- [IBM Developer for z/OS](IBM%20Developer%20for%20zOS/COBOL%20Programming%20Course%20#1%20-%20Getting%20Started%20-%20IDz.md)
+- [IBM Developer for z/OS](IBM%20Developer%20for%20zOS/COBOL%20Programming%20Course%20%231%20-%20Getting%20Started%20-%20IDz.md)
 
 ## Providers
 
