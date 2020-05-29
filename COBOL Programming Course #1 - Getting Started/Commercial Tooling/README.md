@@ -1,6 +1,6 @@
 # COBOL Programming Course #1 - Getting Started - Commercial Tooling
 
-This directory contains implementations of COBOL Programming Course #1 using commercial tooling. Neither this project nor Open Mainframe Project reviews, maintains, or endorses any one of these commercial tools. If you would like to add your implementation of the course using commercial tooling, feel free to open a pull request to have it included.
+This directory contains implementations of COBOL Programming Course #1 using commercial tooling. Neither this project nor Open Mainframe Project endorses any one of these commercial tools. If you would like to add your implementation of the course using commercial tooling, feel free to open a pull request to have it included.
 
 ## How to get started
 
