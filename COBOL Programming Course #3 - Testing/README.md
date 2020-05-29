@@ -4,7 +4,7 @@ This project is a set of training materials and labs for testing COBOL applicati
 
 ## How to get started
 
-There are currently no official releases of COBOL Programming Course #3 - Testing. All content remains in development. We encourage you to view and contribute to the [book](COBOL%20Programming%20Course%20#3%20-%20Testing.md) :)
+There are currently no official releases of COBOL Programming Course #3 - Testing. All content remains in development. We encourage you to view and contribute to the [book](COBOL%20Programming%20Course%20%233%20-%20Testing.md) :)
 
 If you run into any issues, please don't hesitate to reach out on our [slack channel](https://openmainframeproject.slack.com/archives/C011NE32Z1T).
 

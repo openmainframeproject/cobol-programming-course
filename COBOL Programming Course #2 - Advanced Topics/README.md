@@ -4,7 +4,7 @@ This project is a set of training materials and labs for an Advanced Topics cour
 
 ## How to get started
 
-There are currently no official releases of COBOL Programming Course #2 - Advanced Topics. All content remains in development. We encourage you to view and contribute to the [book](COBOL%20Programming%20Course%20#2%20-%20Advanced%20Topics.md) :)
+There are currently no official releases of COBOL Programming Course #2 - Advanced Topics. All content remains in development. We encourage you to view and contribute to the [book](COBOL%20Programming%20Course%20%232%20-%20Advanced%20Topics.md) :)
 
 If you run into any issues, please don't hesitate to reach out on our [slack channel](https://openmainframeproject.slack.com/archives/C011NE32Z1T).
 
