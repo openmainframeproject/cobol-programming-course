@@ -15,16 +15,28 @@
       *-------------
        FILE SECTION.
        FD  PRINT-LINE RECORDING MODE F.
+      *FD -- describes the layout of PRINT-LINE file,
+      *including level numbers, variable names, data types and lengths
+      *
        01  PRINT-REC.
            05  ACCT-NO-O      PIC X(8).
            05  FILLER         PIC X(02) VALUE SPACES.
+      *    FILLER -- COBOL reserved word used as data name to remove 
+      *    the need of variable names only for inserting spaces
+      *
            05  LAST-NAME-O    PIC X(20).
            05  FILLER         PIC X(02) VALUE SPACES.
+      *    SPACES -- used for structured spacing data outputs rather
+      *    than using a higher PIC Clause length as in CBL0001.cobol,
+      *    which makes a good design practice and a legible output
+      *
            05  ACCT-LIMIT-O   PIC ZZ,ZZZ,ZZ9.99.
+      *    PIC ZZ,ZZZ,ZZ9.99 -- allows values of different amounts of
+      *    digits do be input, replacing zeros with spaces
+      *
            05  FILLER         PIC X(02) VALUE SPACES.
            05  ACCT-BALANCE-O PIC ZZ,ZZZ,ZZ9.99.
            05  FILLER         PIC X(02) VALUE SPACES.
-      *
        FD  ACCT-REC RECORDING MODE F.
        01  ACCT-FIELDS.
            05  ACCT-NO            PIC X(8).
@@ -41,7 +53,7 @@
       *
        WORKING-STORAGE SECTION.
        01 FLAGS.
-         05 LASTREC           PIC X VALUE SPACE.
+           05 LASTREC         PIC X VALUE SPACE.
       *
        01  HEADER-1.
            05  FILLER         PIC X(20) VALUE 'Financial Report for'.
@@ -78,6 +90,10 @@
            05  FILLER         PIC X(13) VALUE '-------------'.
            05  FILLER         PIC X(40) VALUE SPACES.
       *
+      *HEADER -- structures for report or column headers,   
+      *that need to be setup in WORKING-STORAGE so they can be used
+      *in the PROCEDURE DIVISION 
+      *
        01 WS-CURRENT-DATE-DATA.
            05  WS-CURRENT-DATE.
                10  WS-CURRENT-YEAR         PIC 9(04).
@@ -94,6 +110,9 @@
        OPEN-FILES.
            OPEN INPUT  ACCT-REC.
            OPEN OUTPUT PRINT-LINE.
+       OPEN-FILES-END.
+      *OPEN-FILES-END -- consists of an empty paragraph suffixed by
+      *-END that ends the past one and serves as a visual delimiter
       *
        WRITE-HEADERS.
            MOVE FUNCTION CURRENT-DATE TO WS-CURRENT-DATE-DATA.
@@ -110,11 +129,17 @@
       *
        READ-NEXT-RECORD.
            PERFORM READ-RECORD
+      *    PERFORM -- in this case transfers control to another
+      *    paragraph of the code, executes it and returns control to
+      *    the following line.
+      *
             PERFORM UNTIL LASTREC = 'Y'
+      *     here PERFORM allows a loops to be entered   
+      *
             PERFORM WRITE-RECORD
             PERFORM READ-RECORD
             END-PERFORM
-           .
+            .
       *
        CLOSE-STOP.
            CLOSE ACCT-REC.
