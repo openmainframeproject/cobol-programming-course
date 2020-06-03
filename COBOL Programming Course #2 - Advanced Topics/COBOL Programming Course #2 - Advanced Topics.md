@@ -19,5 +19,10 @@ header-includes:
               linkcolor=blue}
 ---
 \newpage
-# Advanced Topic #1
-Coming soon!
+# COBOL Challenges
+
+This section contains exercises that test your ability to resolve bugs and other issues in COBOL programs.
+
+## COBOL Challenge 1
+
+In this challenge, we take an existing program from the previous section of the course and enhance a report, adding in a few bugs to tackle along the way. The aim of this section is to walk you through the process of resolving those errors.  
