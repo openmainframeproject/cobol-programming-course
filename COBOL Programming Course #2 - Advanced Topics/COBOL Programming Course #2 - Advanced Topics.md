@@ -45,4 +45,6 @@ He runs his usual reports and sees the following:
 
 Clearly, Mari’s changes to the program that generates the reports have broken something.
 
-Can you fix the code to get the correct result? The new source code is named CBL0106 and the JCL is called CBL0106J. You can find them in the github repository for the COBOL course, in the folder **/Challenges/Debugging**.
+Can you fix the code to get the correct result? The new source code is named **CBL0106** and the JCL is **CBL0106J**. In case you get stuck, the solution is in the file **CBL0106C**. 
+
+You can find them in the github repository for the COBOL course, in the subfolder **/COBOL Programming Course #2 - Advanced Topics/Challenges/Debugging**.
