@@ -29,7 +29,7 @@ Happy Coding!
 
 \newpage
 
-## COBOL Challenge 1
+## COBOL Challenge - Debugging
 
 It is 2020 in Washington, D.C. John Doe runs a program which provides financial reports on US Presidents and tallies the number of reports from the state of Virginia. Everything seems OK. (see below)
 
