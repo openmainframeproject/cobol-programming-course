@@ -36,6 +36,12 @@
                10  STREET-ADDR    PIC X(25).
                10  CITY-COUNTY    PIC X(20).
                10  USA-STATE      PIC X(15).
+                   88  STATE      VALUE 'Virginia'.
+      *    Level-number 88 declares a conditional data-name called STATE
+      *    which is associated with data-name USA-STATE.
+      *    STATE becomes TRUE when 'Virginia' is put into USA-STATE.
+      *    STATE is used in the parapgraph IS-STATE-VIRGINIA.
+      *
            05  RESERVED           PIC X(7).
            05  COMMENTS           PIC X(50).
       *
@@ -136,9 +142,10 @@
            END-READ.
       *
        IS-STATE-VIRGINIA.
-           IF USA-STATE = 'Virginia' THEN
-              ADD 1 TO VIRGINIA-CLIENTS.
+           IF STATE ADD 1 TO VIRGINIA-CLIENTS.
            END-IF.
+      *    When the current value of USA-STATE equals 'Virginia' 
+      *    the conditional data-name STATE is TRUE.
       *
        WRITE-RECORD.
            MOVE ACCT-NO      TO  ACCT-NO-O.
