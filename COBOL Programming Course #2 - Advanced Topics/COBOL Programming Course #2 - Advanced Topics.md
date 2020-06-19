@@ -33,7 +33,7 @@ Happy Coding!
 
 It is 2020 in Washington, D.C. John Doe runs a program which provides financial reports on US Presidents and tallies the number of reports from the state of Virginia. Everything seems OK. (see below)
 
-![](Images\cobolch1-img1.png)
+![](Images/cobolch1-img1.png)
 
 John is satisfied, as he can see that everything is working as it should be. He calls it a day and goes home.
 
@@ -41,7 +41,7 @@ The next day, when he comes back to the office, his colleague Mari tells him “
 
 He runs his usual reports and sees the following:
 
-![](Images\cobolch1-img2.png)
+![](Images/cobolch1-img2.png)
 
 Clearly, Mari’s changes to the program that generates the reports have broken something.
 
