@@ -102,6 +102,8 @@ TOTAL RECOVERIES: 00007
 ![](Images/cobolchCOV19-img4.gif)
 
 I hope this could be a good COBOL challenge to anybody who is willing to try.
-If you want to check my solution, read all about it [here](https://medium.com/@jessielaine.punongbayan/solution-covid-19-reports-cobol-challenge-6c509579e3fe?source=friends_link&sk=5a662034a03c91d639b77267ed6abfc9).
+If you want to check the solution, read all about it [here](https://medium.com/@jessielaine.punongbayan/solution-covid-19-reports-cobol-challenge-6c509579e3fe?source=friends_link&sk=5a662034a03c91d639b77267ed6abfc9).
 
 Happy Coding! 😉
+
+_Disclaimer: This challenge is also posted in [Medium.com](https://medium.com/@jessielaine.punongbayan/cobol-challenge-covid-19-reports-ee03a946bd23)._
