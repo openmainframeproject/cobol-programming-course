@@ -49,13 +49,13 @@ Can you fix the code to get the correct result? The new source code is named **C
 
 You can find them in the github repository for the COBOL course, in the subfolder **/COBOL Programming Course #2 - Advanced Topics/Challenges/Debugging**.
 
-# COBOL Challenge - The Covid 19 Reports
+# COBOL Challenge - The COVID-19 Reports
 
-Today, you are tasked to create a COVID-19 Summary Report of all the countries around the world. The information will come from COVID19API website.
+Today, you are tasked to create a COVID-19 Summary Report of all the countries around the world, using information from the COVID19API website.
 
-Here are the instructions:
+## Instructions
 
-- Extract the response from this API: https://api.covid19api.com/summary. You will receive a JSON file that is similar to the photo below:
+- Extract the response from this API: https://api.covid19api.com/summary. You will receive a JSON file that is similar to the image below:
 
 ![](Images/cobolchCOV19-img1.png)
 
@@ -63,17 +63,15 @@ Here are the instructions:
 
 ![](Images/cobolchCOV19-img2.png)
 
-- Using Zowe, Upload the CSV file that you have created to mainframe.
+- Using Zowe, upload the CSV file to the mainframe.
 
-`Hint: you can use the command zowe files ul ftds “file location” “dataset name”`
+**Hint:** You can use the command `zowe files ul ftds “file location” “dataset name”` to upload the CSV file to the mainframe.
 
-- Create a new member in your *.CBL Dataset to write your COBOL program.
+- Create a new member in your *.CBL data set to write your COBOL program.
 
-`Hint: This step can be done using Zowe Explorer and Zowe CLI`
+**Hint:** You can create a member using Zowe Explorer or Zowe CLI.
 
-- Begin writing your COBOL program
-
-- In your COBOL program, you have to read the uploaded CSV file and re-format it to display the contents like this:
+- Write a COBOL program that reads the uploaded CSV file and reformats it to display the contents like this:
 
 ```
 ********************************************************************
@@ -91,18 +89,23 @@ TOTAL RECOVERIES: 00007
 ********************************************************************
 ```
 
-- Optional: A more advance approach is to reformat it into a Report Form like this:
+- Compile and test your work.
+
+## Advanced Tasks
+
+If you want a more challenging approach, try the optional tasks below:
+
+- Reformat the data into a Report Form like this:
 
 ![](Images/cobolchCOV19-img3.png)
 
-- Compile and Test your work
-
-- Optional: Automate. Using NPM and Zowe CLI, Run all these steps and create a “one click” COBOL build similar to this.
+- Automate. Using NPM and Zowe CLI, run all these steps and create a “one click” COBOL build similar to this:
 
 ![](Images/cobolchCOV19-img4.gif)
 
-I hope this could be a good COBOL challenge to anybody who is willing to try.
-If you want to check the solution, read all about it [here](https://medium.com/@jessielaine.punongbayan/solution-covid-19-reports-cobol-challenge-6c509579e3fe?source=friends_link&sk=5a662034a03c91d639b77267ed6abfc9).
+## Solution
+
+To check the solution, refer to the blog post [here](https://medium.com/@jessielaine.punongbayan/solution-covid-19-reports-cobol-challenge-6c509579e3fe?source=friends_link&sk=5a662034a03c91d639b77267ed6abfc9).
 
 Happy Coding! 😉
 
