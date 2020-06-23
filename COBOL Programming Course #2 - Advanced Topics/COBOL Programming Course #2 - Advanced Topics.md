@@ -48,3 +48,65 @@ Clearly, Mari’s changes to the program that generates the reports have broken 
 Can you fix the code to get the correct result? The new source code is named **CBL0106** and the JCL is **CBL0106J**. In case you get stuck, the solution is in the file **CBL0106C**. 
 
 You can find them in the github repository for the COBOL course, in the subfolder **/COBOL Programming Course #2 - Advanced Topics/Challenges/Debugging**.
+
+# COBOL Challenge - The COVID-19 Reports
+
+Today, you are tasked to create a COVID-19 Summary Report of all the countries around the world, using information from the COVID19API website.
+
+## Instructions
+
+- Extract the response from this API: https://api.covid19api.com/summary. You will receive a JSON file that is similar to the image below:
+
+![](Images/cobolchCOV19-img1.png)
+
+- Convert that file to CSV format. It should look like this. In my example, I only chose the “Countries” part.
+
+![](Images/cobolchCOV19-img2.png)
+
+- Using Zowe, upload the CSV file to the mainframe.
+
+**Hint:** You can use the command `zowe files ul ftds “file location” “dataset name”` to upload the CSV file to the mainframe.
+
+- Create a new member in your *.CBL data set to write your COBOL program.
+
+**Hint:** You can create a member using Zowe Explorer or Zowe CLI.
+
+- Write a COBOL program that reads the uploaded CSV file and reformats it to display the contents like this:
+
+```
+********************************************************************
+DATE: 2020-04-22
+TIME: T16:54:5
+COUNTRY: "Antigua and Barbuda"
+COUNTRY CODE: "AG"
+SLUG: "antigua-and-barbuda"
+NEW CONFIRMED CASES: 00000
+TOTAL CONFIRMED CASES: 00023
+NEW DEATHS: 00000
+TOTAL DEATHS: 00003
+NEW RECOVERIES: 00004
+TOTAL RECOVERIES: 00007
+********************************************************************
+```
+
+- Compile and test your work.
+
+## Advanced Tasks
+
+If you want a more challenging approach, try the optional tasks below:
+
+- Reformat the data into a Report Form like this:
+
+![](Images/cobolchCOV19-img3.png)
+
+- Automate. Using NPM and Zowe CLI, run all these steps and create a “one click” COBOL build similar to this:
+
+![](Images/cobolchCOV19-img4.gif)
+
+## Solution
+
+To check the solution, refer to the blog post [here](https://medium.com/@jessielaine.punongbayan/solution-covid-19-reports-cobol-challenge-6c509579e3fe?source=friends_link&sk=5a662034a03c91d639b77267ed6abfc9).
+
+Happy Coding! 😉
+
+_Disclaimer: This challenge is also posted in [Medium.com](https://medium.com/@jessielaine.punongbayan/cobol-challenge-covid-19-reports-ee03a946bd23)._
