@@ -181,11 +181,10 @@ You are given a new set of data for The Unemployment Claims. Your tasks are as f
 
     ![](Images/cobolchClaims-img5.png)
 
-    ```
-    Hint: How can I accomplish this? By using the Zowe CLI NPM package, you can fire Zowe APIs that will submit your JCLs and get the results. From there, you can view the output and display it in your application. This article can provide a good example.
 
-    What APIs am I going to use? You will use the Jobs Submit API and View Jobs Spool or View Dataset API. For more information, please visit [this site](https://docs.zowe.org/stable/web_help/index.html).
-    ```
+    **Hint:** How can I accomplish this? By using the Zowe CLI NPM package, you can fire Zowe APIs that will submit your JCLs and get the results. From there, you can view the output and display it in your application. This article can provide a good example.
+
+    **Hint:** What APIs am I going to use? You will use the Jobs Submit API and View Jobs Spool or View Dataset API. For more information, please visit [this site](https://docs.zowe.org/stable/web_help/index.html).
 
 - _(Optional)_ Create a CI/CD process that will create a nightly build of your application. [This article](https://medium.com/modern-mainframe/beginners-guide-cobol-made-easy-leveraging-open-source-tools-eb4f8dcd7a98?source=friends_link&sk=443517b1feaba8e392f5807246c25ca4) can help explain that process.
 
