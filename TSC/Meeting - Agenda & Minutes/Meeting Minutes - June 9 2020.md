@@ -46,3 +46,6 @@ Monthly on second Tuesday
 
 #### How to access the Slack channel?
 Link to the channel is in the readme.md file of the repo and is also sent out in the registration email when you signup for system access
+
+#### Next Meeting
+Tues, July 14th 8 a.m PST / 11 a.m EST
