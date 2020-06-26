@@ -94,6 +94,8 @@
                10  WS-CURRENT-MINUTE       PIC 9(02).
                10  WS-CURRENT-SECOND       PIC 9(02).
                10  WS-CURRENT-MILLISECONDS PIC 9(02).
+      *    This data layout is organized according to the ouput
+      *    format of the FUNCTION CURRENT-DATE.
       *
       *------------------
        PROCEDURE DIVISION.
@@ -104,6 +106,10 @@
       *
        WRITE-HEADERS.
            MOVE FUNCTION CURRENT-DATE TO WS-CURRENT-DATE-DATA.
+      *         The CURRENT-DATE function returns an alphanumeric value
+      *         that represents the calendar date and time of day
+      *         provided by the system on which the function is
+      *         evaluated.    
            MOVE WS-CURRENT-YEAR  TO HDR-YR.
            MOVE WS-CURRENT-MONTH TO HDR-MO.
            MOVE WS-CURRENT-DAY   TO HDR-DAY.
@@ -139,6 +145,11 @@
            IF USA-STATE = 'Virginia' THEN
               ADD 1 TO VIRGINIA-CLIENTS
            END-IF.
+      *    Boolean logic -- when the conditional expression 
+      *    USA-STATE = 'Virginia' is true, the program
+      *    counts one more client from Virginia
+      *    Note -- the inclusion of the word THEN is optional
+      *    END-IF -- explicitly terminates the IF statement 
       *
        WRITE-RECORD.
            MOVE ACCT-NO      TO  ACCT-NO-O.
