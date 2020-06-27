@@ -8,7 +8,7 @@
        77  WHY        PIC X(30).
        77  RATE       PIC 9(3).
        77  HOURS      PIC 9(3).
-       77  GROSS-PAY  PIC 9(5).
+       77  GROSS-PAY  PIC X(5).
 
        PROCEDURE DIVISION.
       ****** COBOL MOVE statements - Literal Text to Variables
