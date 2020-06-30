@@ -30,7 +30,6 @@
       *    than using a higher PIC Clause length as in CBL0001.cobol,
       *    which makes a good design practice and a legible output
       *
-       01 WS-CURRENT-DATE-DATA.
            05  ACCT-LIMIT-O   PIC $$,$$$,$$9.99.
       *    The repeated $ characters revert to spaces and then one $
       *    in front of the printed amount.
@@ -95,6 +94,7 @@
       *that need to be setup in WORKING-STORAGE so they can be used
       *in the PROCEDURE DIVISION 
       *
+       01  WS-CURRENT-DATE-DATA.
            05  WS-CURRENT-DATE.
                10  WS-CURRENT-YEAR         PIC 9(04).
                10  WS-CURRENT-MONTH        PIC 9(02).
