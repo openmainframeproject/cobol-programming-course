@@ -47,7 +47,7 @@ YouTube Video: [So you want to learn COBOL?](https://youtu.be/77o14aHUuSo)
 
 [IBM DFSORT Application Programming Guide v2r4](https://www-01.ibm.com/servers/resourcelink/svc00100.nsf/pages/zOSV2R4sc236878/$file/icea100_v2r4.pdf) - Full Manual
 
- Note: IBM DFSORT's ICETOOL can often replace the need to write COBOL program(s), when needing to (optionally) sort and tranform data contained in one or more input files to produce an output file.  All user guides written by Frank L. Yaeger on this subject are excellent.  Access the entire collection, here.
+Note: IBM DFSORT's ICETOOL can often replace the need to write COBOL program(s), when needing to (optionally) sort and tranform data contained in one or more input files to produce an output file.  All user guides written by Frank L. Yaeger on this subject are excellent.
 
 ### Additional Resources
 
