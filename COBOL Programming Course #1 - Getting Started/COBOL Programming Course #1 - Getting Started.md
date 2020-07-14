@@ -2084,7 +2084,7 @@ COBOL inputs and outputs must be opened to connect the selected internal name to
 
 COBOL inputs and outputs should be closed at program completion or better yet when the program is done reading from or writing to the internal file name.  Figure  5. closes the internal file name ACCT-REC and internal file name PRINT-LINE, then stops processing, STOP RUN.
 
-![](Images/image129.jpg)
+![](Images/image129.png)
 
 *Figure  5.  CLOSE-STOP*
 
@@ -2131,7 +2131,7 @@ Once all statements in the WRITE-RECORD paragraph are executed, then control is 
 
 Again, the READ-RECORD paragraph executes the COBOL READ statement, resulting in the external sequential file populating the variables associated with ACCT-REC internal file name. If ‘AT END’ of records read, Y is moved into the LASTREC variable, then returns control to READ-NEXT-RECORD paragraph.  The READ-NEXT-RECORD paragraph would continue the iterative process UNTIL Y is found in the LASTREC variable.  Observe #3 in Figure  7.
 
-![](Images/image131.jpg)
+![](Images/image131.png)
 
 *Figure  7.  Iterative processing*
 
@@ -3485,14 +3485,14 @@ In Figure  3. the READ-NEXT-RECORD paragraph, located within the PROCEDURE DIVIS
 
 Figure  4. is an example of two COMPUTE statements in the paragraph, LIMIT-BALANCE-TOTAL.  Notice that the results of the COMPUTE statements are to add client ACCT-LIMIT to the current TLIMIT and add client ACCT-BALANCE to TBALANCE totals each time the paragraph is executed, which is one time for each client record read in our example.
 
-![](Images/image162.jpg)
+![](Images/image162.png)
 
 *Figure  4.  COMPUTE statements*
 
 
 The WRITE-TLIMIT-TBALANCE paragraph shown in Figure  5. is positioned within the PROCEDURE DIVISION to be executed immediately after all records are read and before the final paragraph that closes the files and terminates program execution.
 
-![](Images/image163.jpg)
+![](Images/image163.png)
 
 *Figure  5.  WRITE-TLIMIT-TBALANCE*
 
