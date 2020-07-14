@@ -1861,7 +1861,7 @@ The relationships among all data to be used in a program is defined in the DATA 
 
 A structured level number hierarchic relationship is available to all DATA DIVISION sections.  Figure  1. shows the level number hierarchic relationship with programmer chosen level numbers, variable names and PIC clauses in the File Section where “01  PRINT-REC” references the following “05”-level group of variables and the “01  ACCT-FIELDS” references the following “05"-level group of variables.  Observe 05-level CLIENT-ADDR is further subdivided into several 10-level names.  COBOL code referencing the name CLIENT-ADDR includes the 10-level names.
 
-![](Images/image107.jpg)
+![](Images/image107.png)
 
 *Figure  1.  Level number hierarchic relationship*
 
@@ -1873,7 +1873,7 @@ After a record is defined, it can be subdivided to provide more detailed data re
 
 MOVE and COMPUTE reserved word statements alter the value of variable names.  Each MOVE shown in Figure  2. results in a literal stored in a 77-level variable name.  The COMPUTE statement, also shown in Figure  2. , stores the value of `HOURS * RATE` in `GROSS-PAY.`   All three variable names are assigned a numeric value data type using PIC 9, which is necessary for the operation of the COMPUTE statement.
 
-![](Images/image108.jpg)
+![](Images/image108.png)
 
 *Figure  2.  MOVE and COMPUTE example*
 
@@ -2003,7 +2003,7 @@ The ENVIRONMENT DIVISION and DATA DIVISION describes the inputs and outputs used
 
 The FILE-CONTROL paragraph associates each COBOL internal file name with an external dataset name.   Within the FILE-CONTROL paragraph, the SELECT clause creates an internal file name and the ASSIGN clause creates an external dataset name.  Figure  1. shows the PRINT-LINE internal file name associated with the PRTLINE external dataset name and the ACCT-REC internal file name associated with the ACCTREC external dataset name.  Section titled Assign Clause further explains the SELECT ASSIGN TO relationship.
 
-![](Images/image125.jpg)
+![](Images/image125.png)
 
 *Figure  1.  FILE-CONTROL*
 
@@ -2013,7 +2013,7 @@ While SELECT gives a name to an internal file and ASSIGN gives a name to the ext
 
 The COBOL reserved word 'FD' is used to give the COBOL compiler more information about internal file names in the FILE-SECTION.  The code below the FD statement is the record layout.  The record layout consists of level numbers, variable names, data types, and lengths as shown in Figure  2.
 
-![](Images/image126.jpg)
+![](Images/image126.png)
 
 *Figure  2.  FILE-SECTION*
 
@@ -2076,7 +2076,7 @@ During COBOL program runtime, SELECT ASSIGN TO a JCL DDNAME is mandatory.  If th
 
 COBOL inputs and outputs must be opened to connect the selected internal name to the assigned external name.  Figure  4. opens the file name ACCT-REC as program input and file name PRINT-LINE as program output.
 
-![](Images/image128.jpg)
+![](Images/image128.png)
 
 *Figure  4.  OPEN-FILES*
 
@@ -2102,7 +2102,7 @@ When reading records, the program needs to first check for no records to be read
 
 READ-NEXT-RECORD repeatedly executes READ-RECORD and WRITE-RECORD until a last record is encountered.  When the last record is encountered, then CLOSE-STOP is executed stopping the program.
 
-![](Images/image130.jpg)
+![](Images/image130.png)
 
 *Figure  6.  Reading and writing records*
 
@@ -2843,7 +2843,7 @@ This section briefly reviews certain aspects of the ENVIRONMENT DIVISION for the
 
 The "File handling" section covered the SELECT and respective ASSIGN programmer chosen names, whereas this chapter focuses on output.  Figure  1. shows a coding example using PRINT-LINE as the programmer chosen COBOL internal file name for output.
 
-![](Images/image141.jpg)
+![](Images/image141.png)
 
 *Figure  1.  SELECT and ASSIGN*
 
@@ -2855,7 +2855,7 @@ The File Description (FD), previously described under the FILE-CONTROL paragraph
 
 Observe the data name FILLER.  While most data fields have unique names, FILLER is a COBOL reserved word data name, that is useful for output formatting.  This is in part because FILLER allocates memory space without the need for a name.  Also, FILLER allocated memory has a defined length in the output line and may contain spaces or any literal.  Figure  2. shows multiple VALUE SPACES for FILLER.  SPACES create white space between data-items in the output which is valuable in keeping the code readable.  More specifically in Figure  2. FILLER PIC X(02) VALUE SPACES, represents the output line containing two spaces.
 
-![](Images/image142.jpg)
+![](Images/image142.png)
 
 *Figure  2.  FILLER*
 
@@ -2911,7 +2911,7 @@ Writing report or column headers requires a structured output layout designed by
 
 HEADER-2 includes the year, month, day of the report together with FILLER area, creating blank spaces between the year, month, and day, as you can see in Figure  3.  Figure  4. is an example of the data name layout used to store the values of CURRENT-DATE.  The information COBOL provides in CURRENT-DATE is used to populate the output file in HEADER-2.
 
-![](Images/image144.jpg)
+![](Images/image144.png)
 
 *Figure  4.  CURRENT-DATE intrinsic function*
 
@@ -2920,7 +2920,7 @@ HEADER-2 includes the year, month, day of the report together with FILLER area, 
 
 Figures 1 through 4 are a designed data layout that includes a data line and report headers.  Using the storage mapped by the data line and report headers, COBOL processing logic can write the headers followed by each data line. Figure  5. is an example of an execution logic resulting used to write the header layout structure in a COBOL program.
 
-![](Images/image145.jpg)
+![](Images/image145.png)
 
 *Figure  5.  Execution logic to write header layout structure*
 
