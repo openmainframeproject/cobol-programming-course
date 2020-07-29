@@ -3587,7 +3587,7 @@ Just as in our decimal system, a binary integer is a sequence of binary digits 0
 
 ![](Images/binary-rep-of-21.png)
 
-On the IBM Mainframe system, the two’s complement form is used for the representation of binary integers. In this form, the leftmost bit is used to represent the sign of the number: 0 for positive and 1 for negative. For a positive number, the two’s complement form is simply the binary form of the number with leading zero(s). For a negative number, the two’s complement is obtained by writing out the positive value of the number in binary, then complementing each bit and finally adding 1 to the result. Assuming one byte of storage and b<sub>0</sub>b<sub>1</sub>b<sub>2</sub>b<sub>3</sub>b<sub>4</sub>b<sub>5</sub>b<sub>6</sub>b<sub>7</sub>??? are the bits, let us look at some examples.
+On the IBM Mainframe system, the two’s complement form is used for the representation of binary integers. In this form, the leftmost bit is used to represent the sign of the number: 0 for positive and 1 for negative. For a positive number, the two’s complement form is simply the binary form of the number with leading zero(s). For a negative number, the two’s complement is obtained by writing out the positive value of the number in binary, then complementing each bit and finally adding 1 to the result. Assuming one byte of storage and b<sub>0</sub>b<sub>1</sub>b<sub>2</sub>b<sub>3</sub>b<sub>4</sub>b<sub>5</sub>b<sub>6</sub>b<sub>7</sub> are the bits, let us look at some examples.
 
 ![](Images/twos-complement.png)
 
