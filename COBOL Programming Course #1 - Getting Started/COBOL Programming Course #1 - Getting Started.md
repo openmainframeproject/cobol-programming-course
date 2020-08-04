@@ -3613,8 +3613,8 @@ A423 is the hexadecimal equivalent of the decimal value 42019:
 
 Although data is encoded in binary on computers, it is rather cumbersome to work with binary.  The hexadecimal numerals provide a human friendly representation of the binary coded values. An understanding of this system is invaluable to the COBOL programmer as he designs, develops and tests code.  Often, hex dumps of the data in memory are used to debug a program and understand what is going on. The conversion between binary and hexadecimal system is easy as 2<sup>4</sup> = 16. Each hexadecimal digit represents 4 binary digits, also known as a nibble, which is half a byte.
 
-   - **To convert from hexadecimal to binary, replace each hexadecimal digit with its equivalent 4-bit binary representation**
-   - **To convert from binary to hexadecimal, replace every four consecutive binary digits by their equivalent hexadecimal digits, starting from the rightmost digit and adding zeros, on the left if necessary**
+   - To convert from hexadecimal to binary, replace each hexadecimal digit with its equivalent 4-bit binary representation
+   - To convert from binary to hexadecimal, replace every four consecutive binary digits by their equivalent hexadecimal digits, starting from the rightmost digit and adding zeros, on the left if necessary
 
 
 ![](Images/hex-binary-conversion.png)
@@ -3635,9 +3635,9 @@ For numerical representations, the last column is of particular interest here; t
 
 As a quick reminder, COBOL leverages numeric data with a PIC clause that can contain a 9, V and/or S. These symbols keep the number purely mathematical that can participate in arithmetic.                    
     
-   - **9 is used to indicate numeric data consisting of the digits from 0 to 9**
-   - **V indicates where the assumed decimal place is located**
-   - **S will remember the sign which is necessary if the data is negative**
+   - 9 is used to indicate numeric data consisting of the digits from 0 to 9
+   - V indicates where the assumed decimal place is located
+   - S will remember the sign which is necessary if the data is negative
 
 
 ![](Images/the-9-v-and-s.png)
@@ -3648,11 +3648,11 @@ Since the number of decimal places is determined and fixed in place by the V, th
 
 With this background, let us look at the numeric representations in COBOL:   
 
-   - **Zoned Decimal (Fixed Point)**
-   - **Packed Decimal (Fixed Point)**
-   - **Binary (Fixed Point)**
-   - **Single Precision Floating Point**
-   - **Double Precision Floating Point**
+   - Zoned Decimal (Fixed Point)
+   - Packed Decimal (Fixed Point)
+   - Binary (Fixed Point)
+   - Single Precision Floating Point
+   - Double Precision Floating Point
 
 
 #### Zoned Decimal Format
@@ -3667,9 +3667,9 @@ The zone portion is the ‘upper half byte’ and numeric portion is the ‘lowe
 
 As discussed earlier, the first two declarations above are unsigned, indicated by the absence of a S. Such numbers are ‘implied positive’. The next two declarations are explicitly signed by the symbol S and are capable of representing positive and negative numbers. The sign is represented by the rightmost zone bits (in the above example the F above the 5) and is determined as follows:
 
-  - **F indicates the number is unsigned**
-  - **C indicates the number is positive**
-  - **D indicates the number is negative**
+  - F indicates the number is unsigned
+  - C indicates the number is positive
+  - D indicates the number is negative
 
 ![](Images/zoned-decimal-values-table.png)
 
@@ -3687,11 +3687,11 @@ In the zoned decimal format, the rightmost zone bits determine the sign; the oth
 
 As we can observe, when the number is packed into a field that is larger than necessary to hold that number, it is padded with zeroes on the left.
 
-   - **Number 1                        will be stored as X’1F’              in 1 byte**
-   - **Number +12                      will be stored as X’012C’            in 2 bytes**
-   - **Number -123                     will be stored as X’123D’            in 2 bytes**
-   - **Number 1234 (unsigned)          will be stored as X’01234F’          in 3 bytes**
-   - **Number +12345                   will be stored as X’12345C’          in 3 bytes**
+   - Number 1                        will be stored as X’1F’              in 1 byte
+   - Number +12                      will be stored as X’012C’            in 2 bytes
+   - Number -123                     will be stored as X’123D’            in 2 bytes
+   - Number 1234 (unsigned)          will be stored as X’01234F’          in 3 bytes
+   - Number +12345                   will be stored as X’12345C’          in 3 bytes
 
 The COBOL syntax for this format is USAGE IS COMP-3 or just COMP-3.
 
@@ -3716,9 +3716,9 @@ The COBOL clauses for this format are COMP, COMP-4, COMPUTATIONAL or BINARY whic
 
 The PIC Clause determines the storage space:
 
-  - **PIC 9(1)   through PIC 9(4)     will reserve 2 bytes (Binary halfword)**
-  - **PIC 9(5)   through PIC 9(9)     will reserve 4 bytes (Binary fullword)**
-  - **PIC 9(10)  through PIC 9(18)    will reserve 8 bytes (Binary doubleword)**
+  - PIC 9(1)   through PIC 9(4)     will reserve 2 bytes (Binary halfword)
+  - PIC 9(5)   through PIC 9(9)     will reserve 4 bytes (Binary fullword)
+  - PIC 9(10)  through PIC 9(18)    will reserve 8 bytes (Binary doubleword)
 
   Next, let’s look at what numbers can be stored. For the COMP and COMP-4 fields, although the data is stored as binary numbers, the range is limited by the full value of the PIC Clause used in the field definition. The binary format, COMP-5 (also known as ‘Native Binary’) in which the PIC clause still defines the size of the field but the range of values that can be represented is much higher as every possible bit-value combination is valid. 
 
