@@ -38,7 +38,17 @@
                10  USA-STATE      PIC X(15).
            05  RESERVED           PIC X(7).
            05  COMMENTS           PIC X(50).
-      *
+      * The USAGE Clause specifies the storage of a data item,
+      * e.g USAGE IS COMP-3, or just COMP-3. 
+      * COMP-3 is the equivalent of packed-decimal, frequently used
+      * rather than COMP-1(floating-point), COMP-2(long floating-point)
+      * COMP-4(binary) and COMP-5(native binary).
+      * When no value for USAGE Clause is specified, Default value is 
+      * DISPLAY. To do an arithmetic operation with a DISPLAY number,
+      * the program must first convert the characters to a binary 
+      * number, execute the operation and convert it back,
+      * which is less eficient than a computational data type.  
+      * 
        WORKING-STORAGE SECTION.
        01  FLAGS.
            05 LASTREC          PIC X VALUE SPACE.
@@ -46,6 +56,9 @@
        01  TLIMIT-TBALANCE.
            05 TLIMIT              PIC S9(9)V99 COMP-3 VALUE ZERO.
            05 TBALANCE            PIC S9(9)V99 COMP-3 VALUE ZERO.
+      *    Hint: to know which character format is being used,
+      *    you can type HEX ON on the command line and compare to
+      *    a ASCII/EBCDIC Table. then HEX OFF to turn hex numbers off
       *
        01  HEADER-1.
            05  FILLER         PIC X(20) VALUE 'Financial Report for'.
