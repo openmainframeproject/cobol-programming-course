@@ -2158,7 +2158,7 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
 - CBL0002J
 
-- CBL0003J
+- CBL0033J
 
 ![](Images/image133.png)
 
@@ -2205,10 +2205,10 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
    - RUN:PRTLINE(103) is the COBOL program execution output (if correction is successful)
 
-10.  Submit job, JCL(CBL0003J), using the DATA SET section.
+10.  Submit job, JCL(CBL0033J), using the DATA SET section.
 
 
-11.  View CBL0003J ABENDU4038 output, using the JOBS section:
+11.  View CBL0033J ABENDU4038 output, using the JOBS section:
 
       - View the IGZ00355 abend message in RUN:SYSOUT(104) from the COBOL program execution output.
 
@@ -2220,7 +2220,7 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
  
 
-12.  Fix this error by editing JCL(CBL0003J):
+12.  Fix this error by editing JCL(CBL0033J):
 
      - Determine the DDNAME needed, but missing or misspelled. 
 
@@ -2228,17 +2228,17 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
  
 
-13.  Re-submit job, JCL(CBL0003J), using the DATA SET section.
+13.  Re-submit job, JCL(CBL0033J), using the DATA SET section.
 
  
 
-14.  View CBL0003J output using the JOBS section, your output should look like Figure  12.
+14.  View CBL0033J output using the JOBS section, your output should look like Figure  12.
 
      - RUN:PRTLINE - COBOL program execution output (if correction is successful)
 
 ![](Images/image138.png)
 
-*Figure  12.  RUN:PRTLINE(103) for JCL(CBL0003J)*
+*Figure  12.  RUN:PRTLINE(103) for JCL(CBL0033J)*
 
 **Lab hints**
 
@@ -2246,7 +2246,7 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
 ![](Images/image140.png)
 
-*Figure  13.  Error in id.JCL(CBL0003J).jcl*
+*Figure  13.  Error in id.JCL(CBL0033J).jcl*
 
 \newpage
 
@@ -2300,6 +2300,7 @@ In this chapter we discuss the concept of structured programming and how it rela
      - **Specifying the return value**
 
 - **Summary**
+- **Lab**
 
 
 ## Styles of programming
@@ -2777,6 +2778,33 @@ Finally, the RETURNING phrase is used to specify the variable that should be use
 ## Summary
 
 In summary, this chapter should provide the necessary foundation to understand structured programming and how it relates to COBOL and its importance to understanding and maintaining code.  Many examples of how, when and why to implement key techniques have been provided and explained for further understanding.  You should be able to identify the basic differences between structured programming (COBOL) and OO programming (Java).  You should also understand the general concept of the best practices in the structure of the Procedure Division with reference to the design and content of paragraphs, program control options and ways to call other programs within the same system.
+
+
+## Lab
+
+This lab utilizes COBOL program CBL0003, located within your id.CBL data set, as well as JCL job CBL0003J, located within your id.JCL data set.  The JCL jobs are used to compile and execute the COBOL programs, as discussed in previous chapters.
+
+#### Using VSCode and Zowe Explorer
+
+1. Take a moment and look over the source code of the COBOL program provided: CBL0003. 
+
+2. Compare CBL0003 with CBL0001 and CBL0002 from the previous lab. Do you notice the differences? 
+
+   a. Observe the new COUNTER line within the WORKING-STORAGE > DATA DIVISION.
+
+   b. Observe the paragraphs are numerated and they are all explicitly ended by a -END sentence.
+
+   b. Observe the new paragraphs READ-FIRST-RECORD, READ-TEN-RECORDS, READ-ANOTHER-RECORD, READ-NEXT-RECORDS and CALLING-SUBPROGRAM within the PRECEDURE DIVISION.
+
+   c. These paragraphs perform the same loop as in CBL0001, but using the PERFORM statement in different ways. The CALLING-SUBPROGRAM calls the HELLO program, already presented in the second Lab of this course.
+
+3. Submit job: CBL0003J. This JCL first compiles the program HELLO,
+then compiles CBL0003 and links the result of both compilations
+together. 
+
+4. View CBL0003J output using the JOBS section and open RUN:PRTLINE, observe the report is identical to CBL0001.
+
+5. View output of target program HELLO using the JOBS section and open RUN:SYSOUT. 
 
 \newpage
 
