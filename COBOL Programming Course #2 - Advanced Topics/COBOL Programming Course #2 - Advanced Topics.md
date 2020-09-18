@@ -20,6 +20,12 @@ header-includes:
 ---
 \newpage
 # COBOL Application Programming Interface (API)
+API is the acronym for Application Programming Interface.  An API allows two applications to communicate. We use API's everyday from our phones, personal computers, using a credit card to make a payment at a point of sale, etc.  
+
+Today's digital infrastructure is instrumented and interconnected.  It is the API's that enable the "instrumented" network to be "interconnected".  As a result, API has become a highly used acronym in the technology arena.  The phrase "API Economy" became strategic term since Forbes declared 2017 "The Year of the API Economy".
+
+Business application solutions were architected decades ago using programming language API's.  Long before API became a strategic technology category, mainframe application developers understood the acronym as a way to enable a programming language to communicate with other software.  The value of being a programmer in any specific programming language increased by understanding and using API's.
+
 - **Enterprise COBOL APIs**
      - **z/OS Middleware**
      - **COBOL API Communication with Middleware**
@@ -32,6 +38,26 @@ header-includes:
 
 - **Lab**
     - **Using VSCode and Zowe Explorer**
+
+## Enterprise COBOL APIs
+
+### z/OS Middleware
+
+### COBOL API Communication with Middleware
+
+### COBOL EXEC SQL
+
+### COBOL Data Items
+
+## SQL Capability within Enterprise COBOL
+
+### Enterprise COBOL Application Programming and SQL Guide
+
+### Db2 Data Base Administration (DBA) vs Application Programming
+
+## Lab
+
+### Using VSCode and Zowe Explorer
 
 \newpage
 # COBOL Challenges
