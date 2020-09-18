@@ -19,6 +19,21 @@ header-includes:
               linkcolor=blue}
 ---
 \newpage
+# COBOL Application Programming Interface (API)
+- **Enterprise COBOL APIs**
+     - **z/OS Middleware**
+     - **COBOL API Communication with Middleware**
+     - **COBOL EXEC SQL**
+     - **COBOL Data Items**
+
+- **SQL Capability within Enterprise COBOL**
+     - **Enterprise COBOL Application Programming and SQL Guide**
+     - **Db2 Data Base Administration (DBA) vs Application Programming**
+
+- **Lab**
+    - **Using VSCode and Zowe Explorer**
+
+
 # COBOL Challenges
 
 As you have now handled some basic exercises, we have prepared a new section containing more advanced exercises that test your ability to resolve bugs and other issues in COBOL programs. Each exercise will have a short description and a goal to be accomplished.
