@@ -524,9 +524,6 @@ This section introduces the Code4z extension package, in particular the COBOL La
 - **Syntax Highlighting and Coloring**
 - **Syntax and Semantic Check**
 - **Navigation of Code**
-     - **Breadcrumb View**
-     - **Outline View**
-     - **Shortcuts**
      - **Go To Definition**
      - **Find All References**
 - **Copybook Support**
@@ -535,7 +532,7 @@ This section introduces the Code4z extension package, in particular the COBOL La
 
 ## What is Code4z?
 
-Code4z is an all-in-one, open-source mainframe extension package for Visual Studio Code. The Code4z package contains extensions which provide language support for COBOL and High Level Assembler language, a debugger for COBOL programs running on a CICS region, as well as tools which enable developers to access mainframe data sets and CA Endevor code repositories using the Visual Studio Code interface. This guide focuses on the COBOL Language Support extension. The Zowe Explorer extension is also included in the Code4z package.
+Code4z is an all-in-one, open-source mainframe extension package for Visual Studio Code. The Code4z package contains extensions which provide language support for COBOL and High Level Assembler language, a debugger for COBOL programs, as well as tools which enable developers to access mainframe data sets and CA Endevor code repositories using the Visual Studio Code interface. This guide focuses on the COBOL Language Support extension. The Zowe Explorer extension is also included in the Code4z package.
 
 The COBOL Language Support extension leverages the Language Server Protocol to provide autocomplete, highlighting, and diagnostic features for COBOL code. Together with Zowe Explorer, you can load COBOL code from a mainframe data set, and edit it leveraging the LSP features of the extension. Once you finish editing, you can save the file back on the mainframe, and store a copy locally.
 
@@ -543,11 +540,11 @@ The Code4z Extension Pack can be installed into VS Code by searching the Extensi
 
 ## Known File Extensions
 
-Code4z recognises files with the extension .COB and .CBL as COBOL files. This applies to both local files and files held in a PDS on the mainframe. COBOL Language Support features are automatically enabled when you open any file with an extension identifying it as a COBOL file.
+Code4z recognizes files with the extensions .COB and .CBL as COBOL files. This applies to both local files and files held in a PDS on the mainframe. COBOL Language Support features are automatically enabled when you open any file with an extension identifying it as a COBOL file.
 
 ## Syntax Highlighting and Coloring
 
-The Code4z package enables coloring of keywords, paragraphs, and variables in different colors to make the code easier to navigate. 
+The COBOL Language Support extension enables coloring of keywords, paragraphs, and variables in different colors to make the code easier to navigate. 
 
 ## Syntax and Semantic Check
 
@@ -559,31 +556,7 @@ The COBOL Language Support extension checks for mistakes and errors in COBOL cod
 
 ## Navigation of Code
 
-The Code4z package enables several features for ease of navigation through code.
-
-### Breadcrumb View
-
-The breadcrumb view across the top of the editor shows where the current line of code exists within the structure of the COBOL source code. You can click each element on the bar to see that section of the code highlighted, or to select a code element within the section and navigate to it.
-
-![](Images/code4z-img2.png)
-
-*Figure 2. Breadcrumb view.*
-
-### Outline View
-
-The Code4z package enables the outline view tab in the sidebar. Outline view enables you to easily navigate through sections and individual variables and paragraphs.
-
-### Shortcuts
-
-You can use the following shortcuts to navigate through your code:
-
-* **CTRL+ALT+,** moves you one section back.
-* **CTRL+ALT+.** moves you one section forward.
-* **CTRL+ALT+D** takes you to the data division.
-* **CTRL+ALT+P** takes you to the procedure division.
-* **CTRL+ALT+W** takes you to the working storage section.
-
-These commands are also available if you right click anywhere in the code.
+The COBOL Language Support extension enables several features for ease of navigation through code.
 
 ### Go To Definition
 
@@ -591,7 +564,7 @@ While your cursor is placed on a variable or paragraph name, you can press **F12
 
 ![](Images/code4z-img3.png)
 
-*Figure 3. Go To Definition shows the point at which the USER-STREET variable is first defined.*
+*Figure 2. Go To Definition shows the point at which the USER-STREET variable is first defined.*
 
 ### Find All References
 
@@ -599,15 +572,15 @@ The **Find All References** functionality (**SHIFT+ALT+F12**) highlights all ref
 
 ![](Images/code4z-img4.png)
 
-*Figure 4. Find All References lists all references to the USER-STREET variable in the code.*
+*Figure 3. Find All References lists all references to the USER-STREET variable in the code.*
 
 ## Copybook Support
 
-Copybooks are pieces of source code stored in separate data sets which are referenced in a program. The COBOL Language Support extension enables you to download all copybooks referenced in your program from the mainframe to a folder on your machine. In order for this feature to work, you need to set up and configure a Zowe CLI `zosmf` profile.
+Copybooks are pieces of source code stored in separate data sets which are referenced in a program. The COBOL Language Support extension enables you to download all copybooks referenced in your program from the mainframe to a folder in your workspace. In order for this feature to work, you need to set up and configure a Zowe CLI `zosmf` profile. You can also enable support for copybooks stored locally in folders in your workspace. This is useful when working with a COBOL project stored in a Github repository.
 
 The COBOL Language Support extension helps to ensure that copybooks called in the code remain compatible through semantic analysis of keywords, variables, and paragraphs within copybooks, and ensures the consistency of code by defining variables and paragraphs across copybooks. The extension also helps to protect against unwanted errors caused by recursive or missing copybooks.
 
-The **Go To Definition** and **Find All References** functionalities are also extended to work for occurrences of variables and paragraphs from copybooks called in the program as well as from the program itself.
+The **Go To Definition** and **Find All References** functionalities are extended to work for occurrences of variables and paragraphs from copybooks called in the program as well as from the program itself. You can also use the **Go To Definition** feature on a copybook name in order to open it. 
 
 ## Autocomplete
 
@@ -615,7 +588,7 @@ The COBOL Language Support extension provides live suggestions while you type fo
 
 ![](Images/code4z-img5.png)
 
-*Figure 5. Autocomplete lists possible variables and keywords beginning with the typed string in a list.*
+*Figure 4. Autocomplete lists possible variables and keywords beginning with the typed string in a list.*
 
 ## Summary
 
@@ -2084,7 +2057,7 @@ COBOL inputs and outputs must be opened to connect the selected internal name to
 
 COBOL inputs and outputs should be closed at program completion or better yet when the program is done reading from or writing to the internal file name.  Figure  5. closes the internal file name ACCT-REC and internal file name PRINT-LINE, then stops processing, STOP RUN.
 
-![](Images/image129.jpg)
+![](Images/image129.png)
 
 *Figure  5.  CLOSE-STOP*
 
@@ -2131,7 +2104,7 @@ Once all statements in the WRITE-RECORD paragraph are executed, then control is 
 
 Again, the READ-RECORD paragraph executes the COBOL READ statement, resulting in the external sequential file populating the variables associated with ACCT-REC internal file name. If ‘AT END’ of records read, Y is moved into the LASTREC variable, then returns control to READ-NEXT-RECORD paragraph.  The READ-NEXT-RECORD paragraph would continue the iterative process UNTIL Y is found in the LASTREC variable.  Observe #3 in Figure  7.
 
-![](Images/image131.jpg)
+![](Images/image131.png)
 
 *Figure  7.  Iterative processing*
 
@@ -2158,7 +2131,7 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
 - CBL0002J
 
-- CBL0003J
+- CBL0033J
 
 ![](Images/image133.png)
 
@@ -2205,10 +2178,10 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
    - RUN:PRTLINE(103) is the COBOL program execution output (if correction is successful)
 
-10.  Submit job, JCL(CBL0003J), using the DATA SET section.
+10.  Submit job, JCL(CBL0033J), using the DATA SET section.
 
 
-11.  View CBL0003J ABENDU4038 output, using the JOBS section:
+11.  View CBL0033J ABENDU4038 output, using the JOBS section:
 
       - View the IGZ00355 abend message in RUN:SYSOUT(104) from the COBOL program execution output.
 
@@ -2220,7 +2193,7 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
  
 
-12.  Fix this error by editing JCL(CBL0003J):
+12.  Fix this error by editing JCL(CBL0033J):
 
      - Determine the DDNAME needed, but missing or misspelled. 
 
@@ -2228,17 +2201,17 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
  
 
-13.  Re-submit job, JCL(CBL0003J), using the DATA SET section.
+13.  Re-submit job, JCL(CBL0033J), using the DATA SET section.
 
  
 
-14.  View CBL0003J output using the JOBS section, your output should look like Figure  12.
+14.  View CBL0033J output using the JOBS section, your output should look like Figure  12.
 
      - RUN:PRTLINE - COBOL program execution output (if correction is successful)
 
 ![](Images/image138.png)
 
-*Figure  12.  RUN:PRTLINE(103) for JCL(CBL0003J)*
+*Figure  12.  RUN:PRTLINE(103) for JCL(CBL0033J)*
 
 **Lab hints**
 
@@ -2246,7 +2219,7 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
 ![](Images/image140.png)
 
-*Figure  13.  Error in id.JCL(CBL0003J).jcl*
+*Figure  13.  Error in id.JCL(CBL0033J).jcl*
 
 \newpage
 
@@ -2300,6 +2273,7 @@ In this chapter we discuss the concept of structured programming and how it rela
      - **Specifying the return value**
 
 - **Summary**
+- **Lab**
 
 
 ## Styles of programming
@@ -2777,6 +2751,33 @@ Finally, the RETURNING phrase is used to specify the variable that should be use
 ## Summary
 
 In summary, this chapter should provide the necessary foundation to understand structured programming and how it relates to COBOL and its importance to understanding and maintaining code.  Many examples of how, when and why to implement key techniques have been provided and explained for further understanding.  You should be able to identify the basic differences between structured programming (COBOL) and OO programming (Java).  You should also understand the general concept of the best practices in the structure of the Procedure Division with reference to the design and content of paragraphs, program control options and ways to call other programs within the same system.
+
+
+## Lab
+
+This lab utilizes COBOL program CBL0003, located within your id.CBL data set, as well as JCL job CBL0003J, located within your id.JCL data set.  The JCL jobs are used to compile and execute the COBOL programs, as discussed in previous chapters.
+
+#### Using VSCode and Zowe Explorer
+
+1. Take a moment and look over the source code of the COBOL program provided: CBL0003. 
+
+2. Compare CBL0003 with CBL0001 and CBL0002 from the previous lab. Do you notice the differences? 
+
+   a. Observe the new COUNTER line within the WORKING-STORAGE > DATA DIVISION.
+
+   b. Observe the paragraphs are numerated and they are all explicitly ended by a -END sentence.
+
+   b. Observe the new paragraphs READ-FIRST-RECORD, READ-TEN-RECORDS, READ-ANOTHER-RECORD, READ-NEXT-RECORDS and CALLING-SUBPROGRAM within the PRECEDURE DIVISION.
+
+   c. These paragraphs perform the same loop as in CBL0001, but using the PERFORM statement in different ways. The CALLING-SUBPROGRAM calls the HELLO program, already presented in the second Lab of this course.
+
+3. Submit job: CBL0003J. This JCL first compiles the program HELLO,
+then compiles CBL0003 and links the result of both compilations
+together. 
+
+4. View CBL0003J output using the JOBS section and open RUN:PRTLINE, observe the report is identical to CBL0001.
+
+5. View output of target program HELLO using the JOBS section and open RUN:SYSOUT. 
 
 \newpage
 
@@ -3485,14 +3486,14 @@ In Figure  3. the READ-NEXT-RECORD paragraph, located within the PROCEDURE DIVIS
 
 Figure  4. is an example of two COMPUTE statements in the paragraph, LIMIT-BALANCE-TOTAL.  Notice that the results of the COMPUTE statements are to add client ACCT-LIMIT to the current TLIMIT and add client ACCT-BALANCE to TBALANCE totals each time the paragraph is executed, which is one time for each client record read in our example.
 
-![](Images/image162.jpg)
+![](Images/image162.png)
 
 *Figure  4.  COMPUTE statements*
 
 
 The WRITE-TLIMIT-TBALANCE paragraph shown in Figure  5. is positioned within the PROCEDURE DIVISION to be executed immediately after all records are read and before the final paragraph that closes the files and terminates program execution.
 
-![](Images/image163.jpg)
+![](Images/image163.png)
 
 *Figure  5.  WRITE-TLIMIT-TBALANCE*
 
