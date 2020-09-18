@@ -162,8 +162,34 @@ In large enterprise, the roles and responsibilities are divided for a number of 
 Enterprise COBOL is a learning journey.  Each Enterprise COBOL API is a separate learning journey.  As is the case with most professional endeavors, learning, repetition, and applying what is learned is re-iterative process leading to advanced skill levels.
 
 ## Lab
+The lab contains data used in previous labs from "COBOL Programming Course #1 - Getting Started" where the data source was sequential data set, then a VSAM data set.  The lab provides JCL to create a personal Db2 table in a DBA-created database name using a DBA-created storage group.  The DBA-created storage group directs the create tablespace and table to specific disk storage volumes.
+
+The lab contains Enterprise COBOL source code with Db2 APIs along with the JCL to compile and execute the COBOL programs.
 
 ### Using VSCode and Zowe Explorer
+Zowe Explorer is currently without the ability to execute Db2 SQL interactively. It is inevitable Zowe Explorer will eventually have the capability of connectiong to relational databases and executing SQL.
+
+Therefore, JCL members were created to create and load user tables following examples provided.
+
+1. Submit `zos.public.db2.jcl(db2setup)`
+The result is new JCL and CBL members copied into personal JCL and CBL libraries
+
+2. SUBMIT JCL(CRETBL)
+The result is a personal Db2 tablespace, table, indexspace, and index
+ 
+3. SUBMIT JCL(LOADTBL)
+The result is data loaded into the personal Db2 tablespace, table, indexspace, and index
+ 
+4. Edit each COBOL source code member in your CBL partition data set changing all occurrences of Z# to your personal ID. Example - If your ID was Z80001, then change all occurrences of Z#  to Z80001.
+ 
+5. SUBMIT JCL(CBLDB21C)
+The result is compile of CBL program CBLDB21 and a Db2 Plan needed for program execution
+ 
+6. SUBMIT JCL(CBLDB21R)
+The result is execution of COBOL program CBLDB21 to read the Db2 table and write each record from the Db2 table .
+
+7. Two additional COBOL programs with Db2 API exist, CBLDB22 and CBLDB23 using the same Db2 table as the data source.
+
 
 \newpage
 # COBOL Challenges
