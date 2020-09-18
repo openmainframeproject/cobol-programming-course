@@ -35,6 +35,10 @@ header-includes:
 
 
 # COBOL Challenges
+- **COBOL Challenge - Debugging**
+- **COBOL Challenge - The COVID-19 Reports**
+- **COBOL Challenge - The Unemployment Claims**
+- **Hacker News Rankings for Mainframe/COBOL Posts**
 
 As you have now handled some basic exercises, we have prepared a new section containing more advanced exercises that test your ability to resolve bugs and other issues in COBOL programs. Each exercise will have a short description and a goal to be accomplished.
 
