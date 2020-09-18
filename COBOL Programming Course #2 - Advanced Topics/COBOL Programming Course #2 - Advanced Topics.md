@@ -40,14 +40,93 @@ Business application solutions were architected decades ago using programming la
     - **Using VSCode and Zowe Explorer**
 
 ## Enterprise COBOL APIs
+IBM mainframe flagship operating system, z/OS, includes software that has enabled large scale business applications for decades.  The software is frequently referred to as 'middleware'. Examples of z/OS 'middleware' is Db2, a relational database, CICS, transactional processor, IMS, both transactional and hierarchical database, and MQSeries, a mechanism to store and forward data between systems asynchonously.
 
 ### z/OS Middleware
+A fundamental capability of z/OS middleware software is communication enablement of programming languages.  The z/OS middleware software includes documentation and examples of how any specific programming language can communicate with the specific z/OS middleware software.  A programming language, such as Enterprise COBOL, would use documented interfaces and techniques to initiate services and pass data between the COBOL application program and the middleware. 
 
 ### COBOL API Communication with Middleware
+Each middleware has unique reserved words available to Enterprise COBOL.  
+
+Enterprise COBOL unique API reserved words are in Example 1.
+
+```
+EXEC SQL
+EXEC CICS
+CALL 'MQ...'
+CALL 'CBLTDLI'
+```
+*Example 1. COBOL API Reserved Words*
+
+Each of the above COBOL API's enable the program to communcate with Db2, CICS, MQSeries, and IMS respectively.  When the COBOL source program is compiled, the API reserved words expand the number of lines in the COBOL source code.  The expanded lines of code does not need to be fully understood by the COBOL programmer.  The COBOL programmer uses an API to accomplish a task within the logic and the middleware expanded code follows through with accomplishing the task.
 
 ### COBOL EXEC SQL
+SQL, Structured Query Language, is the documented standard for communicating will all relational databases.  Enterprise COBOL is capable of including Db2 for z/OS SQL.  A few simple COBOL EXEC SQL reserved words are shown in Example 2.
+
+```
+ WORKING-STORAGE SECTION. 
+*****************************************************
+* SQL INCLUDE FOR SQLCA                             *
+*****************************************************
+          EXEC SQL INCLUDE SQLCA  END-EXEC. 
+*****************************************************
+* SQL DECLARATION FOR VIEW ACCOUNTS                 *
+*****************************************************
+          EXEC SQL DECLARE my-acct-tbl TABLE 
+                  (ACCTNO     CHAR(8)  NOT NULL, 
+                   LIMIT      DECIMAL(9,2)     , 
+                   BALANCE    DECIMAL(9,2)     , 
+                   SURNAME    CHAR(20) NOT NULL, 
+                   FIRSTN     CHAR(15) NOT NULL, 
+                   ADDRESS1   CHAR(25) NOT NULL, 
+                   ADDRESS2   CHAR(20) NOT NULL, 
+                   ADDRESS3   CHAR(15) NOT NULL, 
+                   RESERVED   CHAR(7)  NOT NULL, 
+                   COMMENTS   CHAR(50) NOT NULL) 
+                   END-EXEC. 
+*****************************************************
+* SQL CURSORS                                       *
+*****************************************************
+          EXEC SQL DECLARE CUR1  CURSOR FOR 
+                   SELECT * FROM my-acct-tbl 
+               END-EXEC. 
+
+ PROCEDURE DIVISION.
+*------------------ 
+ LIST-ALL. 
+          EXEC SQL OPEN CUR1 END-EXEC. 
+          EXEC SQL FETCH CUR1 INTO :CUSTOMER-RECORD END-EXEC.
+          PERFORM PRINT-AND-GET1 
+               UNTIL SQLCODE IS NOT EQUAL TO ZERO. 
+          EXEC SQL CLOSE CUR1   END-EXEC.
+```
+*Example 2. COBOL SQL Statements*
 
 ### COBOL Data Items
+While the EXEC SQL is expanded into additional lines of code at compile time,
+COBOL needs data items to manage the data passed between the COBOL program and Db2 table. 
+
+The fields in the Db2 table record were defined using CREATE TABLE SQL.  The EXEC SQL DECLARE in Table xx describes the Db2 table format within the COBOL program.  The COBOL programmer with knowledge of the Db2 table format can code the table format or let Db2 for z/OS generate the code using a DCLGEN utility.  
+
+Observe ":CUSTOMER-RECORD" in the EXEC SQL FETCH statement.  A colon (:) precedes COBOL program defined variables that are used in SQL statements so that Db2 can distinguish a variable name from a column name.  Example 3. shows the COBOL program data items describing the COBOL program variable names.
+
+```
+*****************************************************
+* STRUCTURE FOR CUSTOMER RECORD                     *
+*****************************************************
+ 01 CUSTOMER-RECORD. 
+    02 ACCT-NO            PIC X(8). 
+    02 ACCT-LIMIT         PIC S9(7)V99 COMP-3. 
+    02 ACCT-BALANCE       PIC S9(7)V99 COMP-3. 
+    02 ACCT-LASTN         PIC X(20). 
+    02 ACCT-FIRSTN        PIC X(15). 
+    02 ACCT-ADDR1         PIC X(25). 
+    02 ACCT-ADDR2         PIC X(20). 
+    02 ACCT-ADDR3         PIC X(15). 
+    02 ACCT-RSRVD         PIC X(7). 
+    02 ACCT-COMMENT       PIC X(50).
+```
+*Example 3. COBOL Data Item for storing variables where Db2 is the data source*
 
 ## SQL Capability within Enterprise COBOL
 
