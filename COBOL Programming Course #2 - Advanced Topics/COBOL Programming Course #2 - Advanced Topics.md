@@ -129,10 +129,37 @@ Observe ":CUSTOMER-RECORD" in the EXEC SQL FETCH statement.  A colon (:) precede
 *Example 3. COBOL Data Item for storing variables where Db2 is the data source*
 
 ## SQL Capability within Enterprise COBOL
+Learning SQL is a separate technical skill.  The objective of this brief chapter is familiarization with Enterprise COBOL use of SQL API.  A COBOL program is capable of any SQL communication with Db2 for z/OS assuming necessary authority is granted.  SQL has four catagories as outlined in Example 4.  Learning SQL is necessary for a COBOL programmer to become proficient with using the Db2 API for a variety of possible applications where COBOL provides the what, how, and when logic of executing specific SQL.  
+
+```
+DDL - Data Definition Language
+CREATE
+ALTER 
+DROP
+
+DML - Data Manipulation Language
+SELECT
+INSERT
+UPDATE
+DELETE 
+
+DCL - Data Control Langauge
+GRANT
+REVOKE
+
+TCL - Transaction Control Language
+COMMIT
+ROLLBACK
+```
+*Example 4. SQL Categories*
 
 ### Enterprise COBOL Application Programming and SQL Guide
+Db2 for z/OS V12 is the most current release of Db2 at the moment.  The Db2 V12 for z/OS Application Programming and SQL Guide is available using internet search SC27-8845, the Db2 for z/OS professional manual number.  Db2 V12 for z/OS SQL Reference is also necessary to advance programming API capability (SC27-8859).
 
 ### Db2 Data Base Administration (DBA) vs Application Programming
+In large enterprise, the roles and responsibilities are divided for a number of reasons.  The responsibility of the DBA would include the DDL and DCL outlined in Example 4.  The DBA is responsibile for managing the entire relational data base environment to insure availability, security, performance, etc.  The system programmers and DBAs frequently setup the application development procedures for COBOL programmer development, testing, and maintenance of the COBOL business applications.  A COBOL application programmer is typically provided documented procedures to follow to apply their COBOL programming and SQL API expertise.
+
+Enterprise COBOL is a learning journey.  Each Enterprise COBOL API is a separate learning journey.  As is the case with most professional endeavors, learning, repetition, and applying what is learned is re-iterative process leading to advanced skill levels.
 
 ## Lab
 
