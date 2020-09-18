@@ -33,20 +33,16 @@ header-includes:
 - **Lab**
     - **Using VSCode and Zowe Explorer**
 
-
+\newpage
 # COBOL Challenges
+As you have now handled some basic exercises, we have prepared a new section containing more advanced exercises that test your ability to resolve bugs and other issues in COBOL programs. Each exercise will have a short description and a goal to be accomplished.
+
+Happy Coding!
+
 - **COBOL Challenge - Debugging**
 - **COBOL Challenge - The COVID-19 Reports**
 - **COBOL Challenge - The Unemployment Claims**
 - **Hacker News Rankings for Mainframe/COBOL Posts**
-
-As you have now handled some basic exercises, we have prepared a new section containing more advanced exercises that test your ability to resolve bugs and other issues in COBOL programs. Each exercise will have a short description and a goal to be accomplished.
-
-In case you get stuck, a blog with instructions will be published shortly after each exercise.
-
-Happy Coding!
-
-\newpage
 
 ## COBOL Challenge - Debugging
 
