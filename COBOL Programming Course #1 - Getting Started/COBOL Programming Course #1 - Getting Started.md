@@ -524,9 +524,6 @@ This section introduces the Code4z extension package, in particular the COBOL La
 - **Syntax Highlighting and Coloring**
 - **Syntax and Semantic Check**
 - **Navigation of Code**
-     - **Breadcrumb View**
-     - **Outline View**
-     - **Shortcuts**
      - **Go To Definition**
      - **Find All References**
 - **Copybook Support**
@@ -535,7 +532,7 @@ This section introduces the Code4z extension package, in particular the COBOL La
 
 ## What is Code4z?
 
-Code4z is an all-in-one, open-source mainframe extension package for Visual Studio Code. The Code4z package contains extensions which provide language support for COBOL and High Level Assembler language, a debugger for COBOL programs running on a CICS region, as well as tools which enable developers to access mainframe data sets and CA Endevor code repositories using the Visual Studio Code interface. This guide focuses on the COBOL Language Support extension. The Zowe Explorer extension is also included in the Code4z package.
+Code4z is an all-in-one, open-source mainframe extension package for Visual Studio Code. The Code4z package contains extensions which provide language support for COBOL and High Level Assembler language, a debugger for COBOL programs, as well as tools which enable developers to access mainframe data sets and CA Endevor code repositories using the Visual Studio Code interface. This guide focuses on the COBOL Language Support extension. The Zowe Explorer extension is also included in the Code4z package.
 
 The COBOL Language Support extension leverages the Language Server Protocol to provide autocomplete, highlighting, and diagnostic features for COBOL code. Together with Zowe Explorer, you can load COBOL code from a mainframe data set, and edit it leveraging the LSP features of the extension. Once you finish editing, you can save the file back on the mainframe, and store a copy locally.
 
@@ -543,11 +540,11 @@ The Code4z Extension Pack can be installed into VS Code by searching the Extensi
 
 ## Known File Extensions
 
-Code4z recognises files with the extension .COB and .CBL as COBOL files. This applies to both local files and files held in a PDS on the mainframe. COBOL Language Support features are automatically enabled when you open any file with an extension identifying it as a COBOL file.
+Code4z recognizes files with the extensions .COB and .CBL as COBOL files. This applies to both local files and files held in a PDS on the mainframe. COBOL Language Support features are automatically enabled when you open any file with an extension identifying it as a COBOL file.
 
 ## Syntax Highlighting and Coloring
 
-The Code4z package enables coloring of keywords, paragraphs, and variables in different colors to make the code easier to navigate. 
+The COBOL Language Support extension enables coloring of keywords, paragraphs, and variables in different colors to make the code easier to navigate. 
 
 ## Syntax and Semantic Check
 
@@ -559,31 +556,7 @@ The COBOL Language Support extension checks for mistakes and errors in COBOL cod
 
 ## Navigation of Code
 
-The Code4z package enables several features for ease of navigation through code.
-
-### Breadcrumb View
-
-The breadcrumb view across the top of the editor shows where the current line of code exists within the structure of the COBOL source code. You can click each element on the bar to see that section of the code highlighted, or to select a code element within the section and navigate to it.
-
-![](Images/code4z-img2.png)
-
-*Figure 2. Breadcrumb view.*
-
-### Outline View
-
-The Code4z package enables the outline view tab in the sidebar. Outline view enables you to easily navigate through sections and individual variables and paragraphs.
-
-### Shortcuts
-
-You can use the following shortcuts to navigate through your code:
-
-* **CTRL+ALT+,** moves you one section back.
-* **CTRL+ALT+.** moves you one section forward.
-* **CTRL+ALT+D** takes you to the data division.
-* **CTRL+ALT+P** takes you to the procedure division.
-* **CTRL+ALT+W** takes you to the working storage section.
-
-These commands are also available if you right click anywhere in the code.
+The COBOL Language Support extension enables several features for ease of navigation through code.
 
 ### Go To Definition
 
@@ -591,7 +564,7 @@ While your cursor is placed on a variable or paragraph name, you can press **F12
 
 ![](Images/code4z-img3.png)
 
-*Figure 3. Go To Definition shows the point at which the USER-STREET variable is first defined.*
+*Figure 2. Go To Definition shows the point at which the USER-STREET variable is first defined.*
 
 ### Find All References
 
@@ -599,15 +572,15 @@ The **Find All References** functionality (**SHIFT+ALT+F12**) highlights all ref
 
 ![](Images/code4z-img4.png)
 
-*Figure 4. Find All References lists all references to the USER-STREET variable in the code.*
+*Figure 3. Find All References lists all references to the USER-STREET variable in the code.*
 
 ## Copybook Support
 
-Copybooks are pieces of source code stored in separate data sets which are referenced in a program. The COBOL Language Support extension enables you to download all copybooks referenced in your program from the mainframe to a folder on your machine. In order for this feature to work, you need to set up and configure a Zowe CLI `zosmf` profile.
+Copybooks are pieces of source code stored in separate data sets which are referenced in a program. The COBOL Language Support extension enables you to download all copybooks referenced in your program from the mainframe to a folder in your workspace. In order for this feature to work, you need to set up and configure a Zowe CLI `zosmf` profile. You can also enable support for copybooks stored locally in folders in your workspace. This is useful when working with a COBOL project stored in a Github repository.
 
 The COBOL Language Support extension helps to ensure that copybooks called in the code remain compatible through semantic analysis of keywords, variables, and paragraphs within copybooks, and ensures the consistency of code by defining variables and paragraphs across copybooks. The extension also helps to protect against unwanted errors caused by recursive or missing copybooks.
 
-The **Go To Definition** and **Find All References** functionalities are also extended to work for occurrences of variables and paragraphs from copybooks called in the program as well as from the program itself.
+The **Go To Definition** and **Find All References** functionalities are extended to work for occurrences of variables and paragraphs from copybooks called in the program as well as from the program itself. You can also use the **Go To Definition** feature on a copybook name in order to open it. 
 
 ## Autocomplete
 
@@ -615,7 +588,7 @@ The COBOL Language Support extension provides live suggestions while you type fo
 
 ![](Images/code4z-img5.png)
 
-*Figure 5. Autocomplete lists possible variables and keywords beginning with the typed string in a list.*
+*Figure 4. Autocomplete lists possible variables and keywords beginning with the typed string in a list.*
 
 ## Summary
 
