@@ -19,15 +19,188 @@ header-includes:
               linkcolor=blue}
 ---
 \newpage
+# COBOL Application Programming Interface (API)
+API is the acronym for Application Programming Interface.  An API allows two applications to communicate. We use API's everyday from our phones, personal computers, using a credit card to make a payment at a point of sale, etc.  
+
+Today's digital infrastructure is instrumented and interconnected.  It is the API's that enable the "instrumented" network to be "interconnected".  As a result, API has become a highly used acronym in the technology arena.  The phrase "API Economy" became strategic term since Forbes declared 2017 "The Year of the API Economy".
+
+Business application solutions were architected decades ago using programming language API's.  Long before API became a strategic technology category, mainframe application developers understood the acronym as a way to enable a programming language to communicate with other software.  The value of being a programmer in any specific programming language increased by understanding and using API's.
+
+- **Enterprise COBOL APIs**
+     - **z/OS Middleware**
+     - **COBOL API Communication with Middleware**
+     - **COBOL EXEC SQL**
+     - **COBOL Data Items**
+
+- **SQL Capability within Enterprise COBOL**
+     - **Enterprise COBOL Application Programming and SQL Guide**
+     - **Db2 Data Base Administration (DBA) vs Application Programming**
+
+- **Lab**
+    - **Using VSCode and Zowe Explorer**
+
+## Enterprise COBOL APIs
+IBM mainframe flagship operating system, z/OS, includes software that has enabled large scale business applications for decades.  The software is frequently referred to as 'middleware'. Examples of z/OS 'middleware' is Db2, a relational database, CICS, transactional processor, IMS, both transactional and hierarchical database, and MQSeries, a mechanism to store and forward data between systems asynchonously.
+
+### z/OS Middleware
+A fundamental capability of z/OS middleware software is communication enablement of programming languages.  The z/OS middleware software includes documentation and examples of how any specific programming language can communicate with the specific z/OS middleware software.  A programming language, such as Enterprise COBOL, would use documented interfaces and techniques to initiate services and pass data between the COBOL application program and the middleware. 
+
+### COBOL API Communication with Middleware
+Each middleware has unique reserved words available to Enterprise COBOL.  
+
+Enterprise COBOL unique API reserved words are in Example 1.
+
+```
+EXEC SQL
+EXEC CICS
+CALL 'MQ...'
+CALL 'CBLTDLI'
+```
+*Example 1. COBOL API Reserved Words*
+
+Each of the above COBOL API's enable the program to communcate with Db2, CICS, MQSeries, and IMS respectively.  When the COBOL source program is compiled, the API reserved words expand the number of lines in the COBOL source code.  The expanded lines of code does not need to be fully understood by the COBOL programmer.  The COBOL programmer uses an API to accomplish a task within the logic and the middleware expanded code follows through with accomplishing the task.
+
+### COBOL EXEC SQL
+SQL, Structured Query Language, is the documented standard for communicating will all relational databases.  Enterprise COBOL is capable of including Db2 for z/OS SQL.  A few simple COBOL EXEC SQL reserved words are shown in Example 2.
+
+```
+ WORKING-STORAGE SECTION. 
+*****************************************************
+* SQL INCLUDE FOR SQLCA                             *
+*****************************************************
+          EXEC SQL INCLUDE SQLCA  END-EXEC. 
+*****************************************************
+* SQL DECLARATION FOR VIEW ACCOUNTS                 *
+*****************************************************
+          EXEC SQL DECLARE my-acct-tbl TABLE 
+                  (ACCTNO     CHAR(8)  NOT NULL, 
+                   LIMIT      DECIMAL(9,2)     , 
+                   BALANCE    DECIMAL(9,2)     , 
+                   SURNAME    CHAR(20) NOT NULL, 
+                   FIRSTN     CHAR(15) NOT NULL, 
+                   ADDRESS1   CHAR(25) NOT NULL, 
+                   ADDRESS2   CHAR(20) NOT NULL, 
+                   ADDRESS3   CHAR(15) NOT NULL, 
+                   RESERVED   CHAR(7)  NOT NULL, 
+                   COMMENTS   CHAR(50) NOT NULL) 
+                   END-EXEC. 
+*****************************************************
+* SQL CURSORS                                       *
+*****************************************************
+          EXEC SQL DECLARE CUR1  CURSOR FOR 
+                   SELECT * FROM my-acct-tbl 
+               END-EXEC. 
+
+ PROCEDURE DIVISION.
+*------------------ 
+ LIST-ALL. 
+          EXEC SQL OPEN CUR1 END-EXEC. 
+          EXEC SQL FETCH CUR1 INTO :CUSTOMER-RECORD END-EXEC.
+          PERFORM PRINT-AND-GET1 
+               UNTIL SQLCODE IS NOT EQUAL TO ZERO. 
+          EXEC SQL CLOSE CUR1   END-EXEC.
+```
+*Example 2. COBOL SQL Statements*
+
+### COBOL Data Items
+While the EXEC SQL is expanded into additional lines of code at compile time,
+COBOL needs data items to manage the data passed between the COBOL program and Db2 table. 
+
+The fields in the Db2 table record were defined using CREATE TABLE SQL.  The EXEC SQL DECLARE in Table xx describes the Db2 table format within the COBOL program.  The COBOL programmer with knowledge of the Db2 table format can code the table format or let Db2 for z/OS generate the code using a DCLGEN utility.  
+
+Observe ":CUSTOMER-RECORD" in the EXEC SQL FETCH statement.  A colon (:) precedes COBOL program defined variables that are used in SQL statements so that Db2 can distinguish a variable name from a column name.  Example 3. shows the COBOL program data items describing the COBOL program variable names.
+
+```
+*****************************************************
+* STRUCTURE FOR CUSTOMER RECORD                     *
+*****************************************************
+ 01 CUSTOMER-RECORD. 
+    02 ACCT-NO            PIC X(8). 
+    02 ACCT-LIMIT         PIC S9(7)V99 COMP-3. 
+    02 ACCT-BALANCE       PIC S9(7)V99 COMP-3. 
+    02 ACCT-LASTN         PIC X(20). 
+    02 ACCT-FIRSTN        PIC X(15). 
+    02 ACCT-ADDR1         PIC X(25). 
+    02 ACCT-ADDR2         PIC X(20). 
+    02 ACCT-ADDR3         PIC X(15). 
+    02 ACCT-RSRVD         PIC X(7). 
+    02 ACCT-COMMENT       PIC X(50).
+```
+*Example 3. COBOL Data Item for storing variables where Db2 is the data source*
+
+## SQL Capability within Enterprise COBOL
+Learning SQL is a separate technical skill.  The objective of this brief chapter is familiarization with Enterprise COBOL use of SQL API.  A COBOL program is capable of any SQL communication with Db2 for z/OS assuming necessary authority is granted.  SQL has four catagories as outlined in Example 4.  Learning SQL is necessary for a COBOL programmer to become proficient with using the Db2 API for a variety of possible applications where COBOL provides the what, how, and when logic of executing specific SQL.  
+
+```
+DDL - Data Definition Language
+CREATE
+ALTER 
+DROP
+
+DML - Data Manipulation Language
+SELECT
+INSERT
+UPDATE
+DELETE 
+
+DCL - Data Control Langauge
+GRANT
+REVOKE
+
+TCL - Transaction Control Language
+COMMIT
+ROLLBACK
+```
+*Example 4. SQL Categories*
+
+### Enterprise COBOL Application Programming and SQL Guide
+Db2 for z/OS V12 is the most current release of Db2 at the moment.  The Db2 V12 for z/OS Application Programming and SQL Guide is available using internet search SC27-8845, the Db2 for z/OS professional manual number.  Db2 V12 for z/OS SQL Reference is also necessary to advance programming API capability (SC27-8859).
+
+### Db2 Data Base Administration (DBA) vs Application Programming
+In large enterprise, the roles and responsibilities are divided for a number of reasons.  The responsibility of the DBA would include the DDL and DCL outlined in Example 4.  The DBA is responsibile for managing the entire relational data base environment to insure availability, security, performance, etc.  The system programmers and DBAs frequently setup the application development procedures for COBOL programmer development, testing, and maintenance of the COBOL business applications.  A COBOL application programmer is typically provided documented procedures to follow to apply their COBOL programming and SQL API expertise.
+
+Enterprise COBOL is a learning journey.  Each Enterprise COBOL API is a separate learning journey.  As is the case with most professional endeavors, learning, repetition, and applying what is learned is re-iterative process leading to advanced skill levels.
+
+## Lab
+The lab contains data used in previous labs from "COBOL Programming Course #1 - Getting Started" where the data source was sequential data set, then a VSAM data set.  The lab provides JCL to create a personal Db2 table in a DBA-created database name using a DBA-created storage group.  The DBA-created storage group directs the create tablespace and table to specific disk storage volumes.
+
+The lab contains Enterprise COBOL source code with Db2 APIs along with the JCL to compile and execute the COBOL programs.
+
+### Using VSCode and Zowe Explorer
+Zowe Explorer is currently without the ability to execute Db2 SQL interactively. It is inevitable Zowe Explorer will eventually have the capability of connectiong to relational databases and executing SQL.
+
+Therefore, JCL members were created to create and load user tables following examples provided.
+
+1. Submit `zos.public.db2.jcl(db2setup)`
+The result is new JCL and CBL members copied into personal JCL and CBL libraries
+
+2. SUBMIT JCL(CRETBL)
+The result is a personal Db2 tablespace, table, indexspace, and index
+ 
+3. SUBMIT JCL(LOADTBL)
+The result is data loaded into the personal Db2 tablespace, table, indexspace, and index
+ 
+4. Edit each COBOL source code member in your CBL partition data set changing all occurrences of Z# to your personal ID. Example - If your ID was Z80001, then change all occurrences of Z#  to Z80001.
+ 
+5. SUBMIT JCL(CBLDB21C)
+The result is compile of CBL program CBLDB21 and a Db2 Plan needed for program execution
+ 
+6. SUBMIT JCL(CBLDB21R)
+The result is execution of COBOL program CBLDB21 to read the Db2 table and write each record from the Db2 table .
+
+7. Two additional COBOL programs with Db2 API exist, CBLDB22 and CBLDB23 using the same Db2 table as the data source.
+
+
+\newpage
 # COBOL Challenges
-
 As you have now handled some basic exercises, we have prepared a new section containing more advanced exercises that test your ability to resolve bugs and other issues in COBOL programs. Each exercise will have a short description and a goal to be accomplished.
-
-In case you get stuck, a blog with instructions will be published shortly after each exercise.
 
 Happy Coding!
 
-\newpage
+- **COBOL Challenge - Debugging**
+- **COBOL Challenge - The COVID-19 Reports**
+- **COBOL Challenge - The Unemployment Claims**
+- **Hacker News Rankings for Mainframe/COBOL Posts**
 
 ## COBOL Challenge - Debugging
 
