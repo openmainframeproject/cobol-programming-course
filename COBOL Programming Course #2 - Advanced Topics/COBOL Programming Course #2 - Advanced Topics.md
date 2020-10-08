@@ -202,6 +202,7 @@ Happy Coding!
 - **COBOL Challenge - The Unemployment Claims**
 - **Hacker News Rankings for Mainframe/COBOL Posts**
 
+\newpage
 ## COBOL Challenge - Debugging
 
 It is 2020 in Washington, D.C. John Doe runs a program which provides financial reports on US Presidents and tallies the number of reports from the state of Virginia. Everything seems OK. (see below)
@@ -222,6 +223,7 @@ Can you fix the code to get the correct result? The new source code is named **C
 
 You can find them in the github repository for the COBOL course, in the subfolder **/COBOL Programming Course #2 - Advanced Topics/Challenges/Debugging**.
 
+\newpage
 ## COBOL Challenge - The COVID-19 Reports
 
 Today, you are tasked to create a COVID-19 Summary Report of all the countries around the world, using information from the COVID19API website.
@@ -238,7 +240,7 @@ Today, you are tasked to create a COVID-19 Summary Report of all the countries a
 
 3. Using Zowe, upload the CSV file to the mainframe.
 
-**Hint:** You can use the command `zowe files ul ftds “file location” “dataset name”` to upload the CSV file to the mainframe.
+**Hint:** You can use the command `zowe files ul ftds "file location" "dataset name"` to upload the CSV file to the mainframe.
 
 4. Create a new member in your *.CBL data set to write your COBOL program.
 
@@ -280,17 +282,18 @@ If you want a more challenging approach, try the optional tasks below:
 
 To check the solution, refer to the blog post [here](https://medium.com/@jessielaine.punongbayan/solution-covid-19-reports-cobol-challenge-6c509579e3fe?source=friends_link&sk=5a662034a03c91d639b77267ed6abfc9).
 
-Happy Coding! 😉
+Happy Coding!
 
 _Disclaimer: This challenge is also posted in [Medium.com](https://medium.com/@jessielaine.punongbayan/cobol-challenge-covid-19-reports-ee03a946bd23)._
 
+\newpage
 ## COBOL Challenge - The Unemployment Claims
 
 Now let's try a more advanced challenge! Your task is to create an end-to-end solution. Our end goal is to build an application that will fire Zowe APIs to the mainframe and display the result in the application. This is how the flow would look:
 
 ![](Images/cobolchClaims-img1.png)
 
-_Of course, you do not have to complete the whole challenge if you do not want to. But it would be great if you do_ 😉
+_Of course, you do not have to complete the whole challenge if you do not want to. But it would be great if you do_
 
 ### Our Data
 
@@ -373,12 +376,11 @@ Add more functionality to your COBOL Sub-routine like:
 
 I hope that by taking this challenge, you will be able to learn something new! 
 
-Happy Coding! 😉
+Happy Coding!
 
 _Disclaimer: This challenge is also posted in [Medium.com](https://medium.com/@jessielaine.punongbayan/zowe-cobol-challenge-the-unemployment-claims-2e35a42eabaa)._
 
 \newpage
-
 ## Hacker News Rankings for Mainframe/COBOL Posts
 
 ![](Images/hacker-img1.png)
