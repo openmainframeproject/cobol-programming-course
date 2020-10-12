@@ -17,7 +17,7 @@ If you run into any issues, please don't hesitate to reach out on our [slack cha
 
 ## Discussion
 
-You can connect with the community in a variety of ways...
+You can connect with the community in a variety of ways as follows:
 
 - [#cobol-programming-course channel on Open Mainframe Project Slack](https://slack.openmainframeproject.org)
 - ['COBOL technical questions' category on Open Mainframe Project Community Forums](https://community.openmainframeproject.org/c/cobol-technical-questions/16)
