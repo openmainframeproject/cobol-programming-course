@@ -36,3 +36,10 @@ This project is openly governed as defined in [GOVERNANCE.md](GOVERNANCE.md).
 ## Credits
 
 The courseware materials were made available through a joint collaboration IBM, it's clients, and American River College and proposed as a new project by IBM.
+
+## Video Course Links
+
+- [IBM Digital Learning Platform](https://learn.ibm.com/course/view.php?id=7552)
+- [Coursera](https://www.coursera.org/learn/cobol-programming-vscode?)
+- [Pluralsight](https://www.pluralsight.com/courses/learning-cobol-programming-vscode)
+- [YouTube](https://www.youtube.com/watch?v=RdMAEdGvtLA)
