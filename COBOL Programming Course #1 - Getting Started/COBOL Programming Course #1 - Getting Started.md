@@ -1463,7 +1463,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-1.   Each user has a high-level qualifier that is the same as their username.  Therefore, enter your assigned username as the search criteria as shown in Figure  19. **Please use your username, not Z99998!**
+18.   Each user has a high-level qualifier that is the same as their username.  Therefore, enter your assigned username as the search criteria as shown in Figure  19. **Please use your username, not Z99998!**
 
 ![](Images/image088.jpg)
 
@@ -1471,7 +1471,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-1.   A list of data set names beginning with your username from z/OS Connection LearnCOBOL appears as shown in Figure  20.
+19.   A list of data set names beginning with your username from z/OS Connection LearnCOBOL appears as shown in Figure  20.
 
 ![](Images/image090.jpg)
 
@@ -1479,7 +1479,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-1.   Expand **<USERNAME>.CBL** to view COBOL source members, then select member **HELLO** to see a simple COBOL ‘Hello World!’ program as shown in Figure  21.
+20.   Expand **<USERNAME>.CBL** to view COBOL source members, then select member **HELLO** to see a simple COBOL ‘Hello World!’ program as shown in Figure  21.
 
 ![](Images/image093.jpg)
 
@@ -1487,7 +1487,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-1.   Expand **<USERNAME>.JCL** to view JCL and select member HELLO which is the JCL to compile and execute simple ‘Hello World!’ COBOL source code as shown in Figure  22.
+21.   Expand **<USERNAME>.JCL** to view JCL and select member HELLO which is the JCL to compile and execute simple ‘Hello World!’ COBOL source code as shown in Figure  22.
 
 ![](Images/image095.jpg)
 
@@ -1495,7 +1495,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-1.   Right click on JCL member **HELLO** .  A section box appears.  Select **Submit Job** for system to process HELLO JCL as shown in Figure  23.  The submitted JCL job compiles the COBOL HELLO source code, then executes the COBOL HELLO program.
+22.   Right click on JCL member **HELLO** .  A section box appears.  Select **Submit Job** for system to process HELLO JCL as shown in Figure  23.  The submitted JCL job compiles the COBOL HELLO source code, then executes the COBOL HELLO program.
 
 ![](Images/image097.jpg)
 
@@ -1503,7 +1503,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-1.   Observe the ‘Jobs’ section in Zowe Explorer as shown in Figure  24.
+23.   Observe the ‘Jobs’ section in Zowe Explorer as shown in Figure  24.
 
 ![](Images/image098.jpg)
 
@@ -1511,7 +1511,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-1.   Again, click on the + to the far right on the Jobs selection.  Result is another prompt to ‘Create new’.  Select **LearnCOBOL** from the list as shown in Figure  25.
+24.   Again, click on the + to the far right on the Jobs selection.  Result is another prompt to ‘Create new’.  Select **LearnCOBOL** from the list as shown in Figure  25.
 
 ![](Images/image100.jpg)
 
@@ -1519,7 +1519,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-1.   As a result, the JCL jobs owned by your username appears.  HELLOCBL is the JCL job name previously submitted.  Expand **HELLOCBL** output to view sections of the output as shown in Figure  26.
+25.   As a result, the JCL jobs owned by your username appears.  HELLOCBL is the JCL job name previously submitted.  Expand **HELLOCBL** output to view sections of the output as shown in Figure  26.
 
 ![](Images/image102.jpg)
 
@@ -1527,7 +1527,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-1.   Select **COBRUN:SYSPRINT(101)** to view the COBOL compiler output.  Scroll forward in the COBOL compile to locate the COBOL source code compiled into an executable module as shown in Figure  27.  Observe the Indicator Area in column 7, A Area beginning in column 8, and B Area beginning in column 12.  Also, observe the period (.) scope terminators in the COBOL source.
+26.   Select **COBRUN:SYSPRINT(101)** to view the COBOL compiler output.  Scroll forward in the COBOL compile to locate the COBOL source code compiled into an executable module as shown in Figure  27.  Observe the Indicator Area in column 7, A Area beginning in column 8, and B Area beginning in column 12.  Also, observe the period (.) scope terminators in the COBOL source.
 
 ![](Images/image104.jpg)
 
@@ -1535,7 +1535,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-1.   View the COBOL program execution by selecting **COBRUN:SYSOUT(105)** from the LearnCOBOL in the Jobs section of Zowe Explorer as shown in Figure  28.
+27.   View the COBOL program execution by selecting **COBRUN:SYSOUT(105)** from the LearnCOBOL in the Jobs section of Zowe Explorer as shown in Figure  28.
 
 ![](Images/image106.jpg)
 
@@ -1543,7 +1543,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-1.   The following URL is another excellent document describing the above VSCode and Zowe Explore details with examples:
+28.   The following URL is another excellent document describing the above VSCode and Zowe Explore details with examples:
    [https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe)
 
 ## Lab - Zowe CLI & Automation
