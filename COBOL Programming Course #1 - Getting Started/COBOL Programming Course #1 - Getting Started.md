@@ -1407,13 +1407,13 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 *Figure  10.  Specified user name*
 
 
-10. The connection prompts for the Username Password as shown in Figure  11.
+10. The connection prompts for the password as shown in Figure  11.
 
 ![](Images/image067.jpg)
 
 *Figure  11.  Password prompt*
 
-11. Enter the Username Password as shown in Figure  12.
+11. Enter the password as shown in Figure  12.
 
 ![](Images/image070.jpg)
 
@@ -1447,7 +1447,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-16.  A prompt to “Select a filter” appears for your username.  Select the + to ‘Create a new filter” as shown in Figure  17.
+16.  A prompt to "Select a filter" appears for your username.  Select the + to "Create a new filter" as shown in Figure  17.
 
 ![](Images/image084.jpg)
 
@@ -1479,19 +1479,19 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-20.   Expand **<USERNAME>.CBL** to view COBOL source members, then select member **HELLO** to see a simple COBOL ‘Hello World!’ program as shown in Figure  21.
+20.   Expand **`<USERNAME>.CBL`** to view COBOL source members, then select member **HELLO** to see a simple COBOL ‘Hello World!’ program as shown in Figure  21.
 
 ![](Images/image093.jpg)
 
-*Figure  21.  <USERNAME>.CBL*
+*Figure  21.  `<USERNAME>.CBL`*
 
  
 
-21.   Expand **<USERNAME>.JCL** to view JCL and select member HELLO which is the JCL to compile and execute simple ‘Hello World!’ COBOL source code as shown in Figure  22.
+21.   Expand **`<USERNAME>.JCL`** to view JCL and select member HELLO which is the JCL to compile and execute simple ‘Hello World!’ COBOL source code as shown in Figure  22.
 
 ![](Images/image095.jpg)
 
-*Figure  22.  <USERNAME>.JCL*
+*Figure  22.  `<USERNAME>.JCL`*
 
  
 
