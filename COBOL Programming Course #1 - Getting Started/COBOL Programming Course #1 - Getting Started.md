@@ -1400,7 +1400,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 *Figure  9.  User name prompt*
 
-1. **Please enter the username assigned to you! Do not use the sample username of Z99998.** A sample username, is entered as shown in Figure  10.  The ID is assigned by the System Administrator.
+9. **Please enter the username assigned to you! Do not use the sample username of Z99998.** A sample username, is entered as shown in Figure  10.  The ID is assigned by the System Administrator.
 
 ![](Images/image064.jpg)
 
