@@ -1400,7 +1400,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 *Figure  9.  User name prompt*
 
-9. A sample username, Z99998, is entered as shown in Figure  10.  The ID is assigned by the System Administrator.
+1. **Please enter the username assigned to you! Do not use the sample username of Z99998.** A sample username, is entered as shown in Figure  10.  The ID is assigned by the System Administrator.
 
 ![](Images/image064.jpg)
 
@@ -1447,7 +1447,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-16.  A prompt to “Select a filter” appears for ID Z99998.  Select the + to ‘Create a new filter” as shown in Figure  17.
+16.  A prompt to “Select a filter” appears for your username.  Select the + to ‘Create a new filter” as shown in Figure  17.
 
 ![](Images/image084.jpg)
 
@@ -1463,7 +1463,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-18.  ID Z99998 has lab data set names that begin the Z99998.  Therefore, Z99998 is entered as the filter to searched for ID Z99998 as shown in Figure  19.
+1.   Each user has a high-level qualifier that is the same as their username.  Therefore, enter your assigned username as the search criteria as shown in Figure  19. **Please use your username, not Z99998!**
 
 ![](Images/image088.jpg)
 
@@ -1471,7 +1471,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-19.  A list of data set names beginning with Z99998 for ID Z99998 from z/OS Connection LearnCOBOL appears as shown in Figure  20.
+1.   A list of data set names beginning with your username from z/OS Connection LearnCOBOL appears as shown in Figure  20.
 
 ![](Images/image090.jpg)
 
@@ -1479,23 +1479,23 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-20.  Expand **Z99998.CBL** to view COBOL source members, then select member **HELLO** to see a simple COBOL ‘Hello World!’ program as shown in Figure  21.
+1.   Expand **<USERNAME>.CBL** to view COBOL source members, then select member **HELLO** to see a simple COBOL ‘Hello World!’ program as shown in Figure  21.
 
 ![](Images/image093.jpg)
 
-*Figure  21.  Z9998.CBL*
+*Figure  21.  <USERNAME>.CBL*
 
  
 
-21.  Expand **Z99998.JCL** to view JCL and select member HELLO which is the JCL to compile and execute simple ‘Hello World!’ COBOL source code as shown in Figure  22.
+1.   Expand **<USERNAME>.JCL** to view JCL and select member HELLO which is the JCL to compile and execute simple ‘Hello World!’ COBOL source code as shown in Figure  22.
 
 ![](Images/image095.jpg)
 
-*Figure  22.  Z99998.JCL*
+*Figure  22.  <USERNAME>.JCL*
 
  
 
-22.  Right click on JCL member **HELLO** .  A section box appears.  Select **Submit Job** for system to process HELLO JCL as shown in Figure  23.  The submitted JCL job compiles the COBOL HELLO source code, then executes the COBOL HELLO program.
+1.   Right click on JCL member **HELLO** .  A section box appears.  Select **Submit Job** for system to process HELLO JCL as shown in Figure  23.  The submitted JCL job compiles the COBOL HELLO source code, then executes the COBOL HELLO program.
 
 ![](Images/image097.jpg)
 
@@ -1503,7 +1503,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-23.  Observe the ‘Jobs’ section in Zowe Explorer as shown in Figure  24.
+1.   Observe the ‘Jobs’ section in Zowe Explorer as shown in Figure  24.
 
 ![](Images/image098.jpg)
 
@@ -1511,7 +1511,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-24.  Again, click on the + to the far right on the Jobs selection.  Result is another prompt to ‘Create new’.  Select **LearnCOBOL** from the list as shown in Figure  25.
+1.   Again, click on the + to the far right on the Jobs selection.  Result is another prompt to ‘Create new’.  Select **LearnCOBOL** from the list as shown in Figure  25.
 
 ![](Images/image100.jpg)
 
@@ -1519,7 +1519,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-25.  As a result, the JCL jobs owned by ID Z99998 appears.  HELLOCBL is the JCL job name previously submitted.  Expand **HELLOCBL** output to view sections of the output as shown in Figure  26.
+1.   As a result, the JCL jobs owned by your username appears.  HELLOCBL is the JCL job name previously submitted.  Expand **HELLOCBL** output to view sections of the output as shown in Figure  26.
 
 ![](Images/image102.jpg)
 
@@ -1527,7 +1527,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-26.  Select **COBRUN:SYSPRINT(101)** to view the COBOL compiler output.  Scroll forward in the COBOL compile to locate the COBOL source code compiled into an executable module as shown in Figure  27.  Observe the Indicator Area in column 7, A Area beginning in column 8, and B Area beginning in column 12.  Also, observe the period (.) scope terminators in the COBOL source.
+1.   Select **COBRUN:SYSPRINT(101)** to view the COBOL compiler output.  Scroll forward in the COBOL compile to locate the COBOL source code compiled into an executable module as shown in Figure  27.  Observe the Indicator Area in column 7, A Area beginning in column 8, and B Area beginning in column 12.  Also, observe the period (.) scope terminators in the COBOL source.
 
 ![](Images/image104.jpg)
 
@@ -1535,7 +1535,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-27.  View the COBOL program execution by selecting **COBRUN:SYSOUT(105)** from the LearnCOBOL in the Jobs section of Zowe Explorer as shown in Figure  28.
+1.   View the COBOL program execution by selecting **COBRUN:SYSOUT(105)** from the LearnCOBOL in the Jobs section of Zowe Explorer as shown in Figure  28.
 
 ![](Images/image106.jpg)
 
@@ -1543,7 +1543,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-28.  The following URL is another excellent document describing the above VSCode and Zowe Explore details with examples:
+1.   The following URL is another excellent document describing the above VSCode and Zowe Explore details with examples:
    [https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe)
 
 ## Lab - Zowe CLI & Automation
