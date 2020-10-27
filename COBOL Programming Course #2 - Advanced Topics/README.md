@@ -16,7 +16,7 @@ These materials are being used by other organizations to provide COBOL training 
 
 ## Build
 
-A PDF can be built using the following [pandoc](https://pandoc.org/) command. Note: pdflatex is required. [MiKTeX](https://miktex.org/) can be installed to accomodate this. 
+A PDF can be built using the following [pandoc](https://pandoc.org/) command. Note: pdflatex is required. [MiKTeX](https://miktex.org/) can be installed to accomodate this. Prior to issuing the following command, all subscript and superscript notation must be changed. Find all instance of `<sub>` and `<\sub>` and replace them with `~`. Find all instance of `<sup>` and `<\sup>` and replace them with `^`. This is the notation required for pandoc but this would make it difficult to read the markdown in GitHub.
 
 ```
 pandoc "COBOL Programming Course #2 - Advanced Topics.md" -o "COBOL Programming Course #2 - Advanced Topics.pdf" --number-sections --toc --listings
