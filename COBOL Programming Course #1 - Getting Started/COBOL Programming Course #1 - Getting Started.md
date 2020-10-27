@@ -3557,17 +3557,14 @@ This lab requires two COBOL programs, CBL0008 and CBL0009 and two respective JCL
  \newpage
 
 # Data types
-
  
 A COBOL programmer must be aware that the computer stored internal data representation and formatting can differ, where the difference must be defined in the COBOL source code.  Understanding the computer's internal data representation requires familiarity with binary, hexadecimal, ASCII, and EBCDIC.  Packed-Decimal is needed to explain COBOL Computational and Display data format.  This chapter aims to familiarize the reader with these different "types" of data representation. 
-
- 
 
 - **Data representation**
 
      - **Numerical value representation**
 
-     - **Text representations**
+     - **Text representation**
 
 - **COBOL DISPLAY vs COMPUTATIONAL**
 
@@ -3578,10 +3575,9 @@ A COBOL programmer must be aware that the computer stored internal data represen
 
 Data such as numerical values and text are internally represented by zeros and ones in most computers, including mainframe computers used by enterprises.  While data representation is a somewhat complex topic in computer science, a programmer does not always need to fully understand how various alternative representations work.  It is important, however, to understand the differences and how to specify a specific representation when needed.
 
- 
 ### Numerical value representation
 
-COBOL has five computational (numerical) value representations.  The awareness of these representations is important due to two main reasons.  The first reason being, when a COBOL program needs to read or write data, it needs to understand how data is represented in the dataset.  The second reason is when there are specific requirements regarding the precision and range of values being processed.  The following sections describe each computational representation keyword.
+COBOL has five computational (numerical) value representations.  The awareness of these representations is important due to two main reasons.  The first reason being, when a COBOL program needs to read or write data, it needs to understand how data is represented in the dataset.  The second reason is when there are specific requirements regarding the precision and range of values being processed. For additional details on binary and hexadecimal numbering systems as well as these numeric representations, consider reading the "Numerical Data Representation" chapter in the advanced topics course.
 
 #### COMP-1
 
@@ -3591,15 +3587,11 @@ This is also known as a single-precision floating point number representation.  
 
 This is also known as a double-precision floating point number representation.  COMP-2 extends the range of value that can be represented compared to COMP-1.  COMP-2 can represent values up to about 10 to the power of 307.  Like COMP-1, COMP-2 values also have a limited precision.  Due to the expanded format, COMP-2 has more significant digits, approximately 15 decimal digits.  This means that once a value reaches certain quadrillions (with no decimal places), it can no longer be exactly represented in COMP-2.
 
- 
-
 COMP-2 supersedes COMP-1 for more precise scientific data storage as well as computation.  Note that COMP-1 and COMP-2 have limited applications in financial data representation or computation.
 
 #### COMP-3
 
 This is also known as packed BCD (binary coded decimal) representation.  This is, by far, the most utilized numerical value representation in COBOL programs.  Packed BCD is also somewhat unique and native to mainframe computers such as the IBM z architecture.
-
- 
 
 Unlike COMP-1 or COMP-2, packed BCD has no inherent precision limitation that is independent to the range of values.  This is because COMP-3 is a variable width format that depends on the actual value format.  COMP-3 exactly represents values with decimal places.  A COMP-3 value can have up to 31 decimal digits.
 
@@ -3609,11 +3601,10 @@ COMP-4 is only capable of representing integers.  Compared to COMP-1 and COMP-2,
 
 #### COMP-5
 
-COMP-5 is based on COMP-4, but with the flexibility of specifying the position of a decimal point.  COMP-5 has the space efficiency of COMP-4, and the exactness of COMP-3.  Unlike COMP-3, however, a COMP-5 value cannot exceed 18 decimal digits.
+COMP-5 is based on COMP-4, but with the flexibility of specifying the position of a decimal point.  COMP-5 has the space efficiency of COMP-4, and the exactness of COMP-3.  Unlike COMP-3, however, a COMP-5 value cannot exceed 18 decimal digits.. 
 
- 
 
-### Text representations
+### Text representation
 
 COBOL programs often need to represent text data such as names and addresses.
 
@@ -3638,7 +3629,7 @@ COBOL can encode and process text data in EBCDIC or ASCII.  This means a COBOL p
  
 ## COBOL DISPLAY vs COMPUTATIONAL
 
-Enterprise COBOL for z/OS by default utilizes EBCDIC encoding.  However, it is possible to read and write ASCII in z/OS.  The EBCDIC format representation of numbers and alphabetic characters is in a DISPLAY format.  Packed decimal and zoned decimal are NOT in a DISPLAY format.  COBOL can describe packed decimal and zoned decimal fields using COMPUTATIONAL, COMP-1, COMP-2, COMP-3, COMP-4, and COMP-5 reserved words.
+Enterprise COBOL for z/OS by default utilizes EBCDIC encoding.  However, it is possible to read and write ASCII in z/OS.  The EBCDIC format representation of alphabetic characters is in a DISPLAY format.  Zoned decimal for numbers, without the sign, is in a DISPLAY format. Packed decimal, binary and floating point are NOT in a DISPLAY format.  COBOL can describe packed decimal, binary and floating point fields using COMPUTATIONAL, COMP-1, COMP-2, COMP-3, COMP-4, and COMP-5 reserved words.
 
 
 ## Lab
