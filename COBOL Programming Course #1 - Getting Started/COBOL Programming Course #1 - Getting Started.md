@@ -3353,19 +3353,19 @@ This chapter aims to introduce the concept of implementing arithmetic expression
 
 Arithmetic expressions are used as operands of certain conditional and arithmetic statements.  An arithmetic expression can consist of any of the following items:
 
-- An identifier described as a numeric elementary item (including numeric functions).
+1. An identifier described as a numeric elementary item (including numeric functions).
 
-- A numeric literal.
+2. A numeric literal.
 
-- The figurative constant ZERO.
+3. The figurative constant ZERO.
 
-- Identifiers and literals, as defined in items 1, 2, and 3, separated by arithmetic operators.
+4. Identifiers and literals, as defined in items 1, 2, and 3, separated by arithmetic operators.
 
-- Two arithmetic expressions, as defined in items 1, 2, 3, or 4, separated by an arithmetic operator.
+5. Two arithmetic expressions, as defined in items 1, 2, 3, or 4, separated by an arithmetic operator.
 
-- An arithmetic expression, as defined in items 1, 2, 3, 4, or 5, enclosed in parentheses.
+6. An arithmetic expression, as defined in items 1, 2, 3, 4, or 5, enclosed in parentheses.
 
-- Any arithmetic expression can be preceded by a unary operator.
+7. Any arithmetic expression can be preceded by a unary operator.
 
 Identifiers and literals that appear in arithmetic expressions must represent either numeric elementary items or numeric literals on which arithmetic can be performed.  If the value of an expression to be raised to a power is zero, the exponent must have a value greater than zero. Otherwise, the size error condition exists. In any case where no real number exists as the result of an evaluation, the size error condition exists.
 
