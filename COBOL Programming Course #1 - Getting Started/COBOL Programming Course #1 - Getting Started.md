@@ -391,7 +391,7 @@ Will be assumed to be COBOL code.  This information is stored in the global VSCo
 
 ### Margins
 
-The first thing you will notice when editing COBOL source code is that VSCode will have inserted five vertical lines down the file.  These lines segment each line of code into the areas reserved for sequence numbers, comment / continuation characters, area A and area B.  When coding without this basic aid I cannot recount the number of times I have made a compilation error because I started coding in the wrong column.  This alone is a very useful aid to a new COBOL programmer.  Move information about COBOL syntax and in particular the columns will be discussed later
+The first thing you will notice when editing COBOL source code is that VSCode will have inserted five vertical lines down the file.  These lines segment each line of code into the areas reserved for sequence numbers, comment / continuation characters, area A and area B.  When coding without this basic aid I cannot recount the number of times I have made a compilation error because I started coding in the wrong column.  This alone is a very useful aid to a new COBOL programmer.  Move information about COBOL syntax, and in particular the columns, will be discussed later
 
 ### Variable expansion
 
