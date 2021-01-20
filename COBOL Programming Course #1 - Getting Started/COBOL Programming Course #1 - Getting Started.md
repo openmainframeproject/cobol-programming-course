@@ -2131,7 +2131,7 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
 - CBL0002J
 
-- CBL0033J
+- CBL0003J
 
 ![](Images/image133.png)
 
@@ -2178,10 +2178,10 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
    - RUN:PRTLINE(103) is the COBOL program execution output (if correction is successful)
 
-10.  Submit job, JCL(CBL0033J), using the DATA SET section.
+10.  Submit job, JCL(CBL0003J), using the DATA SET section.
 
 
-11.  View CBL0033J ABENDU4038 output, using the JOBS section:
+11.  View CBL0003J ABENDU4038 output, using the JOBS section:
 
       - View the IGZ00355 abend message in RUN:SYSOUT(104) from the COBOL program execution output.
 
@@ -2193,7 +2193,7 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
  
 
-12.  Fix this error by editing JCL(CBL0033J):
+12.  Fix this error by editing JCL(CBL0003J):
 
      - Determine the DDNAME needed, but missing or misspelled. 
 
@@ -2201,17 +2201,17 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
  
 
-13.  Re-submit job, JCL(CBL0033J), using the DATA SET section.
+13.  Re-submit job, JCL(CBL0003J), using the DATA SET section.
 
  
 
-14.  View CBL0033J output using the JOBS section, your output should look like Figure  12.
+14.  View CBL0003J output using the JOBS section, your output should look like Figure  12.
 
      - RUN:PRTLINE - COBOL program execution output (if correction is successful)
 
 ![](Images/image138.png)
 
-*Figure  12.  RUN:PRTLINE(103) for JCL(CBL0033J)*
+*Figure  12.  RUN:PRTLINE(103) for JCL(CBL0003J)*
 
 **Lab hints**
 
@@ -2219,7 +2219,7 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
 ![](Images/image140.png)
 
-*Figure  13.  Error in id.JCL(CBL0033J).jcl*
+*Figure  13.  Error in id.JCL(CBL0003J).jcl*
 
 \newpage
 
