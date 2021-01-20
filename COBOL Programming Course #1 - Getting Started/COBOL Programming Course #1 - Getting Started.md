@@ -2755,13 +2755,13 @@ In summary, this chapter should provide the necessary foundation to understand s
 
 ## Lab
 
-This lab utilizes COBOL program CBL0003, located within your id.CBL data set, as well as JCL job CBL0003J, located within your id.JCL data set.  The JCL jobs are used to compile and execute the COBOL programs, as discussed in previous chapters.
+This lab utilizes COBOL program CBL0033, located within your id.CBL data set, as well as JCL job CBL0033J, located within your id.JCL data set.  The JCL jobs are used to compile and execute the COBOL programs, as discussed in previous chapters.
 
 #### Using VSCode and Zowe Explorer
 
-1. Take a moment and look over the source code of the COBOL program provided: CBL0003. 
+1. Take a moment and look over the source code of the COBOL program provided: CBL0033. 
 
-2. Compare CBL0003 with CBL0001 and CBL0002 from the previous lab. Do you notice the differences? 
+2. Compare CBL0033 with CBL0001 and CBL0002 from the previous lab. Do you notice the differences? 
 
    a. Observe the new COUNTER line within the WORKING-STORAGE > DATA DIVISION.
 
@@ -2771,11 +2771,11 @@ This lab utilizes COBOL program CBL0003, located within your id.CBL data set, as
 
    c. These paragraphs perform the same loop as in CBL0001, but using the PERFORM statement in different ways. The CALLING-SUBPROGRAM calls the HELLO program, already presented in the second Lab of this course.
 
-3. Submit job: CBL0003J. This JCL first compiles the program HELLO,
-then compiles CBL0003 and links the result of both compilations
+3. Submit job: CBL0033J. This JCL first compiles the program HELLO,
+then compiles CBL0033 and links the result of both compilations
 together. 
 
-4. View CBL0003J output using the JOBS section and open RUN:PRTLINE, observe the report is identical to CBL0001.
+4. View CBL0033J output using the JOBS section and open RUN:PRTLINE, observe the report is identical to CBL0001.
 
 5. View output of target program HELLO using the JOBS section and open RUN:SYSOUT. 
 
