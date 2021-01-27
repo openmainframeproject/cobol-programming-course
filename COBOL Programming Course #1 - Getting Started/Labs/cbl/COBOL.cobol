@@ -45,7 +45,7 @@
            PERFORM A000-COUNT 10    TIMES.
            PERFORM A000-DONE.
            CLOSE   PRT-LINE.
-           STOP RUN.
+           GOBACK.
       *
        A000-COUNT.
            ADD 1 TO PGM-COUNT.

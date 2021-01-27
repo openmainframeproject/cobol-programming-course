@@ -134,7 +134,7 @@
            WRITE PRINT-REC FROM CLIENTS-PER-STATE.
            CLOSE ACCT-REC.
            CLOSE PRINT-LINE.
-           STOP RUN.
+           GOBACK.
       *
        READ-RECORD.
            READ ACCT-REC
