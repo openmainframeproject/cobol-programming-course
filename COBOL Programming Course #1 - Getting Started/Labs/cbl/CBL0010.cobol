@@ -159,7 +159,7 @@
        CLOSE-STOP.
            CLOSE ACCT-REC.
            CLOSE PRINT-LINE.
-           STOP RUN.
+           GOBACK.
       *
        READ-RECORD.
            READ ACCT-REC
