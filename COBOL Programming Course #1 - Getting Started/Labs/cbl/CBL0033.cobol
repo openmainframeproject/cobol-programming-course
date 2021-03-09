@@ -105,8 +105,8 @@
        3000-CLOSE-STOP.
            CLOSE ACCT-REC.
            CLOSE PRINT-LINE.
-           STOP RUN.
-      *Without STOP RUN here, the next paragraphs would
+           GOBACK.
+      *Without GOBACK here, the next paragraphs would
       *execute once more
        3000-CLOSE-STOP-END.
       *
