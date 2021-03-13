@@ -268,6 +268,73 @@ To define a dynamic length item, we can include the DYNAMIC LENGTH clause on the
 Let us observe a few things from the examples above. Firstly, we note that the LENGTH keyword is optional. Next, we also have a LIMIT phrase that specifies the maximum length of the data item. If a sender's length is longer than the receiver's LIMIT value, the data will be truncated on the right. This LIMIT value defaults to 999999999 if not specified. Lastly, note that we use PIC X, to use dynamic-length clause, you can only use PIC X or PIC U (which is for UTF-8 data item).
 
 \newpage
+# UTF-8 Data Type
+
+With Enterprise COBOL v6.3, we also have a new USAGE, which is UTF-8. This is indicated by the picture symbol 'U'. Unlike NATIONAL or DBCS characters, the byte length of each UTF-8 character varies between 1 and 4 bytes. Enterprise COBOL treats a single UTF-8 character as equivalent to a single Unicode code point.
+
+## UTF-8 Data Items
+
+There are three ways that Enterprise COBOL uses to define UTF-8 data items.
+
+### Fixed Character-Length UTF-8 Data Items
+
+This type of UTF-8 data item is defined when the PICTURE clause contains one or more 'U' characters, or a single 'U' followed by a repetition factor. Take for example the piece of code below:
+
+```
+01 NEW-UTF-CHAR PIC U(10).
+```
+
+In this case, we define a fixed character-length UTF-8 data item that holds 10 UTF-8 characters that occupy between 10 (n) and 40 (4 * n) bytes. Since UTF-8 character's byte length varies, 4 * n bytes are always reserved for UTF-8 item. If there are unused bytes, those will be padded with the UTF-8 blank statement (x'20'). When truncation is performed, it is done on a character boundary.
+
+### Fixed Byte-Length UTF-8 Data Items
+
+Like fixed character-length, we define this by the inclusion of the 'U' character in the PICTURE clause. But now, we will add a phrase called BYTE-LENGTH. Observe the code below:
+
+```
+01 NEW-UTF-BYTE PIC U BYTE-LENGTH 10.
+```
+
+In this case, we define a fixed byte-length UTF-8 data item that holds 10 bytes of UTF-8 data, this translates to up to 10 characters. When these are used to receive characters with byte length smaller than indicated, the unused bytes are padded by the UTF-8 blank statement (x'20').
+
+### Dynamic-Length UTF-8 Data Items
+
+Lastly, we have the dynamic-length UTF-8 data items. This is defined when we have a PICTURE clause with the 'U' character and the DYNAMIC LENGTH clause. Observe the code below:
+
+```
+01 NEW-UTF-DYN PIC U DYNAMIC LIMIT 10.
+```
+
+With dynamic-length UTF-8 data item, there is no restriction on the number of bytes besides the one indicated on the LIMIT phrase of the DYNAMIC LENGTH clause. Unlike the other two definitions, no padding is involved with the dynamic-length UTF-8 data item. Truncation will only occur on the character boundaries if it exceeds the specified limit.
+
+## UTF-8 Literals
+
+There are two types of UTF-8 literals which are supported on Enterprise COBOL.
+
+### Basic UTF-8 Literals
+
+```
+U'character-data'
+```
+
+When we define basic UTF-8 literals, the character-data is converted from EBCDIC to UTF-8. If we have double-byte EBCDIC characters, those must be delimited by shift-out and shift-in characters. The amount of Unicode code points which we can represent here varies depending on the size of the UTF-8 characters, but a maximum of 160 bytes (after conversion) is allowed before truncation.
+
+### Hexadecimal UTF-8 Literals
+
+```
+UX'hexadecimal-digits'
+```
+
+In this case, the hexadecimal-digits are converted to bytes sequences which are used verbatim as the UTF-8 literal values. There is a minimum of 2 hexadecimal digits and a maximum of 320.
+
+## UTF-8 Move Rules and Conversion
+
+Generally speaking, a UTF-8 data item can be moved only to those of category National or UTF-8. While they can receive items from Alphabetic, Alphanumeric, National or UTF-8. If there are any padding or truncation, those are always done at the UTF-8 character.
+
+Additionally, we can use the intrinsic function DISPLAY-OF to convert national to UTF-8 and UTF-8 to alphanumeric or the intrinsic function NATIONAL-OF to convert UTF-8 to national.
+
+**Note** : For more information, please visit this link: [IBM Knowledge Center - Enterprise COBOL for z/OS 6.3.0](https://www.ibm.com/support/knowledgecenter/SS6SG3_6.3.0/pg/tasks/tpstra29.html)
+
+\newpage
 # COBOL Application Programming Interface (API)
 API is the acronym for Application Programming Interface.  An API allows two applications to communicate. We use API's everyday from our phones, personal computers, using a credit card to make a payment at a point of sale, etc.  
 
