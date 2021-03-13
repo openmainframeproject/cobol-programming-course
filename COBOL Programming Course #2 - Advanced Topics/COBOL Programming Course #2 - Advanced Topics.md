@@ -226,6 +226,48 @@ COMP-2 supersedes COMP-1 for more precise scientific data storage as well as com
 **Note** : [This](https://www.ibm.com/support/pages/how-display-hexadecimal-using-cobol) COBOL program can display the hexadecimal contents (and hence the exact internal representation) of a field. You can declare binary, packed decimal or zoned variable (or anything else, for that matter), do arithmetic with them and use the program to see how they are internally stored. 
 
 \newpage
+# Dynamic-Length Item
+So far during this course, we have only explored data items that have a fixed length. In other words, you need to define the length you need for each data type. But in this section, we will explore a fairly new concept in Enterprise COBOL - dynamic-length items.
+
+Enterprise COBOL v6.3 supports dynamic-length items, which are items whose logical length might change at runtime.
+
+## Dynamic-Length Elementary Items
+
+Now, let us consider a dynamic-length elementary item. If it is used as a sending operand, it will be treated as a fixed-length data item with a length that is the same as the current length of the dynamic-length item. If the dynamic-length item is used as a receiving operand and it's not reference-modified, the sender's content is simply moved into the receiving's content buffer.
+
+In the case that the sender's length is longer than the receiver's, a larger content buffer might be allocated at runtime to contain the contents of the sender. If the length of the sender is zero, the receiver's length will be set to zero as well. 
+
+If the dynamic-length elementary item is used as a receiving operand and is reference-modified, the item is treated as a fixed-length item with a length that is the same as the current length of the item. The receiver buffer will not be allocated or reallocated if it is reference-modified.
+
+As a general usage rule, note that dynamic-length elementary items cannot be REDEFINED or RENAMED, cannot be JUSTIFIED RIGHT, may not be variably-located or located within an OCCURS DEPENDING ON table, and we cannot take their address with the ADDRESS-OF special register.
+
+When you compare a dynamic-length item with a fixed-length item, the comparison will follow the normal comparison rules (extend and pad the shorter operand on the right with spaces and then compare). Meanwhile, if you compare two dynamic-length elementary items, the lengths will be compared first and if they matched, the characters will then be examined.
+
+You can also set the length of dynamic-length elementary item using the SET LENGTH OF syntax and pass dynamic-length elementary items as fixed-length items to a subroutine by indicating the AS FIXED LENGTH phrase.
+
+Note that doing the intrinsic function MIN and MAX are not supported for dynamic-length items.
+
+## Dynamic-Length Group Items
+
+A dynamic-length group item is a group item that contains a subordinate dynamic-length elementary item and whose logical length might change at runtime.
+
+A group item that is not a dynamic-length group item is considered to be a fixed-length group item. These fixed-length group items can contain variable-length tables whose data description entries contains the OCCURS DEPENDING ON clause.
+
+Additionally, dynamic-length group items may not be compared to, or moved to, other group items (regardless if it's a dynamic-length group item or not). While fixed-length group items are always compatible and comparable with other fixed-length group items.
+
+## DYNAMIC LENGTH Clause
+
+To define a dynamic length item, we can include the DYNAMIC LENGTH clause on the data description entry. Here are a couple of examples of how to indicate the clause:
+
+```
+01 MY-DYN PIC X DYNAMIC.
+01 NAME PIC X DYNAMIC LENGTH.
+01 DYN-PRICE PIC X DYNAMIC LIMIT 500.
+```
+
+Let us observe a few things from the examples above. Firstly, we note that the LENGTH keyword is optional. Next, we also have a LIMIT phrase that specifies the maximum length of the data item. If a sender's length is longer than the receiver's LIMIT value, the data will be truncated on the right. This LIMIT value defaults to 999999999 if not specified. Lastly, note that we use PIC X, to use dynamic-length clause, you can only use PIC X or PIC U (which is for UTF-8 data item).
+
+\newpage
 # COBOL Application Programming Interface (API)
 API is the acronym for Application Programming Interface.  An API allows two applications to communicate. We use API's everyday from our phones, personal computers, using a credit card to make a payment at a point of sale, etc.  
 
