@@ -1187,7 +1187,7 @@ COBOL programming language has many words with specific meaning to the COBOL com
 
 A few COBOL reserved words pertinent to this book are: PERFORM, MOVE, COMPUTE, IF, THEN, ELSE, EVALUATE, PICTURE, etc..  You can find a table of all COBOL reserved words is located at:
 
-[https://www.ibm.com/support/knowledgecenter/zh/SSZJPZ_9.1.0/com.ibm.swg.im.iis.ds.mfjob.dev.doc/topics/r_dmnjbref_COBOL_Reserved_Words.html](https://www.ibm.com/support/knowledgecenter/zh/SSZJPZ_9.1.0/com.ibm.swg.im.iis.ds.mfjob.dev.doc/topics/r_dmnjbref_COBOL_Reserved_Words.html)
+[https://www.ibm.com/support/knowledgecenter/SS6SG3_6.3.0/lr/ref/rlres.html](https://www.ibm.com/support/knowledgecenter/SS6SG3_6.3.0/lr/ref/rlres.html)
 
 
 ### What is a COBOL statement?
@@ -1779,7 +1779,7 @@ The maximum length of a picture clause is dependent upon the data type and compi
 
 Where cs is any valid currency symbols such as the dollar sign ($).
 
-All PIC clause symbols are described in the [Enterprise COBOL for z/OS Language Reference manual](https://www.ibm.com/support/knowledgecenter/SS6SG3_4.2.0/com.ibm.entcobol.doc_4.2/PGandLR/igy3lr50.pdf). 
+All PIC clause symbols are described in the [Enterprise COBOL for z/OS Language Reference manual](http://publibfp.boulder.ibm.com/epubs/pdf/igy6lr30.pdf). 
 
 
 ### Coding COBOL variable / data-item names
@@ -3271,7 +3271,7 @@ The sign condition determines whether the algebraic value of a numeric operand i
 
 **Note** : To read more information about these conditions please visit the link:
 
-[IBM Knowledge Center - Enterprise COBOL for z/OS 4.2.0](https://www.ibm.com/support/knowledgecenter/en/SS6SG3_4.2.0/com.ibm.entcobol.doc_4.2/PGandLR/ref/rlpdsxco.htm)
+[IBM Knowledge Center - Enterprise COBOL for z/OS 6.3.0](https://www.ibm.com/support/knowledgecenter/SS6SG3_6.3.0/lr/ref/rlpdsxco.html)
 
  
 ## Lab
@@ -3454,7 +3454,7 @@ COMPUTE | Restriction does not apply
 
 *Table 2.  How the composite of operands is determined*
 
-In all arithmetic statements, it is important to define data with enough digits and decimal places to ensure the required accuracy in the result.  Arithmetic precision details are available in the [IBM Enterprise COBOL Programming Guide Appendix A](https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library).
+In all arithmetic statements, it is important to define data with enough digits and decimal places to ensure the required accuracy in the result.  Arithmetic precision details are available in the [IBM Enterprise COBOL Programming Guide Appendix A](http://publibfp.boulder.ibm.com/epubs/pdf/igy6pg30.pdf).
 
  
 

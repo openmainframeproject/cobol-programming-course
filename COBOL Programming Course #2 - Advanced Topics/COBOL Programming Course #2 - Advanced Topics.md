@@ -627,9 +627,9 @@ We will be working on a Hacker News 2015-2016 dataset from Kaggle with a full ye
 
 5. Next add a new step in the JCL member to run the `DFSORT` utility on the output dataset from the previous step. The sort should be done on the ranking score field, from highest to lowest. Use `DFSORT` to also print headers for our front page. As this is a new utility not covered in the course, please check out these links to explore this very powerful and versatile tool:
  
-   [Getting started with DFSORT](https://www-01.ibm.com/servers/resourcelink/svc00100.nsf/pages/zOSV2R3sc236880/$file/iceg200_v2r3.pdf)
+   [Getting started with DFSORT](https://www.ibm.com/support/knowledgecenter/SSLTBW_2.4.0/com.ibm.zos.v2r4.iceg200/abstract.htm)
 
-   [Example with DFSORT](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.icea100/ice2ca_Example_10._Sort_with_OUTFIL.htm)
+   [Example with DFSORT](https://www.ibm.com/support/knowledgecenter/SSLTBW_2.4.0/com.ibm.zos.v2r4.icea100/ice2ca_Example_10._Sort_with_OUTFIL.htm)
 
 
 6. Run and debug until the front page looks ready! Which posts ranked among the highest? Here's a look at the generated report:
