@@ -2638,13 +2638,13 @@ In this case, the Boolean condition is evaluated before the loop is executed.  H
 
 
 ```
- PERFORM UNTIL COUNTER = 10 WITH TEST AFTER
+ PERFORM WITH TEST AFTER UNTIL COUNTER = 10
   ADD 1 TO COUNTER GIVING COUNTER
   MOVE COUNTER TO MSG-TO-WRITE
   WRITE PRINT-REC
  END-PERFORM.
 ```
-*Example 15.  PERFORM UNTIL WITH TEST AFTER*
+*Example 15.  PERFORM WITH TEST AFTER UNTIL*
  
 This would be similar to a "do while" loop in Java:
 
