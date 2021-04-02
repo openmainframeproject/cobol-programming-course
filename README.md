@@ -2,6 +2,8 @@
 
 ![License](https://img.shields.io/github/license/OpenMainframeProject/cobol-programming-course)
 
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4770/badge)](https://bestpractices.coreinfrastructure.org/projects/4770)
+
 # COBOL Programming Course
 
 This project is a set of training materials and labs for COBOL on z/OS. The following books are available within this repository. To get started, follow the steps in their respective READMEs.
