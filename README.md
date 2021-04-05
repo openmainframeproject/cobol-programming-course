@@ -1,6 +1,7 @@
 ![](https://github.com/openmainframeproject/artwork/raw/master/projects/cobol-programming-course/cobol-programming-course-color.png)
 
 ![License](https://img.shields.io/github/license/OpenMainframeProject/cobol-programming-course)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4770/badge)](https://bestpractices.coreinfrastructure.org/projects/4770)
 
 # COBOL Programming Course
 
