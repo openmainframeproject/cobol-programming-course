@@ -25,14 +25,11 @@ If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
  - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+ - VSCode version: [e.g. 1.55.1]
+ - NodeJS version: [e.g. 14.16.1]
+ - Java JDK version: [e.g. 1.8.0_241]
+ - Zowe Explorer version: [e.g. 1.13.1]
+ - IBM Z Open Editor version: [e.g. 1.2.0]
 
 **Course taken**
 Where do you take the course? [e.g. IBM Learning Platform, Coursera, Pluralsight, GitHub]
