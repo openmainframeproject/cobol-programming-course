@@ -19,6 +19,46 @@ header-includes:
               linkcolor=blue}
 ---
 \newpage
+## Additional information
+
+This section provides useful resources in the form of manuals and videos to assist in learning more about the basics of COBOL.
+
+### Professional manuals
+
+As Enterprise COBOL experience advances, the need for the professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of April 2020, the current release of Enterprise COBOL is V6.3.  Highlight V6.3 tab, then select product documentation.
+
+[https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library](https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library)
+
+
+Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chapters as sources of additional information, for reference and to advance the level of knowledge. They are:
+
+1. Language Reference - Describes the COBOL language such as program structure, reserved words, etc. 
+
+   [http://publibfp.boulder.ibm.com/epubs/pdf/igy6lr30.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/igy6lr30.pdf)
+
+2. Programming Guide - Describes advanced topics such as COBOL compiler options, program performance optimization, handling errors, etc.
+
+   [http://publibfp.boulder.ibm.com/epubs/pdf/igy6pg30.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/igy6pg30.pdf)
+
+3. Messages and Codes - To better understand certain COBOL compiler messages and return codes to diagnose problems.
+
+   [http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf)
+
+### Learn more about recent COBOL advancements
+
+- What’s New in Enterprise COBOL for z/OS V6.1:
+
+   [https://youtu.be/N_Zsd1W8hWc](https://youtu.be/N_Zsd1W8hWc)
+
+- What’s New in Enterprise COBOL for z/OS V6.2:
+
+   [https://youtu.be/H0iweEbVNFs](https://youtu.be/H0iweEbVNFs)
+
+- What’s New in Enterprise COBOL for z/OS V6.3:
+
+   [https://youtu.be/bRLKGeB6W2A](https://youtu.be/bRLKGeB6W2A)
+
+\newpage
 # Numerical Data Representation
 
 In the first COBOL Programming Course, various types of data representation were discussed. This chapter seeks to expand upon the binary and hexadecimal numbering systems as well as the various numeric representations in COBOL. 
