@@ -233,27 +233,27 @@ Enterprise COBOL v6.3 supports dynamic-length items, which are items whose logic
 
 ## Dynamic-Length Elementary Items
 
-Now, let us consider a dynamic-length elementary item. If it is used as a sending operand, it will be treated as a fixed-length data item with a length that is the same as the current length of the dynamic-length item. If the dynamic-length item is used as a receiving operand and it's not reference-modified, the sender's content is simply moved into the receiving's content buffer.
+Let us consider a dynamic-length elementary item. To recall, an elementary item is an item that cannot be further subdivided. These items have a PIC clause since storage is reserved for it. If we used dynamic-length elementary item to send data, it will be treated as a fixed-length item with a length equals to the current length of the dynamic-length item. On the other hand, if we used dynamic-length elementary item to receive data and it's not reference-modified, the content will simply be moved to the receiving's content buffer.
 
-In the case that the sender's length is longer than the receiver's, a larger content buffer might be allocated at runtime to contain the contents of the sender. If the length of the sender is zero, the receiver's length will be set to zero as well. 
+If the content received is longer than the current length, a new larger buffer will be allocated for it. Additionally, if the length of the sender is zero, the receiver's length will be set to zero as well.
 
-If the dynamic-length elementary item is used as a receiving operand and is reference-modified, the item is treated as a fixed-length item with a length that is the same as the current length of the item. The receiver buffer will not be allocated or reallocated if it is reference-modified.
+Now, if the dynamic-length elementary item is used to receive data and we reference-modified it, the item will be treated as a fixed-length item with with a length equals to the current length of the dynamic-length item. In such cases, the compiler will not allocate or reallocated the buffer.
 
-As a general usage rule, note that dynamic-length elementary items cannot be REDEFINED or RENAMED, cannot be JUSTIFIED RIGHT, may not be variably-located or located within an OCCURS DEPENDING ON table, and we cannot take their address with the ADDRESS-OF special register.
+Note that not all statement supports dynamic-length elementary items. Common statement like REDEFINE or RENAME will not work. Additionally, we cannot take their address using the ADDRESS-OF special register. The full list of the statements supported is available on the [Language Reference](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=relationships-dynamic-length-items).
 
-When you compare a dynamic-length item with a fixed-length item, the comparison will follow the normal comparison rules (extend and pad the shorter operand on the right with spaces and then compare). Meanwhile, if you compare two dynamic-length elementary items, the lengths will be compared first and if they matched, the characters will then be examined.
+When we compare a dynamic-length item with a fixed-length item, the comparison will follow the normal comparison rules (the shorter item will be extended to the right with enough spaces to make both items equal in length and then each character will be compared). Meanwhile, if you compare two dynamic-length elementary items, the lengths will be compared first and if they matched, the characters will then be examined.
 
-You can also set the length of dynamic-length elementary item using the SET LENGTH OF syntax and pass dynamic-length elementary items as fixed-length items to a subroutine by indicating the AS FIXED LENGTH phrase.
+We can also set the length of dynamic-length elementary item using the SET LENGTH OF syntax and pass dynamic-length elementary items as fixed-length items to a subroutine using the AS FIXED LENGTH phrase.
 
 Note that doing the intrinsic function MIN and MAX are not supported for dynamic-length items.
 
 ## Dynamic-Length Group Items
 
-A dynamic-length group item is a group item that contains a subordinate dynamic-length elementary item and whose logical length might change at runtime.
+A dynamic-length group item is a group item that contains at least one subordinate dynamic-length elementary item and whose logical length might change at runtime.
 
-A group item that is not a dynamic-length group item is considered to be a fixed-length group item. These fixed-length group items can contain variable-length tables whose data description entries contains the OCCURS DEPENDING ON clause.
+Any other group item is considered to be a fixed-length group item. These fixed-length group items can contain variable-length tables through the OCCURS DEPENDING ON clause.
 
-Additionally, dynamic-length group items may not be compared to, or moved to, other group items (regardless if it's a dynamic-length group item or not). While fixed-length group items are always compatible and comparable with other fixed-length group items.
+Additionally, we cannot compare or move dynamic-length group items to any other group items. On the other hand, fixed-length group items are always compatible and comparable with other fixed-length group items.
 
 ## DYNAMIC LENGTH Clause
 
@@ -265,7 +265,7 @@ To define a dynamic length item, we can include the DYNAMIC LENGTH clause on the
 01 DYN-PRICE PIC X DYNAMIC LIMIT 500.
 ```
 
-Let us observe a few things from the examples above. Firstly, we note that the LENGTH keyword is optional. Next, we also have a LIMIT phrase that specifies the maximum length of the data item. If a sender's length is longer than the receiver's LIMIT value, the data will be truncated on the right. This LIMIT value defaults to 999999999 if not specified. Lastly, note that we use PIC X, to use dynamic-length clause, you can only use PIC X or PIC U (which is for UTF-8 data item).
+Let us observe a few things from the examples above. Firstly, we note that the LENGTH keyword is optional. Next, we also have a LIMIT phrase that specifies the maximum length of the data item. If a sender's length is longer than the receiver's LIMIT value, the data will be truncated on the right. This LIMIT value defaults to 999999999 if not specified. Lastly, note that we use PIC X. To use dynamic-length clause, you can only use PIC X or PIC U (which is for UTF-8 data item).
 
 \newpage
 # UTF-8 Data Type
@@ -306,6 +306,8 @@ Lastly, we have the dynamic-length UTF-8 data items. This is defined when we hav
 
 With dynamic-length UTF-8 data item, there is no restriction on the number of bytes besides the one indicated on the LIMIT phrase of the DYNAMIC LENGTH clause. Unlike the other two definitions, no padding is involved with the dynamic-length UTF-8 data item. Truncation will only occur on the character boundaries if it exceeds the specified limit.
 
+Note that UTF-8 edited, numeric-edited, decimal and external float are not supported.
+
 ## UTF-8 Literals
 
 There are two types of UTF-8 literals which are supported on Enterprise COBOL.
@@ -332,7 +334,7 @@ Generally speaking, a UTF-8 data item can be moved only to those of category Nat
 
 Additionally, we can use the intrinsic function DISPLAY-OF to convert national to UTF-8 and UTF-8 to alphanumeric or the intrinsic function NATIONAL-OF to convert UTF-8 to national.
 
-**Note** : For more information, please visit this link: [IBM Knowledge Center - Enterprise COBOL for z/OS 6.3.0](https://www.ibm.com/support/knowledgecenter/SS6SG3_6.3.0/pg/tasks/tpstra29.html)
+**Note** : For more information, please refer to the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=cobol-converting-from-utf-8-unicode-representation).
 
 \newpage
 # COBOL Application Programming Interface (API)
