@@ -19,6 +19,46 @@ header-includes:
               linkcolor=blue}
 ---
 \newpage
+## Additional information
+
+This section provides useful resources in the form of manuals and videos to assist in learning more about the basics of COBOL.
+
+### Professional manuals
+
+As Enterprise COBOL experience advances, the need for the professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of April 2020, the current release of Enterprise COBOL is V6.3.  Highlight V6.3 tab, then select product documentation.
+
+[https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library](https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library)
+
+
+Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chapters as sources of additional information, for reference and to advance the level of knowledge. They are:
+
+1. Language Reference - Describes the COBOL language such as program structure, reserved words, etc. 
+
+   [http://publibfp.boulder.ibm.com/epubs/pdf/igy6lr30.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/igy6lr30.pdf)
+
+2. Programming Guide - Describes advanced topics such as COBOL compiler options, program performance optimization, handling errors, etc.
+
+   [http://publibfp.boulder.ibm.com/epubs/pdf/igy6pg30.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/igy6pg30.pdf)
+
+3. Messages and Codes - To better understand certain COBOL compiler messages and return codes to diagnose problems.
+
+   [http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf)
+
+### Learn more about recent COBOL advancements
+
+- What’s New in Enterprise COBOL for z/OS V6.1:
+
+   [https://youtu.be/N_Zsd1W8hWc](https://youtu.be/N_Zsd1W8hWc)
+
+- What’s New in Enterprise COBOL for z/OS V6.2:
+
+   [https://youtu.be/H0iweEbVNFs](https://youtu.be/H0iweEbVNFs)
+
+- What’s New in Enterprise COBOL for z/OS V6.3:
+
+   [https://youtu.be/bRLKGeB6W2A](https://youtu.be/bRLKGeB6W2A)
+
+\newpage
 # Numerical Data Representation
 
 In the first COBOL Programming Course, various types of data representation were discussed. This chapter seeks to expand upon the binary and hexadecimal numbering systems as well as the various numeric representations in COBOL. 
@@ -224,6 +264,117 @@ COMP-2 extends the range of value that can be represented compared to COMP-1.  C
 COMP-2 supersedes COMP-1 for more precise scientific data storage as well as computation.  Note that COMP-1 and COMP-2 have limited applications in financial data representation or computation.
 
 **Note** : [This](https://www.ibm.com/support/pages/how-display-hexadecimal-using-cobol) COBOL program can display the hexadecimal contents (and hence the exact internal representation) of a field. You can declare binary, packed decimal or zoned variable (or anything else, for that matter), do arithmetic with them and use the program to see how they are internally stored. 
+
+\newpage
+# Dynamic-Length Item
+So far during this course, we have only explored data items that have a fixed length. In other words, you need to define the length you need for each data type. But in this section, we will explore a fairly new concept in Enterprise COBOL - dynamic-length items.
+
+Enterprise COBOL v6.3 supports dynamic-length items, which are items whose logical length might change at runtime.
+
+## Dynamic-Length Elementary Items
+
+Let us consider a dynamic-length elementary item. To recall, an elementary item is an item that cannot be further subdivided. These items have a PIC clause since storage is reserved for it. If we used dynamic-length elementary item to send data, it will be treated as a fixed-length item with a length equals to the current length of the dynamic-length item. On the other hand, if we used dynamic-length elementary item to receive data and it's not reference-modified, the content will simply be moved to the receiving's content buffer.
+
+If the content received is longer than the current length, a new larger buffer will be allocated for it. Additionally, if the length of the sender is zero, the receiver's length will be set to zero as well.
+
+Now, if the dynamic-length elementary item is used to receive data and we reference-modified it, the item will be treated as a fixed-length item with with a length equals to the current length of the dynamic-length item. In such cases, the compiler will not allocate or reallocated the buffer.
+
+Note that not all statement supports dynamic-length elementary items. Common statement like REDEFINE or RENAME will not work. Additionally, we cannot take their address using the ADDRESS-OF special register. The full list of the statements supported is available on the [Language Reference](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=relationships-dynamic-length-items).
+
+When we compare a dynamic-length item with a fixed-length item, the comparison will follow the normal comparison rules (the shorter item will be extended to the right with enough spaces to make both items equal in length and then each character will be compared). Meanwhile, if you compare two dynamic-length elementary items, the lengths will be compared first and if they matched, the characters will then be examined.
+
+We can also set the length of dynamic-length elementary item using the SET LENGTH OF syntax and pass dynamic-length elementary items as fixed-length items to a subroutine using the AS FIXED LENGTH phrase.
+
+Note that doing the intrinsic function MIN and MAX are not supported for dynamic-length items.
+
+## Dynamic-Length Group Items
+
+A dynamic-length group item is a group item that contains at least one subordinate dynamic-length elementary item and whose logical length might change at runtime.
+
+Any other group item is considered to be a fixed-length group item. These fixed-length group items can contain variable-length tables through the OCCURS DEPENDING ON clause.
+
+Additionally, we cannot compare or move dynamic-length group items to any other group items. On the other hand, fixed-length group items are always compatible and comparable with other fixed-length group items.
+
+## DYNAMIC LENGTH Clause
+
+To define a dynamic length item, we can include the DYNAMIC LENGTH clause on the data description entry. Here are a couple of examples of how to indicate the clause:
+
+```
+01 MY-DYN PIC X DYNAMIC.
+01 NAME PIC X DYNAMIC LENGTH.
+01 DYN-PRICE PIC X DYNAMIC LIMIT 500.
+```
+
+Let us observe a few things from the examples above. Firstly, we note that the LENGTH keyword is optional. Next, we also have a LIMIT phrase that specifies the maximum length of the data item. If a sender's length is longer than the receiver's LIMIT value, the data will be truncated on the right. This LIMIT value defaults to 999999999 if not specified. Lastly, note that we use PIC X. To use dynamic-length clause, you can only use PIC X or PIC U (which is for UTF-8 data item).
+
+\newpage
+# UTF-8 Data Type
+
+With Enterprise COBOL v6.3, we also have a new USAGE, which is UTF-8. This is indicated by the picture symbol 'U'. Unlike NATIONAL or DBCS characters, the byte length of each UTF-8 character varies between 1 and 4 bytes. Enterprise COBOL treats a single UTF-8 character as equivalent to a single Unicode code point.
+
+## UTF-8 Data Items
+
+There are three ways that Enterprise COBOL uses to define UTF-8 data items.
+
+### Fixed Character-Length UTF-8 Data Items
+
+This type of UTF-8 data item is defined when the PICTURE clause contains one or more 'U' characters, or a single 'U' followed by a repetition factor. Take for example the piece of code below:
+
+```
+01 NEW-UTF-CHAR PIC U(10).
+```
+
+In this case, we define a fixed character-length UTF-8 data item that holds 10 UTF-8 characters that occupy between 10 (n) and 40 (4 * n) bytes. Since UTF-8 character's byte length varies, 4 * n bytes are always reserved for UTF-8 item. If there are unused bytes, those will be padded with the UTF-8 blank statement (x'20'). When truncation is performed, it is done on a character boundary.
+
+### Fixed Byte-Length UTF-8 Data Items
+
+Like fixed character-length, we define this by the inclusion of the 'U' character in the PICTURE clause. But now, we will add a phrase called BYTE-LENGTH. Observe the code below:
+
+```
+01 NEW-UTF-BYTE PIC U BYTE-LENGTH 10.
+```
+
+In this case, we define a fixed byte-length UTF-8 data item that holds 10 bytes of UTF-8 data, this translates to up to 10 characters. When these are used to receive characters with byte length smaller than indicated, the unused bytes are padded by the UTF-8 blank statement (x'20').
+
+### Dynamic-Length UTF-8 Data Items
+
+Lastly, we have the dynamic-length UTF-8 data items. This is defined when we have a PICTURE clause with the 'U' character and the DYNAMIC LENGTH clause. Observe the code below:
+
+```
+01 NEW-UTF-DYN PIC U DYNAMIC LIMIT 10.
+```
+
+With dynamic-length UTF-8 data item, there is no restriction on the number of bytes besides the one indicated on the LIMIT phrase of the DYNAMIC LENGTH clause. Unlike the other two definitions, no padding is involved with the dynamic-length UTF-8 data item. Truncation will only occur on the character boundaries if it exceeds the specified limit.
+
+Note that UTF-8 edited, numeric-edited, decimal and external float are not supported.
+
+## UTF-8 Literals
+
+There are two types of UTF-8 literals which are supported on Enterprise COBOL.
+
+### Basic UTF-8 Literals
+
+```
+U'character-data'
+```
+
+When we define basic UTF-8 literals, the character-data is converted from EBCDIC to UTF-8. If we have double-byte EBCDIC characters, those must be delimited by shift-out and shift-in characters. The amount of Unicode code points which we can represent here varies depending on the size of the UTF-8 characters, but a maximum of 160 bytes (after conversion) is allowed before truncation.
+
+### Hexadecimal UTF-8 Literals
+
+```
+UX'hexadecimal-digits'
+```
+
+In this case, the hexadecimal-digits are converted to bytes sequences which are used verbatim as the UTF-8 literal values. There is a minimum of 2 hexadecimal digits and a maximum of 320.
+
+## UTF-8 Move Rules and Conversion
+
+Generally speaking, a UTF-8 data item can be moved only to those of category National or UTF-8. While they can receive items from Alphabetic, Alphanumeric, National or UTF-8. If there are any padding or truncation, those are always done at the UTF-8 character.
+
+Additionally, we can use the intrinsic function DISPLAY-OF to convert national to UTF-8 and UTF-8 to alphanumeric or the intrinsic function NATIONAL-OF to convert UTF-8 to national.
+
+**Note** : For more information, please refer to the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=cobol-converting-from-utf-8-unicode-representation).
 
 \newpage
 # COBOL Application Programming Interface (API)
