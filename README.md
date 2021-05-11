@@ -29,6 +29,8 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 All contributions must align with the [Open Mainframe Project contribution guidelines](https://github.com/openmainframeproject/tac/blob/master/process/contribution_guidelines.md), including having a DCO signoff on all commits.
 
+For full contribution requirements, please review our [guidelines](CONTRIBUTING.md).
+
 ## Governance
 
 This project is openly governed as defined in [GOVERNANCE.md](GOVERNANCE.md).
