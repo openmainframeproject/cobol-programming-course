@@ -1,6 +1,6 @@
 # COBOL Programming Course #1 - Getting Started
 
-This project is a set of training materials and labs for a "Getting Started" level course on COBOL. Free and publicly available client tooling is used to interact with the mainframe environment allowing participants to easily leverage these technologies after the course. See the Commercial Tooling [README](Commercial%20Tooling/README.md) for information on completing this course using commercial tooling.
+This project is a set of training materials and labs for a "Getting Started" level course on COBOL. Free and publicly available client tooling is used to interact with the mainframe environment allowing participants to easily leverage these technologies after the course.
 
 ## How to get started
 
