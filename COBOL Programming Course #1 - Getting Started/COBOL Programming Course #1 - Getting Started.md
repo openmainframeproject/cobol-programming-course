@@ -1187,7 +1187,7 @@ COBOL programming language has many words with specific meaning to the COBOL com
 
 A few COBOL reserved words pertinent to this book are: PERFORM, MOVE, COMPUTE, IF, THEN, ELSE, EVALUATE, PICTURE, etc..  You can find a table of all COBOL reserved words is located at:
 
-[https://www.ibm.com/support/knowledgecenter/zh/SSZJPZ_9.1.0/com.ibm.swg.im.iis.ds.mfjob.dev.doc/topics/r_dmnjbref_COBOL_Reserved_Words.html](https://www.ibm.com/support/knowledgecenter/zh/SSZJPZ_9.1.0/com.ibm.swg.im.iis.ds.mfjob.dev.doc/topics/r_dmnjbref_COBOL_Reserved_Words.html)
+[https://www.ibm.com/support/knowledgecenter/SS6SG3_6.3.0/lr/ref/rlres.html](https://www.ibm.com/support/knowledgecenter/SS6SG3_6.3.0/lr/ref/rlres.html)
 
 
 ### What is a COBOL statement?
@@ -1779,7 +1779,7 @@ The maximum length of a picture clause is dependent upon the data type and compi
 
 Where cs is any valid currency symbols such as the dollar sign ($).
 
-All PIC clause symbols are described in the [Enterprise COBOL for z/OS Language Reference manual](https://www.ibm.com/support/knowledgecenter/SS6SG3_4.2.0/com.ibm.entcobol.doc_4.2/PGandLR/igy3lr50.pdf). 
+All PIC clause symbols are described in the [Enterprise COBOL for z/OS Language Reference manual](http://publibfp.boulder.ibm.com/epubs/pdf/igy6lr30.pdf). 
 
 
 ### Coding COBOL variable / data-item names
@@ -1840,7 +1840,7 @@ A structured level number hierarchic relationship is available to all DATA DIVIS
 
 ### Levels of data
 
-After a record is defined, it can be subdivided to provide more detailed data references as seen in Figure  1.  A level number is a one-digit or two-digit integer between 01 and 49, or one of three special level numbers: 66, 77, or 88 where the variable names are assigned attributes different from the 01-49-level numbers.  The relationship between level numbers within a group item defines the hierarchy of data within that group.  A group item includes all group and elementary items that follow it until a level number less than or equal to the level number of that group is encountered. 
+After a record is defined, it can be subdivided to provide more detailed data references as seen in Figure  1.  A level number is a one-digit or two-digit integer between 01 and 49, or one of three special level numbers: 66, 77, or 88 where the variable names are assigned attributes different from the 01-49-level numbers.  The relationship between level numbers within a group item defines the hierarchy of data within that group.  A group item includes all group and elementary items that follow it until a level number less than or equal to the level number of that group is encountered. An elementary item is an item which cannot be further subdivided. These items have a PIC clause because they reserve storage for the item.
 
 ## MOVE and COMPUTE
 
@@ -2131,7 +2131,7 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
 - CBL0002J
 
-- CBL0033J
+- CBL0003J
 
 ![](Images/image133.png)
 
@@ -2178,10 +2178,10 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
    - RUN:PRTLINE(103) is the COBOL program execution output (if correction is successful)
 
-10.  Submit job, JCL(CBL0033J), using the DATA SET section.
+10.  Submit job, JCL(CBL0003J), using the DATA SET section.
 
 
-11.  View CBL0033J ABENDU4038 output, using the JOBS section:
+11.  View CBL0003J ABENDU4038 output, using the JOBS section:
 
       - View the IGZ00355 abend message in RUN:SYSOUT(104) from the COBOL program execution output.
 
@@ -2193,7 +2193,7 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
  
 
-12.  Fix this error by editing JCL(CBL0033J):
+12.  Fix this error by editing JCL(CBL0003J):
 
      - Determine the DDNAME needed, but missing or misspelled. 
 
@@ -2201,17 +2201,17 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
  
 
-13.  Re-submit job, JCL(CBL0033J), using the DATA SET section.
+13.  Re-submit job, JCL(CBL0003J), using the DATA SET section.
 
  
 
-14.  View CBL0033J output using the JOBS section, your output should look like Figure  12.
+14.  View CBL0003J output using the JOBS section, your output should look like Figure  12.
 
      - RUN:PRTLINE - COBOL program execution output (if correction is successful)
 
 ![](Images/image138.png)
 
-*Figure  12.  RUN:PRTLINE(103) for JCL(CBL0033J)*
+*Figure  12.  RUN:PRTLINE(103) for JCL(CBL0003J)*
 
 **Lab hints**
 
@@ -2219,7 +2219,7 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
 ![](Images/image140.png)
 
-*Figure  13.  Error in id.JCL(CBL0033J).jcl*
+*Figure  13.  Error in id.JCL(CBL0003J).jcl*
 
 \newpage
 
@@ -2638,13 +2638,13 @@ In this case, the Boolean condition is evaluated before the loop is executed.  H
 
 
 ```
- PERFORM UNTIL COUNTER = 10 WITH TEST AFTER
+ PERFORM WITH TEST AFTER UNTIL COUNTER = 10
   ADD 1 TO COUNTER GIVING COUNTER
   MOVE COUNTER TO MSG-TO-WRITE
   WRITE PRINT-REC
  END-PERFORM.
 ```
-*Example 15.  PERFORM UNTIL WITH TEST AFTER*
+*Example 15.  PERFORM WITH TEST AFTER UNTIL*
  
 This would be similar to a "do while" loop in Java:
 
@@ -2755,13 +2755,13 @@ In summary, this chapter should provide the necessary foundation to understand s
 
 ## Lab
 
-This lab utilizes COBOL program CBL0003, located within your id.CBL data set, as well as JCL job CBL0003J, located within your id.JCL data set.  The JCL jobs are used to compile and execute the COBOL programs, as discussed in previous chapters.
+This lab utilizes COBOL program CBL0033, located within your id.CBL data set, as well as JCL job CBL0033J, located within your id.JCL data set.  The JCL jobs are used to compile and execute the COBOL programs, as discussed in previous chapters.
 
 #### Using VSCode and Zowe Explorer
 
-1. Take a moment and look over the source code of the COBOL program provided: CBL0003. 
+1. Take a moment and look over the source code of the COBOL program provided: CBL0033. 
 
-2. Compare CBL0003 with CBL0001 and CBL0002 from the previous lab. Do you notice the differences? 
+2. Compare CBL0033 with CBL0001 and CBL0002 from the previous lab. Do you notice the differences? 
 
    a. Observe the new COUNTER line within the WORKING-STORAGE > DATA DIVISION.
 
@@ -2771,11 +2771,11 @@ This lab utilizes COBOL program CBL0003, located within your id.CBL data set, as
 
    c. These paragraphs perform the same loop as in CBL0001, but using the PERFORM statement in different ways. The CALLING-SUBPROGRAM calls the HELLO program, already presented in the second Lab of this course.
 
-3. Submit job: CBL0003J. This JCL first compiles the program HELLO,
-then compiles CBL0003 and links the result of both compilations
+3. Submit job: CBL0033J. This JCL first compiles the program HELLO,
+then compiles CBL0033 and links the result of both compilations
 together. 
 
-4. View CBL0003J output using the JOBS section and open RUN:PRTLINE, observe the report is identical to CBL0001.
+4. View CBL0033J output using the JOBS section and open RUN:PRTLINE, observe the report is identical to CBL0001.
 
 5. View output of target program HELLO using the JOBS section and open RUN:SYSOUT. 
 
@@ -3271,7 +3271,7 @@ The sign condition determines whether the algebraic value of a numeric operand i
 
 **Note** : To read more information about these conditions please visit the link:
 
-[IBM Knowledge Center - Enterprise COBOL for z/OS 4.2.0](https://www.ibm.com/support/knowledgecenter/en/SS6SG3_4.2.0/com.ibm.entcobol.doc_4.2/PGandLR/ref/rlpdsxco.htm)
+[IBM Knowledge Center - Enterprise COBOL for z/OS 6.3.0](https://www.ibm.com/support/knowledgecenter/SS6SG3_6.3.0/lr/ref/rlpdsxco.html)
 
  
 ## Lab
@@ -3454,7 +3454,7 @@ COMPUTE | Restriction does not apply
 
 *Table 2.  How the composite of operands is determined*
 
-In all arithmetic statements, it is important to define data with enough digits and decimal places to ensure the required accuracy in the result.  Arithmetic precision details are available in the [IBM Enterprise COBOL Programming Guide Appendix A](https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library).
+In all arithmetic statements, it is important to define data with enough digits and decimal places to ensure the required accuracy in the result.  Arithmetic precision details are available in the [IBM Enterprise COBOL Programming Guide Appendix A](http://publibfp.boulder.ibm.com/epubs/pdf/igy6pg30.pdf).
 
  
 

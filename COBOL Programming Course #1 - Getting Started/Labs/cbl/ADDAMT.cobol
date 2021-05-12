@@ -34,4 +34,4 @@
                ACCEPT MORE-DATA
                INSPECT MORE-DATA CONVERTING 'noyes' to 'NOYES'
            END-PERFORM
-           STOP RUN.
+           GOBACK.
