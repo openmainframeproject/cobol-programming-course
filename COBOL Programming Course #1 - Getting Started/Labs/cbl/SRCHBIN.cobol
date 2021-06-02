@@ -24,7 +24,8 @@
            05  TABLE-MAX          PIC S9(4) COMP VALUE 45.
       *
        01  ACCT-TABLE.
-           05  ACCT-TABLE-ITEM OCCURS 45 TIMES INDEXED BY TABLE-IDX.
+           05  ACCT-TABLE-ITEM OCCURS 45 TIMES ASCENDING KEY IS ACCT-NO
+               INDEXED BY TABLE-IDX.
                10  ACCT-NO            PIC X(8).
                10  ACCT-LIMIT         PIC S9(7)V99 COMP-3.
                10  ACCT-BALANCE       PIC S9(7)V99 COMP-3.
@@ -53,10 +54,10 @@
       *
        SEARCH-RECORD.
            SET TABLE-IDX TO 1.
-           SEARCH ACCT-TABLE-ITEM VARYING TABLE-IDX
+           SEARCH ALL ACCT-TABLE-ITEM
                AT END DISPLAY "Not Found"
-               WHEN LAST-NAME (TABLE-IDX) = "ROOSEVELT"
-                   DISPLAY "Roosevelt is found!".
+               WHEN ACCT-NO (TABLE-IDX) = 18011809
+                   DISPLAY "User with Acct No 18011809 is found!".
       *
        CLOSE-STOP.
            CLOSE ACCT-REC.
