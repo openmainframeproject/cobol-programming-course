@@ -3226,7 +3226,7 @@ END-PERFORM.
 
 ### SEARCH statements
 
-The SEARCH statement searches a table for an element that satisfies the specified condition and adjusts the associated index to indicate that element.  Tables, effectively an array of values, are created with an OCCURS clause applied to WORK-STORAGE data-names.  A WHEN clause is utilized in SEARCH statements to verify if the element searched for satisfies the specified condition.  Assuming FACIAL-EXP has many possible values, then SEARCH WHEN is an alternative conditional expression, observe Example 6.
+The SEARCH statement searches a table for an element that satisfies the specified condition and adjusts the associated index to indicate that element.  Tables, effectively an array of values, are created with an OCCURS clause applied to WORK-STORAGE data-names.  A WHEN clause is utilized in SEARCH statements to verify if the element searched for satisfies the specified condition.  Assuming FACIAL-EXP has many possible values, then SEARCH WHEN is an alternative conditional expression, observe Example 7.
 
 
 ```
