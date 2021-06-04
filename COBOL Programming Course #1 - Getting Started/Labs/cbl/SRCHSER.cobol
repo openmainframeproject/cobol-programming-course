@@ -60,7 +60,7 @@
       *
        CLOSE-STOP.
            CLOSE ACCT-REC.
-           STOP RUN.
+           GOBACK.
       *
        READ-RECORD.
            READ ACCT-REC
