@@ -3192,11 +3192,36 @@ A PERFORM with UNTIL phrase is a conditional expression.  In the UNTIL phrase fo
 
 
 ```
-PERFORM SAY-SOMETHING-DIFFERENT BY FACIAL-EXP UNTIL 'HAPPY'
+WORKING-STORAGE.
+01 FACIAL-EXP    PIC X(11) VALUE SPACES.
+   88 HAPPY      VALUE 'HAPPY'.
+....
+....
+PROCEDURE DIVISION.
+....
+....
+PERFORM SAY-SOMETHING-DIFFERENT UNTIL HAPPY
 END-PERFORM.
 ```
 
-*Example 5. PERFORM statement*
+*Example 5. PERFORM statement with 88-level conditional name*
+
+
+It is also possible to use PERFORM statement without the use of a 88-level conditional name, observe Example 6.
+
+```
+WORKING-STORAGE.
+01 FACIAL-EXP    PIC X(11) VALUE SPACES.
+....
+....
+PROCEDURE DIVISION.
+....
+....
+PERFORM SAY-SOMETHING-DIFFERENT UNTIL FACIAL-EXP = "HAPPY"
+END-PERFORM.
+```
+
+*Example 6. PERFORM statement without 88-level conditional name*
  
 
 ### SEARCH statements
@@ -3205,11 +3230,20 @@ The SEARCH statement searches a table for an element that satisfies the specifie
 
 
 ```
+WORKING-STORAGE.
+01  FACIAL-EXP-TABLE REDEFINES FACIAL-EXP-LIST.
+    05  FACIAL-EXP  PIC X(11) OCCURS n TIMES INDEXED BY INX-A.
+        88  HAPPY VALUE "HAPPY".
+....
+....
+PROCEDURE DIVISION.
+....
+....
 SEARCH FACIAL-EXP
-WHEN 'HAPPY' STOP RUN
+WHEN HAPPY(INX-A) DISPLAY 'I am glad you are happy'
 END-SEARCH
 ```
-*Example 6. SEARCH WHEN statement*
+*Example 7. SEARCH WHEN statement*
            
 
 ## Conditions
