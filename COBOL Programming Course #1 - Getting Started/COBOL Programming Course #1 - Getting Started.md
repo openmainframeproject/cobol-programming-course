@@ -1903,7 +1903,7 @@ Notice that this line tells you to focus on the GROSS-PAY picture clause in orde
 
 \newpage
 
-# Tables handling
+# Table handling
 
 This section introduces the concept of tables, which are a collection of data items that have the same description. The subordinate items are called table elements. A table is the COBOL equivalent of arrays.
 
@@ -1920,7 +1920,7 @@ To code a table, we need to give the table a group name and define a subordinate
         10  ELEMENT2  PIC 9(2).
 ```
 
-In the example above, TABLE-NAME is the name of the group item. The table also contain a subordinate item called SUBORDINATE-NAME which we are repeating n times. Each of the SUBORDINATE-ITEM have 2 elementary items, ELEMENT1 and ELEMENT2. In this case, we called SUBORDINATE-NAME as the table element definition (since it includes the OCCURS clause). Note that the OCCURS clause cannot be used in a level-01 description.
+In the example above, TABLE-NAME is the name of the group item. The table also contains a subordinate item called SUBORDINATE-NAME which we are repeating n times. Each SUBORDINATE-ITEM has 2 elementary items, ELEMENT1 and ELEMENT2. In this case, we called SUBORDINATE-NAME as the table element definition (since it includes the OCCURS clause). Note that the OCCURS clause cannot be used in a level-01 description.
 
 Alternatively, we can also make simpler tables:
 
@@ -1929,9 +1929,9 @@ Alternatively, we can also make simpler tables:
     05  SUBORDINATE OCCURS n TIMES    PIC X(10).
 ```
 
-In this case, TABLE-NAME contains n SUBORDINATE item, each can contain up to 10 alphanumeric characters.
+In this case, TABLE-NAME contains n SUBORDINATE items, each can contain up to 10 alphanumeric characters.
 
-We can also nest multiple OCCURS elements to create table of additional dimensions, up to a limit of seven dimensions. Note the example below:
+We can also nest multiple OCCURS elements to create a table of additional dimensions, up to a limit of seven dimensions. Note the example below:
 
 ```
 01  PROGRAM-DETAILS.
@@ -1944,11 +1944,11 @@ We can also nest multiple OCCURS elements to create table of additional dimensio
             15  ASSIGMMENT-WEIGHTAGE  PIC 9(03).
 ```
 
-Here, we are defining a degree program which have 10 course and each course will have 8 assignments. What if we don't know beforehand how many times will a table element occurs? To solve that, we can use variable-length table, using the OCCURS DEPENDING ON (ODO) clause which we will be going into more details on a later section.
+Here, we are defining a degree program which has 10 courses and each course will have 8 assignments. What if we don't know how many times will a table element will occur? To solve that, we can use variable-length table, using the OCCURS DEPENDING ON (ODO) clause which we will be going into more details on a later section.
 
 ## Referring to an item in a table
 
-While a table element have a collective name, the individual items within does not have a unique name. To refer to an item, we can either use subscript, index, or a combination of both.
+While a table element has a collective name, the individual items within do not have a unique name. To refer to an item, we can either use subscript, index, or a combination of both.
 
 ### Subscripting
 
@@ -1973,7 +1973,7 @@ Alternatively, we can create an index using the INDEXED BY phrase of the OCCURS 
 
 Here, INX-A is an index name. The compiler will calculate the value in the index as the occurence number minus 1 multiplied by the length of the table element. So, for example, for the second occurence of TABLE-ELEMENT, the binary value contained in INX-A is (2-1) * 3, or 3.
 
-If you happen to have another table with the same number of table elements of the same length, you can use an index name as a reference for both table.
+If you happen to have another table with the same number of table elements of the same length, you can use an index name as a reference for both tables.
 
 We can also define an index data item using the USAGE IS INDEX clause. These index data items can be used with any table. For example,
 
@@ -2002,7 +2002,7 @@ Since we are comparing physical displacements, we cannot use index data items as
 
 ## Loading a table with data
 
-There are many ways we can load a table. The first one involves loading the table dynamically, from a screen, file or databases. We can also use the REDEFINES clause on hard-coded field values along with an OCCURS clause. The third way is using the INITIALIZE statement, and lastly, we can also use the VALUE clause when defining the table.
+There are many ways we can load a table. The first one involves loading the table dynamically, from a screen, file or database. We can also use the REDEFINES clause on hard-coded field values along with an OCCURS clause. The third way is using the INITIALIZE statement, and lastly, we can also use the VALUE clause when defining the table.
 
 ### Loading a table dynamically
 
@@ -2041,7 +2041,7 @@ Here, we are taking hard-coded values of spelled out numbers from 1 to 5 and loa
 
 ### INITIALIZE a table
 
-We can also use the INITIALIZE statement to load data into a table. The table will be processed as a group item and each elementary data items within are recognized and processed. For example, assume that we have the following table:
+We can also use the INITIALIZE statement to load data into a table. The table will be processed as a group item and each elementary data item within it will be recognized and processed. For example, assume that we have the following table:
 
 ```
 01  TABLE-ONE.
@@ -2052,14 +2052,14 @@ We can also use the INITIALIZE statement to load data into a table. The table wi
 
 Here we have a table that contains 10 elements, each with their own NUMBER-CODE (with a value of 10) and ITEM-ID (with a value of "R3").
 
-We can move the value 3 to each of the elementary numeric data item and the value "X" into each of the elementary alphanumeric data items in the table:
+We can move the value 3 to each of the elementary numeric data items and the value "X" into each of the elementary alphanumeric data items in the table:
 
 ```
 INITIALIZE TABLE-ONE REPLACING NUMERIC DATA BY 3.
 INITIALIZE TABLE-ONE REPLACING ALPHANUMERIC DATA BY "X".
 ```
 
-After running the two INITIALIZE statement, NUMBER-CODE will contain the value of 3, while ITEM-ID will contain the value of "X ".
+After running the two INITIALIZE statements, NUMBER-CODE will contain the value of 3, while ITEM-ID will contain the value of "X ".
 
 ### Assigning values using VALUE clause
 
@@ -2074,7 +2074,7 @@ In the above example, the alphanumeric group data item TABLE-TWO uses a VALUE cl
 
 ## Variable-length tables
 
-If we do not know before runtime how many times will a table element occurs, we can define a variable-length table using the OCCURS DEPENDING ON (ODO) clause.
+If we do not know before runtime how many times a table element will occur, we can define a variable-length table using the OCCURS DEPENDING ON (ODO) clause.
 
 ```
 X OCCURS 1 TO 10 TIMES DEPENDING ON Y
@@ -2131,9 +2131,9 @@ A binary search can be more efficient than a serial search, however it requires 
 
 ### Serial search
 
-We can do a serial search by using the SEARCH statement. The search will begins at the current index setting and will continue until the condition in the WHEN phrase are fulfilled. To modify the index setting, we can use the SET statement If there are multiple condition in the WHEN phrase, the search will ends when the one of the conditions is satisfied and the index will remain pointing to the element that satisfied the condition.
+We can do a serial search by using the SEARCH statement. The search will begin at the current index setting and will continue until the condition in the WHEN phrase is fulfilled. To modify the index setting, we can use the SET statement. If there are multiple conditions in the WHEN phrase, the search will end when the one of the conditions is satisfied and the index will remain pointing to the element that satisfied the condition.
 
-For example, assume that we have a list of name:
+For example, assume that we have a list of names:
 
 ```
 77  PEOPLE-SEARCH-DATA                PIC X(20).
@@ -2150,9 +2150,9 @@ PROCEDURE-DIVISION.
             DISPLAY "Found".
 ```
 
-The code above will search the list of name from an index of 1. If it found the content of PEOPLE-SEARCH-DATA, it will DISPLAY "Found", otherwise, it will DISPLAY "Not found".
+The code above will search the list of names from an index of 1. If it found the content of PEOPLE-SEARCH-DATA, it will DISPLAY "Found", otherwise, it will DISPLAY "Not found".
 
-For a more complex use case, we can also use nested SEARCH statement. We will need to delimit each nested SEARCH statement with END-SEARCH.
+For a more complex use case, we can also use nested SEARCH statements. We will need to delimit each nested SEARCH statements with END-SEARCH.
 
 ### Binary search
 
@@ -2160,7 +2160,7 @@ To do a binary search, we can use a SEARCH ALL statement. We do not need to set 
 
 Using the WHEN phrase, you can test any key that is named in the ASCENDING or DESCENDING KEY phrases. The test must be an equal-to condition, and the WHEN phrase must specify either a key or a condition-name associated with the key.
 
-For example, assume that we have a list of name sorted in an ascending order:
+For example, assume that we have a list of names sorted in an ascending order:
 
 ```
 77  PEOPLE-SEARCH-DATA                PIC X(20).
@@ -2177,7 +2177,7 @@ PROCEDURE-DIVISION.
             DISPLAY "Found".
 ```
 
-The code above will search the alphabetically-sorted list of state name. If it found the content of PEOPLE-SEARCH-DATA, it will DISPLAY "Found", otherwise, it will DISPLAY "Not found".
+The code above will search the alphabetically-sorted list of names. If it found the content of PEOPLE-SEARCH-DATA, it will DISPLAY "Found", otherwise, it will DISPLAY "Not found".
 
 ## Lab
 
