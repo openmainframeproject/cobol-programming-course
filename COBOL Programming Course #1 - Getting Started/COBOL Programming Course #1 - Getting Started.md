@@ -1944,7 +1944,7 @@ We can also nest multiple OCCURS elements to create a table of additional dimens
             15  ASSIGMMENT-WEIGHTAGE  PIC 9(03).
 ```
 
-Here, we are defining a degree program which has 10 courses and each course will have 8 assignments. What if we don't know how many times will a table element will occur? To solve that, we can use variable-length table, using the OCCURS DEPENDING ON (ODO) clause which we will be going into more details on a later section.
+Here, we are defining a degree program which has 10 courses and each course will have 8 assignments. What if we don't know how many times a table element will occur? To solve that, we can use variable-length table, using the OCCURS DEPENDING ON (ODO) clause which we will be going into more details on a later section.
 
 ## Referring to an item in a table
 
@@ -1999,6 +1999,30 @@ SET INX-A DOWN BY 3
 The integer there represents the number of occurences. So it will be converted to an index value first before it adds or subtract the index.
 
 Since we are comparing physical displacements, we cannot use index data items as subscripts or indexes. We can only directly use it in SEARCH and SET statements or in comparisons with indexes.
+
+The following example shows how to calculate displacements to elements that are referenced with indexes.
+
+Consider the following two dimensional table, TABLE-2D:
+
+```
+01  TABLE-2D.
+    05  TABLE-ROW OCCURS 2 TIMES INDEXED BY INX-A.
+        10  TABLE-COL OCCURS 5 TIMES INDEXED BY INX-B  PIC X(4).
+```
+
+Suppose we code the following index:
+
+```
+TABLE-COL (INX-A + 2, INXB - 1)
+```
+
+This will cause the computation of the displacement to the TABLE-COL element:
+
+```
+(contents of INX-A) + (20 * 2) + (contents of INX-B) - (4 * 1)
+```
+
+The calculation is based on the length of the elements. Each occurence of TABLE-ROW is 20 bytes in length (5 * 4) and each occurence of TABLE-COL is 4 bytes in length.
 
 ## Loading a table with data
 
