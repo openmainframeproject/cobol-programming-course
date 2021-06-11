@@ -19,5 +19,5 @@ Note:
 
 **data** folder
 - member **data** must be transferred binary to z/OS because the data contains EBCDIC and Packed Decimal
-- member **datax** is a viewable ASCII data but the packed decimal fields were translated to ASCII and are unreadable
+- member **xdata** is a viewable ASCII data but the packed decimal fields were translated to ASCII and are unreadable
 
