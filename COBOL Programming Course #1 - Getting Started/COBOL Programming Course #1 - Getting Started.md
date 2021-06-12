@@ -1235,7 +1235,11 @@ To simplify things, Enterprise COBOL for z/OS provided three JCL procedure to co
 2. Compile and link-edit procedure (IGYWCL)
 3. Compile, link-edit, and run procedure (IGYWCLG)
 
-Since this course is a COBOL course, the JCL necessary for you to do the Labs is provided for you. If you want to make a new COBOL code, you can copy one of the JCL provided and modify it accordingly.
+Since this course is a COBOL course, the JCL necessary for you to do the Labs is provided for you. Therefore, you will encounter the procedures listed above on the JCL. If you want to make a new COBOL code, you can copy one of the JCL provided and modify it accordingly.
+
+To read more on JCL, visit the IBM Knowledge Center: 
+
+[https://www.ibm.com/docs/en/zos-basic-skills?topic=collection-basic-jcl-concepts](https://www.ibm.com/docs/en/zos-basic-skills?topic=collection-basic-jcl-concepts)
 
 ## COBOL Divisions
 
