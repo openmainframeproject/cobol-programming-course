@@ -1607,13 +1607,13 @@ zowe zosmf check status
 4. List data sets under your ID by issuing a command similar to (see sample output in the following figure):
 
 ```
-zowe files list ds "Z80462.*"
+zowe files list ds "Z99998.*"
 ```
 
 You can also list all members in a partitioned data set by issuing a command similar to (see sample output in the following figure):
 
 ```
-zowe files list am "Z80462.CBL"
+zowe files list am "Z99998.CBL"
 ```
 
 ![](Images/zowe/zowe-files-list-ds-and-am-commands.png)
@@ -1629,8 +1629,8 @@ zowe files list am "Z80462.CBL"
 Once you have an empty folder opened, return to the integrated terminal, ensure you are in your folder, and issue commands similar to:
 
 ```
-zowe files download am "Z80462.CBL" -e ".cbl"
-zowe files download am "Z80462.JCL" -e ".jcl"
+zowe files download am "Z99998.CBL" -e ".cbl"
+zowe files download am "Z99998.JCL" -e ".jcl"
 ```
 
 Then open `hello.cbl` in your file explorer. A completed example is shown in the following figure:
@@ -1639,16 +1639,16 @@ Then open `hello.cbl` in your file explorer. A completed example is shown in the
 
 *Figure  33.  Download and view data set members using the CLI*
 
-6. Next, we will submit the job in member `Z80462.JCL(HELLO)`. To submit the job, wait for it to complete, and view all spool content, issue:
+6. Next, we will submit the job in member `Z99998.JCL(HELLO)`. To submit the job, wait for it to complete, and view all spool content, issue:
 
 ```
-zowe jobs submit ds "Z80462.JCL(HELLO)" --vasc
+zowe jobs submit ds "Z99998.JCL(HELLO)" --vasc
 ```
 
 We could also perform this step in piecemeal to get the output from a specific spool file. See the next figure for an example of the upcoming commands. To submit the job and wait for it to enter OUTPUT status, issue:
 
 ```
-zowe jobs submit ds "Z80462.JCL(HELLO)" --wfo
+zowe jobs submit ds "Z99998.JCL(HELLO)" --wfo
 ```
 
 To list spool files associated with this job id, issue:
@@ -1674,7 +1674,7 @@ where `JOB00906` and `105` are obtained from the previous commands.
 If desired, you can also easily submit a job, wait for it to complete, and download the spool content using the following command (see the following figure for the completed state):
 
 ```
-zowe jobs submit ds "Z80462.JCL(HELLO)" -d .
+zowe jobs submit ds "Z99998.JCL(HELLO)" -d .
 ```
 
 ![](Images/zowe/zowe-jobs-submit-ds-and-download-spool-output.png)
@@ -1696,10 +1696,10 @@ In this section, we will leverage the Zowe CLI programmatically to automate subm
 
 *Figure  37.  Use of `npm init` to create `package.json` for the project*
 
-2. Now that we have our `package.json` simply replace the `test` script with a `clg` script that runs the following zowe command (replace `Z80462` with your high level qualifier):
+2. Now that we have our `package.json` simply replace the `test` script with a `clg` script that runs the following zowe command (replace `Z99998` with your high level qualifier):
 
 ```
-zowe jobs submit ds 'Z80462.JCL(HELLO)' -d .
+zowe jobs submit ds 'Z99998.JCL(HELLO)' -d .
 ```
 
 You can name the script whatever you want. I only suggested `clg` because the `CLG` in the `IGYWCLG` proc (which is what the JCL leverages) stands for compile, link, go. Now, simply issue `npm run clg` in your terminal to leverage the automation to compile, link and run the COBOL program and download the output for review. An example of the completed `package.json` and command execution are shown in the following figure. 
