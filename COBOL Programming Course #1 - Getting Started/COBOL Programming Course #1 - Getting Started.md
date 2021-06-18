@@ -343,7 +343,7 @@ Integrated development environments always want to provide a rich platform for a
 
 Microsoft designed the Language Server Protocol (LSP) to act as a common description of how features like auto-complete should be implemented for a specific language.  Languages which have an implemented LSP server can therefore be used within any editor that supports LSP.  Many companies and the open source community have collaborated to provide LSP servers for an array of different languages. 
 
-The language server protocol defines six broad capabilities that should be implemented for a language server to be LSP compliant. These capabilities include code completion, hover, jump to definition, workspace symbols, find references and diagnostics.  The IBM Z Open Editor provides compliant language servers for both the Enterprise Cobol and Enterprise PL/I for z/OS languages.  In addition to being compliant, they also provide additional capabilities that we will discuss further on. 
+The language server protocol defines six broad capabilities that should be implemented for a language server to be LSP compliant. These capabilities include code completion, hover, jump to definition, workspace symbols, find references and diagnostics.  The IBM Z Open Editor provides compliant language servers for both the Enterprise COBOL and Enterprise PL/I for z/OS languages.  In addition to being compliant, they also provide additional capabilities that we will discuss further on. 
 
 **Note:** More information on Language Server Protocol implementations can be found at: `https://langserver.org`
 
@@ -745,11 +745,11 @@ You can then level-up this process by leveraging a CI/CD pipeline. What is a CI/
 To know more about this topic, check [this](https://medium.com/@jessielaine.punongbayan/how-i-used-typescript-to-generate-my-cobol-programs-a2a180209148) out.
 
 ### Additional Examples
-If you are looking for an example on how to use Zowe Explorer and Zowe CLI with Db2 Stored Procedures, check out this [blog](https://www.idug.org/p/bl/et/blogid=278&blogaid=1007?es_id=c5a317e73e).
+If you are looking for an example on how to use Zowe Explorer and Zowe CLI with Db2 Stored Procedures, check out this [blog](https://www.idug.org/browse/blogs/blogviewer?BlogKey=22f9b8b4-4645-4c50-ba31-2d1140025544).
 
 If you are interested in using open source tools in your development, you can review this [blog](https://medium.com/zowe/how-to-write-cleaner-and-safer-z-os-code-with-zowe-cli-and-sonarqube-6afb283348f9) where it talks about using Zowe CLI to leverage static code analysis tools when developing COBOL applications.
 
-For additional blogs and articles on leveraging Zowe technologies, check out [https://medium.com/zowe/users/home](https://medium.com/zowe/users/home).
+For additional blogs and articles on leveraging Zowe technologies, check out [https://medium.com/zowe](https://medium.com/zowe).
 
 ## The world of modern open source tooling
 We have only scratched the surface of using modern tools and languages for mainframe development and incorporating mainframe applications into enterprise DevOps pipelines. As a bridge tool, the Zowe CLI enables the use of a plethora of tools being developed by an enormous community for mainframe development. If you are new to mainframe, hopefully this offers some familiarity as you transition into this space. If you are an experienced mainframer, hopefully you find time to give some of these available technologies a try to see if they can help you.
@@ -876,7 +876,7 @@ This section introduces two VSCode extensions, Zowe Explorer and IBM Z Open Edit
 
 Zowe is a new, and the first open source framework for z/OS and provides solutions for development and operations teams to securely manage, control, script and develop on the mainframe like any other cloud platform.  Out of the box, the Zowe Explorer provides a lot of functionality allowing z/OS developers access to jobs, datasets and (USS) files on a z/OS server.  Backed by the Zowe CLI and z/OSMF, developers now have powerful features that makes it easy to work with z/OS within the familiar VSCode environment.  This extension can be used to edit COBOL and PL/I files opened on z/OS MVS™ and USS using the Zowe extension's Data Sets and USS views.  It can even run JCL and lets you browse job spool files.  For more information on Zowe Explorer and its interaction with z/OS please visit:
 
-[https://ibm.github.io/zopeneditor-about/Docs/zowe_interactwithzos.html](https://ibm.github.io/zopeneditor-about/Docs/zowe_interactwithzos.html)
+[https://ibm.github.io/zopeneditor-about/Docs/interact_zos_zowe_explorer.html](https://ibm.github.io/zopeneditor-about/Docs/interact_zos_zowe_explorer.html)
 
 #### Install Zowe Explorer
 
@@ -886,7 +886,7 @@ Open VSCode and in the left side tool menu select **Extensions**.  From there, i
 
 *Figure  3.  Install Zowe Explorer in VSCode*
 
-The Zowe communinity have a number of on-line video that walk through the steps required to install, configure and operate the Zowe Explorer, see [Zowe Explorer VSC Extension (part 1)](http://www.youtube.com/watch?v=G_WCsFZIWt4&t=0m38s).
+The Zowe communinity have a number of on-line video that walk through the steps required to install, configure and operate the Zowe Explorer, see [Zowe Explorer VSC Extension (part 1)](https://www.youtube.com/watch?v=G_WCsFZIWt4&t=0m38s).
 
 ### IBM Z Open Editor
 
@@ -1187,7 +1187,7 @@ COBOL programming language has many words with specific meaning to the COBOL com
 
 A few COBOL reserved words pertinent to this book are: PERFORM, MOVE, COMPUTE, IF, THEN, ELSE, EVALUATE, PICTURE, etc..  You can find a table of all COBOL reserved words is located at:
 
-[https://www.ibm.com/support/knowledgecenter/SS6SG3_6.3.0/lr/ref/rlres.html](https://www.ibm.com/support/knowledgecenter/SS6SG3_6.3.0/lr/ref/rlres.html)
+[https://www.ibm.com/docs/en/cobol-zos/6.3?topic=appendixes-reserved-words](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=appendixes-reserved-words)
 
 
 ### What is a COBOL statement?
@@ -1313,15 +1313,15 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
 - What’s New in Enterprise COBOL for z/OS V6.1:
 
-   [https://youtu.be/N_Zsd1W8hWc](https://youtu.be/N_Zsd1W8hWc)
+   [https://www.ibm.com/support/pages/cobol-v61-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v61-was-announced-whats-new)
 
 - What’s New in Enterprise COBOL for z/OS V6.2:
 
-   [https://youtu.be/H0iweEbVNFs](https://youtu.be/H0iweEbVNFs)
+   [https://www.ibm.com/support/pages/cobol-v62-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v62-was-announced-whats-new)
 
 - What’s New in Enterprise COBOL for z/OS V6.3:
 
-   [https://youtu.be/bRLKGeB6W2A](https://youtu.be/bRLKGeB6W2A)
+   [https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new)
 
 ## Lab
 
@@ -2363,7 +2363,7 @@ As a result, the COBOL internal ACCT-REC file name reads data records from seque
 
 JCL is a separate z/OS technical skill.  The introduction to COBOL explains just enough about JCL to understand how the COBOL internal file name locates the external sequential dataset name. To read more on JCL, visit the IBM Knowledge Center:
 
-[https://www.ibm.com/support/knowledgecenter/zosbasics/com.ibm.zos.zjcl/zjclc_basicjclconcepts.htm](https://www.ibm.com/support/knowledgecenter/zosbasics/com.ibm.zos.zjcl/zjclc_basicjclconcepts.htm)
+[https://www.ibm.com/docs/en/zos-basic-skills?topic=collection-basic-jcl-concepts](https://www.ibm.com/docs/en/zos-basic-skills?topic=collection-basic-jcl-concepts)
 
 
 ## PROCEDURE DIVISION sequential file handling
@@ -3631,7 +3631,7 @@ The sign condition determines whether the algebraic value of a numeric operand i
 
 **Note** : To read more information about these conditions please visit the link:
 
-[IBM Knowledge Center - Enterprise COBOL for z/OS 6.3.0](https://www.ibm.com/support/knowledgecenter/SS6SG3_6.3.0/lr/ref/rlpdsxco.html)
+[https://www.ibm.com/docs/en/cobol-zos/6.3?topic=structure-conditional-expressions](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=structure-conditional-expressions)
 
  
 ## Lab
