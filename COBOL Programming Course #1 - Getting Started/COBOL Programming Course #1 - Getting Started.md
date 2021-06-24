@@ -355,7 +355,7 @@ Integrated development environments always want to provide a rich platform for a
 
 Microsoft designed the Language Server Protocol (LSP) to act as a common description of how features like auto-complete should be implemented for a specific language.  Languages which have an implemented LSP server can therefore be used within any editor that supports LSP.  Many companies and the open source community have collaborated to provide LSP servers for an array of different languages. 
 
-The language server protocol defines six broad capabilities that should be implemented for a language server to be LSP compliant. These capabilities include code completion, hover, jump to definition, workspace symbols, find references and diagnostics.  The IBM Z Open Editor provides compliant language servers for both the Enterprise Cobol and Enterprise PL/I for z/OS languages.  In addition to being compliant, they also provide additional capabilities that we will discuss further on. 
+The language server protocol defines six broad capabilities that should be implemented for a language server to be LSP compliant. These capabilities include code completion, hover, jump to definition, workspace symbols, find references and diagnostics.  The IBM Z Open Editor provides compliant language servers for both the Enterprise COBOL and Enterprise PL/I for z/OS languages.  In addition to being compliant, they also provide additional capabilities that we will discuss further on. 
 
 **Note:** More information on Language Server Protocol implementations can be found at: `https://langserver.org`
 
@@ -757,11 +757,11 @@ You can then level-up this process by leveraging a CI/CD pipeline. What is a CI/
 To know more about this topic, check [this](https://medium.com/@jessielaine.punongbayan/how-i-used-typescript-to-generate-my-cobol-programs-a2a180209148) out.
 
 ### Additional Examples
-If you are looking for an example on how to use Zowe Explorer and Zowe CLI with Db2 Stored Procedures, check out this [blog](https://www.idug.org/p/bl/et/blogid=278&blogaid=1007?es_id=c5a317e73e).
+If you are looking for an example on how to use Zowe Explorer and Zowe CLI with Db2 Stored Procedures, check out this [blog](https://www.idug.org/browse/blogs/blogviewer?BlogKey=22f9b8b4-4645-4c50-ba31-2d1140025544).
 
 If you are interested in using open source tools in your development, you can review this [blog](https://medium.com/zowe/how-to-write-cleaner-and-safer-z-os-code-with-zowe-cli-and-sonarqube-6afb283348f9) where it talks about using Zowe CLI to leverage static code analysis tools when developing COBOL applications.
 
-For additional blogs and articles on leveraging Zowe technologies, check out [https://medium.com/zowe/users/home](https://medium.com/zowe/users/home).
+For additional blogs and articles on leveraging Zowe technologies, check out [https://medium.com/zowe](https://medium.com/zowe).
 
 ## The world of modern open source tooling
 We have only scratched the surface of using modern tools and languages for mainframe development and incorporating mainframe applications into enterprise DevOps pipelines. As a bridge tool, the Zowe CLI enables the use of a plethora of tools being developed by an enormous community for mainframe development. If you are new to mainframe, hopefully this offers some familiarity as you transition into this space. If you are an experienced mainframer, hopefully you find time to give some of these available technologies a try to see if they can help you.
@@ -890,7 +890,7 @@ This section introduces two VSCode extensions, Zowe Explorer and IBM Z Open Edit
 
 Zowe is a new, and the first open source framework for z/OS and provides solutions for development and operations teams to securely manage, control, script and develop on the mainframe like any other cloud platform.  Out of the box, the Zowe Explorer provides a lot of functionality allowing z/OS developers access to jobs, datasets and (USS) files on a z/OS server.  Backed by the Zowe CLI and z/OSMF, developers now have powerful features that makes it easy to work with z/OS within the familiar VSCode environment.  This extension can be used to edit COBOL and PL/I files opened on z/OS MVS™ and USS using the Zowe extension's Data Sets and USS views.  It can even run JCL and lets you browse job spool files.  For more information on Zowe Explorer and its interaction with z/OS please visit:
 
-[https://ibm.github.io/zopeneditor-about/Docs/zowe_interactwithzos.html](https://ibm.github.io/zopeneditor-about/Docs/zowe_interactwithzos.html)
+[https://ibm.github.io/zopeneditor-about/Docs/interact_zos_zowe_explorer.html](https://ibm.github.io/zopeneditor-about/Docs/interact_zos_zowe_explorer.html)
 
 #### Install Zowe Explorer
 
@@ -900,7 +900,7 @@ Open VSCode and in the left side tool menu select **Extensions**.  From there, i
 
 *Figure  3.  Install Zowe Explorer in VSCode*
 
-The Zowe communinity have a number of on-line video that walk through the steps required to install, configure and operate the Zowe Explorer, see [Zowe Explorer VSC Extension (part 1)](http://www.youtube.com/watch?v=G_WCsFZIWt4&t=0m38s).
+The Zowe communinity have a number of on-line video that walk through the steps required to install, configure and operate the Zowe Explorer, see [Zowe Explorer VSC Extension (part 1)](https://www.youtube.com/watch?v=G_WCsFZIWt4&t=0m38s).
 
 ### IBM Z Open Editor
 
@@ -1201,7 +1201,7 @@ COBOL programming language has many words with specific meaning to the COBOL com
 
 A few COBOL reserved words pertinent to this book are: PERFORM, MOVE, COMPUTE, IF, THEN, ELSE, EVALUATE, PICTURE, etc..  You can find a table of all COBOL reserved words is located at:
 
-[https://www.ibm.com/support/knowledgecenter/SS6SG3_6.3.0/lr/ref/rlres.html](https://www.ibm.com/support/knowledgecenter/SS6SG3_6.3.0/lr/ref/rlres.html)
+[https://www.ibm.com/docs/en/cobol-zos/6.3?topic=appendixes-reserved-words](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=appendixes-reserved-words)
 
 
 ### What is a COBOL statement?
@@ -1327,15 +1327,15 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
 - What’s New in Enterprise COBOL for z/OS V6.1:
 
-   [https://youtu.be/N_Zsd1W8hWc](https://youtu.be/N_Zsd1W8hWc)
+   [https://www.ibm.com/support/pages/cobol-v61-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v61-was-announced-whats-new)
 
 - What’s New in Enterprise COBOL for z/OS V6.2:
 
-   [https://youtu.be/H0iweEbVNFs](https://youtu.be/H0iweEbVNFs)
+   [https://www.ibm.com/support/pages/cobol-v62-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v62-was-announced-whats-new)
 
 - What’s New in Enterprise COBOL for z/OS V6.3:
 
-   [https://youtu.be/bRLKGeB6W2A](https://youtu.be/bRLKGeB6W2A)
+   [https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new)
 
 ## Lab
 
@@ -1923,6 +1923,332 @@ Notice that this line tells you to focus on the GROSS-PAY picture clause in orde
 
 \newpage
 
+# Table handling
+
+This section introduces the concept of tables, which are a collection of data items that have the same description. The subordinate items are called table elements. A table is the COBOL equivalent of arrays.
+
+The objective of this chapter is to provide information for the reader to be able to handle tables inside COBOL programs.
+
+## Defining a table
+
+To code a table, we need to give the table a group name and define a subordinate item which we are repeating n times.
+
+```
+01  TABLE-NAME.
+    05  SUBORDINATE-NAME OCCURS n TIMES.
+        10  ELEMENT1  PIC X(2).
+        10  ELEMENT2  PIC 9(2).
+```
+
+In the example above, TABLE-NAME is the name of the group item. The table also contains a subordinate item called SUBORDINATE-NAME which we are repeating n times. Each SUBORDINATE-ITEM has 2 elementary items, ELEMENT1 and ELEMENT2. In this case, we called SUBORDINATE-NAME as the table element definition (since it includes the OCCURS clause). Note that the OCCURS clause cannot be used in a level-01 description.
+
+Alternatively, we can also make simpler tables:
+
+```
+01  TABLE-NAME.
+    05  SUBORDINATE OCCURS n TIMES    PIC X(10).
+```
+
+In this case, TABLE-NAME contains n SUBORDINATE items, each can contain up to 10 alphanumeric characters.
+
+We can also nest multiple OCCURS elements to create a table of additional dimensions, up to a limit of seven dimensions. Note the example below:
+
+```
+01  PROGRAM-DETAILS.
+    05  PROGRAM-DEGREE                PIC X(32).
+    05  COURSE-DETAILS OCCURS 10 TIMES.
+        10  COURSE-NAME               PIC X(32).
+        10  INSTRUCTOR-ID             PIC 9(10).
+        10  ASSIGNMENT-DETAILS OCCURS 8 TIMES.
+            15  ASSIGNMENT-NAME       PIC X(32).
+            15  ASSIGMMENT-WEIGHTAGE  PIC 9(03).
+```
+
+Here, we are defining a degree program which has 10 courses and each course will have 8 assignments. What if we don't know how many times a table element will occur? To solve that, we can use variable-length table, using the OCCURS DEPENDING ON (ODO) clause which we will be going into more details on a later section.
+
+## Referring to an item in a table
+
+While a table element has a collective name, the individual items within do not have a unique name. To refer to an item, we can either use subscript, index, or a combination of both.
+
+### Subscripting
+
+Subscripting is using the data name of the table element, along with its occurence number (which is called a subscript). The lowest possible subscript number is 1, which defines the first occurence of a table element. We can also use literal or data name as a subscript. Note that if you are using data name, it must be an elementary numeric integer.
+
+```
+01  TABLE-NAME.
+    05  TABLE-ELEMENT OCCURS 3 TIMES    PIC X(03) VALUE "ABC".
+...
+    MOVE "DEF" TO TABLE-ELEMENT (2)
+```
+
+In the above example, the second table-element will contain "DEF" instead of "ABC".
+
+### Indexing
+
+Alternatively, we can create an index using the INDEXED BY phrase of the OCCURS clause. This index is added to the address of the table to locate an item (as a displacement from the start of the table). For example,
+
+```
+05  TABLE-ELEMENT OCCURS 10 TIMES INDEXED BY INX-A   PIC X(03).
+```
+
+Here, INX-A is an index name. The compiler will calculate the value in the index as the occurence number minus 1 multiplied by the length of the table element. So, for example, for the second occurence of TABLE-ELEMENT, the binary value contained in INX-A is (2-1) * 3, or 3.
+
+If you happen to have another table with the same number of table elements of the same length, you can use an index name as a reference for both tables.
+
+We can also define an index data item using the USAGE IS INDEX clause. These index data items can be used with any table. For example,
+
+```
+77  INX-B  USAGE IS INDEX.
+...
+    SET INX-A TO 10.
+    SET INX-B TO INX-A.
+    PERFORM VARYING INX-A FROM 1 BY 1 UNTIL INX-A > INX-B
+        DISPLAY TABLE-ELEMENT (INX-A)
+        ...
+    END-PERFORM.
+```
+
+The index name INX-A is used to traverse the TABLE-ELEMENT table, while INX-B is used to hold the index of the last element of the table. By doing this, we minimize the calculation of offsets and no conversion will be necessary for the UNTIL condition.
+
+We can also increment or decrement an index name by an elementary integer data item. For example,
+
+```
+SET INX-A DOWN BY 3
+```
+
+The integer there represents the number of occurences. So it will be converted to an index value first before it adds or subtract the index.
+
+Since we are comparing physical displacements, we cannot use index data items as subscripts or indexes. We can only directly use it in SEARCH and SET statements or in comparisons with indexes.
+
+The following example shows how to calculate displacements to elements that are referenced with indexes.
+
+Consider the following two dimensional table, TABLE-2D:
+
+```
+01  TABLE-2D.
+    05  TABLE-ROW OCCURS 2 TIMES INDEXED BY INX-A.
+        10  TABLE-COL OCCURS 5 TIMES INDEXED BY INX-B  PIC X(4).
+```
+
+Suppose we code the following index:
+
+```
+TABLE-COL (INX-A + 2, INXB - 1)
+```
+
+This will cause the computation of the displacement to the TABLE-COL element:
+
+```
+(contents of INX-A) + (20 * 2) + (contents of INX-B) - (4 * 1)
+```
+
+The calculation is based on the length of the elements. Each occurence of TABLE-ROW is 20 bytes in length (5 * 4) and each occurence of TABLE-COL is 4 bytes in length.
+
+## Loading a table with data
+
+There are many ways we can load a table. The first one involves loading the table dynamically, from a screen, file or database. We can also use the REDEFINES clause on hard-coded field values along with an OCCURS clause. The third way is using the INITIALIZE statement, and lastly, we can also use the VALUE clause when defining the table.
+
+### Loading a table dynamically
+
+To load a table dynamically, we need to use the PERFORM statement with either subscripting or indexing. When doing this, we need to make sure that the data does not exceed the space allocated for the table. We will discuss file handling and the use of PERFORM clause at a later chapter. For example,
+
+```
+PROCEDURE DIVISION
+    ...
+    PERFORM READ-FILE.
+    PERFORM VARYING SUB FROM 1 BY 1 UNTIL END-OF-FILE
+        MOVE DATA TO WS-DATA(SUB)
+        PERFORM READ-FILE
+    END-PERFORM.
+```
+
+In this example above, we execute a paragraph which read files, and then we will iterate through every line of the file until the end, putting each value into the table.
+
+### REDEFINES a hard-coded values
+
+Consider the following example,
+
+```
+WORKING-STORAGE SECTION.
+01  NUMBER-VALUES.
+    05  FILLER  PIC X(05) VALUE "One  "
+    05  FILLER  PIC X(05) VALUE "Two  "
+    05  FILLER  PIC X(05) VALUE "Three"
+    05  FILLER  PIC X(05) VALUE "Four "
+    05  FILLER  PIC X(05) VALUE "Five "
+
+01  NUMBER-TABLES REDEFINES NUMBER-VALUES.
+    05  WS-NUMBER  PIC X(05)  OCCURS 5 TIMES.
+```
+
+Here, we are taking hard-coded values of spelled out numbers from 1 to 5 and loading them to a table through the use of a REDEFINES clause.
+
+### INITIALIZE a table
+
+We can also use the INITIALIZE statement to load data into a table. The table will be processed as a group item and each elementary data item within it will be recognized and processed. For example, assume that we have the following table:
+
+```
+01  TABLE-ONE.
+    05  TABLE-ELEMENT OCCURS 10 TIMES.
+        10  NUMBER-CODE   PIC 9(02) VALUE 10.
+        10  ITEM-ID       PIC X(02) VALUE "R3".
+```
+
+Here we have a table that contains 10 elements, each with their own NUMBER-CODE (with a value of 10) and ITEM-ID (with a value of "R3").
+
+We can move the value 3 to each of the elementary numeric data items and the value "X" into each of the elementary alphanumeric data items in the table:
+
+```
+INITIALIZE TABLE-ONE REPLACING NUMERIC DATA BY 3.
+INITIALIZE TABLE-ONE REPLACING ALPHANUMERIC DATA BY "X".
+```
+
+After running the two INITIALIZE statements, NUMBER-CODE will contain the value of 3, while ITEM-ID will contain the value of "X ".
+
+### Assigning values using VALUE clause
+
+If a table is expected to contain stable values, we can set them when defining the table. Take for example, the WEEK-DAY-TABLES and TABLE-ONE on the previous sections. Both of them have assigned values when defined. Here are some more examples:
+
+```
+01  TABLE-TWO                            VALUE "1234".
+    05  TABLE-TWO-DATA OCCURS 4 TIMES    PIC X.
+```
+
+In the above example, the alphanumeric group data item TABLE-TWO uses a VALUE clause which initialize each of the four element of TABLE-TWO-DATA. So after initialization, TABLE-TWO-DATA(1) will contain the alphanumeric '1', TABLE-TWO-DATA(2) will contain the alphanumeric '2' and so on.
+
+## Variable-length tables
+
+If we do not know before runtime how many times a table element will occur, we can define a variable-length table using the OCCURS DEPENDING ON (ODO) clause.
+
+```
+X OCCURS 1 TO 10 TIMES DEPENDING ON Y
+```
+
+In the above example, X is the ODO subject and Y is the ODO object.
+
+There are a couple of factors affecting the successful manipulation of variable-length records:
+
+- Correct calculation of record lengths
+
+Here, the length of the variable portion is the product of the object of the DEPENDING ON phrase and the length of the subject of the OCCURS clause.
+
+- Conformance of the data in the object of the OCCURS DEPENDING ON clause to its PICTURE clause
+
+We must ensure that the ODO object correctly specifies the number of occurences of table elements, or the program could terminate abnormally.
+
+The following example shows how we can use an OCCURS DEPENDING ON clause:
+
+```
+WORKING-STORAGE SECTION
+01  MAIN-AREA.
+    03  REC-1.
+        05  FIELD-1                       PIC 9.
+        05  FIELD-2 OCCURS 1 TO 5 TIMES
+            DEPENDING ON FIELD-1          PIC X(05).
+01  REC-2.
+    03  REC-2-DATA                        PIC X(50).
+```
+
+If we are moving REC-1 to REC-2, the length of REC-1 will be determined immediately before-hand using the current value of FIELD-1. If FIELD-1 doesn't conform to its PICTURE clause, the result is unpredictable. So, we need to ensure that the ODO object (FIELD-1) has the correct value before moving REC-1 to REC-2.
+
+On the otherhand, if we are moving to REC-1, the length is determined using the maximum number of occurences. However, if REC-1 is followed by a variably located group, the ODO object will be used in calculation of the actual length of REC-1. An example of such case is provided below:
+
+```
+01  MAIN-AREA.
+    03  REC-1.
+        05  FIELD-1                       PIC 9.
+        05  FIELD-3                       PIC 9.
+        05  FIELD-2 OCCURS 1 TO 5 TIMES
+            DEPENDING ON FIELD-1          PIC X(05).
+    03  REC-2.
+        05  FIELD-4 OCCURS 1 TO 5 TIMES                         
+            DEPENDING ON FIELD-3          PIC X(05).
+```
+
+So in the case above, the value of the ODO object must be set before using the group item as a receiving field.
+
+## Searching a table
+
+There are two techniques for searching a table: serial and binary.
+
+A binary search can be more efficient than a serial search, however it requires that the table items already be sorted.
+
+### Serial search
+
+We can do a serial search by using the SEARCH statement. The search will begin at the current index setting and will continue until the condition in the WHEN phrase is fulfilled. To modify the index setting, we can use the SET statement. If there are multiple conditions in the WHEN phrase, the search will end when the one of the conditions is satisfied and the index will remain pointing to the element that satisfied the condition.
+
+For example, assume that we have a list of names:
+
+```
+77  PEOPLE-SEARCH-DATA                PIC X(20).
+01  PEOPLE-SERIAL.
+    05  PEOPLE-NAME  OCCURS 50 TIMES 
+        INDEXED BY PL-IDX            PIC X(20).
+...
+PROCEDURE-DIVISION.
+    ...
+    SET PL-IDX TO 1.
+    SEARCH PEOPLE-NAME VARYING PL-IDX
+        AT END DISPLAY "Not found"
+        WHEN PEOPLE-SEARCH-DATA = PEOPLE-NAME(PL-IDX)
+            DISPLAY "Found".
+```
+
+The code above will search the list of names from an index of 1. If it found the content of PEOPLE-SEARCH-DATA, it will DISPLAY "Found", otherwise, it will DISPLAY "Not found".
+
+For a more complex use case, we can also use nested SEARCH statements. We will need to delimit each nested SEARCH statements with END-SEARCH.
+
+### Binary search
+
+To do a binary search, we can use a SEARCH ALL statement. We do not need to set the index, but it will use the one associated in the OCCURS clause. To use the SEARCH ALL statement, the table must specify the ASCENDING or DESCENDING KEY phrases of the OCCURS clause, or both, and it must be ordered on the specified key.
+
+Using the WHEN phrase, you can test any key that is named in the ASCENDING or DESCENDING KEY phrases. The test must be an equal-to condition, and the WHEN phrase must specify either a key or a condition-name associated with the key.
+
+For example, assume that we have a list of names sorted in an ascending order:
+
+```
+77  PEOPLE-SEARCH-DATA                PIC X(20).
+01  PEOPLE-TABLE-BINARY.
+    05  PEOPLE-NAME  OCCURS 50 TIMES
+        ASCENDING KEY IS PEOPLE-NAME 
+        INDEXED BY PL-IDX            PIC X(20).
+...
+PROCEDURE-DIVISION.
+    ...
+    SEARCH ALL PEOPLE-NAME
+        AT END DISPLAY "Not found"
+        WHEN PEOPLE-SEARCH-DATA = PEOPLE-NAME(PL-IDX)
+            DISPLAY "Found".
+```
+
+The code above will search the alphabetically-sorted list of names. If it found the content of PEOPLE-SEARCH-DATA, it will DISPLAY "Found", otherwise, it will DISPLAY "Not found".
+
+## Lab
+
+**Note** : It may take a few seconds to load in all segments of this lab.  If files are not loading, hit the refresh button on the list that appears when hovering over the section bar.
+
+1. View the SRCHSER COBOL source code member in the 'id'.CBL data set.
+
+2. Submit the JCL member, SRCHSERJ, from the id.JCL, where id is your id,dropdown. This is where id.JCL(SRCHSERJ) compiles and successfully executes the SRCHSER program.
+
+3. View both compile and execution of SRCHSERJ job output.
+
+4. Next, view SRCHBIN COBOL source code member in id.CBL data set.
+
+5. View and submit the JCL member, SRCHBINJ, from the id.JCL dropdown. This is where id.JCL(SRCHBINJ) compiles and executes the SRCHBIN program.
+
+6. View the compile and execution of SRCHBINJ job output.
+
+7. Compare SRCHSER with SRCHBIN. Do you notice the differences? 
+
+   a. Observe how the tables are defined.
+
+   b. Observe how the tables are loaded from the id.DATA data set.
+   
+   c. Observe the SEARCH and SEARCH ALL statement.
+
+\newpage
+
 # File handling
 
 The previous chapter and lab focused on variables and moving literals into variables, then writing variable content using the COBOL DISPLAY statement.  This section introduces reading records from files into variables, moving the variables to output variables, and writing the output variables to a different file. A simple COBOL program to read each record from a file and write each record to a different file is used to illustrate COBOL code necessary to read records from an input external data source and write records to an output external data source.
@@ -2057,7 +2383,7 @@ As a result, the COBOL internal ACCT-REC file name reads data records from seque
 
 JCL is a separate z/OS technical skill.  The introduction to COBOL explains just enough about JCL to understand how the COBOL internal file name locates the external sequential dataset name. To read more on JCL, visit the IBM Knowledge Center:
 
-[https://www.ibm.com/support/knowledgecenter/zosbasics/com.ibm.zos.zjcl/zjclc_basicjclconcepts.htm](https://www.ibm.com/support/knowledgecenter/zosbasics/com.ibm.zos.zjcl/zjclc_basicjclconcepts.htm)
+[https://www.ibm.com/docs/en/zos-basic-skills?topic=collection-basic-jcl-concepts](https://www.ibm.com/docs/en/zos-basic-skills?topic=collection-basic-jcl-concepts)
 
 
 ## PROCEDURE DIVISION sequential file handling
@@ -3323,7 +3649,7 @@ The sign condition determines whether the algebraic value of a numeric operand i
 
 **Note** : To read more information about these conditions please visit the link:
 
-[IBM Knowledge Center - Enterprise COBOL for z/OS 6.3.0](https://www.ibm.com/support/knowledgecenter/SS6SG3_6.3.0/lr/ref/rlpdsxco.html)
+[https://www.ibm.com/docs/en/cobol-zos/6.3?topic=structure-conditional-expressions](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=structure-conditional-expressions)
 
 
 ## Lab
