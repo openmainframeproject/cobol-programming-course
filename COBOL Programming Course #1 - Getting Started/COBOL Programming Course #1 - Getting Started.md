@@ -210,11 +210,15 @@ Note: You can leave this blank if you do not want to save your credentials in yo
 
 ![](Images/code4z/code4z-img14-20.png)
 
+9. Press **Enter** for the rest of the prompts to choose the default values
+
 ![](Images/image073-1.png)
 
 ![](Images/image073-2.png)
 
 ![](Images/image073-3.png)
+
+![](Images/image073-4.png)
 
 If you are successful, you will receive this informational message:
 
@@ -252,11 +256,21 @@ Note: You can leave this blank if you do not want to save your credentials in yo
 
 ![](Images/code4z/code4z-img14-20.png)
 
+7. Edit your API base path
+
 ![](Images/image073-1.png)
+
+8. Edit the connection protocol
 
 ![](Images/image073-2.png)
 
+9. Edit the encoding 
+
 ![](Images/image073-3.png)
+
+10. Edit the maximum time delay for a response 
+
+![](Images/image073-4.png)
 
 If you are successful, an information message will appear:
 
@@ -1437,11 +1451,15 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 ![](Images/image073.png)
 
+13. Press **Enter** for the rest of the prompts to choose the default values
+
 ![](Images/image073-1.png)
 
 ![](Images/image073-2.png)
 
 ![](Images/image073-3.png)
+
+![](Images/image073-4.png)
 
 *Figure  13.  Accept connections with self-signed certifications*
 
