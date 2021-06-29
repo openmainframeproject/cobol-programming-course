@@ -48,15 +48,15 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
 - What’s New in Enterprise COBOL for z/OS V6.1:
 
-   [https://youtu.be/N_Zsd1W8hWc](https://youtu.be/N_Zsd1W8hWc)
+   [https://www.ibm.com/support/pages/cobol-v61-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v61-was-announced-whats-new)
 
 - What’s New in Enterprise COBOL for z/OS V6.2:
 
-   [https://youtu.be/H0iweEbVNFs](https://youtu.be/H0iweEbVNFs)
+   [https://www.ibm.com/support/pages/cobol-v62-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v62-was-announced-whats-new)
 
 - What’s New in Enterprise COBOL for z/OS V6.3:
 
-   [https://youtu.be/bRLKGeB6W2A](https://youtu.be/bRLKGeB6W2A)
+   [https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new)
 
 \newpage
 # Numerical Data Representation
@@ -750,7 +750,7 @@ We will explore the popular Hacker News website for this challenge. Hacker News 
 The site offers a dynamic list of posts/stories, submitted by users, each of which could be expanded into its own unique comment thread. Readers can upvote or downvote links and comments, and the top thirty links are featured on the front page. Today, more than five million people read Hacker News each month, and landing a blog post on the front page is a badge of honor for many technologists.
 
 ### Our Goal
-We will be working on a Hacker News 2015-2016 dataset from Kaggle with a full year’s worth of stories:  Our goal is to extract only the Mainframe/COBOL related stories and assign ranking scores to them based on (a simplified version) the published Hacker News ranking algorithm. We will create a front page report that reflects this ranking order. The algorithm works in a way that nothing stays on the front page for too long, so a story’s score will eventually drop to zero over time (the gravity effect). Since our posts are spread out over a year and as older posts will always have a lower (or zero) ranking, we will distort the data so all our stories have the same date and and consider only the times in the ranking score calculation. This will give all our posts a fair chance of landing the front page.  Our front page report is published at 11:59pm. [Here's some additional information on the ranking.](http://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html)
+We will be working on a Hacker News 2015-2016 dataset from Kaggle with a full year’s worth of stories:  Our goal is to extract only the Mainframe/COBOL related stories and assign ranking scores to them based on (a simplified version) the published Hacker News ranking algorithm. We will create a front page report that reflects this ranking order. The algorithm works in a way that nothing stays on the front page for too long, so a story’s score will eventually drop to zero over time (the gravity effect). Since our posts are spread out over a year and as older posts will always have a lower (or zero) ranking, we will distort the data so all our stories have the same date and and consider only the times in the ranking score calculation. This will give all our posts a fair chance of landing the front page.  Our front page report is published at 11:59pm. [Here's some additional information on the ranking.](https://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html)
 
 ### The Plan
  - There are different creative ways of accomplishing this but here’s our plan: We will have a COBOL program that reads the input CSV file and retrieves only the ***Mainframe/COBOL*** stories. It then calculates the ranking score for the stories by factoring in the time they were posted and the number of votes they received. Each of the records is then written to an output dataset along with the ranking score. 
@@ -778,9 +778,9 @@ We will be working on a Hacker News 2015-2016 dataset from Kaggle with a full ye
 
 5. Next add a new step in the JCL member to run the `DFSORT` utility on the output dataset from the previous step. The sort should be done on the ranking score field, from highest to lowest. Use `DFSORT` to also print headers for our front page. As this is a new utility not covered in the course, please check out these links to explore this very powerful and versatile tool:
  
-   [Getting started with DFSORT](https://www.ibm.com/support/knowledgecenter/SSLTBW_2.4.0/com.ibm.zos.v2r4.iceg200/abstract.htm)
+   [Getting started with DFSORT](https://www.ibm.com/docs/en/zos/2.4.0?topic=dfsort-zos-getting-started)
 
-   [Example with DFSORT](https://www.ibm.com/support/knowledgecenter/SSLTBW_2.4.0/com.ibm.zos.v2r4.icea100/ice2ca_Example_10._Sort_with_OUTFIL.htm)
+   [Example with DFSORT](https://www.ibm.com/docs/en/zos/2.4.0?topic=examples-example-10-sort-outfil)
 
 
 6. Run and debug until the front page looks ready! Which posts ranked among the highest? Here's a look at the generated report:
