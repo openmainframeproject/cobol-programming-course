@@ -550,6 +550,121 @@ The result is execution of COBOL program CBLDB21 to read the Db2 table and write
 
 
 \newpage
+# Multithreading and COBOL
+
+We can run COBOL programs in multiple threads. To do so, we compile using the THREAD compiler option.
+
+Note that COBOL does not directly support the management of the program threads. But we can run the programs that we compile in a multithreaded application server. So, other programs can call the COBOL program we wrote in a way that enables it to run in multiple threads.
+
+**Choosing LOCAL-STORAGE or WORKING-STORAGE** 
+
+- Data items in the LOCAL-STORAGE SECTION are allocated for each instance of a program invocation. So in this case, each copy of the program will have its copy of the LOCAL-STORAGE data.
+
+- Data items in the WORKING-STORAGE SECTION are only allocated once for each program, so they will be available in their last-used state to all programs invocation.
+
+So, if we want to isolate data to an individual invocation, we need to define the data in the LOCAL-STORAGE SECTION. If we decided to define them in the WORKING-STORAGE SECTION, we need to make sure that the data will not be accessed simultaneously from multiple threads, or if we do, write the appropriate serialization code for it.
+
+## Multithreading
+
+Let us first understand how multithreading works.
+
+The operating system and multithreaded applications handle execution flow within a *process*, which is the course of events when the program runs. Programs within a process can share resources, and the processes themselves can be manipulated.
+
+Within a process, an application can initiate one or more *threads*, basically a stream of computer instruction that controls it. A multithreaded process begins with one thread and can create more to perform tasks. These threads can run concurrently.
+
+In a multithreaded environment, a COBOL *run unit* is the portion of the process that includes threads that have actively executing COBOL programs. The run unit will continue until no COBOL program is active in any of the threads. Within the run unit, COBOL programs can call non-COBOL programs and vice versa.
+
+Within a thread, control is transferred between separate COBOL and non-COBOL programs. Each separately called program is a *program invocation instance*. Program invocation instances of a particular program can exist in multiple threads within a given process.
+
+## THREAD to support multithreading
+
+As mentioned previously, we will need to use the THREAD compiler option for multithreading support. Note that using THREAD might adversely affect performance due to the serialization logic that is generated.
+
+To run multiple COBOL programs in more than one thread, all of them must be compiled using the THREAD and RENT compiler option, and link them with the RENT option of the binder.
+
+We will also need to use the THREAD option to compile object-oriented clients and classes.
+
+## Transferring control to multithreaded programs
+
+When we write COBOL programs for a multithreaded environment, we will need to choose appropriate program linkage statements.
+
+Just like single-threaded environments, a called program is in its initial state when it is first called within a run unit and when it is first called after a CANCEL to the called program. We need to ensure that the program we want to CANCEL is not active on any thread, or a Language Environment severe error will be produced.
+
+## Ending multithreaded environment
+
+We can end a multithread program by using GOBACK, EXIT PROGRAM or STOP RUN.
+
+GO BACK will return control to the caller of the program. If the caller is the first program in a thread, the thread will be terminated. If the thread is the initial one in a process, the process will be terminated.
+
+EXIT PROGRAM runs the same way as GO BACK, except from the main program where it has no effect.
+
+STOP RUN will terminate the entire Language Environment process and return control to the caller of the main program (which might be the operating system). All threads in the process will also be terminated.
+
+## Processing files with multithreading
+
+In threaded applications, we can code COBOL statements for input and output in QSAM, VSAM, and line-sequential files.
+
+Each file definition has an implicit serialization lock, which is used with automatic serialization logic during the I/O operations associated with the following statements: OPEN, CLOSE, READ, WRITE, REWRITE, START, DELETE.
+
+However, automatic serialization is not applied to statements specified with the following conditional phrases: AT END, NOT AT END, INVALID KEY, NOT INVALID KEY, AT END-OF-PAGE, NOT AT END-OF-PAGE.
+
+### File-definition storage
+
+On all programs invocation, the storage associated with file definition (such as FD records) is allocated and available in its last-used state. Therefore, all threads of execution will share this storage. You can depend on automatic serialization for this storage during the execution of the statements mentioned previously, but not between uses of the statements.
+
+### Serializing file access with multithreading
+
+To take advantage of automatic serialization, we can use one of the recommended following file organizations and usage patterns when we access files in threaded programs.
+
+Recommended file organizations:
+- Sequential organization
+- Line-sequential organization
+- Relative organization with sequential access
+- Indexed organization with sequential access
+
+The recommended pattern for input:
+```
+    OPEN INPUT fn
+    ...
+    READ fn INTO local-storage-item
+    ...
+  * Process the record from the local-storage item.
+    ...
+    CLOSE fn
+```
+
+The recommended pattern for output:
+```
+    OPEN OUTPUT fn
+    ...
+  * Construct output record in local-storage item.
+    ...
+    WRITE rec from local-storage-item
+    ...
+    CLOSE fn
+```
+
+With other usage patterns, you must ensure that two instances of the program are never simultaneously active on different threads or that serialization logic is coded explicitly by using calls to POSIX services.
+
+To avoid serialization problems, we can define the data items that are associated with the file in the LOCAL-STORAGE SECTION.
+
+## Limitation of COBOL with multithreading
+
+In a multithreaded environment, there are some limitations on COBOL programs. In general, we must synchronize access to resources that are visible to the application within a run unit. 
+
+- CICS: We cannot run a multithreaded application in CICS. However, programs compiled with the THREAD option can run in CICS as part of an application that does not have multiple threads.
+
+- Recursive: Since we code the programs in a multithreaded application as recursive, we must adhere to all the restrictions and programming constraints that apply to recursive programs.
+
+- Reentrancy: We must compile our multithreading programs with the RENT compiler option and link them with the RENT option of the binder.
+
+- AMODE: We must run multithreaded applications with AMODE 31. However, programs compiled with the THREAD option can run with AMODE 24 as part of an application that does not have multiple threads.
+
+- Older COBOL programs: To run your COBOL programs on multiple threads of a multithreaded application, we must compile them with Enterprise COBOL using the THREAD option.
+
+To see more details on the limitation of COBOL with multithreading, check out the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=multithreading-handling-cobol-limitations).
+
+\newpage
 # COBOL Challenges
 As you have now handled some basic exercises, we have prepared a new section containing more advanced exercises that test your ability to resolve bugs and other issues in COBOL programs. Each exercise will have a short description and a goal to be accomplished.
 
