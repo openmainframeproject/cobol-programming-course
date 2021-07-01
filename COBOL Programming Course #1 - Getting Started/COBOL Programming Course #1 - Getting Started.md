@@ -1099,6 +1099,7 @@ This chapter introduces the basics of COBOL syntax. It then demonstrates how to 
      - **What is a COBOL sentence?**
      - **What is a COBOL paragraph?**
      - **What is a COBOL section?**
+     - **How to run a COBOL program on z/OS?**
 
 - **COBOL Divisions**
      - **COBOL Divisions structure**
@@ -1247,6 +1248,26 @@ A COBOL “Paragraph” is a user-defined or predefined name followed by a perio
 ### What is a COBOL section?
 
 A “Section” is either a user-defined or a predefined name followed by a period and consists of zero or more sentences.  A “Section” is a collection of paragraphs. 
+
+### How to run a COBOL program on z/OS?
+
+When you are dealing with COBOL on z/OS, you will encounter JCL or Job Control Language. JCL is a set of statements that tell the z/OS operating system about the tasks you want it to perform.
+
+For your COBOL program to be executable in z/OS, you will need to tell the operating system to compile and link-edit the code before running it. All of which will be done using JCL. 
+
+The first thing your JCL should do is compile the COBOL program you have written. In this step, your program is passed to the COBOL compiler to be processed into object code. Next, the output from the compiler will go through the link-edit step. Here a binder will take in the object code and all the necessary libraries and options specified in the JCL to create an executable program. In this step, you can also tell the JCL to include additional data sets which your COBOL program will read. Then, you can run the program.
+
+To simplify things, Enterprise COBOL for z/OS provides three JCL procedures to compile your code. When using a JCL procedure, we can supply the variable part to cater to a specific use case. Listed below are the procedures available to you:
+
+1. Compile procedure (IGYWC)
+2. Compile and link-edit procedure (IGYWCL)
+3. Compile, link-edit, and run procedure (IGYWCLG)
+
+Since this course is a COBOL course, the JCL necessary for you to do the Labs is provided for you. Therefore, you will encounter the procedures listed above on the JCL. If you want to create a new COBOL program, you can copy one of the JCL provided and modify it accordingly.
+
+To read more on JCL, visit the IBM Knowledge Center: 
+
+[https://www.ibm.com/docs/en/zos-basic-skills?topic=collection-basic-jcl-concepts](https://www.ibm.com/docs/en/zos-basic-skills?topic=collection-basic-jcl-concepts)
 
 ## COBOL Divisions
 
