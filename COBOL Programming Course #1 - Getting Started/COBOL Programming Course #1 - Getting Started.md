@@ -231,8 +231,8 @@ The Zowe Explorer v1.5.0 release introduces profile editing. This allows you to 
 Follow these steps:
 
 1. Add your profile to any of the Zowe Explorer Trees.
-
-2. Click on the pencil icon to edit your profile. A dialog box opens displaying the current information in your profile, which you can edit as required.
+2. Right click on the profile you want to edit 
+3. from the dropdown choose **Update Profile**. A dialog box opens displaying the current information in your profile, which you can edit as required.
 
 ![](Images/code4z/code4z-img16.png)
 
@@ -467,9 +467,9 @@ Clicking on any of the items in the breadcrumb trail will highlight that element
 
 ### Jump to declaration / reference
 
-As you browse through code you will come across COBOL PERFORM statements or variable references.  Often you will need to navigate to the definition of that paragraph or variable to follow the execution of the code.  At line 50 of CBL0001 we see a set of perform statements.  Place the cursor within the name, READ-RECORD, on line 51, right click and select **Go to Definition** .  The editor then navigates to the READ-RECORD paragraph on line 62.  Instead of the right click, the same function can be reached by using the F12 key.
+As you browse through code you will come across COBOL PERFORM statements or variable references.  Often you will need to navigate to the definition of that paragraph or variable to follow the execution of the code.  At line 50 of CBL0001 we see a set of perform statements.  Place the cursor within the name, READ-RECORD, on line 51, right click and select **Go to Definition** .  The editor then navigates to the READ-RECORD paragraph on line 63.  Instead of the right click, the same function can be reached by using the F12 key.
 
-"Go to References" does the reverse of this operation and allows you to navigate from the definition of a paragraph or variable to all the places within the application that reference that paragraph or variable.  To demonstrate this, navigate to line 62 of CBL0001, which again is the declaration of the READ-RECORD paragraph.  To see all of the places where this paragraph is called, right click and select **Go to References** , or hit the key combination **SHIFT+F12** .  This will summon a new pop up dialog which shows all the references to this paragraph in the code, shown in Figure  6.
+"Go to References" does the reverse of this operation and allows you to navigate from the definition of a paragraph or variable to all the places within the application that reference that paragraph or variable.  To demonstrate this, navigate to line 63 of CBL0001, which again is the declaration of the READ-RECORD paragraph.  To see all of the places where this paragraph is called, right click and select **Go to References** , or hit the key combination **SHIFT+F12** .  This will summon a new pop up dialog which shows all the references to this paragraph in the code, shown in Figure  6.
 
  
 
@@ -590,7 +590,7 @@ While your cursor is placed on a variable or paragraph name, you can press **F12
 
 ![](Images/code4z/code4z-img3.png)
 
-*Figure 2. Go To Definition shows the point at which the USER-STREET variable is first defined.*
+*Figure 2. Go To Definition shows the point at which the USA-STATE variable is first defined.*
 
 ### Find All References
 
@@ -598,7 +598,7 @@ The **Find All References** functionality (**SHIFT+ALT+F12**) highlights all ref
 
 ![](Images/code4z/code4z-img4.png)
 
-*Figure 3. Find All References lists all references to the USER-STREET variable in the code.*
+*Figure 3. Find All References lists all references to the STREET-ADDR variable in the code.*
 
 ## Copybook Support
 
@@ -1389,13 +1389,12 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
    If you installed Code4z, the list should include:
 
-   1. COBOL
-   2. COBOL Language Support
-   3. Code4z
-   4. Debugger for Mainframe
-   5. Explorer for Endevor
-   6. HLASM Language Support
-   7. Zowe Explorer
+   1. COBOL Language Support
+      2. Zowe Explorer
+      3. Explorer for Endevor
+      4. HLASM Language Support
+      5. Debugger for Mainframe
+      6. COBOL Control Flow
 
    In these exercises, you will only use the COBOL Language Support and Zowe Explorer extensions.
 
@@ -1472,6 +1471,8 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 ![](Images/image073.png)
 
+*Figure  13.  Accept connections with self-signed certifications*
+
 13. Press **Enter** for the rest of the prompts to choose the default values
 
 ![](Images/image073-1.png)
@@ -1482,7 +1483,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 ![](Images/image073-4.png)
 
-*Figure  13.  Accept connections with self-signed certifications*
+
 
 13. Result is Favorites in the Data Sets, Unix System Services, and Jobs sections as shown in Figure  14.
 
@@ -1594,7 +1595,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-27.   View the COBOL program execution by selecting **COBRUN:SYSOUT(105)** from the LearnCOBOL in the Jobs section of Zowe Explorer as shown in Figure  28.
+27.   View the COBOL program execution by selecting **COBRUN:SYSOUT(104)** from the LearnCOBOL in the Jobs section of Zowe Explorer as shown in Figure  28.
 
 ![](Images/image106.png)
 
@@ -1693,18 +1694,18 @@ zowe jobs submit ds "Z99998.JCL(HELLO)" --wfo
 To list spool files associated with this job id, issue:
 
 ```
-zowe jobs list sfbj JOB00906
+zowe jobs list sfbj JOB09413
 ```
 
-where `JOB00906` was returned from the previous command.
+where `JOB09413` was returned from the previous command.
 	
 To view a specific spool file (COBRUN:SYSOUT), issue:
 
 ```
-zowe jobs view sfbi JOB00906 105
+zowe jobs view sfbi JOB09413 104
 ```
 
-where `JOB00906` and `105` are obtained from the previous commands.
+where `JOB09413` and `104` are obtained from the previous commands.
 
 ![](Images/zowe/zowe-jobs-submit-ds-and-view-spool-output.png)
 
