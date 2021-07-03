@@ -833,9 +833,6 @@ Two files (employees, interns) are to be merged together by first and last name:
 
         PROCEDURE DIVISION.
         Begin.
-            
-            OPEN INPUT EMPLOYEEFILE, INTERNFILE.
-            
             MERGE WORKFILE ON ASCENDING KEY
                 WSEMPLOYEEFNAME, WSEMPLOYEELNAME
                 USING EMPLOYEEFILE INTERNFILE
@@ -849,7 +846,7 @@ Two files (employees, interns) are to be merged together by first and last name:
     - the records in the input files are ordered as described in the KEY clause.
 
 
-- The `MERGE` can use an `OUTPUT PROCEDURE `, and the `RETURN` verb to get merged records from the
+- The `MERGE` can use an `OUTPUT PROCEDURE `, and the `RETURN` verb to get merged records from the work file.
 ---
 
 \newpage
