@@ -1485,21 +1485,22 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 
 
-13. Result is Favorites in the Data Sets, Unix System Services, and Jobs sections as shown in Figure  14.
+14. Your connection will be added automatically to the **DATASET** list under **Favorites** as shown in Figure  14.
 
-![](Images/image078.png)
+    ![](Images/image078.png)
 
-*Figure  14.  Favorites*
+*Figure  14.  LEARNCOBOL connection*
 
-14.  Again, click on the + to the far right on the Data Sets selection.  Result is another prompt to Create a New Connection to z/OS.  LearnCOBOL is in the connection list.  Select **LearnCOBOL** for the Data Sets available to the previously defined LearnCOBOL connection to z/OS as shown in Figure  15.
-
-![](Images/image080.png)
-
-*Figure  15.  LearnCOBOL connection*
+- Note : *if you click on the + to the far right on the Data Sets selection,  another prompt to Create a New Connection to z/OS will appear.*
+  - any other connections you have will be listed as shown in Figure  15.
+  
+  ![](Images/image080.png)
+  
+  *Figure  15.  connections list*
 
  
 
-15.  Expansion of LearnCOBOL reads “Use the search button to display datasets”.  Click the search button as shown in Figure  16.
+15. Expansion of LEARNCOBOL reads “Use the search button to display datasets”.  Click the search button as shown in Figure  16.
 
 ![](Images/image082.png)
 
@@ -1531,7 +1532,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-19.   A list of data set names beginning with your username from z/OS Connection LearnCOBOL appears as shown in Figure  20.
+19.   A list of data set names beginning with your username from z/OS Connection LEARNCOBOL appears as shown in Figure  20.
 
 ![](Images/image090.png)
 
@@ -1575,7 +1576,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 ![](Images/image100.png)
 
-*Figure  25.   +   Select LearnCOBOL connection*
+*Figure  25.   +   Select LEARNCOBOL connection*
 
  
 
@@ -1595,7 +1596,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
  
 
-27.   View the COBOL program execution by selecting **COBRUN:SYSOUT(104)** from the LearnCOBOL in the Jobs section of Zowe Explorer as shown in Figure  28.
+27.   View the COBOL program execution by selecting **COBRUN:SYSOUT(104)** from the LEARNCOBOL in the Jobs section of Zowe Explorer as shown in Figure  28.
 
 ![](Images/image106.png)
 
@@ -1620,10 +1621,10 @@ In this section, we will use the Zowe CLI interactively to view data set members
 
 2. In order for Zowe CLI to interact with z/OSMF the CLI must know the connection details such as host, port, username, password, etc. While you could enter this information on each command, Zowe provides the ability to store this information in configurations commonly known as profiles. Zowe CLI and the Zowe VS Code Extension share profiles. So if you created a connection profile in the first lab, you could naturally leverage it here. 
 
-To create a LearnCOBOL profile (and overwrite it if it already exists), issue the following command with your system details (using `prompt*` will prompt you for certain fields and not show input):
+To create a LEARNCOBOL profile (and overwrite it if it already exists), issue the following command with your system details (using `prompt*` will prompt you for certain fields and not show input):
 
 ```
-zowe profiles create zosmf LearnCOBOL --host 192.86.32.250 --port 10443 --ru false --user prompt* --pass prompt* --ow 
+zowe profiles create zosmf LEARNCOBOL --host 192.86.32.250 --port 10443 --ru false --user prompt* --pass prompt* --ow 
 ```
 
 Many profiles can be created for interacting with different z/OSMF instances. If this was not your first profile, you will want to set it as the default for the following lab exercises. Issue the following command:
