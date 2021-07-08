@@ -4299,3 +4299,210 @@ Previous lab programs made use of a date/time intrinsic function.  The date/time
 **Lab Hints**
 
 Refer to CBL0011 line 120 for the proper formatting of the function-name causing   the compile error.
+
+\newpage
+# ABEND handling
+
+When you do the labs on the previous chapters, you may have encountered an abnormal end or ABEND for short. There are various categories of common COBOL errors which cause ABEND, and in production, software errors can be costly - both in financial and reputation.
+
+## Why does ABEND happen?
+
+Unlike your normal workstation, the mainframe utilizes an instruction set architecture called the z/Architecture. This instruction set describes what instructions can be executed at the lower machine-code level.
+
+In the case that the system encounters an instruction that is not permitted under the instruction set, an ABEND will happen. This can happen during compilation, link-edit, or execution of your COBOL program.
+
+## Frequent ABEND Types
+
+Listed below are nine of the common ABENDs to get you started. Note that there are more ABEND types and situations that you may encounter as a COBOL programmer, and z/OS may sometimes produce a different ABEND code depending on whether the ABEND occur in a layer of system software.
+
+These ABEND codes would occasionally be accompanied by a reason code which can be utilised to further narrow down the possible cause of errors.
+
+- **S001** - Record Length / Block Size Discrepancy
+- **S013** - Conflicting DCB Parameters
+- **S0C1** - Invalid Instruction
+- **S0C4** - Storage Protection Exception
+- **S0C7** - Data Exception
+- **S0CB** - Division by Zero
+- **S222/S322** - Time Out / Job Cancelled
+- **S806** - Module Not Found
+- **B37/D37/E37** - Dataset or PDS Index Space Exceeded
+
+In the next sections, we will go through the ABENDs along with any possible reasons and the frequent causes of the ABENDs. Note that the reasons and causes are non-exhaustive.
+
+### S001 - Record Length / Block Size Discrepancy
+
+z/OS manages data using data sets, which is a file that contains one or more records. These data sets have a predetermined record length and a maximum length of a block of storage (block size) associated with them during their creation. Most of the time the discrepancy happens due to programming errors.
+
+**Reason Codes:**
+- S001-0: Conflict between record length specification (program vs JCL vs dataset label)
+- S001-2: Damaged storage media or hardware error
+- S001-3: Fatal QSAM error
+- S001-4: Conflict between block specifications (program vs JCL)
+- S001-5: Attempt to read past end-of-file
+
+**Frequent Causes:**
+- S001-0: Typos in the FD statement or JCL
+- S001-2: Corrupt disk or tape dataset
+- S001-3: Internal z/OS problem
+- S001-4: Forgot to code BLOCK CONTAINS 0 RECORDS in the FD statement
+- S001-5: Logic error
+
+### S013 - Conflicting DCB Parameters
+
+S013 ABEND occurs when the program is expecting the Data Definition (DD) statement to have a specific Data Control Block (DCB), but the DD have a different DCB. Again this can be something like block size, record length, or record format.
+
+To read more on data sets, visit the IBM Knowledge Center:
+
+[https://www.ibm.com/docs/en/zos-basic-skills?topic=more-what-is-data-set](https://www.ibm.com/docs/en/zos-basic-skills?topic=more-what-is-data-set)
+
+**Reason Codes:**
+- S013-10: Dummy data set needs buffer space; specify BLKSIZE in JCL
+- S013-14: DD statement must specify a PDS
+- S013-18: PDS member not found
+- S013-1C: I/O error in searching the PDS directory
+- S013-20: Block size is not a multiple of the record length
+- S013-34: Record length is incorrect
+- S013-50: Tried to open a printer for an input
+- S013-60: Block size not equal to record length for unblocked size
+- S013-64: Attempted to dummy out indexed or relative file
+- S013-68: Block size is larger than 32752
+- S013-A4: SYSIN or SYSOUT is not QSAM file
+- S013-A8: Invalid record format for SYSIN or SYSOUT
+- S013-D0: Attemped to define PDS with FBS or FS record format
+- S013-E4: Attemped to concatenate more than 16 PDSs
+
+**Frequent Causes:**
+Most of the reason for this ABEND code is due to inconsistencies between the JCL and the COBOL program.
+
+### S0C1 - Invalid Instruction
+
+In S0C1, the CPU is attempting to execute an instruction that is either invalid or not supported.
+
+**Reasons:**
+- SYSOUT DD statement missing
+- The value in an AFTER ADVANCING clause is less than 0 or more than 99
+- An index or subscript is out of range
+- An I/O verb was issued against an unopened data set
+- CALL subroutine linkage does not match the calling program record definition
+
+**Frequent Causes:**
+- Incorrect logic in setting AFTER ADVANCING clause
+- Incorrect logic in table handling code, or an overflow of table entries
+
+### S0C4 - Storage Protection Exception
+
+When you run your COBOL program in z/OS, the operating system will allocate a block of virtual memory which is called address space. The address space will contain memory addresses that are necessary for the execution of the program.
+
+**Reason:**
+With S0C4, the program is attempting to access a memory address that is not within the address space allocated.
+
+**Frequent Causes:**
+- Missing or incorrect JCL DD statement
+- Incorrect logic in table handling code
+- Overflow of table entries
+- INITIALIZE a file FD that hasn't been opened
+
+### S0C7 - Data Exception
+
+As you have seen previously, COBOL program handles data using PICTURE clauses, which determine the type of data that particular variable. But occasionally, you may encounter data that are misplaced.
+
+**Reason:**
+With S0C7, the program is expecting numeric data, however, it found other invalid types of data. This can happen when you try to MOVE something non-numeric from a PIC 9 field to a PIC X field.
+
+**Frequent Causes:**
+- Incorrectly initialized or uninitialized variables
+- Missing or incorrect data edits
+- MOVE from a 01-level to a 01-level if the sending field is shorter than receiving field
+- MOVE of zeros to group-level numeric fields
+- Incorrect MOVE CORRESPONDING
+- Incorrect assignment statements when MOVE from one field to another
+
+### S0CB - Division by Zero
+
+Just like mathematic, attempting to divide a number with 0 in Enterprise COBOL is an undefined operation.
+
+**Reason:**
+CPU attempted to divide a number with 0.
+
+**Frequent Causes:**
+- Incorrectly initialized or uninitialized variables
+- Missing or incorrect data edits
+
+### S222/S322 - Time Out / Job Cancelled
+
+When you submit a JCL, it is possible to determine how much time you want to allocate to a job. If the job surpasses that allocated time, it will time out. Depending on how your system is set up, a job that has taken a prolonged time may be cancelled either manually by the operator or automatically.
+
+**Reason:**
+Timeout, likely due to program logic getting caught in a loop with no possible exit (infinite loop). To be specific, S322 ABEND refers to timeout, while S222 refer to the job being cancelled.
+
+**Frequent Causes:**
+- Invalid logic
+- Invalid end-of-file logic
+- End-Of-File switch overwritten
+- Subscript not large enough
+- PERFORM THRU a wrong exit
+- PERFORM UNTIL End-Of-File without changing the EOF switch
+
+### S806 - Module Not Found
+
+We have seen previously that it is possible to CALL a subroutine in COBOL. To allow the compiler to know what subroutine we want to call, we need to specify them on the JCL. If you do not indicate them, the compiler will attempt to check the system libraries first before failing.
+
+**Reason:**
+CALL made to a subroutine that could not be located.
+
+**Frequent Causes:**
+- Module deleted from the library
+- Module name spelt incorrectly
+- Load library with the module is not specified on the JCL
+- I/O error when z/OS searched the directory of the library
+
+### B37/D37/E37 - Dataset or PDS Index Space Exceeded
+
+We have seen that data set in z/OS have an allocated size to them. When we create many data, at one point the data set won't have enough space to store anything new.
+
+**Reason Codes:**
+- B37 - Disk volume out of space
+- D37 - Primary space exceeded, no secondary extents defined
+- E37 - Primary and secondary extents full
+- E37-04 - Disk volume table of contents is full
+
+**Frequent Causes:**
+- Not enough space to allocate the output file(s)
+- Logic error resulting in an infinite write loop
+
+## Best Practices to Avoid ABEND
+
+To avoid ABEND, we can do something called defensive programming. It is a form of programming where we defensively design our code to ensure that it is still running under unforeseen circumstances.
+
+By doing defensive programming, we can reduce the number of bugs and make the program more predictable regardless of the inputs.
+
+Listed below are some things we can do in COBOL:
+
+- **INITIALIZE fields at the beginning of a routine.** This will ensure that the field has proper data at the start of the program. However, special care needs to be taken to ensure that any flags or accumulators have the appropriate INITIALIZE data.
+
+- **I/O statement checking.** This can be through the use of FILE STATUS variable and checking them before doing any further I/O operation. Additionally, we need to check for empty files and other possible exceptions.
+
+- **Numeric fields checking.** A general policy would be to not trust a numeric field we are doing math on. Assume that the input can be invalid. It would be recommended to use ON OVERFLOW and ON SIZE ERROR phrases to catch invalid or abnormal data. Special care should be taken when we need to do rounding as truncation can occur in some cases.
+
+- **Code formatting.** This will ensure that your code is maintainable and easy to understand by anyone who is reading or maintaining them.
+
+- **Consistent use of scope terminators.** It would be best practice to explicitly terminate a scope using scope terminators such as END-IF, END-COMPUTE or END-PERFORM.
+
+- **Testing, Checking and Peer-Review.** Proper tests and peer-review can be conducted to catch possible errors that may have slipped through your program. Additionally, we can also ensure that the business logic is correct.
+
+## ABEND Routines
+
+Even when a system ABEND does not occur, there are possible situations where you will be expected to call an ABEND routine. This could be when you encounter invalid input data for your program or an error being returned from a subroutine.
+
+Usually, such routines would be supplied by your place of employment. But it can be as simple as the following example:
+
+```
+IF abend-condition
+    PERFORM ABEND-ROUTINE.
+...
+ABEND-ROUTINE.
+    DISPLAY "Invalid data".
+    STOP RUN.
+```
+
+Such routine can display more information which would allow you to determine where and why exactly has the program failed.
