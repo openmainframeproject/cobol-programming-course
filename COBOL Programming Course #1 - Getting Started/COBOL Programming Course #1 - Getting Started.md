@@ -2619,6 +2619,8 @@ In this chapter we discuss the concept of structured programming and how it rela
 
      - **Specifying the return value**
 
+- **Using copybooks**
+
 - **Summary**
 - **Lab**
 
@@ -3094,6 +3096,42 @@ You might also see the phrase, BY VALUE, being used in a CALL sentence.  BY VALU
 
 Finally, the RETURNING phrase is used to specify the variable that should be used to store the return value.  This can be any elementary data-item declared within the data-division.  Note that this is optional.  Some programs might not return anything, or you might have passed values BY REFERENCE to the target program in which case updates to those variables will be visible once the target program returns.
 
+## Using copybooks
+
+If your program contains frequently used code sequences, we can write the code sequence once and put them in a COBOL copy library. These code sequences are referred to as copybooks. Then, we can use the COPY statement to retrieve these code sequences and include them during compile time. Using copybooks in this manner will eliminate repetitive coding.
+
+We would need to specify a copy library in the JCL we used. If you are using the provided procedure (IGYWC, IGYWCL or IGYWCLG), you can supply a DD statement to the SYSLIB parameter of the COBOL step inside the procedure. For example:
+
+```
+//COBOL.SYSLIB  DD  DISP=SHR,DSN=Z99998.COPYLIB
+```
+*Example 21. JCL SYSLIB statement*
+
+This will tell the compiler to look for the copybooks on the supplied dataset.
+
+Let us take a look at an example of how we can use the COPY statement in a program.
+
+Assume that a copybook with the name of DOWORK is stored and contains the following statement:
+```
+COMPUTE SPACE-AVAILABLE = TOTAL-FREE-SPACE
+MOVE SPACE-AVAILABLE TO PRINT-SPACE
+```
+*Example 22.  Content of DOWORK copybook*
+
+We can retrieve the copybook by utilizing the COPY statement:
+```
+PROCEDURE DIVISION.
+...
+    DISPLAY "RETRIEVE COPYBOOK".
+    COPY DOWORK.
+```
+*Example 23.  Basic COPY*
+
+The statements inside the DOWORK procedure will then follows the DISPLAY statement. 
+
+Unlike subprograms, using copybooks does not transfer control over to another program. But the code written inside the copybooks will only be transferred once during compilation. So further changes to the copybooks will require a recompilation of the program.
+
+On the other hand, the code inside a subprogram will only be invoked during the execution of the program. Therefore, assuming that the subprogram is linked dynamically, we can change it without needing to recompile the calling program. 
 
 ## Summary
 
