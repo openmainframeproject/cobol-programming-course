@@ -557,7 +557,7 @@ The result is execution of COBOL program CBLDB21 to read the Db2 table and write
 1. object-oriented programs
 2. Class Definition
 3. Subclass Definition
-4. Factory Section in Class Definition
+4. Defining a factory section
 4. Instance method Definition
 5. Client Definition
 6. Structuring OO applications
@@ -567,8 +567,7 @@ The result is execution of COBOL program CBLDB21 to read the Db2 table and write
 To write an object-oriented (OO) program, you have to determine what **classes** you need and
 the **methods** and **data** that the classes need to do their work.
 
-OO programs are based on:
-- objects (entities that encapsulate state and behavior) and their classes, methods, and data.
+OO programs are based on objects (entities that encapsulate state and behavior) and their classes, methods, and data.
 
 a program creates and works with multiple object instances of a class (multiple objects that are members of that class).
 
@@ -610,7 +609,7 @@ A wrapper is a class that provides an interface between object-oriented code and
 Factory methods provide a convenient means for writing wrappers for existing procedural COBOL code to make it accessible
 
 To wrap COBOL code, do these steps:
-- Create a simple COBOL class that contains a FACTORY paragraph.
+- Create a simple COBOL class that contains a `FACTORY` paragraph.
 - In the FACTORY paragraph, code a factory method that uses a `CALL` statement to call the procedural program.
 
 ---
@@ -852,7 +851,7 @@ End class Account.
 
 ## Subclass Definition
 A subclass inherits the methods and instance data of its superclasses,
-and is related to its superclasses by an is-a relationship.
+and is related to its superclasses by an _**is-a**_ relationship.
 
 Using subclasses has several advantages:
 - **Reuse of code**:
@@ -899,7 +898,7 @@ you most commonly use factory data when you want to gather data from all the ins
 
 You most commonly use factory methods to customize object creation when you cannot use `VALUE` clauses alone to initialize instance data.
 
-By contrast, you use the OBJECT paragraph in a class definition to define data that is created for each object instance of the class, and methods that are supported for each object instance of the class.
+By contrast, you use the `OBJECT` paragraph in a class definition to define data that is created for each object instance of the class, and methods that are supported for each object instance of the class.
 
 ---
 ### A factory definition consists of:
@@ -977,17 +976,17 @@ you also use the class-name as the first operand in the `INVOKE` statement.
 - Factory data is global to all factory methods that the `FACTORY` paragraph defines.
 
 
-- If you want to make factory data accessible from outside the FACTORY paragraph, define factory attribute (get or set) methods for doing so.
+- If you want to make factory data accessible from outside the `FACTORY` paragraph, define factory attribute (get or set) methods for doing so.
 
 ---
----
+
 
 ## Instance method Definition
 
 An instance method defines an operation that is supported for each object instance of a class, and can be defined in the `PROCEDURE DIVISION` of the `OBJECT` paragraph of a class definition.
 
 ###  Structure of instance method definitions
-A COBOL instance method definition consists of four divisions (like a COBOL program), followed by an END METHOD marker.
+A COBOL instance method definition consists of four divisions (like a COBOL program), followed by an `END METHOD` marker.
 
 
 `IDENTIFICATION` (required)
@@ -1024,11 +1023,11 @@ Select account-file Assign AcctFile.
 - `DATA` DIVISION for defining a class instance method
 
 
--  consists of any of the following four sections:
+consists of any of the following four sections:
 - `FILE SECTION`
-    - The same as a program FILE SECTION, except that a method FILE SECTION can define EXTERNAL files only.
+    - The same as a program `FILE SECTION`, except that a method `FILE SECTION` can define EXTERNAL files only.
 - `LOCAL-STORAGE SECTION`
-    - A separate copy of the LOCAL-STORAGE data is allocated for each invocation of the method, and is freed on return from the method.
+    - A separate copy of the `LOCAL-STORAGE` data is allocated for each invocation of the method, and is freed on return from the method.
     - If you specify the `VALUE` clause on a data item, the item is initialized to that value on each invocation of the method.
 - `WORKING-STORAGE SECTION`
     - A single copy of the `WORKING-STORAGE` data is allocated, and the data persists in its last-used state until the run unit ends.
@@ -1121,7 +1120,7 @@ Example :
     - the number and type of its formal parameters.
 
 
-- You define the formal parameters of a COBOL method in the `USING` phrase of the method's `PROCEDURE` DIVISION header.
+- You define the formal parameters of a COBOL method in the `USING` phrase of the method's `PROCEDURE DIVISION` header.
 
 
 - Within a class definition, you do not need to make each method-name unique, but you do need to give each method a unique signature.
@@ -1136,7 +1135,7 @@ Example :
 - The method-name is processed in a case-sensitive manner and must conform to the rules of formation for a Java method-name.
 
 - If you define a data item with the same name in both the `DATA DIVISION` of an instance method,
-  and the `DATA DIVISION` of the OBJECT paragraph,
+  and the `DATA DIVISION` of the `OBJECT` paragraph,
     - a reference in the method to that data-name refers only to the method data item
       (the method `DATA DIVISION` takes precedence) .
 
@@ -1145,13 +1144,13 @@ Example :
 
 
 - You can code the `EXIT` METHOD or `GOBACK` statement in an instance method to return control to the invoking client.
-    - if you specify the RETURNING phrase upon invocation of the method, the `EXIT` METHOD or `GOBACK` statement returns the value of the data item to the invoking client.
+    - if you specify the `RETURNING` phrase upon invocation of the method, the `EXIT` METHOD or `GOBACK` statement returns the value of the data item to the invoking client.
 
 
-- An implicit EXIT METHOD is generated as the last statement in the PROCEDURE DIVISION of each method.
+- An implicit EXIT METHOD is generated as the last statement in the P`ROCEDURE DIVISION` of each method.
 
 
-- You can specify STOP RUN in a method; doing so terminates the entire run unit including all threads executing within it.
+- You can specify `STOP RUN` in a method; doing so terminates the entire run unit including all threads executing within it.
 
 
 - You must terminate a method definition with an `END METHOD` marker.
@@ -1163,7 +1162,7 @@ End method "credit".
 ---
 
 ### Example: defining a method
-The following example adds to the Account methods definitions to the `Procedure Division` of the Account class.
+The following example show the definitions of the `init` and `getBalance` methods in the `Procedure Division` of the Account class.
 
 ```
 ....
@@ -1190,39 +1189,6 @@ Procedure Division.
    Move AccountBalance to outBalance.
    End method "getBalance".
 *
-*    credit method to deposit to the account:
-   Identification Division.
-   Method-id. "credit".
-   Data division.
-   Linkage section.
-   01 inCredit   pic S9(9) binary.
-   Procedure Division using by value inCredit.
-   Add inCredit to AccountBalance.
-   End method "credit".
-*
-*    debit method to withdraw from the account:
-   Identification Division.
-   Method-id. "debit".
-   Data division.
-   Linkage section.
-   01 inDebit    pic S9(9) binary.
-   Procedure Division using by value inDebit.
-   Subtract inDebit from AccountBalance.
-   End method "debit".
-*
-*    print method to display formatted account number and balance:
-   Identification Division.
-   Method-id. "print".
-   Data division.
-   Local-storage section.
-   01 PrintableAccountNumber  pic ZZZZZZ999999.
-   01 PrintableAccountBalance pic $$$$,$$$,$$9CR.
-   Procedure Division.
-   Move AccountNumber  to PrintableAccountNumber
-   Move AccountBalance to PrintableAccountBalance
-   Display " Account: " PrintableAccountNumber
-   Display " Balance: " PrintableAccountBalance.
-   End method "print".
 
 ....
 ```
@@ -1300,7 +1266,7 @@ Example
 
 ---
 
----
+
 ### Creating and initializing instances of classes
 Before you can use the instance methods that are defined in a Java or COBOL class, you must first create an instance of the class.
 
@@ -1309,8 +1275,6 @@ To create a new instance of class class-name and to obtain a reference object-re
 ```
 INVOKE class-name NEW . . . RETURNING object-reference
 ```
-
-Note:  the returned object reference is only a local reference, which means that it is automatically freed after the method returns.
 
 ---
 ### Invoking methods
@@ -1329,7 +1293,7 @@ If you pass arguments to a method, specify the arguments in the `USING` phrase o
 - Code the data type of each argument so that it conforms to the type of the corresponding formal parameter in the intended target method.
 
 
-If the argument an object reference :
+If the argument is an object reference :
 - In a COBOL client, the class of an argument cannot be a subclass of the class of the corresponding parameter.
 
 You must specify that the arguments are passed BY VALUE. In other words, the arguments are not affected by any change to the corresponding formal parameters in the invoked method.
@@ -1384,7 +1348,6 @@ Invoke anAccount "credit" using by value 500.
 - The `INVOKE` statement does not set the RETURN-CODE special register.
 ---
 
----
 ### Comparing and setting object references
 You can compare object references by coding conditional statements,
 and you can set object references by using the SET statement.
@@ -1407,15 +1370,8 @@ Example: `Set anAccount To Self.`
 
 ---
 ### Notes :
-- you cannot use `SORT` or `MERGE` statements or Nested programs in a COBOL client,
-  because you must compile it with the THREAD compiler option
 
-
-- Any programs that you compile with the THREAD compiler option must be recursive.
-    - You must specify the `RECURSIVE` clause in the `PROGRAM-ID` paragraph of each OO COBOL client program.
-
-
-- You must define, in the `REPOSITORY` paragraph of the C`ONFIGURATION SECTION`,
+- You must define, in the `REPOSITORY` paragraph of the `CONFIGURATION SECTION`,
   class-names that you use in the OBJECT REFERENCE phrase.
 
 
@@ -1424,7 +1380,6 @@ Example: `Set anAccount To Self.`
 - If you define the data in the `WORKING-STORAGE` SECTION, you need to synchronize access to the data or ensure that no two threads can access it simultaneously.
 ---
 
----
 ### Example: defining a client
 The following example shows a small client program of the Account class.
 
@@ -1464,7 +1419,6 @@ cbl dll,thread,pgmname(longmixed)
 ```
 
 ---
-
 
 
 ## Structuring OO applications
@@ -1527,7 +1481,6 @@ cbl dll, thread
 ```
 
 ----
----
 
 \newpage
 
