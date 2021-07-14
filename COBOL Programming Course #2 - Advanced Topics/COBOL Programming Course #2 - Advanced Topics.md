@@ -610,11 +610,11 @@ However, automatic serialization is not applied to statements specified with the
 
 ### File-definition storage
 
-On all programs invocation, the storage associated with file definition (such as FD records) is allocated and available in its last-used state. Therefore, all threads of execution will share this storage. You can depend on automatic serialization for this storage during the execution of the statements mentioned previously, but not between uses of the statements.
+Upon program invocation, the storage associated with file definition (such as FD records) is allocated and available in its last-used state. Therefore, all threads of execution will share this storage. You can depend on automatic serialization for this storage during the execution of the statements mentioned previously, but not between uses of the statements.
 
 ### Serializing file access with multithreading
 
-To take advantage of automatic serialization, we can use one of the recommended following file organizations and usage patterns when we access files in threaded programs.
+To take advantage of automatic serialization, we can use one of the recommended following file organization and usage patterns when we access files in threaded programs.
 
 Recommended file organizations:
 - Sequential organization
