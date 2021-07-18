@@ -554,23 +554,23 @@ The result is execution of COBOL program CBLDB21 to read the Db2 table and write
 
 # SORT and MERGE
 
-### Intro
+## Intro
 Sometime when we want to process a file we need it to be sorted, COBOL provides the `SORT` verb for this.
 
 If we have two or more file that are sorted using the same key or keys, we can combine them into one sorted file
 using COBOL `MERGE` verb.
 ---
-### `SORT` Syntax
+## `SORT` Syntax
 
 The simplest version of a `SORT` statement can be as follows
-
-        SORT [WorkFileName]
-            ON [ASCENDING or DESCENDING] KEY [SortKey]
-            {WITH DUPLICATES IN ORDER}
-            {COLLATING SEQUENCE IS [character set]}
-            USING [InputFileName]
-            GIVEN [OutputFileName]
-
+```
+SORT [WorkFileName]
+    ON [ASCENDING or DESCENDING] KEY [SortKey]
+    {WITH DUPLICATES IN ORDER}
+    {COLLATING SEQUENCE IS [character set]}
+    USING [InputFileName]
+    GIVEN [OutputFileName]
+```
 - `WorkFileName` :
     - a temporary work file that the SORT process uses for the sort.
     - defined in the FILE SECTION using an SD.
@@ -603,17 +603,17 @@ The simplest version of a `SORT` statement can be as follows
     - This clause is used to select the character set the SORT verb uses for collating the records in the file.
     - `[character set]` can be ASCII, EBCDIC,or user-defined.
 ---
-### `SORT` Rules
-- SORT can be used anywhere in the PROCEDURE DIVISION except in
-    - an INPUT or OUTPUT PROCEDURE,
-    -  another SORT, or a MERGE,
-    - in the DECLARATIVES SECTION.
+## `SORT` Rules
+- SORT can be used anywhere in the `PROCEDURE DIVISION` except in
+    - an `INPUT` or `OUTPUT PROCEDURE`,
+    -  another `SORT`, or a `MERGE`,
+    - in the `DECLARATIVES SECTION`.
 
 
 - The records described for the input file must be able to fit into the records described for the work file.
 
 
-- The sort key cannot contain an OCCURS clause (can't be a table) nor can it be subordinate to an entry that does contain one.
+- The sort key cannot contain an `OCCURS` clause (can't be a table) nor can it be subordinate to an entry that does contain one.
 
 
 - The input and output files are automatically opened by the SORT.
@@ -628,52 +628,55 @@ Let's say for example I have a file with the company employee data, and I want t
     - **the file to be sorted** (the input file),
     - the **sorted file**,
     - and the **work file**
+    ```
+      ENVIRONMENT DIVISION.
+             FILE-CONTROL.
+             SELECT EMPLOYEEFILE ASSIGN TO "employees.DAT"   
+             ....
+             SELECT SORTEDEMPLOYEES ASSIGN TO "sortedEmployees.DAT"
+             ....
+             SELECT WORKFILE ASSIGN TO "WORK.TMP".
+             ....
 
-                 ENVIRONMENT DIVISION.
-                 FILE-CONTROL.
-                 SELECT EMPLOYEEFILE ASSIGN TO "employees.DAT"   
-                 ....
-                 SELECT SORTEDEMPLOYEES ASSIGN TO "sortedEmployees.DAT"
-                 ....
-                 SELECT WORKFILE ASSIGN TO "WORK.TMP".
-                 ....
-
-        - Note: *the data in the work file will be released when the program is done*
+    ```    
+    - Note: *the data in the work file will be released when the program is done*
 
 
 2. in the `DATA DEVISION` we put the file description for the input, output, and working files
-
-           DATA DEVISION.
-           FILE SECTION.
-           FD EMPLOYEEFILE.
-           ....
-           FD SORTEDEMPLOYEES.
-           ....
-           SD WORKFILE.
-           01 WORKREC
-               ....
-               02 WSEMPLOYEEFNAME PIC X(10).
-               02 WSEMPLOYEELNAME PIC X(10).
-               .....
-
-       - Note: *the work file is defined with `SD` and the definition of it contains 
+```
+DATA DEVISION.
+FILE SECTION.
+FD EMPLOYEEFILE.
+....
+FD SORTEDEMPLOYEES.
+....
+SD WORKFILE.
+01 WORKREC
+   ....
+   02 WSEMPLOYEEFNAME PIC X(10).
+   02 WSEMPLOYEELNAME PIC X(10).
+   .....
+```
+   - Note: *the work file is defined with `SD` and the definition of it contains 
          the names of the filed we want to use for the sorting*   
 
 
 3. in the `PROCEDURE DIVISION` we
     - sort the work file on a key using the input file and given the output file
-
-            PROCEDURE DIVISION.
+    ```
+     PROCEDURE DIVISION.
             BEGIN. 
                 SORT WORKFILE ON ASCENDING KEY WSEMPLOYEEFNAME
                     USING EMPLOYEEFILE GIVEN SORTEDEMPLOYEES.
             .....
+    ```
+       
     - the sort is done using the first name, we can use more than one key by adding the keys one after the other separated by comma
         -  ex. sorting on first name and last name
             - ` SORT WORKFILE ON ASCENDING KEY WSEMPLOYEEFNAME, WSEMPLOYEELNAME
               USING EMPLOYEEFILE GIVEN SORTEDEMPLOYEES.`
 ---           
-### Using `INPUT` with `SORT`
+## Using `INPUT` with `SORT`
 
 An `INPUT PROCEDURE` allows us to select which records, and what type of records, will be submitted to the sort process.
 
@@ -684,19 +687,21 @@ An `INPUT PROCEDURE` can be used to :
 - When an `INPUT PROCEDURE` is used, it replaces the `USING` phrase
 - The `INPUT PROCEDURE` must finish before the sort process sorts the records supplied to it by the procedure.
 
-#### Syntax
+### Syntax
+```
+SORT [WorkFileName]
+ON [ASCENDING or DESCENDING] KEY [SortKey]
+{WITH DUPLICATES IN ORDER}
+{COLLATING SEQUENCE IS [character set]}
+INPUT PROCEDURE IS [process name]
+GIVEN [OutputFileName]
 
-        SORT [WorkFileName]
-        ON [ASCENDING or DESCENDING] KEY [SortKey]
-        {WITH DUPLICATES IN ORDER}
-        {COLLATING SEQUENCE IS [character set]}
-        INPUT PROCEDURE IS [process name]
-        GIVEN [OutputFileName]
+```
 
 - `process name` :
     - identifies a block of code, that uses the RELEASE verb to supply records to the sort process.
 
-#### Rules
+### Rules
 - The `INPUT PROCEDURE` must contain at least one RELEASE statement to transfer the records to the work file
 
 
@@ -707,7 +712,7 @@ Note : *The old COBOL (before COBOL '85) rules stated that the INPUT procedures 
 and could not be entered from elsewhere in the program.*
 
 
-#### writing an `INPUT PROCEDURE`
+### writing an `INPUT PROCEDURE`
 An `INPUT PROCEDURE` supplies records to the sort process by writing them to the work file.
 
 - to write the records to the work file the RELEASE verb is used
@@ -715,18 +720,20 @@ An `INPUT PROCEDURE` supplies records to the sort process by writing them to the
         -  `RecordName` is the name of the record declared in the work file
 
 - Example
+```
+  OPEN INPUT [InputFile]
+  READ [InputFile]
+  PERFORM UNTIL TerminatingCondition
+    Process input record
+    RELEASE SDWorkRec
+    READ InputFile
+  END-PERFORM
+  CLOSE InputFile
 
-      OPEN INPUT [InputFile]
-      READ [InputFile]
-      PERFORM UNTIL TerminatingCondition
-        Process input record
-        RELEASE SDWorkRec
-        READ InputFile
-      END-PERFORM
-      CLOSE InputFile
+```
 
 ---
-### Using `OUTPUT` with `SORT`
+## Using `OUTPUT` with `SORT`
 an `OUTPUT PROCEDURE` executes when the sort process has already sorted the file.
 
 an `OUTPUT PROCEDURE` is useful when we don't need to preserve the sorted file.
@@ -738,27 +745,29 @@ we can use an `OUTPUT PROCEDURE` to create the report directly
 
 
 
-#### Syntax
+### Syntax
+```
+SORT [WorkFileName]
+ON [ASCENDING or DESCENDING] KEY [SortKey]
+{WITH DUPLICATES IN ORDER}
+{COLLATING SEQUENCE IS [character set]}
+USING [InputFile]
+OUTPUT PROCEDURE IS [Process name]
 
-        SORT [WorkFileName]
-        ON [ASCENDING or DESCENDING] KEY [SortKey]
-        {WITH DUPLICATES IN ORDER}
-        {COLLATING SEQUENCE IS [character set]}
-        USING [InputFile]
-        OUTPUT PROCEDURE IS [Process name]
+```
 
 - `process name` :
     - used to retrieve sorted records from the work file using the `RETURN` verb.
 
 
-#### Rules
+### Rules
 - An `OUTPUT PROCEDURE` must contain at least one RETURN statement to get the records from the SortFile.
 
 
 - The `GIVING phrase` cannot be used if an `OUTPUT PROCEDURE` is used.
 
 
-#### writing an `OUTPUT PROCEDURE`
+### writing an `OUTPUT PROCEDURE`
 An `OUTPUT PROCEDURE` uses the `RETURN` verb to read sorted records from the work file
 
 - to read the records to the work file the RETURN verb is used
@@ -766,34 +775,38 @@ An `OUTPUT PROCEDURE` uses the `RETURN` verb to read sorted records from the wor
         - `RecordName` is the name of the record declared in the work file
 
 - Example
-
-        OPEN OUTPUT OutputFile
+```
+    OPEN OUTPUT OutputFile
+    RETURN SDWorkFile RECORD
+    PERFORM UNTIL TerminatingCondition
+        Setup OutRec
+        WRITE OutRec
         RETURN SDWorkFile RECORD
-        PERFORM UNTIL TerminatingCondition
-            Setup OutRec
-            WRITE OutRec
-            RETURN SDWorkFile RECORD
-        END-PERFORM
-        CLOSE OutputFile
+    END-PERFORM
+    CLOSE OutputFile
+
+```
 ---
-### `MERGE`
+## `MERGE`
 The `MERGE` verb takes two or more identically sequenced files and combines them,
 according to the key values specified.
 
 The combined file is then sent to an output file or an `OUTPUT PROCEDURE`.
 
 ---
-### `MERGE` Syntax
+## `MERGE` Syntax
+```
+    MERGE WorkFile
+    ON [ASCENDING or DESCENDING] KEY [MergeKey]
+    {COLLATING SEQUENCE IS [character set]}
+    USING [InputFileName1, InputFileName2, ....]
+    GIVEN [OutputFileName]
 
-        MERGE WorkFile
-        ON [ASCENDING or DESCENDING] KEY [MergeKey]
-        {COLLATING SEQUENCE IS [character set]}
-        USING [InputFileName1, InputFileName2, ....]
-        GIVEN [OutputFileName]
+```
 
 
 ---
-### Merge Example:
+## Merge Example:
 Two files (employees, interns) are to be merged together by first and last name:
 1. in the `ENVIRONMENT DIVISION` we define
     - **the files to be sorted** (the input file),
@@ -830,18 +843,20 @@ Two files (employees, interns) are to be merged together by first and last name:
 
 3. in the `PROCEDURE DIVISION` we sort the work file on a key or keys
    using the input file and given the output file
+```
+PROCEDURE DIVISION.
+Begin.
+    MERGE WORKFILE ON ASCENDING KEY
+        WSEMPLOYEEFNAME, WSEMPLOYEELNAME
+        USING EMPLOYEEFILE INTERNFILE
+        GIVEN SORTEDEMPLOYEES.
+.....
 
-        PROCEDURE DIVISION.
-        Begin.
-            MERGE WORKFILE ON ASCENDING KEY
-                WSEMPLOYEEFNAME, WSEMPLOYEELNAME
-                USING EMPLOYEEFILE INTERNFILE
-                GIVEN SORTEDEMPLOYEES.
-        .....
+```
 
-    - Note: the output can be written to one or more file or process internally by the  program
+- Note: the output can be written to one or more file or process internally by the  program
 ---
-### `MERGE` Notes
+## `MERGE` Notes
 - The results of the `MERGE` verb are predictable only when
     - the records in the input files are ordered as described in the KEY clause.
 
