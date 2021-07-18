@@ -554,6 +554,7 @@ The result is execution of COBOL program CBLDB21 to read the Db2 table and write
 
 # Subprograms
 
+## Intro 
 when control is transferred from the active program to an external program, but the transferring program remains active
 and control can be returned to it,
 
@@ -563,26 +564,28 @@ In COBOL, there are three ways of transferring control to a subprogram :
 
 1. `EXEC CICS LINK`
     - The calling program contains a command in one of these forms:
-
-            EXEC CICS LINK PROGRAM('subpgname')
-            EXEC CICS LINK PROGRAM(name)
-
+    ```
+    EXEC CICS LINK PROGRAM('subpgname')
+    EXEC CICS LINK PROGRAM(name)
+    ```    
     - In the first form, the subprogram is an alphanumeric literal.
     - In the second form, name refers to the COBOL data area with the name of the subprogram
 
 
 2. Static COBOL call
     - The calling program contains a COBOL statement of the form:
-
-             CALL 'subpgname'
+    ```
+     CALL 'subpgname'
+    ```
 
     - The subprogram is explicitly named as a literal string
 
 
 3. Dynamic COBOL call
     - The calling program contains a COBOL statement of the form:
-
-             CALL identifier
+    ```
+     CALL identifier
+    ```
 
     - The identifier is the name of a COBOL data area that contain the name of the called subprogram.
 
@@ -611,10 +614,10 @@ subprograms communicate with their callers through the mechanism of argument-pas
 
 they both have the same four divisions: `IDENTIFICATION`, `ENVIRONMENT`, `DATA`, and `PROCEDURE`.
 
-In a subprogram, however, the DATA DIVISION includes in addition to the FILE and WORKING-STORAGE sections a LINKAGE
+In a subprogram, however, the `DATA DIVISION` includes in addition to the FILE and `WORKING-STORAGE` sections a `LINKAGE`
 section, where the subprogram's formal arguments are described.
 
-also, in a subprogram, the PROCEDURE DIVISION header includes a USING clause that lists the names of the formal
+also, in a subprogram, the `PROCEDURE DIVISION` header includes a `USING` clause that lists the names of the formal
 arguments and, in so doing, indicates the order in which the corresponding actual arguments must be listed by the caller
 that makes a call to the subprogram.
 
@@ -626,7 +629,7 @@ rather than `STOP RUN`.
 
 ---
 
-### Calling and Passing Arguments to a Subprogram
+## Calling and Passing Arguments to a Subprogram
 
 `CALL <subprogram-name> USING <argument-list>`
 
@@ -647,11 +650,12 @@ rather than `STOP RUN`.
       calling program.
 
 #### Example
-
-        CALL 'example_subprogram' USING
-        BY REFERENCE Arg1
-        BY CONTENT   Arg2, 37
-        BY REFERENCE Arg3 
+```
+CALL 'example_subprogram' USING
+BY REFERENCE Arg1
+BY CONTENT   Arg2, 37
+BY REFERENCE Arg3 
+```
 
 ---
 
@@ -735,11 +739,10 @@ for more information about program logical levels.**
 
 - If a compiler with an integrated translator is used, translation is not required.
 
----
 
 - `EXEC CICS LINK`
     - The linked subprogram must be translated if it, or any subprogram invoked from it, contains CICS function.
-
+    
 
 - Static or dynamic COBOL call
     - The called subprogram must be translated if it contains CICS commands or references to the EXEC interface block (
@@ -839,7 +842,7 @@ for more information about program logical levels.**
 
 ### Return from a subprogram
 
-- EXEC CICS LINK
+- `EXEC CICS LINK`
     - The linked subprogram must return using either EXEC CICS RETURN or a native language return command such as the
       COBOL statement GOBACK
 
@@ -854,8 +857,8 @@ for more information about program logical levels.**
 
 ### Storage
 
-- EXEC CICS LINK
-    - On each entry to the linked subprogram, a new initialized copy of its WORKING-STORAGE SECTION is provided, and the
+- `EXEC CICS LINK`
+    - On each entry to the linked subprogram, a new initialized copy of its `WORKING-STORAGE SECTION` is provided, and the
       run unit is reinitialized (in some circumstances, this can cause a performance degradation).
     - On each entry to the linked subprogram, a new initialized copy of its LOCAL-STORAGE section is provided.
 
