@@ -525,7 +525,7 @@ The IBM Z Open Editor plugin also provides a level of syntax checking for local 
 
 Now we need to introduce an error into the code. After line 68, add the line:
 
-`MOVE ACCT-NO TO ACCT-N-0.`
+`MOVE ACCT-NO TO ACCT-NO-NO.`
 
 Note that this line incorrectly identifies the second variable, which doesn't exist.  Once entering that line, you will notice that the invalid variable has been underlined in red to highlight it as an error.  Also, the problems view has a new error.  Clicking on the error will highlight the line of code at fault in the editor, shown in Figure  10. , allowing you to view the error directly.
 
@@ -1389,12 +1389,13 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
    If you installed Code4z, the list should include:
 
-   1. COBOL Language Support
-      2. Zowe Explorer
-      3. Explorer for Endevor
-      4. HLASM Language Support
-      5. Debugger for Mainframe
-      6. COBOL Control Flow
+1. COBOL Language Support
+2. Zowe Explorer
+3. Explorer for Endevor
+4. HLASM Language Support
+5. Debugger for Mainframe
+6. COBOL Control Flow
+
 
    In these exercises, you will only use the COBOL Language Support and Zowe Explorer extensions.
 
@@ -3400,11 +3401,11 @@ A list of COBOL Boolean relational operators for each of the common type of COBO
 
  
 
-![](Images/image149.jpg)
+![](Images/image149.png)
 
 *Figure  1.  General relation condition operators*
 
-![](Images/image150.jpg)
+![](Images/image150.png)
 
 *Figure  2.  Class condition operators*
 
