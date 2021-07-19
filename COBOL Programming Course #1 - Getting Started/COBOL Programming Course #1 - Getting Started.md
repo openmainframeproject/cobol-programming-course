@@ -160,14 +160,14 @@ To enable this feature, follow these steps:
 2. Click **User Settings** > **Extensions** > **Zowe Explorer Settings**
    Look for the **Zowe Security: Credential Key** field
 
-![](Images/code4z-img6.png)
+![](Images/code4z/code4z-img6.png)
 
 3. Type **Zowe-Plugin** in the text box. This will trigger the Built-in Secure Credential Store.
 
 Alternatively, to enable this feature by editing settings.json, hover over the gear icon and click "Copy Setting as JSON".
 You can then paste that to settings.json and update the value to Zowe Plugin.
 
-![](Images/code4z-img7.png)
+![](Images/code4z/code4z-img7.png)
 
 Note: If you are using Zowe CLI and you’ve installed the Secure-Credential-Store Plugin, the steps to activate it will still be the same.
 
@@ -177,42 +177,52 @@ Follow these steps:
 
 1. Navigate to the Zowe Explorer tree on the right side and look for the + sign.
 
-![](Images/code4z-img8.jpg)
+![](Images/code4z/code4z-img8.png)
 
 2. Click on the + sign.
 A dialog box will appear and ask if you want to "Create a New Connection to z/OS".
 
 3. Press enter or click on that selection.
 
-![](Images/code4z-img9.png)
+![](Images/code4z/code4z-img9.png)
 
 4. Enter a Profile name in the "Connection Name" field.
 
-![](Images/code4z-img10.png)
+![](Images/code4z/code4z-img10.png)
 
 5. Enter the URL and Port that you received by email when you registered for the COBOL Course. The connection information that you need has a title of "IP address for VSCode extension".
 
-![](Images/code4z-img11.png)
+![](Images/code4z/code4z-img11.png)
 
 6. Enter your Username. This is also included in the email.
 
-![](Images/code4z-img12-18.png)
+![](Images/code4z/code4z-img12-18.png)
 
 Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
 
 7. Enter your Password.
 
-![](Images/code4z-img13-19.png)
+![](Images/code4z/code4z-img13-19.png)
 
 Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
 
 8. Select True/False if you want to accept or reject Self-Signed Certificates. For this course, please select false.
 
-![](Images/code4z-img14-20.png)
+![](Images/code4z/code4z-img14-20.png)
+
+9. Press **Enter** for the rest of the prompts to choose the default values
+
+![](Images/image073-1.png)
+
+![](Images/image073-2.png)
+
+![](Images/image073-3.png)
+
+![](Images/image073-4.png)
 
 If you are successful, you will receive this informational message:
 
-![](Images/code4z-img15.png)
+![](Images/code4z/code4z-img15.png)
 
 ### Editing Profiles
 
@@ -221,34 +231,50 @@ The Zowe Explorer v1.5.0 release introduces profile editing. This allows you to 
 Follow these steps:
 
 1. Add your profile to any of the Zowe Explorer Trees.
+2. Right click on the profile you want to edit 
+3. from the dropdown choose **Update Profile**. A dialog box opens displaying the current information in your profile, which you can edit as required.
 
-2. Click on the pencil icon to edit your profile. A dialog box opens displaying the current information in your profile, which you can edit as required.
-
-![](Images/code4z-img16.png)
+![](Images/code4z/code4z-img16.png)
 
 3. Edit the URL information if changes are required, or enter to confirm the information is still correct.
 
-![](Images/code4z-img17.png)
+![](Images/code4z/code4z-img11.png)
 
 4. Edit your Username.
 
-![](Images/code4z-img12-18.png)
+![](Images/code4z/code4z-img12-18.png)
 
 Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
 
 5. Edit your Password.
 
-![](Images/code4z-img13-19.png)
+![](Images/code4z/code4z-img13-19.png)
 
 Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
 
 6. Edit your authorized connections
 
-![](Images/code4z-img14-20.png)
+![](Images/code4z/code4z-img14-20.png)
+
+7. Edit your API base path
+
+![](Images/image073-1.png)
+
+8. Edit the connection protocol
+
+![](Images/image073-2.png)
+
+9. Edit the encoding 
+
+![](Images/image073-3.png)
+
+10. Edit the maximum time delay for a response 
+
+![](Images/image073-4.png)
 
 If you are successful, an information message will appear:
 
-![](Images/code4z-img21.png)
+![](Images/code4z/code4z-img21.png)
 
 ### Deleting Profiles
 
@@ -262,33 +288,33 @@ Command Palette:
 
 2. Type "Zowe: Delete". This command allows you to permanently delete a profile.
 
-![](Images/code4z-img22.png)
+![](Images/code4z/code4z-img22.png)
 
 3. Select the Profile that you want to delete.
 
-![](Images/code4z-img23.png)
+![](Images/code4z/code4z-img23.png)
 
 4. Confirm that you want to delete your profile.
 
-![](Images/code4z-img24-27.png)
+![](Images/code4z/code4z-img24-27.png)
 
 Once confirmed, the following message is displayed:
 
-![](Images/code4z-img25-28.png)
+![](Images/code4z/code4z-img25-28.png)
 
 Zowe Explorer Tree:
 
 1. Right click on the profile and select **Delete Profile**.
 
-![](Images/code4z-img26.png)
+![](Images/code4z/code4z-img26.png)
 
 2. Confirm that you want to delete your profile.
 
-![](Images/code4z-img24-27.png)
+![](Images/code4z/code4z-img24-27.png)
 
 3. Once confirmed, the following message is displayed:
 
-![](Images/code4z-img25-28.png)
+![](Images/code4z/code4z-img25-28.png)
 
 ## Summary
 
@@ -441,9 +467,9 @@ Clicking on any of the items in the breadcrumb trail will highlight that element
 
 ### Jump to declaration / reference
 
-As you browse through code you will come across COBOL PERFORM statements or variable references.  Often you will need to navigate to the definition of that paragraph or variable to follow the execution of the code.  At line 50 of CBL0001 we see a set of perform statements.  Place the cursor within the name, READ-RECORD, on line 51, right click and select **Go to Definition** .  The editor then navigates to the READ-RECORD paragraph on line 62.  Instead of the right click, the same function can be reached by using the F12 key.
+As you browse through code you will come across COBOL PERFORM statements or variable references.  Often you will need to navigate to the definition of that paragraph or variable to follow the execution of the code.  At line 50 of CBL0001 we see a set of perform statements.  Place the cursor within the name, READ-RECORD, on line 51, right click and select **Go to Definition** .  The editor then navigates to the READ-RECORD paragraph on line 63.  Instead of the right click, the same function can be reached by using the F12 key.
 
-"Go to References" does the reverse of this operation and allows you to navigate from the definition of a paragraph or variable to all the places within the application that reference that paragraph or variable.  To demonstrate this, navigate to line 62 of CBL0001, which again is the declaration of the READ-RECORD paragraph.  To see all of the places where this paragraph is called, right click and select **Go to References** , or hit the key combination **SHIFT+F12** .  This will summon a new pop up dialog which shows all the references to this paragraph in the code, shown in Figure  6.
+"Go to References" does the reverse of this operation and allows you to navigate from the definition of a paragraph or variable to all the places within the application that reference that paragraph or variable.  To demonstrate this, navigate to line 63 of CBL0001, which again is the declaration of the READ-RECORD paragraph.  To see all of the places where this paragraph is called, right click and select **Go to References** , or hit the key combination **SHIFT+F12** .  This will summon a new pop up dialog which shows all the references to this paragraph in the code, shown in Figure  6.
 
  
 
@@ -499,7 +525,7 @@ The IBM Z Open Editor plugin also provides a level of syntax checking for local 
 
 Now we need to introduce an error into the code. After line 68, add the line:
 
-`MOVE ACCT-NO TO ACCT-N-0.`
+`MOVE ACCT-NO TO ACCT-NO-NO.`
 
 Note that this line incorrectly identifies the second variable, which doesn't exist.  Once entering that line, you will notice that the invalid variable has been underlined in red to highlight it as an error.  Also, the problems view has a new error.  Clicking on the error will highlight the line of code at fault in the editor, shown in Figure  10. , allowing you to view the error directly.
 
@@ -550,7 +576,7 @@ The COBOL Language Support extension enables coloring of keywords, paragraphs, a
 
 The COBOL Language Support extension checks for mistakes and errors in COBOL code. The syntax check feature reviews the whole content of the code, highlights errors and suggests fixes.
 
-![](Images/code4z-img1.png)
+![](Images/code4z/code4z-img1.png)
 
 *Figure 1. The syntax and semantic check feature highlights an error.*
 
@@ -562,17 +588,17 @@ The COBOL Language Support extension enables several features for ease of naviga
 
 While your cursor is placed on a variable or paragraph name, you can press **F12** or **CTRL+click** to use the **Go To Definition** functionality to display the point in the code where the variable or paragraph is defined.
 
-![](Images/code4z-img3.png)
+![](Images/code4z/code4z-img3.png)
 
-*Figure 2. Go To Definition shows the point at which the USER-STREET variable is first defined.*
+*Figure 2. Go To Definition shows the point at which the USA-STATE variable is first defined.*
 
 ### Find All References
 
 The **Find All References** functionality (**SHIFT+ALT+F12**) highlights all references to a variable or paragraph and displays them in a list in the sidebar, so that you can easily navigate between them.
 
-![](Images/code4z-img4.png)
+![](Images/code4z/code4z-img4.png)
 
-*Figure 3. Find All References lists all references to the USER-STREET variable in the code.*
+*Figure 3. Find All References lists all references to the STREET-ADDR variable in the code.*
 
 ## Copybook Support
 
@@ -586,7 +612,7 @@ The **Go To Definition** and **Find All References** functionalities are extende
 
 The COBOL Language Support extension provides live suggestions while you type for COBOL keywords, as well as variables and paragraphs which are already referenced in the code or in copybooks used by the program.
 
-![](Images/code4z-img5.png)
+![](Images/code4z/code4z-img5.png)
 
 *Figure 4. Autocomplete lists possible variables and keywords beginning with the typed string in a list.*
 
@@ -650,13 +676,13 @@ The Zowe CLI is a node package and is one of over 1.2 million node packages avai
 
 To get started, you can simply open a terminal and issue zowe. This will yield the top level help. 
 
-![](Images/zowe-cli-help.png)
+![](Images/zowe/zowe-cli-help.png)
 
 *Figure 1. Zowe CLI Help*
 
 In the example above, multiple extensions are installed. The structure of commands is `zowe <group> <action> <object>` followed by various parameters and options specific to the command. For example, a valid command is `zowe files list data-set "HLQ.*"`. This command will list data-sets matching a pattern of "HLQ.*". You can append `-h` to any command to find out more information. Frequently referring to the help can be difficult and time consuming so if your environment has access to a web browser, simply append `--help-web` or `--hw` to any command to launch interactive web help.
 
-![](Images/zowe-cli-web-help.png)
+![](Images/zowe/zowe-cli-web-help.png)
 
 *Figure 2. Zowe CLI Web Help*
 
@@ -667,29 +693,29 @@ Zowe client technologies like Zowe CLI and the Zowe Explorer VS Code Extension s
 
 When creating profiles you can also specify the `prompt*` keyword to be prompted for your username and password so they will be masked on the command line. Figure 3 shows a sample command to create a zosmf profile. This will eliminate the need to provide these details on future commands.
 
-![](Images/zowe-cli-zosmf-profile-creation-command.png)
+![](Images/zowe/zowe-cli-zosmf-profile-creation-command.png)
 
 *Figure 3. Zowe CLI z/OSMF Profile Creation Command*
 
 ### Interacting with z/OS Data Sets
 Zowe CLI provides a significant suite of z/OS data set interaction functionality. See the following figures for details on available actions and a sample list command.
 
-![](Images/zowe-cli-zos-files-actions.png)
+![](Images/zowe/zowe-cli-zos-files-actions.png)
 
 *Figure 4. Zowe CLI zos-files actions*
 
-![](Images/zowe-cli-zos-files-list-ds-command.png)
+![](Images/zowe/zowe-cli-zos-files-list-ds-command.png)
 
 *Figure 5. Sample Zowe CLI zos-files list ds command*
 
 ### Interacting with z/OS Jobs
 Zowe CLI provides a significant suite of z/OS jobs interaction functionality. See the following figures for details on available actions and a sample job submission command. 
 
-![](Images/zowe-cli-zos-jobs-actions.png)
+![](Images/zowe/zowe-cli-zos-jobs-actions.png)
 
 *Figure 6. Zowe CLI zos-jobs actions*
 
-![](Images/zowe-cli-zos-jobs-submit-ds-command.png)
+![](Images/zowe/zowe-cli-zos-jobs-submit-ds-command.png)
 
 *Figure 7. Sample Zowe CLI zos-jobs submit ds command*
 
@@ -699,31 +725,31 @@ Running commands interactively is a great way to learn the capabilities of the Z
 ### Automated Job Submission
 Let’s investigate automating submitting a job and verifying the return code is 0. Of course, we could also parse the spool output for specific messages of interest but we will keep it simple for now. For this sample, we will leverage Node.js to develop a new automation suite. To start, I will create a package.json file to make it easy for others to manage and install the project. It will contain the list of dependencies for my project as well as the automation tasks I will develop. A quick way to create a package.json is to issue `npm init` and answer the prompts. Once created I will add a submitJob task. You can add whatever automation you want here. My final package.json is shown in the next figure. You can learn more about package.json files [here](https://docs.npmjs.com/creating-a-package-json-file).
 
-![](Images/sample-package-json.png)
+![](Images/automating-tasks/sample-package-json.png)
 
 *Figure 8. Sample package.json*
 
 Then I will create a config.json file to store all the variables I may wish to change for my project. In this case, we will set the job to submit and the maximum allowable return code for that job.
 
-![](Images/sample-config-json.png)
+![](Images/automating-tasks/sample-config-json.png)
 
 *Figure 9. Sample config.json*
 
 Next we will write our automation. The Zowe CLI was built with scripting in mind and can output responses in JSON format which can be easily parsed.
 
-![](Images/zowe-cli-response-format-json.png)
+![](Images/automating-tasks/zowe-cli-response-format-json.png)
 
 *Figure 10. Sample Zowe CLI response format JSON output*
 
 Now, instead of issuing this command and reviewing it to see if the retcode is less than or equal to 4, we want to automate it. See the implementation in a node script below.
 
-![](Images/script-to-submit-job-check-rc.png)
+![](Images/automating-tasks/script-to-submit-job-check-rc.png)
 
 *Figure 11. Sample code to submit job and verify output is less than or equal to a maximum allowable RC*
 
 I had to make the investment to write this automation but for future job submissions I can simply issue `npm run submitJob`. IDEs like VS Code can visualize these tasks making my commonly repeated tasks as easy as clicking a button :). This job could compile, link, and/or run a COBOL program.
 
-![](Images/npm-script-button-click-and-run.png)
+![](Images/automating-tasks/npm-script-button-click-and-run.png)
 
 *Figure 12. Vizualization of npm script and sample run*
 
@@ -732,13 +758,13 @@ More advanced code automating the compilation, deployment to test environment, a
 ### Using Other Programming Languages and Continuous Integration
 Another good example of automating tasks using Zowe CLI is when you want to integrate other programming languages into your COBOL development. Similar to 3.4.1, you can use other languages such as Typescript to write a COBOL program generator and use Zowe CLI to create a "one-click" process for creating your program. The figure below is a representation of that "one-click" automated process where several tasks are executed such as creating your COBOL program, uploading it in mainframe, compiling it and running your JCL to test it.
 
-![](Images/one-click-cobol-build.png)
+![](Images/automating-tasks/one-click-cobol-build.png)
 
 *Figure 13. "One Click" COBOL build process*
 
 You can then level-up this process by leveraging a CI/CD pipeline. What is a CI/CD pipeline? It is an automated way of building, testing, and deploying your application and you can do the same with your COBOL development. The figure below shows the pipeline for the same automated tasks that we did earlier.
 
-![](Images/CircleCI-pipeline.png)
+![](Images/automating-tasks/CircleCI-pipeline.png)
 
 *Figure 14. CI/CD pipeline of the "one click" COBOL build process*
 
@@ -807,7 +833,7 @@ If you do not see a version number after you submit the command, you do not have
 This process will install the latest versions of Node.js and the node package manager (npm) and overwrite any older version files in your system.  This removes the step of needing to manually uninstall the previous versions beforehand.
 
 3. Once completed, verify the installation and proper version number, as shown previously in Example 1.
- 
+
 **Note** : The version numbers in our examples are provided purely for reference and may not reflect the latest versions of the software.
 
 ### Install Java SDK
@@ -843,7 +869,7 @@ If you do not see a version number after you submit the command, you do not have
 
 [`https://www.java.com/en/download/help/uninstall_java.xml` ](https://www.java.com/en/download/help/uninstall_java.xml)
 
- 
+
 3. Once Java is uninstalled from your workstation, you can click the Java JDK 8 download link below and follow the installation instructions for your specific OS.
 
 [`https://www.oracle.com/java/technologies/javase-jdk8-downloads.html` ](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html)
@@ -868,7 +894,9 @@ If you do not already have VSCode installed on your workstation, please do so no
 
 This section introduces two VSCode extensions, Zowe Explorer and IBM Z Open Editor listed in Figure  2. , and instructions on how to install them.
 
-![](Images/image026.png)
+![](Images/image026-a.png)
+
+![](Images/image026-b.png)
 
 *Figure  2.  VSCode required extensions*
 
@@ -882,7 +910,7 @@ Zowe is a new, and the first open source framework for z/OS and provides solutio
 
 Open VSCode and in the left side tool menu select **Extensions**.  From there, in the "Search Extensions in Marketplace" search field, type `Zowe Explorer`.  Search results will begin populating, select **"Zowe Explorer"** and click **install**, depicted in Figure  3.
 
-![](Images/image030.jpg)
+![](Images/image030.png)
 
 *Figure  3.  Install Zowe Explorer in VSCode*
 
@@ -898,7 +926,7 @@ IBM Z Open Editor brings COBOL and PL/I language support to Microsoft VSCode.  I
 
 Open VSCode and in the left side tool menu select **Extensions**.  From there, in the "Search Extensions in Marketplace" search field, type `IBM Z Open Editor`.  Search results will begin populating, select **" IBM Z Open Editor "** and click **install**, depicted in Figure  4.
 
-![](Images/image032.jpg)
+![](Images/image032.png)
 
 *Figure  4.  Install IBM Z Open Editor in VSCode*
 
@@ -1057,7 +1085,7 @@ In this chapter we walked through the process of installing the prerequisite sof
 
 This chapter introduces the basics of COBOL syntax. It then demonstrates how to view and run a basic COBOL program in VSCode.
 
- 
+
 - **COBOL characteristics**
      - **Enterprise COBOL**
      - **Chapter objectives**
@@ -1361,13 +1389,13 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
    If you installed Code4z, the list should include:
 
-   1. COBOL
-   2. COBOL Language Support
-   3. Code4z
-   4. Debugger for Mainframe
-   5. Explorer for Endevor
-   6. HLASM Language Support
-   7. Zowe Explorer
+1. COBOL Language Support
+2. Zowe Explorer
+3. Explorer for Endevor
+4. HLASM Language Support
+5. Debugger for Mainframe
+6. COBOL Control Flow
+
 
    In these exercises, you will only use the COBOL Language Support and Zowe Explorer extensions.
 
@@ -1391,52 +1419,52 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 4. A box appears to define a new profile.  Click + to the left of Create a New Connection to z/OS as shown in Figure  5.
 
-![](Images/image050.jpg)
+![](Images/image050.png)
 
 *Figure  5.  Create a new connection to z/OS*
 
- 
+
 5. Select a name to enter, then enter.  Figure  6. used `LearnCOBOL` as the selected connection name.
 
-![](Images/image053.jpg)
+![](Images/image053.png)
 
 *Figure  6.  Set connection name*
 
- 
+
 6. VSCode prompts for z/OSMF URL and port as shown in Figure  7.  The z/OSMF URL and port will normally be provided by z/OS System Administrator.
 
-![](Images/image056.jpg)
+![](Images/image056.png)
 
 *Figure  7.  z/OSMF URL*
 
 7. A sample z/OSMF URL and port is entered as shown in Figure  8.
 
-![](Images/image058.jpg)
+![](Images/image058.png)
 
 *Figure  8.  Specified z/OSMF URL*
 
 8. The connection prompts for Username as shown in Figure  9.
 
-![](Images/image061.jpg)
+![](Images/image061.png)
 
 *Figure  9.  User name prompt*
 
 9. **Please enter the username assigned to you! Do not use the sample username of Z99998.** A sample username, is entered as shown in Figure  10.  The ID is assigned by the System Administrator.
 
-![](Images/image064.jpg)
+![](Images/image064.png)
 
 *Figure  10.  Specified user name*
 
 
 10. The connection prompts for the password as shown in Figure  11.
 
-![](Images/image067.jpg)
+![](Images/image067.png)
 
 *Figure  11.  Password prompt*
 
 11. Enter the password as shown in Figure  12.
 
-![](Images/image070.jpg)
+![](Images/image070.png)
 
 *Figure  12.  Specified password*
 
@@ -1446,23 +1474,36 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 *Figure  13.  Accept connections with self-signed certifications*
 
-13. Result is Favorites in the Data Sets, Unix System Services, and Jobs sections as shown in Figure  14.
+13. Press **Enter** for the rest of the prompts to choose the default values
 
-![](Images/image078.jpg)
+![](Images/image073-1.png)
 
-*Figure  14.  Favorites*
+![](Images/image073-2.png)
 
-14.  Again, click on the + to the far right on the Data Sets selection.  Result is another prompt to Create a New Connection to z/OS.  LearnCOBOL is in the connection list.  Select **LearnCOBOL** for the Data Sets available to the previously defined LearnCOBOL connection to z/OS as shown in Figure  15.
+![](Images/image073-3.png)
 
-![](Images/image080.jpg)
+![](Images/image073-4.png)
 
-*Figure  15.  LearnCOBOL connection*
+
+
+14. Your connection will be added automatically to the **DATASET** list under **Favorites** as shown in Figure  14.
+
+    ![](Images/image078.png)
+
+*Figure  14.  LEARNCOBOL connection*
+
+- Note : *if you click on the + to the far right on the Data Sets selection,  another prompt to Create a New Connection to z/OS will appear.*
+  - any other connections you have will be listed as shown in Figure  15.
+  
+  ![](Images/image080.png)
+  
+  *Figure  15.  connections list*
 
  
 
-15.  Expansion of LearnCOBOL reads “Use the search button to display datasets”.  Click the search button as shown in Figure  16.
+15. Expansion of LEARNCOBOL reads “Use the search button to display datasets”.  Click the search button as shown in Figure  16.
 
-![](Images/image082.jpg)
+![](Images/image082.png)
 
 *Figure  16.  Search button*
 
@@ -1470,7 +1511,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 16.  A prompt to "Select a filter" appears for your username.  Select the + to "Create a new filter" as shown in Figure  17.
 
-![](Images/image084.jpg)
+![](Images/image084.png)
 
 *Figure  17.  Select a filter*
 
@@ -1478,7 +1519,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 17.  A prompt appears to enter the filter name to be searched as shown in Figure  18.
 
-![](Images/image086.jpg)
+![](Images/image086.png)
 
 *Figure  18.  Filter name to be searched*
 
@@ -1486,15 +1527,15 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 18.   Each user has a high-level qualifier that is the same as their username.  Therefore, enter your assigned username as the search criteria as shown in Figure  19. **Please use your username, not Z99998!**
 
-![](Images/image088.jpg)
+![](Images/image088.png)
 
 *Figure  19.   Entered filter name*
 
  
 
-19.   A list of data set names beginning with your username from z/OS Connection LearnCOBOL appears as shown in Figure  20.
+19.   A list of data set names beginning with your username from z/OS Connection LEARNCOBOL appears as shown in Figure  20.
 
-![](Images/image090.jpg)
+![](Images/image090.png)
 
 *Figure  20.  Filtered data set names*
 
@@ -1502,7 +1543,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 20.   Expand **`<USERNAME>.CBL`** to view COBOL source members, then select member **HELLO** to see a simple COBOL ‘Hello World!’ program as shown in Figure  21.
 
-![](Images/image093.jpg)
+![](Images/image093.png)
 
 *Figure  21.  `<USERNAME>.CBL`*
 
@@ -1510,7 +1551,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 21.   Expand **`<USERNAME>.JCL`** to view JCL and select member HELLO which is the JCL to compile and execute simple ‘Hello World!’ COBOL source code as shown in Figure  22.
 
-![](Images/image095.jpg)
+![](Images/image095.png)
 
 *Figure  22.  `<USERNAME>.JCL`*
 
@@ -1518,7 +1559,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 22.   Right click on JCL member **HELLO** .  A section box appears.  Select **Submit Job** for system to process HELLO JCL as shown in Figure  23.  The submitted JCL job compiles the COBOL HELLO source code, then executes the COBOL HELLO program.
 
-![](Images/image097.jpg)
+![](Images/image097.png)
 
 *Figure  23.  Submit Job*
 
@@ -1526,7 +1567,7 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 23.   Observe the ‘Jobs’ section in Zowe Explorer as shown in Figure  24.
 
-![](Images/image098.jpg)
+![](Images/image098.png)
 
 *Figure  24.  JOBS section*
 
@@ -1534,15 +1575,15 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 24.   Again, click on the + to the far right on the Jobs selection.  Result is another prompt to ‘Create new’.  Select **LearnCOBOL** from the list as shown in Figure  25.
 
-![](Images/image100.jpg)
+![](Images/image100.png)
 
-*Figure  25.   +   Select LearnCOBOL connection*
+*Figure  25.   +   Select LEARNCOBOL connection*
 
  
 
 25.   As a result, the JCL jobs owned by your username appears.  HELLOCBL is the JCL job name previously submitted.  Expand **HELLOCBL** output to view sections of the output as shown in Figure  26.
 
-![](Images/image102.jpg)
+![](Images/image102.png)
 
 *Figure  26.  HELLOCBL output*
 
@@ -1550,22 +1591,22 @@ In this lab exercise you will connect to an IBM Z system, view a simple COBOL he
 
 26.   Select **COBRUN:SYSPRINT(101)** to view the COBOL compiler output.  Scroll forward in the COBOL compile to locate the COBOL source code compiled into an executable module as shown in Figure  27.  Observe the Indicator Area in column 7, A Area beginning in column 8, and B Area beginning in column 12.  Also, observe the period (.) scope terminators in the COBOL source.
 
-![](Images/image104.jpg)
+![](Images/image104.png)
 
 *Figure  27.  COBOL compiler output*
 
  
 
-27.   View the COBOL program execution by selecting **COBRUN:SYSOUT(105)** from the LearnCOBOL in the Jobs section of Zowe Explorer as shown in Figure  28.
+27.   View the COBOL program execution by selecting **COBRUN:SYSOUT(104)** from the LEARNCOBOL in the Jobs section of Zowe Explorer as shown in Figure  28.
 
-![](Images/image106.jpg)
+![](Images/image106.png)
 
 *Figure  28.  COBOL program execution*
 
  
 
 28.   The following URL is another excellent document describing the above VSCode and Zowe Explore details with examples:
-   [https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe)
+      [https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe)
 
 ## Lab - Zowe CLI & Automation
 In this lab exercise you will use the Zowe CLI to automate submitting the JCL to compile, link, and run the COBOL program and downloading the spool output. Refer to the section on the "Installation of Zowe CLI and Plug-ins" to install Zowe CLI if you have not already done so. Before developing the automation, we will first leverage the Zowe CLI interactively.
@@ -1575,16 +1616,16 @@ In this section, we will use the Zowe CLI interactively to view data set members
 
 1. Within VS Code, open the integrated terminal (Terminal -> New Terminal). In the terminal, issue `zowe --version` to confirm the Zowe CLI is installed as depicted in the following figure. If it is not installed, please refer to to the section on the "Installation of Zowe CLI and Plug-ins." Also notice that the default shell selected (outlined in red) is `bash`. I would recommend selecting the default shell as either `bash` or `cmd` for this lab.
 
-![](Images/zowe-cli-version.png)
+![](Images/zowe/zowe-cli-version.png)
 
 *Figure  29.  `zowe --version` command in VS Code Integrated Terminal (Shell selection outlined in red)*
 
 2. In order for Zowe CLI to interact with z/OSMF the CLI must know the connection details such as host, port, username, password, etc. While you could enter this information on each command, Zowe provides the ability to store this information in configurations commonly known as profiles. Zowe CLI and the Zowe VS Code Extension share profiles. So if you created a connection profile in the first lab, you could naturally leverage it here. 
 
-To create a LearnCOBOL profile (and overwrite it if it already exists), issue the following command with your system details (using `prompt*` will prompt you for certain fields and not show input):
+To create a LEARNCOBOL profile (and overwrite it if it already exists), issue the following command with your system details (using `prompt*` will prompt you for certain fields and not show input):
 
 ```
-zowe profiles create zosmf LearnCOBOL --host 192.86.32.250 --port 10443 --ru false --user prompt* --pass prompt* --ow 
+zowe profiles create zosmf LEARNCOBOL --host 192.86.32.250 --port 10443 --ru false --user prompt* --pass prompt* --ow 
 ```
 
 Many profiles can be created for interacting with different z/OSMF instances. If this was not your first profile, you will want to set it as the default for the following lab exercises. Issue the following command:
@@ -1595,7 +1636,7 @@ zowe profiles set zosmf LearnCOBOL
 
 The following figure demonstrates this sequence of commands.
 
-![](Images/create-and-set-zosmf-profile.png)
+![](Images/zowe/create-and-set-zosmf-profile.png)
 
 *Figure  30.  Create and set z/OSMF profile (secure credential store plug-in is in use)*
 
@@ -1608,16 +1649,16 @@ zowe zosmf check status
 4. List data sets under your ID by issuing a command similar to (see sample output in the following figure):
 
 ```
-zowe files list ds "Z80462.*"
+zowe files list ds "Z99998.*"
 ```
 
 You can also list all members in a partitioned data set by issuing a command similar to (see sample output in the following figure):
 
 ```
-zowe files list am "Z80462.CBL"
+zowe files list am "Z99998.CBL"
 ```
 
-![](Images/zowe-files-list-ds-and-am-commands.png)
+![](Images/zowe/zowe-files-list-ds-and-am-commands.png)
 
 *Figure  31.  zowe files list ds and am commands*
 
@@ -1630,61 +1671,61 @@ zowe files list am "Z80462.CBL"
 Once you have an empty folder opened, return to the integrated terminal, ensure you are in your folder, and issue commands similar to:
 
 ```
-zowe files download am "Z80462.CBL" -e ".cbl"
-zowe files download am "Z80462.JCL" -e ".jcl"
+zowe files download am "Z99998.CBL" -e ".cbl"
+zowe files download am "Z99998.JCL" -e ".jcl"
 ```
 
 Then open `hello.cbl` in your file explorer. A completed example is shown in the following figure:
 
-![](Images/zowe-files-download-am.png)
+![](Images/zowe/zowe-files-download-am.png)
 
 *Figure  33.  Download and view data set members using the CLI*
 
-6. Next, we will submit the job in member `Z80462.JCL(HELLO)`. To submit the job, wait for it to complete, and view all spool content, issue:
+6. Next, we will submit the job in member `Z99998.JCL(HELLO)`. To submit the job, wait for it to complete, and view all spool content, issue:
 
 ```
-zowe jobs submit ds "Z80462.JCL(HELLO)" --vasc
+zowe jobs submit ds "Z99998.JCL(HELLO)" --vasc
 ```
 
 We could also perform this step in piecemeal to get the output from a specific spool file. See the next figure for an example of the upcoming commands. To submit the job and wait for it to enter OUTPUT status, issue:
 
 ```
-zowe jobs submit ds "Z80462.JCL(HELLO)" --wfo
+zowe jobs submit ds "Z99998.JCL(HELLO)" --wfo
 ```
 
 To list spool files associated with this job id, issue:
 
 ```
-zowe jobs list sfbj JOB00906
+zowe jobs list sfbj JOB09413
 ```
 
-where `JOB00906` was returned from the previous command.
+where `JOB09413` was returned from the previous command.
 	
 To view a specific spool file (COBRUN:SYSOUT), issue:
 
 ```
-zowe jobs view sfbi JOB00906 105
+zowe jobs view sfbi JOB09413 104
 ```
 
-where `JOB00906` and `105` are obtained from the previous commands.
+where `JOB09413` and `104` are obtained from the previous commands.
 
-![](Images/zowe-jobs-submit-ds-and-view-spool-output.png)
+![](Images/zowe/zowe-jobs-submit-ds-and-view-spool-output.png)
 
 *Figure  34.  Submit a job, wait for it to complete, then list spool files for the job, and view a specific spool file*
 
 If desired, you can also easily submit a job, wait for it to complete, and download the spool content using the following command (see the following figure for the completed state):
 
 ```
-zowe jobs submit ds "Z80462.JCL(HELLO)" -d .
+zowe jobs submit ds "Z99998.JCL(HELLO)" -d .
 ```
 
-![](Images/zowe-jobs-submit-ds-and-download-spool-output.png)
+![](Images/zowe/zowe-jobs-submit-ds-and-download-spool-output.png)
 
 *Figure  35.  Submit a job, wait for it to complete, download and view spool files*
 
 The Zowe CLI was built with scripting in mind. For example, you can use the `--rfj` flag to receive output in JSON format for easy parsing. See the next figure for an example.
 
-![](Images/zowe-jobs-submit-ds-rfj.png)
+![](Images/zowe/zowe-jobs-submit-ds-rfj.png)
 
 *Figure  36.  The `--rfj` flag allows for easy programmatic usage*
 
@@ -1693,25 +1734,25 @@ In this section, we will leverage the Zowe CLI programmatically to automate subm
 
 1. Since we already have Node and npm installed, let’s just create a node project for our automation. To initialize a project, issue `npm init` in your project’s folder and follow the prompts. You can accept the defaults by just pressing enter. Only the description and author fields should be changed. See the following figure.
 
-![](Images/npm-init-example.png)
+![](Images/npm/npm-init-example.png)
 
 *Figure  37.  Use of `npm init` to create `package.json` for the project*
 
-2. Now that we have our `package.json` simply replace the `test` script with a `clg` script that runs the following zowe command (replace `Z80462` with your high level qualifier):
+2. Now that we have our `package.json` simply replace the `test` script with a `clg` script that runs the following zowe command (replace `Z99998` with your high level qualifier):
 
 ```
-zowe jobs submit ds 'Z80462.JCL(HELLO)' -d .
+zowe jobs submit ds 'Z99998.JCL(HELLO)' -d .
 ```
 
 You can name the script whatever you want. I only suggested `clg` because the `CLG` in the `IGYWCLG` proc (which is what the JCL leverages) stands for compile, link, go. Now, simply issue `npm run clg` in your terminal to leverage the automation to compile, link and run the COBOL program and download the output for review. An example of the completed `package.json` and command execution are shown in the following figure. 
 
-![](Images/npm-run-clg.png)
+![](Images/npm/npm-run-clg.png)
 
 *Figure  38.  Final `package.json` and `npm run clg` execution*
 
 3. If you prefer a graphical trigger, you can leverage VS Code as shown in the following figure. Essentially, the CLI enables you to quickly build your own buttons for your custom z/OS tasks. You could also invoke a script rather than a single command to accomodate more complex scenarios.
 
-![](Images/npm-run-clg-button.png)
+![](Images/npm/npm-run-clg-button.png)
 
 *Figure  39.  `clg` task triggered via button*
 
@@ -1916,7 +1957,7 @@ The difference is the return/completion code associated with each job output, lo
 Notice that this line tells you to focus on the GROSS-PAY picture clause in order to identify the problem. Use this information, modify the PAYROL0X COBOL source code to fix the error. Be sure you are editing the correct code.
 
 8. After modifying, re-submit the PAYROL0X JCL to verify the problem has been identified and corrected, resulting in a successful compile and execution with a return code of zero, shown in Figure  7.
- 
+
 
 ![](Images/image124.png)
 
@@ -2772,7 +2813,7 @@ IGZ0037S The flow of control in program TOTEN1 proceeded beyond the last line of
 
 So, what went so terribly wrong when we used the GO TO command?  To answer this, we need to understand the key difference between GO TO and PERFORM.  On the first line we used the PERFORM keyword, that transferred control to the WRITE-NEW-RECORD paragraph.  Once the execution reached the end of that paragraph, execution returned to the line following the PERFORM statement.  The next line used the GOTO keyword to again transfer control to the WRITE-NEW-RECORD paragraph, which prints the second line of output.  However, when that paragraph completed, execution continued to the next line following the WRITE-NEW-RECORD paragraph.  Since there are no lines of code following that paragraph the processor tried to execute code beyond the program, z/OS caught this as a problem and abended the program.
 
- 
+
 As we can see, the use of GO TO causes a branch of execution that doesn't return to the line of code that issued it.  Let's demonstrate how messy this code can get:
 
 
@@ -2818,7 +2859,7 @@ So far in this section we have used a few examples of paragraphs without really 
 The most analogous way to think about a paragraph in COBOL is to think of a function or method in another language that accepts no parameters, returns no response and alters global variables.  It is basically a block of code that performs a sequence of actions that could be used multiple times within the same program.
 
 A paragraph is defined within the procedure division and starts at column eight and can have any name that the user likes, apart from a COBOL keyword, and the declaration of the paragraph is completed with a period (.).  A paragraph can contain one to many COBOL sentences and is terminated either by the start of another paragraph or the physical end of the program. 
- 
+
 
 **Note:** A paragraph can also be ended by END-PROGRAM, END-METHOD, END FACTORY OR END-OBJECT.  Most of these are used within Object Orientated COBOL which is not discussed here.
 
@@ -2927,7 +2968,7 @@ The required number of times that the code should be executed can either be a li
  PERFORM MY-NEW-PARAGRAPH COUNTER TIMES.
 ```
 *Example 11.  TIMES 2*
- 
+
 
 ### PERFORM THROUGH
 
@@ -2950,7 +2991,7 @@ You may require a sequential list of paragraphs to be executed in turn, instead 
      ...
 ```
 *Example 12.  PEFORM THRU*
- 
+
 
 **Note:** The use of the THRU keyword can also be used alongside the TIMES, UNTIL and VARYING keywords, to allow the list of paragraphs to be executed rather than just a single paragraph or blocks of code.
 
@@ -2958,7 +2999,7 @@ You may require a sequential list of paragraphs to be executed in turn, instead 
 
 Adding the UNTIL keyword to a perform sentence allows you to iterate over a group of sentences until the Boolean condition is met.  Effectively allowing you to program while loops in COBOL, take this basic example:
 
- 
+
 ```
  MOVE 0 TO COUNTER.
  PERFORM UNTIL COUNTER = 10
@@ -2968,7 +3009,7 @@ Adding the UNTIL keyword to a perform sentence allows you to iterate over a grou
  END-PERFORM.
 ```
 *Example 13.  PERFORM UNTIL*
-  
+
 This would be equivalent to the Java code:
 
 ```
@@ -2979,7 +3020,7 @@ while(counter != 10){
 }
 ```
 *Example 14.  Java while loop*
- 
+
 In this case, the Boolean condition is evaluated before the loop is executed.  However, if you wish for the loop to be executed at least once before the condition is evaluated, you can alter the sentence to read:
 
 
@@ -2992,7 +3033,7 @@ In this case, the Boolean condition is evaluated before the loop is executed.  H
  END-PERFORM.
 ```
 *Example 15.  PERFORM WITH TEST AFTER UNTIL*
- 
+
 This would be similar to a "do while" loop in Java:
 
 ```
@@ -3004,7 +3045,7 @@ do{
 While(counter != 10);
 ```
 *Example 16.  Java while loop*
- 
+
 
 ### PERFORM VARYING
 
@@ -3043,7 +3084,7 @@ for(int counter = 0; counter < 11; counter++){
 
 This is really, just two for loops nested within each other.  This construct is very useful when iterating over tables or nested record structures.  As for each loop of the outer varying loop, the inner loop will be executed five times.  As mentioned previously, the test of the condition will be assumed by COBOL to be at the beginning of the loop, however, it can be specified to be evaluated at the end of the loop by adding the phrase WITH TEST AFTER to the initial perform sentence.
 
- 
+
 ## Using subprograms
 
 So far, we have only examined the internal structure of a single COBOL program.  As programs increase in function and number, it is common that a programmer might want certain aspects of a programs function to be made available to other programs within the system.  Abstracting generic functions into their own program and allowing them to be called from other programs can reduce the amount of code duplication within a system and therefore decrease the cost of maintenance, as fixes to shared modules only need to be made once. 
@@ -3293,7 +3334,7 @@ This lab utilizes two COBOL programs, CBL0004 and CBL0005, located within your i
 *Figure  8.  Currency symbol added to output*
 
 \newpage
-  
+
 # Conditional expressions
 
 This chapter dives into how programs make decisions based upon the programmer written logic.  Specifically, programs make these decisions within the PROCEDURE DIVISION of the source code.  We will expand on several topics regarding conditional expressions written in COBOL through useful explanations, examples and eventually practicing implementation through a lab. 
@@ -3336,7 +3377,7 @@ This chapter dives into how programs make decisions based upon the programmer wr
 
 - **Lab**
 
- 
+
 ## Boolean logic, operators, operands, and identifiers
 
 Programs make decisions based upon the programmer written logic.  Program decisions are made using Boolean logic where a conditional expression is either true or false, yes or no.  A simple example would be a variable named 'LANGUAGE'.   Many programming languages exist; therefore, the value of variable LANGUAGE could be Java, COBOL, etc...  Assume the value of LANGUAGE is COBOL.  Boolean logic is, IF LANGUAGE = COBOL, THEN DISPLAY COBOL, ELSE DISPLAY NOT COBOL.  IF triggers the Boolean logic to determine the condition of true/false, yes/no, applied to LANGUAGE = COBOL which is the conditional expression.  The result of IF condition executes what follows THEN when the condition is true and executes what follows ELSE when the condition is false.
@@ -3360,11 +3401,11 @@ A list of COBOL Boolean relational operators for each of the common type of COBO
 
  
 
-![](Images/image149.jpg)
+![](Images/image149.png)
 
 *Figure  1.  General relation condition operators*
 
-![](Images/image150.jpg)
+![](Images/image150.png)
 
 *Figure  2.  Class condition operators*
 
@@ -3373,7 +3414,7 @@ A list of COBOL Boolean relational operators for each of the common type of COBO
 
 *Figure  3.  Sign condition operators*
 
- 
+
 ### Examples of conditional expressions using Boolean operators
 
 A simple conditional expression can be written as:
@@ -3396,7 +3437,7 @@ This conditional expression evaluates to false because while 5 > 1 is true, 1 > 
 
 This conditional expression evaluates to true because while 1 > 2 is false, 5 > 1 is true.  The OR operation requires only one of the expressions to be true to return true for the entire compounded condition expression.  More conditional operators used for relation, class, and sign conditions are discussed further on in the chapter.
 
- 
+
 ## Conditional expression reserved words and terminology
 
 Thus far in this book, we have touched upon the necessity and use of COBOL reserved words. This section aims to expand on the topic of reserved words, specifically ones that are used when processing conditional expressions.
@@ -3479,7 +3520,7 @@ END-IF.
 
 Relational operators compare numeric, character string, or logical data.  The result of the comparison, either true (1) or false (0), can be used to make a decision regarding program flow.  Table 1 displays a list of relational operators, how they can be written and their meaning.
 
- 
+
 Relational operator | Can be written | Meaning
 --- | --- | ---
 IS GREATER THAN | IS > | Greater than
@@ -3569,12 +3610,11 @@ END-PERFORM.
 ```
 
 *Example 6. PERFORM statement without 88-level conditional name*
- 
+
 
 ### SEARCH statements
 
-The SEARCH statement searches a table for an element that satisfies the specified condition and adjusts the associated index to indicate that element.  Tables, effectively an array of values, are created with an OCCURS clause applied to WORK-STORAGE data-names.  A WHEN clause is utilized in SEARCH statements to verify if the element searched for satisfies the specified condition.  Assuming FACIAL-EXP has many possible values, then SEARCH WHEN is an alternative conditional expression, observe Example 7.
-
+The SEARCH statement searches a table for an element that satisfies the specified condition and adjusts the associated index to indicate that element. Tables, effectively an array of values, are created with an OCCURS clause applied to WORK-STORAGE data-names. A WHEN clause is utilized in SEARCH statements to verify if the element searched for satisfies the specified condition. Assuming FACIAL-EXP has many possible values, then SEARCH WHEN is an alternative conditional expression, observe Example 7.
 
 ```
 WORKING-STORAGE.
@@ -3590,8 +3630,7 @@ SEARCH FACIAL-EXP
 WHEN HAPPY(INX-A) DISPLAY 'I am glad you are happy'
 END-SEARCH
 ```
-*Example 7. SEARCH WHEN statement*
-           
+*Example 7. SEARCH WHEN statement*           
 
 ## Conditions
 
@@ -3654,7 +3693,7 @@ The sign condition determines whether the algebraic value of a numeric operand i
 
 [https://www.ibm.com/docs/en/cobol-zos/6.3?topic=structure-conditional-expressions](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=structure-conditional-expressions)
 
- 
+
 ## Lab
 
 This lab requires two COBOL programs, CBL0006 and CBL0007 and two respective JCL Jobs, CBL0006J and CBL0007J, to compile and execute the COBOL programs. All of which are provided to you in your VSCode - Zowe Explorer.
@@ -3702,7 +3741,7 @@ This lab requires two COBOL programs, CBL0006 and CBL0007 and two respective JCL
 ![](Images/image155.png)
 
 \newpage
- 
+
 # Arithmetic expressions
 
 This chapter aims to introduce the concept of implementing arithmetic expressions in COBOL programs.  We will review the basic concept of arithmetic expressions, operators, statements, limitations, statement operands, as well as precedence of operation within the expressions.  You will be able to follow along with a comprehensive example exhibiting the usage of arithmetic expressions in a COBOL program that you have seen in previous chapters and labs.  Following the chapter is a lab to practice the implementation of what you have learned. 
@@ -3755,7 +3794,7 @@ Identifiers and literals that appear in arithmetic expressions must represent ei
 
 Five binary arithmetic operators and two unary arithmetic operators can be used in arithmetic expressions.  These operators are represented by specific characters that must be preceded and followed by a space.  However, no space is required between a left parenthesis and unary operator.  These binary and unary arithmetic operators are listed in Table 1.
 
- 
+
 Binary operator | Meaning | Unary operator | Meaning
 --- | --- | --- | ---
 + | Addition | + | Multiplication by +1
@@ -3767,7 +3806,7 @@ Binary operator | Meaning | Unary operator | Meaning
 *Table 1.  Arithmetic operators*
 
 
- 
+
 ### Arithmetic statements
 
 Arithmetic statements are utilized for computations.  Individual operations are specified by the ADD, SUBTRACT, MULTIPLY, and DIVIDE statements.  These individual operations can be combined symbolically in a formula that uses the COMPUTE statement for ease of programming and performance.  The COMPUTE statement assigns the value of an arithmetic expression to one or more data items.  With the COMPUTE statement, arithmetic operations can be combined without the restrictions on receiving data items imposed by the rules for the ADD, SUBTRACT, MULTIPLY, and DIVIDE statements.  When arithmetic operations are combined, the COMPUTE statement can be more efficient than the separate arithmetic statements written in a series.  For these reasons, it is best practice to use the `COMPUTE` statement for most arithmetic evaluations rather than `ADD` , `SUBTRACT` , `MULTIPLY` , and `DIVIDE` statements.  Often, you can code only one `COMPUTE` statement instead of several individual arithmetic statements.  The `COMPUTE` statement assigns the result of an arithmetic expression to one or more data items, for example:
@@ -3825,7 +3864,7 @@ The composite of operands is a hypothetical data-item resulting from aligning th
 
 If the ARITH(COMPAT) compiler option is in effect, the composite of operands can be a maximum of 30 digits. If the ARITH(EXTEND) compiler option is in effect, the composite of operands can be a maximum of 31 digits.
 
- 
+
 Statement | Determination of the composite of operands
 --- | ---
 SUBTRACT, ADD | Superimposing all operands in a given statement, except those following the word GIVING. 
@@ -3841,26 +3880,26 @@ In all arithmetic statements, it is important to define data with enough digits 
 
 Additionally, in the IBM Enterprise COBOL Language Reference, Chapter 20. "PROCEDURE DIVISION Statements", includes a detailed explanation of DIVIDE and COMPUTE statement capabilities applied to ROUNDING and ON SIZE ERROR handling.
 
- 
+
 ## Examples of COBOL arithmetic statements
 
 In this section, COBOL source code used in previous labs will be modified to demonstrate arithmetic processing.  Figure  1. shows level number data-items in the WORKING-STORAGE section.  The data-items will be used to total client account limit and client account balance.  Observe that the initial value is ZERO.
 
-![](Images/image000.png)
+![](Images/edit/image000.png)
 
 *Figure  1.  Number level data-items (1)*
 
 
 Shown in Figure  2. is another example of number level data-items in the WORKING-STORAGE section.  These data-items are report trailer lines that are used to write a formatted total account limit and total account balance for all clients in the report.  Observe the TLIMIT and TBALANCE data-items with large currency number picture clauses.
 
-![](Images/image001.png)
+![](Images/edit/image001.png)
 
 *Figure  2.  Number level data-items (2)*
 
 
 In Figure  3. the READ-NEXT-RECORD paragraph, located within the PROCEDURE DIVISION, includes a PERFORM LIMIT-BALANCE-TOTAL statement.  The result of this statement is to transfer control to the LIMIT-BALANCE-TOTAL paragraph, located within the PROCEDURE DIVISION, to perform the COMPUTE statements.
 
-![](Images/image002.png)
+![](Images/edit/image002.png)
 
 *Figure  3.  READ-NEXT-RECORD.*
 
@@ -3930,7 +3969,6 @@ This lab requires two COBOL programs, CBL0008 and CBL0009 and two respective JCL
 
 *Figure  8.  Successful compile*
 
- 
 **Lab Hints**
 
 ![](Images/image169.png)
@@ -3938,7 +3976,7 @@ This lab requires two COBOL programs, CBL0008 and CBL0009 and two respective JCL
  \newpage
 
 # Data types
- 
+
 A COBOL programmer must be aware that the computer stored internal data representation and formatting can differ, where the difference must be defined in the COBOL source code.  Understanding the computer's internal data representation requires familiarity with binary, hexadecimal, ASCII, and EBCDIC.  Packed-Decimal is needed to explain COBOL Computational and Display data format.  This chapter aims to familiarize the reader with these different "types" of data representation. 
 
 - **Data representation**
@@ -4007,7 +4045,7 @@ ASCII is mostly utilized by non-IBM computers.
 
 COBOL can encode and process text data in EBCDIC or ASCII.  This means a COBOL program can simultaneously process data captured in a census many decades ago while exporting data to a cloud service utilizing ASCII or Unicode.  It is important to point out, however, that the programmer must have the awareness and choose the appropriate encoding.
 
- 
+
 ## COBOL DISPLAY vs COMPUTATIONAL
 
 Enterprise COBOL for z/OS by default utilizes EBCDIC encoding.  However, it is possible to read and write ASCII in z/OS.  The EBCDIC format representation of alphabetic characters is in a DISPLAY format.  Zoned decimal for numbers, without the sign, is in a DISPLAY format. Packed decimal, binary and floating point are NOT in a DISPLAY format.  COBOL can describe packed decimal, binary and floating point fields using COMPUTATIONAL, COMP-1, COMP-2, COMP-3, COMP-4, and COMP-5 reserved words.
@@ -4047,7 +4085,7 @@ What happens when an internal packed decimal field is not described using COMP-3
  The ACCT-LIMIT PIC clause in the ACCT-FIELDS paragraph should be the same as the PIC clause for ACCT-BALANCE.
 
 \newpage
- 
+
 # Intrinsic functions
 
 Today’s COBOL is not your parents COBOL.  Today’s COBOL includes decades of feature/function rich advancements and performance improvements.  Decades of industry specifications are applied to COBOL to address the growing needs of businesses.  What Enterprise COBOL for z/OS promised and delivered, is decades of upward compatibility with new releases of hardware and operating system software.  The original DNA of COBOL evolved into a powerful, maintainable, trusted, and time-tested computer language with no end in sight. 
@@ -4230,7 +4268,7 @@ Output - THIS IS SHOUTING!
 ```
 
 *Example 6.  Character-handling intrinsic function*
- 
+
 
 ## Use of intrinsic functions with reference modifiers
 
@@ -4295,7 +4333,7 @@ Previous lab programs made use of a date/time intrinsic function.  The date/time
 
 8. Corrected CBL0012 source code should compile and execute the program successfully.  A successful compile will result in the same output as CBL0011J.
 
- 
+
 **Lab Hints**
 
 Refer to CBL0011 line 120 for the proper formatting of the function-name causing   the compile error.
