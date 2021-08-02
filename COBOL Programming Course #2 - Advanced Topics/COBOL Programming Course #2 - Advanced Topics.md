@@ -548,6 +548,236 @@ The result is execution of COBOL program CBLDB21 to read the Db2 table and write
 
 7. Two additional COBOL programs with Db2 API exist, CBLDB22 and CBLDB23 using the same Db2 table as the data source.
 
+\newpage
+# COBOL Program Compilation
+
+In the previous course, we briefly mentioned how a COBOL program is compiled. In this chapter, we will deep dive into the Enterprise COBOL compiler and how you have interacted with it.
+
+To restate what we have learned, the compiler will translate the COBOL program we wrote into language that the system can process. It will also list errors in our source statements and provide information on how to debug them. After compilation, we can review the results and correct any detected errors.
+
+As part of the compilation, we need to define the necessary data sets and specify any compiler options necessary for our program.
+
+## Compilation via JCL
+
+The primary method of COBOL program compilation we have done on this course is through JCL or Job Control Language. We have primarily used a set of catalogued procedures provided by IBM which reduces the amount of JCL that we need to write.
+
+In the JCL, we need to include the job description, statement to invoke the compiler and definitions of the needed data sets.
+
+### Catalogued JCL Procedure
+
+A catalogued procedure is a set of job control statements in a partitioned data set called the procedure library, or proclib for short. Take for example the following JCL which calls the IBM-supplied catalogued procedure IGYWC for compiling an Enterprise COBOL program:
+
+```
+//JOB1      JOB1
+//STEPA     EXEC PROC=IGYWC
+//COBOL.SYSIN DD *
+000100 IDENTIFICATION DIVISION
+      * (the source code)
+...
+/*
+```
+
+In the example above, the COBOL program we are trying to compile is sourced directly from within the JCL file. If we store our source code in a data set, we can replace the SYSIN DD statement with the appropriate parameters.
+
+We can also override any compiler options which are not explicitly set by using an EXEC statement that includes the required options. Take for example:
+
+```
+//STEPA EXEC IGYWC,
+//           PARM.COBOL='LIST,MAP,RENT'
+```
+
+The content of the PARM statement defines the Enterprise COBOL compiler options we are setting for the program that we wrote. We will discuss more details regarding compiler options in a later section.
+
+**Compile procedure (IGYWC)**
+
+The first of the supplied catalogued procedure is the single-step IGYWC. It is a procedure for compiling a program, and it will produce an object module. The step which compiled the program is called COBOL. We are required to supply the SYSIN DD statement for the step to indicate the location of the source program:
+
+```
+//COBOL.SYSIN DD  *    (or appropriate parameters)
+```
+
+If we use copybooks in the program we are compiling, we must also supply a SYSLIB DD statement to indicate the location of our copybooks:
+
+```
+//COBOL.SYSLIB  DD  DISP=SHR,DSN=Z99998.COBLIB
+```
+
+**Compile and link-edit procedure (IGYWCL)**
+
+The second procedure is the two-step IGYWCL. Like the previous IGYWC, it will produce an object module. But it will also supply that module into the binder (or linkage-editor). The additional step which executes the binder is called LKED. This binder will prepare a load module which will be brought into storage for execution.
+
+Just like IGYWC, you will need to supply a SYSIN DD statement and also a SYSLIB DD statement at the COBOL step if you use copybooks.
+
+**Compile, link-edit and run procedure (IGYWCLG)**
+
+The third and last of the IBM-supplied catalogued procedure is IGYWCLG. In addition to compiling and passing the object module to the binder, it will also run the program. The last step which runs the compiled and link-edited program is called GO. 
+
+Just like the other two procedures, you will need to supply a SYSIN DD statement and also a SYSLIB DD statement at the COBOL step if you use copybooks. Additionally, if your COBOL program refers to any data set during execution, you will need to specify them in the GO step. A valid DDName of up to 8 characters, as specified in the FILE CONTROL paragraph will be needed:
+
+```
+//GO.DDName  DD  DSN=data-set-name
+```
+
+### Writing JCL to compile programs
+
+Chances are you will not need to manually write any JCL to compile a program. However, if the catalogued procedure does not provide you with the flexibility you need, you can write your job control statements. Let us take a look and study the following example:
+
+```
+//jobname JOB acctno,name,MSGCLASS=1              (1)
+//stepname EXEC PGM=IGYCRCTL,PARM=(options)       (2)
+//STEPLIB  DD DSNAME=IGY.V6R3M0.SIGYCOMP,DISP=SHR (3)
+//         DD DSNAME=SYS1.SCEERUN,DISP=SHR
+//         DD DSNAME=SYS1.SCEERUN2,DISP=SHR
+//SYSUT1   DD UNIT=SYSALLDA,SPACE=(subparms)      (4)
+//SYSUT2   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT3   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT4   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT5   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT6   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT7   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT8   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT9   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT10  DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT11  DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT12  DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT13  DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT14  DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT15  DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSMDECK DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSPRINT DD SYSOUT=A                            (5)
+//SYSLIN   DD DSNAME=MYPROG,UNIT=SYSALLDA,        (6)
+//            DISP=(MOD,PASS),SPACE=(subparms)
+//SYSIN    DD DSNAME=dsname,UNIT=device,          (7)
+              VOLUME=(subparms),DISP=SHR
+```
+
+**(1):** The JOB statement indicates the beginning of a job.
+
+**(2):** The EXEC statement specifies that the Enterprise COBOL compiler (IGYCRCTL) is to be invoked.
+
+**(3):** The DD statement here define where the Enterprise COBOL compiler resides. You will need to check with your system programmer regarding where the compiler is installed on your system. Alongside them, the Language Environment SCEERUN and SCEERUN2 data sets must be included in the concatenation unless they are available in the LNKLST.
+
+**(4):** The SYSUT DD statements define the utility data sets that the compiler will use to process the source program. All SYSUT files must be on direct-access storage devices.
+
+**(5):** The SYSPRINT DD statement defines the data set that receives output from compiler options.
+
+**(6):** The SYSLIN DD statement defines the data set that receives output from the OBJECT compiler option.
+
+**(7):** The SYSIN DD statement defines the data set to be used as input to the job step, or in other words, the source code.
+
+For more information on the input and output data set that the Enterprise COBOL compiler can use, please refer to the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=zos-defining-compiler-input-output).
+
+## Specifying compiler options
+
+The compiler is installed with default compiler options. However, when installing the compiler, the system programmer can fix certain compiler settings. You cannot override any compiler options that are fixed.
+
+For the options that are not fixed, there are several ways in which you can override the default settings:
+- Code them on the PROCESS or CBL statement in the COBOL source code
+- Include them in the JCL when you start the compiler
+- Include them in an SYSOPTF data set, which is one of the input data set the compiler can use
+
+The compiler will then recognize the options in the following order of precedence from highest to lowest:
+1. Fixed installation defaults
+2. Values of the BUFSIZE, OUTDD, SQL and SQLIMS compiler options for the first program in a batch
+3. Options specified on PROCESS (or CBL) statements, preceding the IDENTIFICATION DIVISION
+4. Options specified on the compiler invocation
+5. Installation defaults that are not fixed
+
+The precedence options in an SYSOPTF data set will depend on where the OPTFILE compiler option is specified. For example, if OPTFILE is specified in a PROCESS statement, the SYSOPTF options will supersede the options specified in the compiler invocation.
+
+Note that this order of precedence also determines which options are in effect when there are conflicting or mutually exclusive options.
+
+For a full list of compiler options, please refer to the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=program-compiler-options).
+
+### Specifying options in the PROCESS statement
+
+Within a COBOL program, you can mode most compiler options in the PROCESS statements. We will need to code the statements before the IDENTIFICATION DIVISION header and before any comment lines or compiler-directing statements.
+
+We can also use CBL as a synonym of PROCESS. One or more blank will be needed to separate a PROCESS or CBL statement from the first option in the list of options. The options themselves must be separated by a comma or a blank, while no spaces should be inserted between individual options and their suboptions.
+
+Furthermore, we can code more than one PROCESS or CBL statement. If we do so, they must follow one another. Note that your organization can inhibit the use of PROCESS statements by fixing up certain compiler settings. If the PROCESS or CBL statement contains an option that is not allowed, the COBOL compiler will generate an error diagnostic.
+
+Take a look at the following example:
+
+```
+       PROCESS LIST,MAP.
+      *-----------------------
+       IDENTIFICATION DIVISION.
+      *-----------------------
+       PROGRAM-ID.    CBL0001
+       AUTHOR.        Otto B. Fun.
+      *--------------------
+      ...
+```
+
+### Specifying options in JCL
+
+We can also specify compiler options using JCL. Take a look at the following example for the catalogued procedures:
+
+```
+//STEPA EXEC IGYWC,
+//           PARM.COBOL='LIST,MAP,RENT'
+```
+
+Alternatively, if you are making your job control statement:
+
+```
+//STEPA EXEC PGM=IGYCRCTL,
+//           PARM='LIST,OBJECT,NOCOMPILE(S)'
+```
+
+## Batch compilation
+
+We can also compile a sequence of separate COBOL programs through a single invocation of the compiler. We can link the object program produced into one single program object or separate them through the use of the NAME compiler option.
+
+When we compile several programs as part of a single job, we need to determine how many program objects we want and also ensuring each program have the appropriate compiler options and termination sequence.
+
+To create separate program objects, we need to precede each set of objects with the NAME compiler option. When the compiler encounters the option, the first program and all subsequent programs until the next time the NAME compiler option is encountered are link-edited to a single program object.
+
+Additionally, to terminate each program in the sequence, we need to use the END PROGRAM marker. If we omit them, the next program in the sequence will be nested in the preceding program, which may cause a compilation error when a PROCESS statement is encountered.
+
+Take a look at the following example:
+
+```
+//jobname JOB acctno,name,MSGLEVEL=1
+//stepname EXEC IGYWCL
+//COBOL.SYSIN DD *
+010100 IDENTIFICATION DIVISION.
+010200 PROGRAM-ID PROG1.
+ . . .
+019000 END PROGRAM PROG1.
+020100 IDENTIFICATION DIVISION.
+020200 PROGRAM-ID PROG2.
+ . . .
+029000 END PROGRAM PROG2.
+ CBL NAME
+030100 IDENTIFICATION DIVISION.
+030200 PROGRAM-ID PROG3.
+ . . .
+039000 END PROGRAM PROG3.
+/*
+//LKED.SYSLMOD DD DSN=&&GOSET
+/*
+//P2 EXEC PGM=PROG2
+//STEPLIB DD DSN=&&GOSET,DISP=(SHR,PASS)
+. . . 
+/*
+//P3 EXEC PGM=PROG3
+//STEPLIB DD DSN=&&GOSET,DISP=(SHR,PASS)
+. . . 
+/*
+//
+```
+
+In the JCL, PROG1 and PROG2 are link-edited together to form one program object with the name PROG2. Despite the name, the entry point of this program object will defaults to the first program in the program object, PROG1. On the other hand, PROG3 is link-edited by itself into a program object with the name PROG3.
+
+### Compiler options in a batch compilation
+
+As with the compilation of a single program, the order of precedence for each program in the batch sequence is the same. 
+
+However, note that if the current program being compiled does not contain a CBL or PROCESS statements, the compiler will use the settings of options in effect for the previous program. On the other hand, if a CBL or PROCESS statement is included, it will be resolved together with the options in effect for the previous program.
+
+Additionally, if any program needs the BUFSIZE, DEFINE, OUTDD, SQL, or SQLIMS option, that option must be in effect for the first program in the sequence.
 
 \newpage
 # Multithreading and COBOL
