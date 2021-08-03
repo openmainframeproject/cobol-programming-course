@@ -557,6 +557,24 @@ To restate what we have learned, the compiler will translate the COBOL program w
 
 As part of the compilation, we need to define the necessary data sets and specify any compiler options necessary for our program.
 
+
+- **Compilation via JCL**
+
+     - **Catalogued JCL Procedure**
+
+     - **Writing JCL to compile programs**
+
+- **Specifying compiler options**
+
+     - **Specifying options in the PROCESS statement**
+
+     - **Specifying options in JCL**
+
+- **Batch compilation**
+
+     - **Compiler options in a batch compilation**
+
+
 ## Compilation via JCL
 
 The primary method of COBOL program compilation we have done on this course is through JCL or Job Control Language. We have primarily used a set of catalogued procedures provided by IBM which reduces the amount of JCL that we need to write.
