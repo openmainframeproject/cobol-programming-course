@@ -4305,6 +4305,36 @@ Refer to CBL0011 line 120 for the proper formatting of the function-name causing
 
 When you do the labs on the previous chapters, you may have encountered an abnormal end or ABEND for short. There are various categories of common COBOL errors which cause ABEND, and in production, software errors can be costly - both in financial and reputation.
 
+This chapter introduces ABEND and gives an overview of frequent ABEND types which a COBOL application programmer may encounter. We will review possible reasons and frequent causes of the ABEND types for the programmer to debug. We will also review some common best practices to avoid ABEND and review reasons why a programmer may purposedly call an ABEND routine in their application. 
+
+
+- **Why does ABEND happen?**
+
+- **Frequent ABEND Types**
+
+     - **S001 - Record Length / Block Size Discrepancy**
+
+     - **S013 - Conflicting DCB Parameters**
+
+     - **S0C1 - Invalid Instruction**
+
+     - **S0C4 - Storage Protection Exception**
+
+     - **S0C7 - Data Exception**
+
+     - **S0CB - Division by Zero**
+
+     - **S222/S322 - Time Out / Job Cancelled**
+
+     - **S806 - Module Not Found**
+
+     - **B37/D37/E37 - Dataset or PDS Index Space Exceeded**
+
+- **Best Practices to Avoid ABEND**
+
+- **ABEND Routines**
+
+
 ## Why does ABEND happen?
 
 Unlike your normal workstation, the mainframe utilizes an instruction set architecture called the z/Architecture. This instruction set describes what instructions can be executed at the lower machine-code level.
