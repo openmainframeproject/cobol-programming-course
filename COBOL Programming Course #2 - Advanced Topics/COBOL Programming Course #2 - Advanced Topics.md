@@ -568,6 +568,30 @@ We can also write programs that result in more efficient use of the available se
 
 If you are interested in learning more about performance tuning with COBOL, check out the [Enterprise COBOL for z/OS Performance Tuning Guide](http://publibfp.dhe.ibm.com/epubs/pdf/igy6tg30.pdf).
 
+
+- **Optimal programming style**
+     
+     - **Using structured programming**
+
+     - **Factoring expressions**
+
+     - **Using symbolic constants**
+
+- **Choosing efficient data types**
+
+     - **Efficient computational data types**
+
+     - **Consistent data types**
+
+     - **Efficient arithmetic expressions**
+
+     - **Efficient exponentiations**
+
+- **Handling tables efficiently**
+
+- **Choosing compiler features to enhance performance**
+
+
 ## Optimal programming style
 
 Enterprise COBOL came with an in-build optimizer, and the coding style we use can affect how it handles our code. We can improve optimization through the use of structured programming techniques, factoring expressions, using symbolic constants or grouping constant and duplicate computations.
