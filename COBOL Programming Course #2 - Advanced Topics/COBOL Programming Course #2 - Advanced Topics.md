@@ -582,6 +582,436 @@ Can you fix the code to get the correct result? The new source code is named **C
 You can find them in the github repository for the COBOL course, in the subfolder **/COBOL Programming Course #2 - Advanced Topics/Challenges/Debugging**.
 
 \newpage
+# Multithreading and COBOL
+
+We can run COBOL programs in multiple threads. To do so, we compile using the THREAD compiler option.
+
+Note that COBOL does not directly support the management of the program threads. But we can run the programs that we compile in a multithreaded application server. So, other programs can call the COBOL program we wrote in a way that enables it to run in multiple threads.
+
+**Choosing LOCAL-STORAGE or WORKING-STORAGE**
+
+- Data items in the LOCAL-STORAGE SECTION are allocated for each instance of a program invocation. So in this case, each copy of the program will have its copy of the LOCAL-STORAGE data.
+
+- Data items in the WORKING-STORAGE SECTION are only allocated once for each program, so they will be available in their last-used state to all programs invocation.
+
+So, if we want to isolate data to an individual invocation, we need to define the data in the LOCAL-STORAGE SECTION. If we decided to define them in the WORKING-STORAGE SECTION, we need to make sure that the data will not be accessed simultaneously from multiple threads, or if we do, write the appropriate serialization code for it.
+
+## Multithreading
+
+Let us first understand how multithreading works.
+
+The operating system and multithreaded applications handle execution flow within a *process*, which is the course of events when the program runs. Programs within a process can share resources, and the processes themselves can be manipulated.
+
+Within a process, an application can initiate one or more *threads*, basically a stream of computer instruction that controls it. A multithreaded process begins with one thread and can create more to perform tasks. These threads can run concurrently.
+
+In a multithreaded environment, a COBOL *run unit* is the portion of the process that includes threads that have actively executing COBOL programs. The run unit will continue until no COBOL program is active in any of the threads. Within the run unit, COBOL programs can call non-COBOL programs and vice versa.
+
+Within a thread, control is transferred between separate COBOL and non-COBOL programs. Each separately called program is a *program invocation instance*. Program invocation instances of a particular program can exist in multiple threads within a given process.
+
+## THREAD to support multithreading
+
+As mentioned previously, we will need to use the THREAD compiler option for multithreading support. Note that using THREAD might adversely affect performance due to the serialization logic that is generated.
+
+To run multiple COBOL programs in more than one thread, all of them must be compiled using the THREAD and RENT compiler option, and link them with the RENT option of the binder.
+
+We will also need to use the THREAD option to compile object-oriented clients and classes.
+
+## Transferring control to multithreaded programs
+
+When we write COBOL programs for a multithreaded environment, we will need to choose appropriate program linkage statements.
+
+Just like single-threaded environments, a called program is in its initial state when it is first called within a run unit and when it is first called after a CANCEL to the called program. We need to ensure that the program we want to CANCEL is not active on any thread, or a Language Environment severe error will be produced.
+
+## Ending multithreaded environment
+
+We can end a multithread program by using GOBACK, EXIT PROGRAM or STOP RUN.
+
+GO BACK will return control to the caller of the program. If the caller is the first program in a thread, the thread will be terminated. If the thread is the initial one in a process, the process will be terminated.
+
+EXIT PROGRAM runs the same way as GO BACK, except from the main program where it has no effect.
+
+STOP RUN will terminate the entire Language Environment process and return control to the caller of the main program (which might be the operating system). All threads in the process will also be terminated.
+
+## Processing files with multithreading
+
+In threaded applications, we can code COBOL statements for input and output in QSAM, VSAM, and line-sequential files.
+
+Each file definition has an implicit serialization lock, which is used with automatic serialization logic during the I/O operations associated with the following statements: OPEN, CLOSE, READ, WRITE, REWRITE, START, DELETE.
+
+However, automatic serialization is not applied to statements specified with the following conditional phrases: AT END, NOT AT END, INVALID KEY, NOT INVALID KEY, AT END-OF-PAGE, NOT AT END-OF-PAGE.
+
+### File-definition storage
+
+Upon program invocation, the storage associated with file definition (such as FD records) is allocated and available in its last-used state. Therefore, all threads of execution will share this storage. You can depend on automatic serialization for this storage during the execution of the statements mentioned previously, but not between uses of the statements.
+
+### Serializing file access with multithreading
+
+To take advantage of automatic serialization, we can use one of the recommended following file organization and usage patterns when we access files in threaded programs.
+
+Recommended file organizations:
+- Sequential organization
+- Line-sequential organization
+- Relative organization with sequential access
+- Indexed organization with sequential access
+
+The recommended pattern for input:
+```
+    OPEN INPUT fn
+    ...
+    READ fn INTO local-storage-item
+    ...
+  * Process the record from the local-storage item.
+    ...
+    CLOSE fn
+```
+
+The recommended pattern for output:
+```
+    OPEN OUTPUT fn
+    ...
+  * Construct output record in local-storage item.
+    ...
+    WRITE rec from local-storage-item
+    ...
+    CLOSE fn
+```
+
+With other usage patterns, you must ensure that two instances of the program are never simultaneously active on different threads or that serialization logic is coded explicitly by using calls to POSIX services.
+
+To avoid serialization problems, we can define the data items that are associated with the file in the LOCAL-STORAGE SECTION.
+
+## Limitation of COBOL with multithreading
+
+In a multithreaded environment, there are some limitations on COBOL programs. In general, we must synchronize access to resources that are visible to the application within a run unit.
+
+- CICS: We cannot run a multithreaded application in CICS. However, programs compiled with the THREAD option can run in CICS as part of an application that does not have multiple threads.
+
+- Recursive: Since we code the programs in a multithreaded application as recursive, we must adhere to all the restrictions and programming constraints that apply to recursive programs.
+
+- Reentrancy: We must compile our multithreading programs with the RENT compiler option and link them with the RENT option of the binder.
+
+- AMODE: We must run multithreaded applications with AMODE 31. However, programs compiled with the THREAD option can run with AMODE 24 as part of an application that does not have multiple threads.
+
+- Older COBOL programs: To run your COBOL programs on multiple threads of a multithreaded application, we must compile them with Enterprise COBOL using the THREAD option.
+
+To see more details on the limitation of COBOL with multithreading, check out the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=multithreading-handling-cobol-limitations).
+
+\newpage
+# SORT and MERGE
+
+## Intro
+Sometime when we want to process a file we need it to be sorted, COBOL provides the `SORT` verb for this.
+
+If we have two or more file that are sorted using the same key or keys, we can combine them into one sorted file
+using COBOL `MERGE` verb.
+---
+## `SORT` Syntax
+
+The simplest version of a `SORT` statement can be as follows
+```
+SORT [WorkFileName]
+    ON [ASCENDING or DESCENDING] KEY [SortKey]
+    {WITH DUPLICATES IN ORDER}
+    {COLLATING SEQUENCE IS [character set]}
+    USING [InputFileName]
+    GIVEN [OutputFileName]
+```
+- `WorkFileName` :
+    - a temporary work file that the SORT process uses for the sort.
+    - defined in the FILE SECTION using an SD.
+    - it must have an associated SELECT and ASSIGN clause in the ENVIRONMENT DIVISION.
+    - a Sequential file with an organization of RECORD SEQUENTIAL.
+
+
+- `SortKey` :
+    - identifies a field in the record of the work file.
+    - The sorted file will be in sequence on this key field.
+    - you can have more than one SortKey
+        - When more than one SortKey is specified, the keys decrease in significance from left to right
+
+
+- `InputFileName` :
+    - the name of the input
+
+
+- `OutputFileName` :
+    - the name of the output
+
+
+- `DUPLICATES` (optional) :
+    - If the DUPLICATES clause is used then, when the file has been sorted, the order of records with the duplicate keys
+      is the same as that in the unsorted file.
+    - If no DUPLICATES clause is used, the order of records with duplicate keys is **undefined**.
+
+
+- `COLLATING SEQUENCE` (optional) :
+    - This clause is used to select the character set the SORT verb uses for collating the records in the file.
+    - `[character set]` can be ASCII, EBCDIC,or user-defined.
+---
+## `SORT` Rules
+- SORT can be used anywhere in the `PROCEDURE DIVISION` except in
+    - an `INPUT` or `OUTPUT PROCEDURE`,
+    -  another `SORT`, or a `MERGE`,
+    - in the `DECLARATIVES SECTION`.
+
+
+- The records described for the input file must be able to fit into the records described for the work file.
+
+
+- The sort key cannot contain an `OCCURS` clause (can't be a table) nor can it be subordinate to an entry that does contain one.
+
+
+- The input and output files are automatically opened by the SORT.
+    - When the SORT executes they must not be open already.
+
+---
+### `SORT` Example
+Let's say for example I have a file with the company employee data, and I want to sort it using the first name in
+**ASCENDING** order.
+
+1. in the `ENVIRONMENT DIVISION` we need to define
+    - **the file to be sorted** (the input file),
+    - the **sorted file**,
+    - and the **work file**
+    ```
+      ENVIRONMENT DIVISION.
+             FILE-CONTROL.
+             SELECT EMPLOYEEFILE ASSIGN TO "employees.DAT"   
+             ....
+             SELECT SORTEDEMPLOYEES ASSIGN TO "sortedEmployees.DAT"
+             ....
+             SELECT WORKFILE ASSIGN TO "WORK.TMP".
+             ....
+
+    ```    
+    - Note: *the data in the work file will be released when the program is done*
+
+
+2. in the `DATA DEVISION` we put the file description for the input, output, and working files
+```
+DATA DEVISION.
+FILE SECTION.
+FD EMPLOYEEFILE.
+....
+FD SORTEDEMPLOYEES.
+....
+SD WORKFILE.
+01 WORKREC
+   ....
+   02 WSEMPLOYEEFNAME PIC X(10).
+   02 WSEMPLOYEELNAME PIC X(10).
+   .....
+```
+- Note: *the work file is defined with `SD` and the definition of it contains
+  the names of the filed we want to use for the sorting*
+
+
+3. in the `PROCEDURE DIVISION` we
+    - sort the work file on a key using the input file and given the output file
+    ```
+     PROCEDURE DIVISION.
+            BEGIN. 
+                SORT WORKFILE ON ASCENDING KEY WSEMPLOYEEFNAME
+                    USING EMPLOYEEFILE GIVEN SORTEDEMPLOYEES.
+            .....
+    ```
+
+    - the sort is done using the first name, we can use more than one key by adding the keys one after the other separated by comma
+        -  ex. sorting on first name and last name
+            - ` SORT WORKFILE ON ASCENDING KEY WSEMPLOYEEFNAME, WSEMPLOYEELNAME
+              USING EMPLOYEEFILE GIVEN SORTEDEMPLOYEES.`
+---           
+## Using `INPUT` with `SORT`
+
+An `INPUT PROCEDURE` allows us to select which records, and what type of records, will be submitted to the sort process.
+
+An `INPUT PROCEDURE` can be used to :
+- eliminate unwanted records,
+- or to alter the format of the records, before they are submitted to the sort process.
+
+- When an `INPUT PROCEDURE` is used, it replaces the `USING` phrase
+- The `INPUT PROCEDURE` must finish before the sort process sorts the records supplied to it by the procedure.
+
+### Syntax
+```
+SORT [WorkFileName]
+ON [ASCENDING or DESCENDING] KEY [SortKey]
+{WITH DUPLICATES IN ORDER}
+{COLLATING SEQUENCE IS [character set]}
+INPUT PROCEDURE IS [process name]
+GIVEN [OutputFileName]
+
+```
+
+- `process name` :
+    - identifies a block of code, that uses the RELEASE verb to supply records to the sort process.
+
+### Rules
+- The `INPUT PROCEDURE` must contain at least one RELEASE statement to transfer the records to the work file
+
+
+- INPUT procedures can be any contiguous group of paragraphs or sections.
+    - The only restriction is that the range of paragraphs or sections used, must not overlap.
+
+Note : *The old COBOL (before COBOL '85) rules stated that the INPUT procedures had to be self-contained sections of code,
+and could not be entered from elsewhere in the program.*
+
+
+### writing an `INPUT PROCEDURE`
+An `INPUT PROCEDURE` supplies records to the sort process by writing them to the work file.
+
+- to write the records to the work file the RELEASE verb is used
+    - `RELEASE [RecordName]`
+        -  `RecordName` is the name of the record declared in the work file
+
+- Example
+```
+  OPEN INPUT [InputFile]
+  READ [InputFile]
+  PERFORM UNTIL TerminatingCondition
+    Process input record
+    RELEASE SDWorkRec
+    READ InputFile
+  END-PERFORM
+  CLOSE InputFile
+
+```
+
+---
+## Using `OUTPUT` with `SORT`
+an `OUTPUT PROCEDURE` executes when the sort process has already sorted the file.
+
+an `OUTPUT PROCEDURE` is useful when we don't need to preserve the sorted file.
+
+An `OUTPUT PROCEDURE` is also useful when we want to alter the structure of the records written to the sorted file.
+
+if we are sorting records to produce a once-off report,
+we can use an `OUTPUT PROCEDURE` to create the report directly
+
+
+
+### Syntax
+```
+SORT [WorkFileName]
+ON [ASCENDING or DESCENDING] KEY [SortKey]
+{WITH DUPLICATES IN ORDER}
+{COLLATING SEQUENCE IS [character set]}
+USING [InputFile]
+OUTPUT PROCEDURE IS [Process name]
+
+```
+
+- `process name` :
+    - used to retrieve sorted records from the work file using the `RETURN` verb.
+
+
+### Rules
+- An `OUTPUT PROCEDURE` must contain at least one RETURN statement to get the records from the SortFile.
+
+
+- The `GIVING phrase` cannot be used if an `OUTPUT PROCEDURE` is used.
+
+
+### writing an `OUTPUT PROCEDURE`
+An `OUTPUT PROCEDURE` uses the `RETURN` verb to read sorted records from the work file
+
+- to read the records to the work file the RETURN verb is used
+    - `RELEASE [RecordName] RECORD`
+        - `RecordName` is the name of the record declared in the work file
+
+- Example
+```
+    OPEN OUTPUT OutputFile
+    RETURN SDWorkFile RECORD
+    PERFORM UNTIL TerminatingCondition
+        Setup OutRec
+        WRITE OutRec
+        RETURN SDWorkFile RECORD
+    END-PERFORM
+    CLOSE OutputFile
+
+```
+---
+## `MERGE`
+The `MERGE` verb takes two or more identically sequenced files and combines them,
+according to the key values specified.
+
+The combined file is then sent to an output file or an `OUTPUT PROCEDURE`.
+
+---
+## `MERGE` Syntax
+```
+    MERGE WorkFile
+    ON [ASCENDING or DESCENDING] KEY [MergeKey]
+    {COLLATING SEQUENCE IS [character set]}
+    USING [InputFileName1, InputFileName2, ....]
+    GIVEN [OutputFileName]
+
+```
+
+
+---
+## Merge Example:
+Two files (employees, interns) are to be merged together by first and last name:
+1. in the `ENVIRONMENT DIVISION` we define
+    - **the files to be sorted** (the input file),
+    - the **sorted file**,
+    - the **work file**
+
+             ENVIRONMENT DIVISION.
+             FILE-CONTROL.
+             SELECT EMPLOYEEFILE ASSIGN TO "employees.DAT"   
+             ....
+             SELECT INTERNFILE ASSIGN TO "interns.DAT"   
+             ....
+             SELECT SORTEDEMPLOYEES ASSIGN TO "sortedEmployees.DAT"
+             ....
+             SELECT WORKFILE ASSIGN TO "WORK.TMP".
+             ....
+
+2. in the `DATA DEVISION` we put the file description for the input, output, and working files
+
+       DATA DEVISION.
+       FILE SECTION.
+       FD EMPLOYEEFILE.
+       ....
+       FD INTERNFILE.
+       ....
+       FD SORTEDEMPLOYEES.
+       ....
+       SD WORKFILE.
+       01 WORKREC
+           ....
+           02 WSEMPLOYEEFNAME PIC X(10).
+           02 WSEMPLOYEELNAME PIC X(10).
+           .....
+
+3. in the `PROCEDURE DIVISION` we sort the work file on a key or keys
+   using the input file and given the output file
+```
+PROCEDURE DIVISION.
+Begin.
+    MERGE WORKFILE ON ASCENDING KEY
+        WSEMPLOYEEFNAME, WSEMPLOYEELNAME
+        USING EMPLOYEEFILE INTERNFILE
+        GIVEN SORTEDEMPLOYEES.
+.....
+
+```
+
+- Note: the output can be written to one or more file or process internally by the  program
+---
+## `MERGE` Notes
+- The results of the `MERGE` verb are predictable only when
+    - the records in the input files are ordered as described in the KEY clause.
+
+
+- The `MERGE` can use an `OUTPUT PROCEDURE `, and the `RETURN` verb to get merged records from the work file.
+---
+
+\newpage
+
+
 ## COBOL Challenge - The COVID-19 Reports
 
 Today, you are tasked to create a COVID-19 Summary Report of all the countries around the world, using information from the COVID19API website.
