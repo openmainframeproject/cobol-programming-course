@@ -550,6 +550,294 @@ The result is execution of COBOL program CBLDB21 to read the Db2 table and write
 
 
 \newpage
+# Multithreading and COBOL
+
+We can run COBOL programs in multiple threads. To do so, we compile using the THREAD compiler option.
+
+Note that COBOL does not directly support the management of the program threads. But we can run the programs that we compile in a multithreaded application server. So, other programs can call the COBOL program we wrote in a way that enables it to run in multiple threads.
+
+**Choosing LOCAL-STORAGE or WORKING-STORAGE** 
+
+- Data items in the LOCAL-STORAGE SECTION are allocated for each instance of a program invocation. So in this case, each copy of the program will have its copy of the LOCAL-STORAGE data.
+
+- Data items in the WORKING-STORAGE SECTION are only allocated once for each program, so they will be available in their last-used state to all programs invocation.
+
+So, if we want to isolate data to an individual invocation, we need to define the data in the LOCAL-STORAGE SECTION. If we decided to define them in the WORKING-STORAGE SECTION, we need to make sure that the data will not be accessed simultaneously from multiple threads, or if we do, write the appropriate serialization code for it.
+
+## Multithreading
+
+Let us first understand how multithreading works.
+
+The operating system and multithreaded applications handle execution flow within a *process*, which is the course of events when the program runs. Programs within a process can share resources, and the processes themselves can be manipulated.
+
+Within a process, an application can initiate one or more *threads*, basically a stream of computer instruction that controls it. A multithreaded process begins with one thread and can create more to perform tasks. These threads can run concurrently.
+
+In a multithreaded environment, a COBOL *run unit* is the portion of the process that includes threads that have actively executing COBOL programs. The run unit will continue until no COBOL program is active in any of the threads. Within the run unit, COBOL programs can call non-COBOL programs and vice versa.
+
+Within a thread, control is transferred between separate COBOL and non-COBOL programs. Each separately called program is a *program invocation instance*. Program invocation instances of a particular program can exist in multiple threads within a given process.
+
+## THREAD to support multithreading
+
+As mentioned previously, we will need to use the THREAD compiler option for multithreading support. Note that using THREAD might adversely affect performance due to the serialization logic that is generated.
+
+To run multiple COBOL programs in more than one thread, all of them must be compiled using the THREAD and RENT compiler option, and link them with the RENT option of the binder.
+
+We will also need to use the THREAD option to compile object-oriented clients and classes.
+
+## Transferring control to multithreaded programs
+
+When we write COBOL programs for a multithreaded environment, we will need to choose appropriate program linkage statements.
+
+Just like single-threaded environments, a called program is in its initial state when it is first called within a run unit and when it is first called after a CANCEL to the called program. We need to ensure that the program we want to CANCEL is not active on any thread, or a Language Environment severe error will be produced.
+
+## Ending multithreaded environment
+
+We can end a multithread program by using GOBACK, EXIT PROGRAM or STOP RUN.
+
+GO BACK will return control to the caller of the program. If the caller is the first program in a thread, the thread will be terminated. If the thread is the initial one in a process, the process will be terminated.
+
+EXIT PROGRAM runs the same way as GO BACK, except from the main program where it has no effect.
+
+STOP RUN will terminate the entire Language Environment process and return control to the caller of the main program (which might be the operating system). All threads in the process will also be terminated.
+
+## Processing files with multithreading
+
+In threaded applications, we can code COBOL statements for input and output in QSAM, VSAM, and line-sequential files.
+
+Each file definition has an implicit serialization lock, which is used with automatic serialization logic during the I/O operations associated with the following statements: OPEN, CLOSE, READ, WRITE, REWRITE, START, DELETE.
+
+However, automatic serialization is not applied to statements specified with the following conditional phrases: AT END, NOT AT END, INVALID KEY, NOT INVALID KEY, AT END-OF-PAGE, NOT AT END-OF-PAGE.
+
+### File-definition storage
+
+Upon program invocation, the storage associated with file definition (such as FD records) is allocated and available in its last-used state. Therefore, all threads of execution will share this storage. You can depend on automatic serialization for this storage during the execution of the statements mentioned previously, but not between uses of the statements.
+
+### Serializing file access with multithreading
+
+To take advantage of automatic serialization, we can use one of the recommended following file organization and usage patterns when we access files in threaded programs.
+
+Recommended file organizations:
+- Sequential organization
+- Line-sequential organization
+- Relative organization with sequential access
+- Indexed organization with sequential access
+
+The recommended pattern for input:
+```
+    OPEN INPUT fn
+    ...
+    READ fn INTO local-storage-item
+    ...
+  * Process the record from the local-storage item.
+    ...
+    CLOSE fn
+```
+
+The recommended pattern for output:
+```
+    OPEN OUTPUT fn
+    ...
+  * Construct output record in local-storage item.
+    ...
+    WRITE rec from local-storage-item
+    ...
+    CLOSE fn
+```
+
+With other usage patterns, you must ensure that two instances of the program are never simultaneously active on different threads or that serialization logic is coded explicitly by using calls to POSIX services.
+
+To avoid serialization problems, we can define the data items that are associated with the file in the LOCAL-STORAGE SECTION.
+
+## Limitation of COBOL with multithreading
+
+In a multithreaded environment, there are some limitations on COBOL programs. In general, we must synchronize access to resources that are visible to the application within a run unit. 
+
+- CICS: We cannot run a multithreaded application in CICS. However, programs compiled with the THREAD option can run in CICS as part of an application that does not have multiple threads.
+
+- Recursive: Since we code the programs in a multithreaded application as recursive, we must adhere to all the restrictions and programming constraints that apply to recursive programs.
+
+- Reentrancy: We must compile our multithreading programs with the RENT compiler option and link them with the RENT option of the binder.
+
+- AMODE: We must run multithreaded applications with AMODE 31. However, programs compiled with the THREAD option can run with AMODE 24 as part of an application that does not have multiple threads.
+
+- Older COBOL programs: To run your COBOL programs on multiple threads of a multithreaded application, we must compile them with Enterprise COBOL using the THREAD option.
+
+To see more details on the limitation of COBOL with multithreading, check out the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=multithreading-handling-cobol-limitations).
+
+\newpage
+# Program tuning and simplification
+
+In the previous chapters, we have seen how you could code COBOL applications. But now, let us explore how to improve them.
+
+When a program is comprehensible, we can assess its performance. However, if the opposite is true, it can make your application difficult to understand and maintain, thus hindering optimization.
+
+To improve performance, we should take note of the following things:
+
+- The underlying algorithm of your business logic
+- Data structure
+
+Having a robust algorithm with the appropriate data structure is essential to improve performance.
+
+We can also write programs that result in more efficient use of the available services. We can also use coding techniques to improve our productivity.
+
+If you are interested in learning more about performance tuning with COBOL, check out the [Enterprise COBOL for z/OS Performance Tuning Guide](http://publibfp.dhe.ibm.com/epubs/pdf/igy6tg30.pdf).
+
+
+- **Optimal programming style**
+     
+     - **Using structured programming**
+
+     - **Factoring expressions**
+
+     - **Using symbolic constants**
+
+- **Choosing efficient data types**
+
+     - **Efficient computational data types**
+
+     - **Consistent data types**
+
+     - **Efficient arithmetic expressions**
+
+     - **Efficient exponentiations**
+
+- **Handling tables efficiently**
+
+- **Choosing compiler features to enhance performance**
+
+
+## Optimal programming style
+
+Enterprise COBOL came with an in-build optimizer, and the coding style we use can affect how it handles our code. We can improve optimization through the use of structured programming techniques, factoring expressions, using symbolic constants or grouping constant and duplicate computations.
+
+### Using structured programming
+
+Using structured programming statements, such as EVALUATE and inline PERFORM, can make our program more comprehensible and generates a more linear control flow, which enables the optimizer to produce a more efficient code.
+
+We can also use top-down programming constructs. In simpler term, we would work with a very general overview of what our program should do, before using that to build upon the required operations. In COBOL, out-of-line PERFORM statements are a natural way of doing top-down programming. It can be as efficient as an inline PERFORM because the compiler can simplify or remove the linkage code.
+
+Before we continue, let us talk a bit about in-line and out-of-line PERFORM statements. Chances are you have seen them without realizing what they are. Take a look at the example below:
+
+```
+PERFORM 010-INITIALIZE
+PERFORM UNTIL END-OF-FILE
+    READ FILE-DATA INTO WS-DATA
+    AT END
+        SET END-OF-FILE TO TRUE
+    NOT AT END
+        PERFORM 020-UPDATE-TRANSACTION
+    END-READ
+END-PERFORM
+```
+
+In the example above, we have two out-of-line PERFORM and one inline PERFORM. An inline PERFORM is executed in the normal flow of a program, while an out-of-line PERFORM will branch to the named paragraph.
+
+It is also suggested to avoid the use of the following constructs:
+
+- ALTER statements
+- Explicit GO TO statements
+- PERFORM procedures that involve irregular control flow
+
+### Factoring expressions
+
+We can also factor expressions in our programs to eliminate unnecessary computation. Take a look at the examples below. The first block of code is more efficient than the second block of code.
+
+```
+MOVE ZERO TO TOTAL
+PERFORM VARYING I FROM 1 BY 1 UNTIL I = 10
+    COMPUTE TOTAL = TOTAL + ITEM(I)
+END-PERFORM
+COMPUTE TOTAL = TOTAL * DISCOUNT
+```
+
+```
+MOVE ZERO TO TOTAL
+PERFORM VARYING I FROM 1 BY 1 UNTIL I = 10
+    COMPUTE TOTAL = TOTAL + ITEM(I) * DISCOUNT
+END-PERFORM
+```
+
+### Using symbolic constants
+
+If we have a data item that is constant throughout the program, we can initialize it with a VALUE clause and not change it anywhere in the program.
+
+However, if we pass a data item to a subprogram BY REFERENCE, the optimizer will treat it as an external data item and assumes that it is changed at every subprogram call.
+
+## Choosing efficient data types
+
+The use of consistent data types can reduce the need for conversions. We can also carefully determine when to use fixed-point and floating-point data types to improve performance.
+
+### Efficient computational data types
+
+When we use a data item mainly for arithmetic or subscripting purposes, we can code USAGE BINARY on the data description. The operations to manipulate binary data are faster than those for decimal data.
+
+However, when we are dealing with an intermediate result with a large precision, the compiler will use decimal arithmetic. Normally, for fixed-point arithmetic statements, the compiler will use binary arithmetics for precision of eight or fewer digits. Anything above 18 digits will always be computed using decimal arithmetics, and those in-between can use either form.
+
+Therefore, to produce the most efficient code for a BINARY data item, we need to ensure that it has a sign (indicated with an S in the PICTURE clause) and eight or fewer digits.
+
+But for a data item that is larger than eight digits or is used with DISPLAY or NATIONAL data items, we can use PACKED-DECIMAL. The code generated can be as fast as BINARY data items in some cases, especially if the statement is complicated or involves rounding.
+
+To produce the most efficient code for a PACKED-DECIMAL data item, we need to ensure it has a sign (indicated with an S in the PICTURE clause), an odd number of digits, and 15 or fewer digits in the PICTURE clause (since the instructions the compiler use are faster with 15 or fewer digits).
+
+### Consistent data types
+
+In operations with operands of different types, one of the operands will be converted to the same type as the other. This would require several instructions. 
+
+Therefore, to improve performance, we can avoid conversions by using consistent data types and by giving both operands the same usage and appropriate PICTURE specifications.
+
+### Efficient arithmetic expressions
+
+Computation of arithmetic expressions that are evaluated in floating point is most efficient when little or no conversion is involved. We can use operands that are COMP-1 or COMP-2 to produce the most efficient code.
+
+We can also define integer items as BINARY or PACKED-DECIMAL with nine or fewer digits to enable quick conversion to floating-point data. Note that conversion from COMP-1 or COMP-2 to a fixed-point integer with nine or fewer digits is efficient when the value of the COMP-1 or COMP-2 item is less than 1,000,000,000.
+
+### Efficient exponentiations
+
+We can use floating point for exponentiations for large exponents to achieve faster and more accurate results. For example, the first statement below is computed more quickly and accurately compared with the second statement:
+
+```
+COMPUTE FIXED-POINT1 = FIXED-POINT2 ** 100000.E+00
+COMPUTE FIXED-POINT1 = FIXED-POINT2 ** 100000
+```
+
+By using floating-point exponent, the compiler will use floating-point arithmetics to compute the exponentiations.
+
+## Handling tables efficiently
+
+We can also use several techniques to improve the efficiency of your table-handling applications.
+
+To refer to table elements efficiently, we can:
+
+- **Use indexing rather than subscripting.** Since the value of the index is already has the element size factored into it, preventing any need in calculating during run time.
+
+- **Use relative indexing.** Relative index references can be executed at least as fast as direct index references, and sometimes faster.
+
+Regardless of how you reference your table elements, we can also:
+
+- **Specify the element length to match that of related tables.** This will enable the optimizer to reuse the index or subscript computed for one table.
+
+- **Avoid errors in reference by coding index and subscript checks into your program.**
+
+We can also improve the efficiency of tables by:
+
+- Using binary data items for all subscripts
+- Using binary data items for variable-length table items
+- Using fixed-length data items whenever possible
+- Organize tables according to the type of search method used
+
+## Choosing compiler features to enhance performance
+
+Our choice of performance-related compiler options can affect how well our program is optimized. We may have a customized system that requires certain options to be set for optimum performance. We can choose compiler features by following these steps:
+
+1. Review the listed option settings to see your system defaults.
+2. Determine which options are fixed, and thus nonoverridable, by checking with your system programmer.
+3. For options that are not fixed, we can select performance-related options for compiling our program. Note that it is best practice to confer with your system programmer to ensure that the options you choose are appropriate for programs at your site.
+
+Another compiler feature to consider is the USE FOR DEBUGGING ON ALL PROCEDURES statement which can greatly affect the compiler optimizer. The use of the ON ALL PROCEDURES option will generate extra code at each transfer to a procedure name. Although these are useful for debugging, they will make your program larger and thus inhibit optimization.
+
+For a listing of performance-related compiler options, please check the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=performance-related-compiler-options).
+
+\newpage
 # COBOL Challenges
 As you have now handled some basic exercises, we have prepared a new section containing more advanced exercises that test your ability to resolve bugs and other issues in COBOL programs. Each exercise will have a short description and a goal to be accomplished.
 
