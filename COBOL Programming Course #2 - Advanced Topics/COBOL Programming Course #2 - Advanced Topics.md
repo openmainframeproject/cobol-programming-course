@@ -667,13 +667,34 @@ To see more details on the limitation of COBOL with multithreading, check out th
 \newpage
 
 # Subprograms
-
-## Intro
 when control is transferred from the active program to an external program, but the transferring program remains active
 and control can be returned to it,
 
-- the program to which control is transferred is called a **subprogram**.
 
+the program to which control is transferred is called a **subprogram**.
+
+- **Subprograms in COBOL**
+  - **Difference between a paragraph and a subprogram**
+  - **Different between a program and subprogram**
+
+- **Calling and Passing Arguments to a Subprogram**
+  - **Example**
+  - **The contents of The subprogram**
+  - **The subprogram Language**
+
+- **Flow of control between programs and subprograms**
+
+- **Rules for calling subprograms**
+  - **Location of subprogram**
+  - **Translation**
+  - **Compilation**
+  - **Link-editing**
+  - **CICS CSD entries without autoinstall program**
+  - **Recursive calls in COBOL**
+  - **Passing parameters to a subprogram**
+
+
+## Subprograms in COBOL
 In COBOL, there are three ways of transferring control to a subprogram :
 
 1. `EXEC CICS LINK`
