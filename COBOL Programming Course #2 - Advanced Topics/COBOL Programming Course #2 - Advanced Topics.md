@@ -668,17 +668,7 @@ To see more details on the limitation of COBOL with multithreading, check out th
 
 
 # COBOL Object-Oriented
-## chapter content
-1. object-oriented programs
-2. Class Definition
-3. Subclass Definition
-4. Defining a factory section
-4. Instance method Definition
-5. Client Definition
-6. Structuring OO applications
 
-
-## object-oriented programs
 To write an object-oriented (OO) program, you have to determine what **classes** you need and
 the **methods** and **data** that the classes need to do their work.
 
@@ -687,6 +677,51 @@ OO programs are based on objects (entities that encapsulate state and behavior) 
 a program creates and works with multiple object instances of a class (multiple objects that are members of that class).
 
 
+- **Numbering Systems**
+    - **Binary System**
+
+- **object-oriented programs**
+    - **Intro**
+    - **Restrictions**
+    - **Wrapping procedure-oriented COBOL programs**
+    - **Notes**
+    - **Example: Design an Account Class**
+    - 
+- **Class Definition**
+    - **Class Structure**
+    - **Notes**
+    - **Example: defining a class**
+    - 
+- **Subclasses Definition**
+
+- **Defining a factory section**
+    - **Factory structure**
+    - **Defining a factory method**
+    - **Hiding a factory or static method**
+    - **Invoking factory or static methods**
+    - **Notes**
+
+- **Instance method Definition**
+    - **Structure of instance method definitions**
+    - **Overriding an instance method**
+    - **Overloading an instance method**
+    - **Coding attribute (get and set) methods**
+    - **Notes**
+    - **Example: defining a method**
+    - 
+- **Client Definition**
+    - **Client structure**
+    - **Creating and initializing instances of classes**
+    - **Invoking methods**
+    - **Comparing and setting object references**
+    - **Notes**
+    - **Example: defining a client**
+    
+- **Structuring OO application**
+    - **OOP program structure methods**
+    - **Example: COBOL applications that run using the java command**
+
+## object-oriented programs
 A class is a template that defines the state and the capabilities of an object.
 
 The state of each instance is stored in data known as instance data , and the capabilities of each instance are called instance methods.
@@ -817,7 +852,7 @@ an `IDENTIFICATION DIVISION` and `ENVIRONMENT DIVISION`,
 followed by an optional factory definition and optional object definition,
 followed by an `END CLASS` marker.
 
-#### Class Structure
+### Class Structure
 `IDENTIFICATION DIVISION` (required)
 - Where you name the class, and provide inheritance information for it.
 
@@ -1016,8 +1051,9 @@ You most commonly use factory methods to customize object creation when you cann
 By contrast, you use the `OBJECT` paragraph in a class definition to define data that is created for each object instance of the class, and methods that are supported for each object instance of the class.
 
 ---
-### A factory definition consists of:
-three divisions, followed by an `END FACTORY` statement
+###  Factory structure
+A factory definition consists of: three divisions, followed by an `END FACTORY` statement
+
 
 `IDENTIFICATION` (required)
 - Identify the start of the factory definition.
