@@ -665,6 +665,939 @@ In a multithreaded environment, there are some limitations on COBOL programs. In
 To see more details on the limitation of COBOL with multithreading, check out the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=multithreading-handling-cobol-limitations).
 
 \newpage
+
+
+# COBOL Object-Oriented
+## chapter content
+1. object-oriented programs
+2. Class Definition
+3. Subclass Definition
+4. Defining a factory section
+4. Instance method Definition
+5. Client Definition
+6. Structuring OO applications
+
+
+## object-oriented programs
+To write an object-oriented (OO) program, you have to determine what **classes** you need and
+the **methods** and **data** that the classes need to do their work.
+
+OO programs are based on objects (entities that encapsulate state and behavior) and their classes, methods, and data.
+
+a program creates and works with multiple object instances of a class (multiple objects that are members of that class).
+
+
+A class is a template that defines the state and the capabilities of an object.
+
+The state of each instance is stored in data known as instance data , and the capabilities of each instance are called instance methods.
+
+A class can define data that is shared by all instances of the class, known as **factory or static data**,
+and methods that are supported independently of any object instance, known as **factory, or static method**s.
+
+
+Using Enterprise COBOL , you can:
+
+- Define classes, with methods and data implemented in COBOL.
+- Create instances of Java and COBOL classes.
+- Invoke methods on Java and COBOL objects.
+- Write classes that inherit from Java classes or other COBOL classes.
+- Define and invoke overloaded methods.
+
+
+In Enterprise COBOL classes, you can code `CALL` statements to interface with procedural COBOL programs:
+
+- COBOL class definition syntax can be especially useful for writing wrapper classes for procedural COBOL logic,
+  enabling existing COBOL code to be accessed from Java.
+
+
+### Restrictions:
+COBOL class definitions and methods cannot contain:
+- `EXEC SQL` statements and cannot be compiled using the SQL compiler option.
+
+- `EXEC CICS` statements, and cannot be run in a CICS environment, and
+  cannot be compiled using the CICS compiler option.
+---
+
+### Wrapping procedure-oriented COBOL programs
+A wrapper is a class that provides an interface between object-oriented code and procedure-oriented code.
+
+Factory methods provide a convenient means for writing wrappers for existing procedural COBOL code to make it accessible
+
+To wrap COBOL code, do these steps:
+- Create a simple COBOL class that contains a `FACTORY` paragraph.
+- In the FACTORY paragraph, code a factory method that uses a `CALL` statement to call the procedural program.
+
+---
+
+
+### Notes
+Java code can create instances of COBOL classes, invoke methods of these classes, and can extend COBOL classes.
+
+In Enterprise COBOL programs, you can call the services provided by the Java Native Interface (JNI) to obtain
+Java-oriented capabilities in addition to the basic OO capabilities available directly in the COBOL language.
+
+It is recommended that you develop and run OO COBOL programs and Java programs in the z / OS UNIX environment.
+
+
+#### Multiple inheritance:
+You cannot use multiple inheritance in OO COBOL applications.
+- All classes that you define must have exactly one parent, and `java.lang.Object` must be at the root of every inheritance hierarchy.
+- The class structure of any object-oriented system defined in an OO COBOL application is a **tree**.
+
+----
+### Example: Design an Account Class
+Consider the example of a bank in which customers can open accounts and make deposits to and withdrawals from their accounts.
+- You could represent an account by a general-purpose class, called `Account`.
+
+
+- Because there are many customers, multiple instances of the Account class could exist simultaneously.
+
+After you determine the classes that you need, the next step is to determine the methods that the classes need to do their work.
+- An Account class must provide the following services:
+    - Open the account.
+    - Get the current balance.
+    - Deposit to the account.
+    - Withdraw from the account.
+    - Report account status.
+
+The following methods for an `Account class` meet those needs :
+
+- `init`
+    - Open an account and assign it an account number.
+- `getBalance`
+    - Return the current balance of the account.
+- `credit`
+    - Deposit a given sum to the account.
+- `debit`
+    - Withdraw a given sum from the account.
+- `print`
+    - Display account number and account balance.
+
+As you design an Account class and its methods, you discover the need for the class to keep some instance data.
+- an Account object needs the following instance data:
+    - Account number
+    - Account balance
+    - Customer information: name, address, home phone, work phone, social security number, and so forth
+
+To keep the example simple, assumed that the account number and account balance are the only instance data that the Account class needs.
+
+![](Images/COBOL-Object-Oriented/account_class_uml.png)
+- *Account Class UML*
+
+
+#### Subclasses
+a bank could have many types of accounts:
+- checking accounts,
+- savings accounts,
+- mortgage loans, and so forth,
+
+all of which have all the general characteristics of accounts but could have additional characteristics not shared by all types of accounts.
+
+For example, a `CheckingAccount` class could have, in addition to the account number and account
+- balance that all accounts have,
+- a check fee that applies to each check written on the account.
+
+A `CheckingAccount` class also needs a method to process checks (read the amount, debit the payer, credit the payee, and so forth).
+
+That is why we define CheckingAccount as a subclass of Account.
+
+![](Images/COBOL-Object-Oriented/subclass.PNG)
+
+*inheritance hierarchy*
+
+**Note** : _A number and colon with no method-name following them indicate that the method with that number is inherited from the superclass._
+
+---
+
+
+## Class Definition
+A COBOL class definition consists of:
+
+an `IDENTIFICATION DIVISION` and `ENVIRONMENT DIVISION`,
+followed by an optional factory definition and optional object definition,
+followed by an `END CLASS` marker.
+
+#### Class Structure
+`IDENTIFICATION DIVISION` (required)
+- Where you name the class, and provide inheritance information for it.
+
+**required Syntax**
+- `CLASS-ID` paragraph
+    - Use the `CLASS-ID` paragraph to identify:
+        - The class that you are defining, and the immediate superclass from which the class that you are defining inherits
+          its characteristics (the superclass can be implemented in Java or COBOL) .
+
+Example
+```
+Identification Division.  
+Class-id. Account inherits Base.
+```
+
+---
+`ENVIRONMENT DIVISION` (required)
+- Describe the computing environment, and relate class-names used within the class definition to the corresponding
+  external class-names known outside the compilation unit.
+
+**required Syntax**
+- `CONFIGURATION` SECTION
+    - A `class CONFIGURATION SECTION` can consist of the same entries as a `program CONFIGURATION SECTION`,
+      except that a `class CONFIGURATION SECTION` cannot contain an `INPUT-OUTPUT SECTION`.
+
+    - If you specify the `SOURCE-COMPUTER`, `OBJECT-COMPUTER`, or `SPECIAL-NAMES` paragraphs in the `CONFIGURATION SECTION`
+      they apply to the entire class definition including all methods that the class introduces.
+
+
+- `REPOSITORY` paragraph
+    - Use it to associate the superclass name with the name of the superclass as it is known externally.
+    - You can optionally specify the name of the class that you are defining and associate it with its corresponding external class-name.
+        - You must include an entry for the class that you are defining if the external class-name contains non-COBOL characters,
+          or to specify a fully package-qualified class-name if the class is to be part of a Java package.
+
+Example
+```
+Environment Division. 
+Configuration Section. 
+Repository.    
+Class Base is "java.lang.Object"  Required
+Class Account is "Account".       Optional
+```
+---
+`Factory definition` (optional)
+- Define data to be shared by all instances of the class, and methods supported independently of any object instance.
+
+**Syntax**
+```
+    IDENTIFICATION DIVISION.
+    FACTORY.
+    DATA DIVISION.
+    WORKING-STORAGE SECTION.
+*   (Factory data here)
+    PROCEDURE DIVISION.
+*   (Factory methods here)
+    END FACTORY.
+```
+---
+`Object definition` (optional)
+- Define instance data and instance methods.
+
+**Syntax**
+```
+    IDENTIFICATION DIVISION.
+    OBJECT.
+    DATA DIVISION.
+    WORKING-STORAGE SECTION.
+*   (Instance data here)
+    PROCEDURE DIVISION.
+*   (Instance methods here)
+    END OBJECT.
+```
+- Use the `WORKING-STORAGE` SECTION in the `DATA DIVISION` of the OBJECT paragraph to
+  describe the instance data that a COBOL class needs (the data to be allocated for each instance).
+
+
+- The syntax of the `WORKING-STORAGE SECTION` for instance data declaration is generally the same as in a program, with these exceptions:
+    - You cannot use the EXTERNAL attribute.
+    - You can use the GLOBAL attribute, but it has no effect.
+
+---
+### Notes :
+- You define an `INPUT-OUTPUT SECTION` only in the individual methods that require it rather than defining it at the
+  class level.
+
+
+- A class-name must use single-byte characters and must conform to the normal rules of formation for a COBOL user-defined word.
+
+
+- You must derive all classes directly or indirectly from the `java.lang.Object` class.
+
+
+- In the `REPOSITORY paragraph`, you must code an entry for each class-name that you explicitly reference in the class definition, For example:
+    - Base
+    - A superclass from which the class that you are defining inherits
+    - The classes that you reference in methods within the class definition
+
+
+- An external class-name that you specify in the `REPOSITORY paragraph` must be an alphanumeric literal that conforms to the rules of formation for a fully qualified Java class-name.
+
+
+- If you do not include the external class-name in a `REPOSITORY paragraph` entry, the external class-name is formed from the class-name in the following manner:
+    - The class-name is converted to uppercase.
+    - Each hyphen is changed to zero.
+    - The first character, if a digit, is changed:
+        - 1-9 are changed to A-I.
+        - 0 is changed to J.
+    - Underscores are not changed.
+
+
+- COBOL instance data is equivalent to Java private nonstatic member data.
+    - No other class or subclass (nor factory method in the same class, if any) can reference COBOL instance data directly.
+    - Instance data is global to all instance methods that the OBJECT paragraph defines.
+
+
+- If you want to make instance data accessible from outside the OBJECT paragraph, define attribute (get or set) instance methods for doing so.
+
+---
+### Example: defining a class
+```
+Identification Division.
+Class-id. Account inherits Base.
+Environment Division.
+Configuration section.
+Repository.
+Class Base    is "java.lang.Object"
+Class Account is "Account".
+*
+Identification division.
+Object.
+Data division.
+Working-storage section.
+01 AccountNumber  pic 9(6).
+01 AccountBalance pic S9(9) value zero.
+*
+Procedure Division.
+*
+*   (Instance method definitions here)
+*
+End Object.
+*
+End class Account.
+```
+----
+
+## Subclass Definition
+A subclass inherits the methods and instance data of its superclasses,
+and is related to its superclasses by an _**is-a**_ relationship.
+
+Using subclasses has several advantages:
+- **Reuse of code**:
+    - Through inheritance, a subclass can reuse methods that already exist in a superclass.
+
+
+- **Specialization**:
+    - In a subclass you can add new methods to handle cases that the superclass does not handle. You can also add new data items that the superclass does not need.
+
+
+- **Change in action**:
+    - A subclass can override a method that it inherits from a superclass by defining a method of the same signature as that in the superclass.
+    - When you override a method, you might make only a few minor changes or completely change what the method does.
+
+
+You cannot use multiple inheritance in your COBOL programs. Each COBOL class that you define must have exactly one immediate superclass
+
+The structure and syntax of a subclass definition are identical to those of a class definition
+
+COBOL instance data is private.
+- A subclass can access the instance data of a COBOL superclass only if the superclass defines attribute (get or set) instance methods for doing so.
+
+Use the `CLASS-ID` paragraph to name the subclass and indicate from which superclass it inherits its characteristics.
+```
+Identification Division.
+Class-id. subclass-name inherits superclass-name.
+```
+
+- You must specify the name of the immediate superclass in the REPOSITORY paragraph in the CONFIGURATION SECTION of the ENVIRONMENT DIVISION.
+- You can optionally associate the superclass name with the name of the class as it is known externally.
+
+
+A subclass inherits the methods of its superclasses. In a subclass definition, you can override any instance method that the subclass inherits by defining an instance method with the same signature as the inherited method. You can also define new methods that the subclass needs.
+
+---
+
+## Defining a factory section
+Use the `FACTORY` paragraph in a class definition to define data and methods that are to be associated with the class
+itself rather than with individual object instances.
+
+A single copy of the data is instantiated for the class and is shared by all object instances of the class.
+
+you most commonly use factory data when you want to gather data from all the instances of a class.
+
+You most commonly use factory methods to customize object creation when you cannot use `VALUE` clauses alone to initialize instance data.
+
+By contrast, you use the `OBJECT` paragraph in a class definition to define data that is created for each object instance of the class, and methods that are supported for each object instance of the class.
+
+---
+### A factory definition consists of:
+three divisions, followed by an `END FACTORY` statement
+
+`IDENTIFICATION` (required)
+- Identify the start of the factory definition.
+```
+IDENTIFICATION DIVISION.
+FACTORY.
+``` 
+
+`DATA` (optional)
+- Describe data that is allocated once for the class
+
+**Optional Syntax**
+- `WORKING-STORAGE SECTION` for defining factory data
+
+Example
+```
+Identification division.
+Factory.
+  Data division.
+  Working-storage section.
+  01 NumberOfAccounts pic 9(6) value zero.
+. . .
+End Factory.
+```
+- The `FACTORY` keyword, which you must immediately precede with an
+  `IDENTIFICATION DIVISION` declaration, indicates the beginning of the definitions of the factory data and
+  factory methods for the class.
+
+`PROCEDURE` (optional)
+- Define factory methods.
+--- 
+
+### Defining a factory method
+A factory method defines an operation that is supported by a class independently of any object instance of the class.
+
+You typically define factory methods for classes whose instances require complex initialization, that is,
+to values that you cannot assign by using `VALUE` clauses alone
+
+Within a factory method you can invoke instance methods to initialize the instance data.
+
+A factory method cannot directly access instance data.
+
+Within a class definition, you do not need to make each factory method-name unique, but you do need to give each factory method a unique signature.
+
+You can overload factory methods in exactly the same way that you overload instance methods.
+
+If you define a data item with the same name in both the `DATA DIVISION` of a factory method, and
+the `DATA DIVISION` of the FACTORY paragraph, a reference in the method to that data-name refers only to
+the method data item.
+- The method `DATA DIVISION` takes precedence.
+---
+
+### Hiding a factory or static method
+A factory method defined in a subclass is said to hide an inherited method that would otherwise be
+accessible in the subclass if the two methods have the same signature.
+
+---
+
+### Invoking factory or static methods
+To invoke a factory method in a COBOL method or client program, code the class-name as the first operand of the `INVOKE` statement.
+
+To invoke a factory method from within the same class in which you define the factory method,
+you also use the class-name as the first operand in the `INVOKE` statement.
+
+---
+
+### Notes
+-  No other class or subclass (nor instance method in the same class, if any) can reference COBOL factory data directly.
+
+
+- Factory data is global to all factory methods that the `FACTORY` paragraph defines.
+
+
+- If you want to make factory data accessible from outside the `FACTORY` paragraph, define factory attribute (get or set) methods for doing so.
+
+---
+
+
+## Instance method Definition
+
+An instance method defines an operation that is supported for each object instance of a class, and can be defined in the `PROCEDURE DIVISION` of the `OBJECT` paragraph of a class definition.
+
+###  Structure of instance method definitions
+A COBOL instance method definition consists of four divisions (like a COBOL program), followed by an `END METHOD` marker.
+
+
+`IDENTIFICATION` (required)
+- used to name the method.
+
+**required Syntax**
+- `METHOD-ID` paragraph for defining a class instance method
+
+Example
+```
+Identification Division.
+Method-id. "credit".
+```
+---
+`ENVIRONMENT ` (optional)
+- Relate the file-names used in a method to the corresponding file-names known to the operating system.
+
+**optional Syntax**
+- `INPUT-OUTPUT` SECTION
+    - elates the file-names used in a method definition to the corresponding file-names as they are known to the operating system.
+
+Example
+```
+Environment Division.
+Input-Output Section.
+File-Control.
+Select account-file Assign AcctFile.
+```
+---
+`DATA` (optional)
+- Define external files, and allocate a copy of the data.
+
+**optional Syntax**
+- `DATA` DIVISION for defining a class instance method
+
+
+consists of any of the following four sections:
+- `FILE SECTION`
+    - The same as a program `FILE SECTION`, except that a method `FILE SECTION` can define EXTERNAL files only.
+- `LOCAL-STORAGE SECTION`
+    - A separate copy of the `LOCAL-STORAGE` data is allocated for each invocation of the method, and is freed on return from the method.
+    - If you specify the `VALUE` clause on a data item, the item is initialized to that value on each invocation of the method.
+- `WORKING-STORAGE SECTION`
+    - A single copy of the `WORKING-STORAGE` data is allocated, and the data persists in its last-used state until the run unit ends.
+      The same copy of the data is used whenever the method is invoked, regardless of the invoking object or thread.
+    - If you specify the `VALUE` clause on a data item, the item is initialized to that value on the first invocation of the method.
+- `LINKAGE SECTION`
+---
+
+`PROCEDURE` (optional)
+- Code the executable statements to complete the service provided by the method.
+
+**optional Syntax**
+- `PROCEDURE DIVISION` for defining a class instance method
+
+
+- You cannot, code the following statements in a method:
+    - ENTRY
+    - EXIT PROGRAM
+    - The following obsolete elements of Standard COBOL 85:
+        - ALTER
+        - GOTO without a specified procedure-name
+        - SEGMENT-LIMIT
+        - USE FOR DEBUGGING
+
+
+---
+
+### Overriding an instance method
+An instance method that is defined in a subclass is said to override an inherited instance method that would otherwise be
+accessible in the subclass if the two methods have the same signature.
+
+
+To override a superclass instance method `m1` in a COBOL subclass, define an instance method `m1`
+in the subclass that has the same name and whose `PROCEDURE DIVISION` `USING` phrase (if any) has the same number and type
+of formal parameters as the superclass method has.
+
+
+when a client invokes `m1` on an instance of the subclass, the subclass method rather than the superclass method is invoked.
+
+
+An instance method must not override a factory method in a COBOL superclass nor a static method in a Java superclass.
+
+---
+
+### Overloading an instance method
+Two methods that are supported in a class (whether defined in the class or inherited from a superclass) are said to be overloaded if they have the same name but different signatures.
+
+
+You overload methods when you want to enable clients to invoke different versions of a method, for example, to initialize data using different sets of parameters.
+
+
+To overload a method, define a method whose `PROCEDURE DIVISION` `USING` phrase (if any) has a different number or type of formal parameters than an identically named method that is supported in the same class.
+
+
+The presence or absence of a method return value does not have to be consistent in overloaded methods, and the data type of the return value given in the
+`PROCEDURE DIVISION` `RETURNING` phrase (if a ny) does not have to be identical in overloaded methods.
+
+
+You can overload factory methods in exactly the same way that you overload instance methods.
+
+---
+
+### Coding attribute (get and set) methods
+You can provide access to an instance variable X from outside the class in which X is defined by coding accessor (get) and mutator (set) methods for X.
+
+Instance variables in COBOL are private:
+- the class that defines instance variables fully encapsulates them, and only the instance methods defined in the same
+  `OBJECT` paragraph can access them directly.
+
+
+Example :
+- `getBalance` will return the value of the instance variable `AccountBalance` to a client.
+
+```
+  Identification Division.
+    Method-id. "getBalance".
+    Data division.
+    Linkage section.
+    01 outBalance pic S9(9) binary.
+*
+    Procedure Division returning outBalance.
+      Move AccountBalance to outBalance.
+    End method "getBalance".
+```
+---
+
+### Notes
+- The signature of a method consists of
+    - the name of the method
+    - the number and type of its formal parameters.
+
+
+- You define the formal parameters of a COBOL method in the `USING` phrase of the method's `PROCEDURE DIVISION` header.
+
+
+- Within a class definition, you do not need to make each method-name unique, but you do need to give each method a unique signature.
+
+
+- You **overload** methods by giving them the same name but a different signature.
+
+
+- Code the method-name as an alphanumeric or national literal.
+
+
+- The method-name is processed in a case-sensitive manner and must conform to the rules of formation for a Java method-name.
+
+- If you define a data item with the same name in both the `DATA DIVISION` of an instance method,
+  and the `DATA DIVISION` of the `OBJECT` paragraph,
+    - a reference in the method to that data-name refers only to the method data item
+      (the method `DATA DIVISION` takes precedence) .
+
+
+-  because you must compile all COBOL class definitions with the THREAD compiler option, you cannot use `SORT` or `MERGE` statements in a COBOL method.
+
+
+- You can code the `EXIT` METHOD or `GOBACK` statement in an instance method to return control to the invoking client.
+    - if you specify the `RETURNING` phrase upon invocation of the method, the `EXIT` METHOD or `GOBACK` statement returns the value of the data item to the invoking client.
+
+
+- An implicit EXIT METHOD is generated as the last statement in the P`ROCEDURE DIVISION` of each method.
+
+
+- You can specify `STOP RUN` in a method; doing so terminates the entire run unit including all threads executing within it.
+
+
+- You must terminate a method definition with an `END METHOD` marker.
+```
+End method "credit".
+```
+
+- `RETURNING` phrase specifies the data item to be returned as the method result
+---
+
+### Example: defining a method
+The following example show the definitions of the `init` and `getBalance` methods in the `Procedure Division` of the Account class.
+
+```
+....
+
+Procedure Division.
+*
+*    init method to initialize the account:
+   Identification Division.
+   Method-id. "init".
+   Data division.
+   Linkage section.
+   01 inAccountNumber pic S9(9) binary.
+   Procedure Division using by value inAccountNumber.
+   Move inAccountNumber to AccountNumber.
+   End method "init".
+*
+*    getBalance method to return the account balance:
+   Identification Division.
+   Method-id. "getBalance".
+   Data division.
+   Linkage section.
+   01 outBalance pic S9(9) binary.
+   Procedure Division returning outBalance.
+   Move AccountBalance to outBalance.
+   End method "getBalance".
+*
+
+....
+```
+---
+
+
+## Client Definition
+A client of a class is A program or method that requests services from one or more methods in this class.
+
+In a client, you can:
+- Create object instances of classes.
+- Invoke instance methods on objects.
+- Invoke factory and static methods.
+
+a client program must be:
+- Recursive (declared `RECURSIVE` in the `PROGRAM-ID` paragraph)
+- Thread-enabled (compiled with the THREAD option, and conforming to the coding guidelines for threaded applications)
+
+---
+### A COBOL client program consists of :
+
+`IDENTIFICATION Division` (required)
+- used to name a client
+---
+
+`ENVIRONMENT Division` (required)
+- Describe the computing environment, and relate class-names used in the client to the corresponding external class-names
+  known outside the compilation unit.
+
+**Required Syntax**
+- `CONFIGURATION SECTION`
+
+
+- `REPOSITORY` paragraph for defining a client
+    - In the `REPOSITORY` paragraph, you must code an entry for each class-name that you explicitly reference in the client.
+    - In an entry, you must specify the external class-name if the name contains non-COBOL characters.
+
+Example:
+
+a client program that uses the Account class
+```
+  Environment division.
+  Configuration section.
+  Source-Computer.  IBM-390.
+  Object-Computer.  IBM-390.
+  Repository.
+  Class Account is "Account".
+```
+- The `SOURCE-COMPUTER`, `OBJECT-COMPUTER`, and `SPECIAL-NAMES` paragraphs of the `CONFIGURATION` SECTION are optional.
+---    
+
+`DATA Division` (optional)
+- Describe the data that the client needs.
+
+Example
+```
+  Data Division.
+  Local-storage section.
+  01  anAccount        usage object reference Account.
+  01  aCheckingAccount usage object reference CheckingAccount.
+  ....
+```
+- object references are references to instances of the classes.
+
+- object references in the code above are called `typed object references` because a class-name appears after the OBJECT REFERENCE phrase.
+    - A `typed object reference` can refer only to an instance of the class named in the OBJECT REFERENCE phrase or to one of its subclasses.
+
+
+- universal object reference does not have a class-name after the OBJECT REFERENCE phrase which means that it can refer to instances of any class.
+---
+
+
+`PROCEDURE` Division (optional)
+- Create instances of classes, manipulate object reference data items, and invoke methods, using `INVOKE`, `IF`, and `SET` statements.
+
+---
+
+
+### Creating and initializing instances of classes
+Before you can use the instance methods that are defined in a Java or COBOL class, you must first create an instance of the class.
+
+To create a new instance of class class-name and to obtain a reference object-reference to the created object
+- code a statement of the following form, where object-reference is defined in the `DATA DIVISION` of the client:
+```
+INVOKE class-name NEW . . . RETURNING object-reference
+```
+
+---
+### Invoking methods
+
+you can invoke methods that are defined in classes by coding the `INVOKE` statement.
+
+the name of the method to be invoked is either as a literal, or an identifier whose value at run time matches the method-name
+in the signature of the target method.
+```
+  Invoke objRef "literal-name"  . . .
+  Invoke objRef identifier-name . . .
+```
+
+#### USING phrase for passing arguments
+If you pass arguments to a method, specify the arguments in the `USING` phrase of the `INVOKE` statement.
+- Code the data type of each argument so that it conforms to the type of the corresponding formal parameter in the intended target method.
+
+
+If the argument is an object reference :
+- In a COBOL client, the class of an argument cannot be a subclass of the class of the corresponding parameter.
+
+You must specify that the arguments are passed BY VALUE. In other words, the arguments are not affected by any change to the corresponding formal parameters in the invoked method.
+
+---
+
+#### RETURNING phrase for obtaining a returned value
+If a data item is to be returned as the method result, specify the item in the `RETURNING`
+phrase of the `INVOKE` statement.
+
+Define the returned item in the `DATA DIVISION` of the client.
+
+---
+#### Invoking overridden superclass methods
+
+you can invoke an overridden superclass method instead of invoking a method that has the same signature and is defined in the current class by using `Super`
+
+Example: `Invoke Super "method-mane" Using By Value argument-name.`
+- The keyword `SUPER` indicates that you want to invoke a superclass method rather than a method in the current class.
+
+---
+#### Example
+```
+Invoke Account "createAccount"
+   using by value 123456
+   returning anAccount
+Invoke anAccount "credit" using by value 500.
+```
+- The first example INVOKE statement above uses the class-name Account to invoke a method called createAccount.
+- This method must be either defined or inherited in the Account class, and must be one of the following types:
+    - A Java static method
+    - A COBOL factory method
+
+
+- The phrase `using by value 123456` indicates that 123456 is an input argument to the method, and is passed by value.
+
+
+- The input argument and the returned data item must conform to the definition of the formal parameters and return type, respectively, of the method.
+
+#### Notes:
+- When the method-name is an identifier, you must define the object reference as a universal object reference.
+
+
+- If an invoked method is not supported in the class to which the object
+  reference refers, a severity-3 Language Environment condition is raised at
+  run time unless you code the `ON EXCEPTION` phrase in the `INVOKE` statement.
+
+
+- You can use the optional scope terminator `END-INVOKE` with the `INVOKE` statement.
+
+
+- The `INVOKE` statement does not set the RETURN-CODE special register.
+---
+
+### Comparing and setting object references
+You can compare object references by coding conditional statements,
+and you can set object references by using the SET statement.
+
+Example: ```If anAccount = Null . . .```
+
+You can make an object reference refer to no object instance by using the SET statement.
+
+Example: `Set anAccount To Null.`
+
+You can also make one object reference refer to the same instance as another object reference does by using the SET statement.
+
+Example: `Set anotherAccount To anAccount.`
+-  If the receiver (`anotherAccount`) is a typed object reference, the sender (`anAccount`) must be a typed object reference bound to the same class as the receiver or to one of its subclasses.
+
+Within a method you can make an object reference refer to the object instance on
+which the method was invoked by setting it to `SELF`.
+
+Example: `Set anAccount To Self.`
+
+---
+### Notes :
+
+- You must define, in the `REPOSITORY` paragraph of the `CONFIGURATION SECTION`,
+  class-names that you use in the OBJECT REFERENCE phrase.
+
+
+-  if the program could simultaneously run on multiple threads, you might instead want to define the data in the `LOCAL-STORAGE` SECTION instead of `WORKING-STORAGE`, because
+- Each thread has access to a separate copy of `LOCAL-STORAGE` data but shares access to a single copy of `WORKING-STORAGE` data.
+- If you define the data in the `WORKING-STORAGE` SECTION, you need to synchronize access to the data or ensure that no two threads can access it simultaneously.
+---
+
+### Example: defining a client
+The following example shows a small client program of the Account class.
+
+The program does this:
+- Invokes a factory method createAccount to create an Account instance with a default balance of zero
+- Invokes the instance method credit to deposit $500 to the new account
+- Invokes the instance method print to display the account status
+
+```
+cbl dll,thread,pgmname(longmixed)
+ Identification division.
+ Program-id. "TestAccounts" recursive.
+ Environment division.
+ Configuration section.
+ Repository.
+     Class Account is "Account".
+ Data Division.
+*  Working data is declared in LOCAL-STORAGE instead of 
+*  WORKING-STORAGE so that each thread has its own copy: 
+ Local-storage section.
+ 01  anAccount usage object reference Account.
+*
+ Procedure division.
+ Test-Account-section.
+     Display "Test Account class"
+*  Create account 123456 with 0 balance:
+     Invoke Account "createAccount"
+       using by value 123456
+       returning anAccount
+*  Deposit 500 to the account: 
+     Invoke anAccount "credit" using by value 500
+     Invoke anAccount "print"
+     Display space
+*
+     Stop Run.
+ End program "TestAccounts".
+```
+
+---
+
+
+## Structuring OO applications
+You can structure applications that use object-oriented COBOL syntax in one of **three** ways.
+
+An OO application can begin with:
+- A COBOL program, which can have any name.
+    - Under z/OS UNIX, you can run the application by specifying the name of the linked module (which should match the program name) at the command prompt,
+      you can also bind the program as a module in a PDSE and run it in JCL using the EXEC PGM statement.
+
+
+- A Java class definition that contains a method called `main`.
+    -  Declare main as public, static, and void, with a single parameter of type String[].
+    - You can run the application with the java command, specifying the name of the class that contains main, and zero or more strings as command-line arguments.
+
+
+- A COBOL class definition that contains a factory method called `main`.
+    - Declare main with no RETURNING phrase and a single `USING` parameter,
+      an object reference to a class that is an array with elements of type java.lang.String
+    - Structure an OO application this way if you want to:
+        - Run the application by using the java command.
+        - Run the application in an environment where applications must start with the main method
+          of a Java class (such as a Java dependent region).
+        - Follow standard Java programming practice.
+
+---
+### Example: COBOL applications that run using the java command
+The following examples show COBOL class definitions that contain a factory method called `main`.
+
+main has no RETURN phrase and has a single `USING` parameter, an object reference to a class that is an array with elements of type `java.lang.String`.
+
+You can run these applications by using the java command.
+
+```
+cbl dll, thread
+ Identification Division.
+ Class ID. CBLmain inherits Base.
+ Environment Division.
+ Configuration section.
+ Repository.
+     Class Base is "java.lang.Object"
+     Class stringArray is "jobjectArray: java.lang.String"
+     Class CBLmain is "CBLmain".
+*
+ Identification Division.
+ Factory.
+  Procedure division.
+*
+   Identification Division.
+   Method ID. "main".
+   Data division.
+   Linkage section.
+   01 SA usage object reference stringArray.
+   Procedure division using by value SA.
+     Display ">> COBOL main method entered"
+     .
+   End method "main".
+ End factory.
+ End class CBLmain.
+```
+
+----
+
+
 # COBOL Challenges
 As you have now handled some basic exercises, we have prepared a new section containing more advanced exercises that test your ability to resolve bugs and other issues in COBOL programs. Each exercise will have a short description and a goal to be accomplished.
 
