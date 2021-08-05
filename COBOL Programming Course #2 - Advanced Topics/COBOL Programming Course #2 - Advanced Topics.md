@@ -668,11 +668,35 @@ To see more details on the limitation of COBOL with multithreading, check out th
 
 # SORT and MERGE
 
-## Intro
 Sometime when we want to process a file we need it to be sorted, COBOL provides the `SORT` verb for this.
 
 If we have two or more file that are sorted using the same key or keys, we can combine them into one sorted file
 using COBOL `MERGE` verb.
+
+- **`SORT` Syntax**
+- **`SORT` Rules**
+  - **`SORT` Example**
+  
+- **Using `INPUT` with `SORT`**
+  - **Syntax**
+  - **Rules**
+  - **writing an `INPUT PROCEDURE`**
+  
+- **Using `OUTPUT` with `SORT`**
+  - **Syntax**
+  - **Rules**
+  - **writing an `OUTPUT PROCEDURE`**
+
+- **`MERGE`**
+
+- **`MERGE` Syntax**
+
+- **Merge Example:**
+
+- **`MERGE` Notes**
+    
+
+
 ---
 ## `SORT` Syntax
 
@@ -756,9 +780,9 @@ Let's say for example I have a file with the company employee data, and I want t
     - Note: *the data in the work file will be released when the program is done*
 
 
-2. in the `DATA DEVISION` we put the file description for the input, output, and working files
+2. in the `DATA DIVISION` we put the file description for the input, output, and working files
 ```
-DATA DEVISION.
+DATA DIVISION.
 FILE SECTION.
 FD EMPLOYEEFILE.
 ....
@@ -938,9 +962,9 @@ Two files (employees, interns) are to be merged together by first and last name:
              SELECT WORKFILE ASSIGN TO "WORK.TMP".
              ....
 
-2. in the `DATA DEVISION` we put the file description for the input, output, and working files
+2. in the `DATA DIVISION` we put the file description for the input, output, and working files
 
-       DATA DEVISION.
+       DATA DIVISION.
        FILE SECTION.
        FD EMPLOYEEFILE.
        ....
@@ -971,8 +995,7 @@ Begin.
 - Note: the output can be written to one or more file or process internally by the  program
 ---
 ## `MERGE` Notes
-- The results of the `MERGE` verb are predictable only when
-    - the records in the input files are ordered as described in the KEY clause.
+- The results of the `MERGE` verb are predictable only when the records in the input files are ordered as described in the KEY clause.
 
 
 - The `MERGE` can use an `OUTPUT PROCEDURE `, and the `RETURN` verb to get merged records from the work file.
