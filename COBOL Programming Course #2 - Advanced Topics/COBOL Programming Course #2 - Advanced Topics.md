@@ -666,19 +666,16 @@ To see more details on the limitation of COBOL with multithreading, check out th
 
 \newpage
 
-
 # COBOL Object-Oriented
+
+This chapter is an introduction to Object-Oriented programming using COBOL.
+
+Object-Oriented programs are based on objects (entities that encapsulate state and behavior) and their classes, methods, and data.
 
 To write an object-oriented (OO) program, you have to determine what **classes** you need and
 the **methods** and **data** that the classes need to do their work.
 
-OO programs are based on objects (entities that encapsulate state and behavior) and their classes, methods, and data.
 
-a program creates and works with multiple object instances of a class (multiple objects that are members of that class).
-
-
-- **Numbering Systems**
-    - **Binary System**
 
 - **object-oriented programs**
     - **Intro**
@@ -686,21 +683,17 @@ a program creates and works with multiple object instances of a class (multiple 
     - **Wrapping procedure-oriented COBOL programs**
     - **Notes**
     - **Example: Design an Account Class**
-    - 
 - **Class Definition**
     - **Class Structure**
     - **Notes**
     - **Example: defining a class**
-    - 
 - **Subclasses Definition**
-
 - **Defining a factory section**
     - **Factory structure**
     - **Defining a factory method**
     - **Hiding a factory or static method**
     - **Invoking factory or static methods**
     - **Notes**
-
 - **Instance method Definition**
     - **Structure of instance method definitions**
     - **Overriding an instance method**
@@ -708,7 +701,6 @@ a program creates and works with multiple object instances of a class (multiple 
     - **Coding attribute (get and set) methods**
     - **Notes**
     - **Example: defining a method**
-    - 
 - **Client Definition**
     - **Client structure**
     - **Creating and initializing instances of classes**
@@ -716,7 +708,6 @@ a program creates and works with multiple object instances of a class (multiple 
     - **Comparing and setting object references**
     - **Notes**
     - **Example: defining a client**
-    
 - **Structuring OO application**
     - **OOP program structure methods**
     - **Example: COBOL applications that run using the java command**
@@ -1632,6 +1623,8 @@ cbl dll, thread
 ```
 
 ----
+
+\newpage
 
 
 # COBOL Challenges
