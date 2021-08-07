@@ -669,29 +669,32 @@ To see more details on the limitation of COBOL with multithreading, check out th
 # Subprograms
 when control is transferred from the active program to an external program, but the transferring program remains active
 and control can be returned to it,
-
-
 the program to which control is transferred is called a **subprogram**.
 
+This chapter discusses subprograms, the different between them and a paragraph or a normal program
+, and how to call and work with them
+
 - **Subprograms in COBOL**
-  - **Difference between a paragraph and a subprogram**
-  - **Different between a program and subprogram**
+    - **Difference between a paragraph and a subprogram**
+    - **Different between a program and subprogram**
 
 - **Calling and Passing Arguments to a Subprogram**
-  - **Example**
-  - **The contents of The subprogram**
-  - **The subprogram Language**
+    - **The contents of The subprogram**
+    - **The subprogram Language**
 
 - **Flow of control between programs and subprograms**
 
 - **Rules for calling subprograms**
-  - **Location of subprogram**
-  - **Translation**
-  - **Compilation**
-  - **Link-editing**
-  - **CICS CSD entries without autoinstall program**
-  - **Recursive calls in COBOL**
-  - **Passing parameters to a subprogram**
+    - **Location of subprogram**
+    - **Translation**
+    - **Compilation**
+    - **Link-editing**
+    - **CICS CSD entries without autoinstall program**
+    - **Recursive calls in COBOL**
+    - **Passing parameters to a subprogram**
+    - **Return from a subprogram**
+    - **Storage**
+    - **CICS condition, AID, and `abend` handling**
 
 
 ## Subprograms in COBOL
@@ -1009,7 +1012,7 @@ for more information about program logical levels.**
 
 ---
 
-### CICS condition, AID, and abend handling
+### CICS condition, AID, and `abend` handling
 
 On every entry to the subprogram in a CICS logical level, a new initialized copy of its LOCAL-STORAGE SECTION is
 provided.
