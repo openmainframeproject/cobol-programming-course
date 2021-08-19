@@ -667,94 +667,192 @@ To see more details on the limitation of COBOL with multithreading, check out th
 \newpage
 
 # SORT and MERGE
-
 Sometime when we want to process a file we need it to be sorted, COBOL provides the `SORT` verb for this.
 
 If we have two or more file that are sorted using the same key or keys, we can combine them into one sorted file
 using COBOL `MERGE` verb.
 
-- **SORT Verb**
-    - **`SORT` Syntax**
-    - **`SORT` Rules**
-    - **`SORT` Example: Sorting an employee data file**
-    - **Using `INPUT` with `SORT`**
-        - **Syntax**
-        - **Rules**
-        - **writing an `INPUT PROCEDURE`**
-    - **Using `OUTPUT` with `SORT`**
-        - **Syntax**
-        - **Rules**
-        - **writing an `OUTPUT PROCEDURE`**
-- **MERGE Verb**
-    - **Syntax**
+- **SORT**
+    - **The formats of the SORT statement**
+    - **INPUT PROCEDURE phrase**
+    - **DUPLICATES phrase**
+        - **Format 1**
+        - **Format 2**
+    - **ASCENDING KEY and DESCENDING KEY phrases (format 2)**
+    - **SORT Example: Sorting an employee data file**
+- **Merge**
+    - **The Merge statement Format**
     - **Merge Example: merging employee, and interns data files together**
-    - **`MERGE` Notes**
+- **SORT & MERGE**
+    - **USING phrase**
+    - **GIVING phrase**
+    - **OUTPUT PROCEDURE phrase**
+    - **ASCENDING/DESCENDING KEY phrase**
+        - **KEYs rules**
+        - **KEYs types**
+        - **COLLATING SEQUENCE phrase**
+        - **Segmentation considerations**
 
 
+## SORT
+The `SORT` statement causes a set of records or table elements to be arranged in a user-specified sequence.
 
----
-## SORT Verb
+For sorting **files**, the `SORT` statement accepts records from one or more files, sorts them according to the specified
+keys, and makes the sorted records available either through an output procedure or in an output file.
 
-### `SORT` Syntax
+For sorting **tables**, the `SORT` statement sorts table elements according to specified table keys.
 
-The simplest version of a `SORT` statement can be as follows
-```
-SORT [WorkFileName]
-    ON [ASCENDING or DESCENDING] KEY [SortKey]
-    {WITH DUPLICATES IN ORDER}
-    {COLLATING SEQUENCE IS [character set]}
-    USING [InputFileName]
-    GIVEN [OutputFileName]
-```
-- `WorkFileName` :
-    - a temporary work file that the SORT process uses for the sort.
-    - defined in the `FILE SECTION` using an SD.
-    - it must have an associated `SELECT` and `ASSIGN` clause in the `ENVIRONMENT DIVISION`.
-    - a Sequential file with an organization of RECORD SEQUENTIAL.
+### The formats of the SORT statement
+The `SORT` statement has two formats,
+the first format is not supported for programs that are compiled with the `THREAD`
+option, while the second can be used with programs that are compiled with the `THREAD` option.
 
+both formats can be used anywhere in the `PROCEDURE DIVISION`.
 
-- `SortKey` :
-    - identifies a field in the record of the work file.
-    - The sorted file will be in sequence on this key field.
-    - you can have more than one SortKey
-        - when more than one SortKey is specified, the keys decrease in significance from left to right
+#### **Format 1 for sorting files:**
+![Sort statement format](Images/sort-and-merge/SORT-format-1.png)
+_Format 1 of a sort statement_
+
+`file-name-1`:
+- the sort process uses this file as temporary file during the sort
+- The name given in the SD entry that describes the records to be sorted.
 
 
-- `InputFileName` :
-    - the name of the input
+No pair of **file-names** in a `SORT` statement can be specified in the same **SAME SORT AREA** clause or the SAME
+**SORT-MERGE AREA** clause.
+
+**File-names** associated with the **GIVING** clause (file-name-3) cannot be specified in the **SAME AREA** clause,
+however, they can be associated with the **SAME RECORD AREA** clause.
+
+#### **Format 2 for sorting Tables:**
+![Sort statement format](Images/sort-and-merge/SORT-format2.png)
+_Format 2 of a sort statement_
+
+`data-name-2`
+- Specifies a table data-name that is subject to the following rules:
+    - must have an `OCCURS` clause in the data description entry.
+    - can be qualified.
+    - can be subscripted.
+        - The rightmost or only subscript of the table must be omitted or replaced with the word `ALL`.
 
 
-- `OutputFileName` :
-    - the name of the output
+The number of occurrences of table elements that are referenced by `data-name-2` is determined by the rules in the
+**OCCURS** clause.
+
+The sorted table elements are placed in the same table that is referenced by **data-name-2**.
+
+The `SORT` statement sorts the table that is referenced by `data-name-2` and presents the sorted table in` data-name-2`.
+
+The sorting order is determined by either the `ASCENDING` and `DESCENDING` phrases (if specified), or by the KEY phrase
+that is associated with `data-name-2`.
+
+--------
+
+### INPUT PROCEDURE phrase
+This phrase specifies the name of a procedure that is to select or modify input records before the sorting operation
+begins.
+
+`procedure-name-1`
+- Specifies the first (or only) section or paragraph in the input procedure.
+
+`procedure-name-2`
+- Identifies the last section or paragraph of the input procedure.
+
+This procedure can consist of any procedure needed to select, modify, or copy the records that are made available one
+at a time by the `RELEASE` statement to the file referenced by `file-name-1`.
+
+If an input procedure is specified, control is passed to the input procedure before the file referenced by `file-name-1`
+is sequenced by the `SORT` statement
+
+The compiler inserts a return mechanism at the end of the last statement in the input procedure.
+
+When control passes the last statement in the input procedure, the records that have been released to the file
+referenced by `file-name-1` are sorted.
+
+The range includes all statements that are executed as the result of a transfer of control by `CALL`, `EXIT`, `GO TO`,
+`PERFORM`, and XML PARSE statements in the range of the input procedure, as well as all statements in declarative
+procedures that are executed as a result of the execution of statements in the range of the input procedure.
 
 
-- `DUPLICATES` (optional) :
-    - If the `DUPLICATES` clause is used then, when the file has been sorted, the order of records with the duplicate keys
-      is the same as that in the unsorted file.
-    - If no `DUPLICATES` clause is used, the order of records with duplicate keys is **undefined**.
+The range of the input procedure must not cause the execution of any `MERGE`, `RETURN`, or format 1 `SORT` statement.
+
+### DUPLICATES phrase
+#### Format 1
+If the `DUPLICATES` phrase is specified, and the contents of all the key elements associated with one record are equal
+to the corresponding key elements in one or more other records, the order of return of these records is as follows:
+- The order of the associated input files as specified in the SORT statement, and Within a given file the order is that
+  in which the records are accessed from that file.
+- or, the order in which these records are released by an input procedure, **when an input procedure is specified.**
+
+If the `DUPLICATES` phrase is not specified, the order of these records is undefined.
+
+#### Format 2
+The contents of table elements are in the relative order that is the same as the order before sorting operation,
+When both of the following conditions are met:
+1. The `DUPLICATES` phrase is specified
+2. The contents of all the key data items that are associated with one table element are equal to the contents of
+   corresponding key data items that are associated with one or more other table elements.
+
+If the `DUPLICATES` phrase is not specified and the second condition exists, the relative order of the contents of these
+table elements is undefined.
+
+### ASCENDING KEY and DESCENDING KEY phrases (format 2)
+For format 1 these phrases are exactly the same as Merge KEY phrases, so it will be discussed in a joined subchapter at
+the end of the chapter.
+
+**For Format 2:**
+
+This phrase specifies that **table** elements are to be processed in ascending or descending sequence,
+based on the specified phrase and sort keys.
+
+The KEY phrase can be omitted only if the description of the table that is referenced by `data-name-2` contains a KEY
+phrase.
+
+`data-name-1`
+- Specifies a KEY data name that is subject to the following rules:
+    - The data item that is identified by a key data-name must be the same as, or subordinate to, the data item that is
+      referenced by `data-name-2`.
+    - KEY data items can be qualified.
+
+If the data item that is identified by a KEY data-name is subordinate to `data-name-2`, the following rules apply:
+- The data item cannot be described with an `OCCURS` clause.
+- The data item cannot be subordinate to an entry that is also subordinate to `data-name-2` and that contains an `OCCURS` clause.
+
+The words `ASCENDING` and `DESCENDING` are transitive across all occurrences of `data-name-1` until another word
+`ASCENDING` or `DESCENDING` is encountered.
 
 
-- `COLLATING SEQUENCE` (optional) :
-    - This clause is used to select the character set the SORT verb uses for collating the records in the file.
-    - `[character set]` can be ASCII, EBCDIC,or user-defined.
----
-### `SORT` Rules
-- SORT can be used anywhere in the `PROCEDURE DIVISION` except in
-    - an `INPUT` or `OUTPUT PROCEDURE`,
-    -  another `SORT`, or a `MERGE`,
-    - in the `DECLARATIVES SECTION`.
+The data items that are referenced by `data-name-1` are key data items, and these data items determine the order in which
+the sorted table elements are stored.
 
+The order of significance of the keys is the order in which data items are specified in the `SORT` statement, without
+regard to the association with `ASCENDING` or `DESCENDING` phrases.
 
-- The records described for the input file must be able to fit into the records described for the work file.
+To determine the relative order in which table elements are stored, the contents of corresponding key data items are
+compared according to the rules for comparison of operands in a relation condition.
 
+The sorting starts with the most significant key data item with the following rules:
+- If the contents of the corresponding key data items are not equal and the key is associated with the `ASCENDING`
+  phrase, the table element that contains the key data item with the lower value has the lower occurrence number.
 
-- The sort key cannot contain an `OCCURS` clause (can't be a table) nor can it be subordinate to an entry that does contain one.
+- If the contents of the corresponding key data items are not equal and the key is associated with the `DESCENDING` phrase,
+  the table element that contains the key data item with the higher value has the lower occurrence number.
+- If the contents of the corresponding key data items are equal, the determination is based on the contents of the next
+  most significant key data item.
 
+If the KEY phrase is not specified, the sequence is determined by the KEY phrase in the data description entry of the
+table that is referenced by `data-name-2`.
 
-- The input and output files are automatically opened by the SORT.
-    - When the SORT executes they must not be open already.
+If the KEY phrase is specified, it overrides any KEY phrase specified in the data description entry of the table that
+is referenced by `data-name-2`.
 
----
+If `data-name-1` is omitted, the data item that is referenced by `data-name-2` is the key data item.
+
+Format 2 `KEY` data items cannot be:
+- Class object or pointer
+- USAGE OBJECT, USAGE POINTER, USAGE PROCEDURE-POINTER, or USAGE FUNCTION-POINTER
+- Subscripted
+
 ### `SORT` Example: Sorting an employee data file
 Let's say for example I have a file with the company employee data, and I want to sort it using the first name in
 **ASCENDING** order.
@@ -778,26 +876,25 @@ Let's say for example I have a file with the company employee data, and I want t
 
 
 2. in the `DATA DIVISION` we put the file description for the input, output, and working files
-```
-DATA DIVISION.
-FILE SECTION.
-FD EMPLOYEEFILE.
-....
-FD SORTEDEMPLOYEES.
-....
-SD WORKFILE.
-01 WORKREC
-   ....
-   02 WSEMPLOYEEFNAME PIC X(10).
-   02 WSEMPLOYEELNAME PIC X(10).
-   .....
-```
+    ```
+    DATA DIVISION.
+    FILE SECTION.
+    FD EMPLOYEEFILE.
+    ....
+    FD SORTEDEMPLOYEES.
+    ....
+    SD WORKFILE.
+    01 WORKREC
+       ....
+       02 WSEMPLOYEEFNAME PIC X(10).
+       02 WSEMPLOYEELNAME PIC X(10).
+       .....
+    ```
 - Note: *the work file is defined with `SD` and the definition of it contains
   the names of the filed we want to use for the sorting*
 
 
-3. in the `PROCEDURE DIVISION` we
-    - sort the work file on a key using the input file and given the output file
+3. in the `PROCEDURE DIVISION` we sort the work file on a key using the input file and given the output file
     ```
      PROCEDURE DIVISION.
             BEGIN. 
@@ -807,162 +904,63 @@ SD WORKFILE.
     ```
 
     - the sort is done using the first name, we can use more than one key by adding the keys one after the other separated by comma
-        -  ex. sorting on first name and last name
-            - ` SORT WORKFILE ON ASCENDING KEY WSEMPLOYEEFNAME, WSEMPLOYEELNAME
-              USING EMPLOYEEFILE GIVEN SORTEDEMPLOYEES.`
----           
-### Using `INPUT` with `SORT`
+        - ex. sorting on first name and last name
+           ```
+              SORT WORKFILE ON ASCENDING KEY WSEMPLOYEEFNAME, WSEMPLOYEELNAME 
+                USING EMPLOYEEFILE GIVEN SORTEDEMPLOYEES.
+           ```
 
-An `INPUT PROCEDURE` allows us to select which records, and what type of records, will be submitted to the sort process.
+## MERGE
+The `MERGE` statement combines two or more identically sequenced files on one or more keys and makes records available
+in merged order to an output procedure or output file.
 
-An `INPUT PROCEDURE` can be used to :
-- eliminate unwanted records,
-- or to alter the format of the records, before they are submitted to the sort process.
+The files must have already been sorted according to an identical set of ascending or descending keys before it is merged.
 
-- When an `INPUT PROCEDURE` is used, it replaces the `USING` phrase
-- The `INPUT PROCEDURE` must finish before the sort process sorts the records supplied to it by the procedure.
+A `MERGE` statement can appear anywhere in the `PROCEDURE DIVISION` except in a declarative section, and
+is not supported for programs compiled with the `THREAD` compiler option.
 
-#### Syntax
-```
-SORT [WorkFileName]
-ON [ASCENDING or DESCENDING] KEY [SortKey]
-{WITH DUPLICATES IN ORDER}
-{COLLATING SEQUENCE IS [character set]}
-INPUT PROCEDURE IS [process name]
-GIVEN [OutputFileName]
-
-```
-
-- `process name` :
-    - identifies a block of code, that uses the RELEASE verb to supply records to the sort process.
-
-#### Rules
-- The `INPUT PROCEDURE` must contain at least one RELEASE statement to transfer the records to the work file
+### The Merge statement Format
+![MERGE statement format](Images/sort-and-merge/MERGE-format.png)
+- _Merge statement format_
 
 
-- INPUT procedures can be any contiguous group of paragraphs or sections.
-    - The only restriction is that the range of paragraphs or sections used, must not overlap.
+`file-name-1`
+- The name given in the `SD` entry that describes the records to be merged.
 
-Note : *The old COBOL (before COBOL '85) rules stated that the INPUT procedures had to be self-contained sections of code,
-and could not be entered from elsewhere in the program.*
+No file-name can be repeated in the **MERGE** statement.
 
+No pair of file-names in a **MERGE** statement can be specified in the same `SAME AREA`,
+`SAME SORT AREA`, or SAME `SORT-MERGE AREA` clause.
 
-#### writing an `INPUT PROCEDURE`
-An `INPUT PROCEDURE` supplies records to the sort process by writing them to the work file.
+However, any file-names in the `MERGE` statement can be specified in the
+same `SAME RECORD AREA` clause.
 
-- to write the records to the work file the RELEASE verb is used
-    - `RELEASE [RecordName]`
-        -  `RecordName` is the name of the record declared in the work file
+When the `MERGE` statement is executed, all records contained in `file-name-2`, `file-name-3` are
+accepted by the merge program and then merged according to the keys specified.
 
-- Example
-```
-  OPEN INPUT [InputFile]
-  READ [InputFile]
-  PERFORM UNTIL TerminatingCondition
-    Process input record
-    RELEASE SDWorkRec
-    READ InputFile
-  END-PERFORM
-  CLOSE InputFile
-
-```
-
----
-### Using `OUTPUT` with `SORT`
-an `OUTPUT PROCEDURE` executes when the sort process has already sorted the file.
-
-an `OUTPUT PROCEDURE` is useful when we don't need to preserve the sorted file.
-
-An `OUTPUT PROCEDURE` is also useful when we want to alter the structure of the records written to the sorted file.
-
-if we are sorting records to produce a once-off report,
-we can use an `OUTPUT PROCEDURE` to create the report directly
-
-
-
-#### Syntax
-```
-SORT [WorkFileName]
-ON [ASCENDING or DESCENDING] KEY [SortKey]
-{WITH DUPLICATES IN ORDER}
-{COLLATING SEQUENCE IS [character set]}
-USING [InputFile]
-OUTPUT PROCEDURE IS [Process name]
-
-```
-
-- `process name` :
-    - used to retrieve sorted records from the work file using the `RETURN` verb.
-
-
-#### Rules
-- An `OUTPUT PROCEDURE` must contain at least one RETURN statement to get the records from the SortFile.
-
-
-- The `GIVING phrase` cannot be used if an `OUTPUT PROCEDURE` is used.
-
-
-#### writing an `OUTPUT PROCEDURE`
-An `OUTPUT PROCEDURE` uses the `RETURN` verb to read sorted records from the work file
-
-- to read the records to the work file the RETURN verb is used
-    - `RELEASE [RecordName] RECORD`
-        - `RecordName` is the name of the record declared in the work file
-
-- Example
-```
-    OPEN OUTPUT OutputFile
-    RETURN SDWorkFile RECORD
-    PERFORM UNTIL TerminatingCondition
-        Setup OutRec
-        WRITE OutRec
-        RETURN SDWorkFile RECORD
-    END-PERFORM
-    CLOSE OutputFile
-
-```
----
-
-## MERGE Verb
-The `MERGE` verb takes two or more identically sequenced files and combines them,
-according to the key values specified.
-
-The combined file is then sent to an output file or an `OUTPUT PROCEDURE`.
-
----
-### `MERGE` Syntax
-```
-    MERGE WorkFile
-    ON [ASCENDING or DESCENDING] KEY [MergeKey]
-    {COLLATING SEQUENCE IS [character set]}
-    USING [InputFileName1, InputFileName2, ....]
-    GIVEN [OutputFileName]
-
-```
-
-
----
 ### Merge Example: merging employee, and interns data files together
 Two files (employees, interns) are to be merged together by first and last name:
 1. in the `ENVIRONMENT DIVISION` we define
     - **the files to be sorted** (the input file),
     - the **sorted file**,
     - the **work file**
+    ```
+    ENVIRONMENT DIVISION.
+    FILE-CONTROL.
+    SELECT EMPLOYEEFILE ASSIGN TO "employees.DAT"   
+    ....
+    SELECT INTERNFILE ASSIGN TO "interns.DAT"   
+    ....
+    SELECT SORTEDEMPLOYEES ASSIGN TO "sortedEmployees.DAT"
+    ....
+    SELECT WORKFILE ASSIGN TO "WORK.TMP".
+    ....
 
-             ENVIRONMENT DIVISION.
-             FILE-CONTROL.
-             SELECT EMPLOYEEFILE ASSIGN TO "employees.DAT"   
-             ....
-             SELECT INTERNFILE ASSIGN TO "interns.DAT"   
-             ....
-             SELECT SORTEDEMPLOYEES ASSIGN TO "sortedEmployees.DAT"
-             ....
-             SELECT WORKFILE ASSIGN TO "WORK.TMP".
-             ....
+    ```
 
 2. in the `DATA DIVISION` we put the file description for the input, output, and working files
-
-       DATA DIVISION.
+    ````
+    DATA DIVISION.
        FILE SECTION.
        FD EMPLOYEEFILE.
        ....
@@ -976,30 +974,203 @@ Two files (employees, interns) are to be merged together by first and last name:
            02 WSEMPLOYEEFNAME PIC X(10).
            02 WSEMPLOYEELNAME PIC X(10).
            .....
+    
+    ````
 
 3. in the `PROCEDURE DIVISION` we sort the work file on a key or keys
    using the input file and given the output file
-```
-PROCEDURE DIVISION.
-Begin.
-    MERGE WORKFILE ON ASCENDING KEY
-        WSEMPLOYEEFNAME, WSEMPLOYEELNAME
-        USING EMPLOYEEFILE INTERNFILE
-        GIVEN SORTEDEMPLOYEES.
-.....
-
-```
+    ```
+    PROCEDURE DIVISION.
+    .....
+        MERGE WORKFILE ON ASCENDING KEY
+            WSEMPLOYEEFNAME, WSEMPLOYEELNAME
+            USING EMPLOYEEFILE INTERNFILE
+            GIVEN SORTEDEMPLOYEES.
+    .....
+    
+    ```
 
 - Note: the output can be written to one or more file or process internally by the  program
----
-### `MERGE` Notes
-- The results of the `MERGE` verb are predictable only when the records in the input files are ordered as described in the KEY clause.
+
+## SORT & MERGE
+The `SORT` and `MERGE` have some common Syntax and behaviour and follow some rules in the same way, so instead of discussing
+them twice for both subchapter, they will be discussed here and can be applied to both.
+
+### USING phrase
+`file-name-2` in the sort statement, and `file-name-2` , `file-name-3` in the merge statement are the input files.
+
+At the time the statement is executed, these files must not be open.
+
+The input files are automatically opened, read, and closed.
+
+All input files must be described in `FD` entries in the `DATA DIVISION`.
+
+During the operation, all the records on the input files are transferred to `file-name-1`.
+
+If `file-name-1` contains variable-length records, the size of the records contained in the input files must be neither
+less than the smallest record nor greater than the largest record described for `file-name-1`.
+
+If `file-name-1` contains fixed-length records, the size of the records contained in the input files must not be greater
+than the largest record described for `file-name-1`.
+
+### GIVING phrase
+`file-name-3` in the sort statement, and `file-name-4` in the merge statement are the output files.
+
+When the `GIVING` phrase is specified, all the merged or sorted records in `file-name-1` are automatically transferred to
+the output files.
+
+All output files must be described in `FD` entries in the `DATA DIVISION`.
+
+If the output files contain variable-length records, the size of the records contained in `file-name-1` must be neither
+less than the smallest record nor greater than the largest record described for the output files.
+
+If the output files contain fixed-length records, the size of the records contained in `file-name-1` must not be
+greater than the largest record described for the output files.
+
+At the time the `SORT` or `MERGE` statement is executed, the output files must not be open, the output files are
+automatically opened, written to, and closed.
+
+### OUTPUT PROCEDURE phrase
+This phrase specifies the name of a procedure that is to select or modify output records from the sort or merge operation.
+
+If an output procedure is specified, control passes to it after the file referenced by `file-name-1` has been sequenced
+by the `SORT` or `MERGE` statement.
 
 
-- The `MERGE` can use an `OUTPUT PROCEDURE `, and the `RETURN` verb to get merged records from the work file.
----
+`procedure-name-1`
+- Specifies the first (or only) section or paragraph in the `OUTPUT PROCEDURE`.
+
+`procedure-name-2`
+- Identifies the last section or paragraph of the `OUTPUT PROCEDURE`.
+
+
+The `OUTPUT PROCEDURE` can consist of any procedure needed to select, modify, or copy the records that are made
+available one at time by the `RETURN` statement in order from the file referenced by `file-name-1`.
+
+The range includes all statements that are executed as the result of a transfer of control by `CALL`, `EXIT`, `GO TO`,
+`PERFORM`, and XML PARSE statements in the range of the output procedure.
+
+
+The range also includes all statements in declarative procedures that are executed as a result of the execution of
+statements in the range of the output procedure.
+
+
+The range of the output procedure must not cause the execution of any `MERGE`, `RELEASE`, or format 1 SORT statement.
+
+
+The compiler inserts a return mechanism at the end of the last statement in the output procedure and when control passes
+the last statement in the output procedure, the return mechanism provides the termination of the sort or merge and then
+passes control to the next executable statement after the statement.
+
+The **RETURN** statements in the output procedure are the requests for the next record.
+
+Before entering the output procedure, the procedure reaches a point at which it can select the next record in order when
+requested.
+
+The last statement in an `OUTPUT PROCEDURE` can be the `EXIT` statement.
+
+The `OUTPUT PROCEDURE` phrase is similar to a basic `PERFORM` statement.
+
+if you name a procedure in an `OUTPUT PROCEDURE`, that procedure is executed during the sorting or merging operation
+just as if it were named in a `PERFORM` statement.
+
+### ASCENDING/DESCENDING KEY phrase
+This phrase specifies that records are to be processed in ascending or descending sequence
+(depending on the phrase specified), based on the specified keys.
+
+`data-name-1`
+- Specifies a KEY data item on which the merge, or sort will be based.
+- Each such data-name must identify a data item in a record associated with `file-name-1`.
+
+The direction of the merge operation depends on the specification of the `ASCENDING` or `DESCENDING` keywords as follows:
+- When `ASCENDING` is specified, the sequence is from the lowest key value to the highest key value.
+- When `DESCENDING` is specified, the sequence is from the highest key value to the lowest key value.
+
+The data-names following the word KEY are listed from left to right in the statement in order of decreasing
+significance without regard to how they are divided into KEY phrases.
+
+The leftmost **data-name** is the major key, the next **data-name** is the next most significant key, and so forth.
+
+#### KEYs rules
+- A specific KEY data item must be physically located in the same position and have the same data format in each input file.
+  However, it need not have the same data-name.
+- If `file-name-1` has more than one record description, the KEY data items need be described in only one of the record descriptions.
+- If `file-name-1` contains variable-length records, all the KEY data-items must be contained within the first n character positions
+  of the record, where n equals the minimum records size specified for `file-name-1`.
+- KEY data items must not contain an `OCCURS` clause or be subordinate to an item that contains an `OCCURS` clause.
+- KEY data items can be qualified.
+- If the KEY data item is described with usage NATIONAL, the sequence of the KEY values is based on the binary values
+  of the national characters.
+- If the KEY data item is internal floating point, the sequence of key values will be in numeric order.
+
+When the `COLLATING SEQUENCE` phrase is not specified, the key comparisons are performed according to the rules for
+comparison of operands in a relation condition.
+
+When the `COLLATING SEQUENCE` phrase is specified, the indicated collating sequence is used for key data items of
+alphabetic, alphanumeric, alphanumeric-edited, external floating-point, and numeric-edited categories.
+
+For all other key data items, the comparisons are performed according to the rules for comparison of operands in a
+relation condition.
+
+#### KEYs types
+KEY data items can be any of the following data categories:
+- Alphabetic, alphanumeric, alphanumeric-edited
+- Numeric (except numeric with usage NATIONAL)
+- Numeric-edited (with usage DISPLAY or NATIONAL)
+- Internal floating-point or display floating-point
+- National or national-edited
+
+KEY data items cannot be:
+- Variably located
+- Group items that contain variable-occurrence data items
+- Category numeric described with usage NATIONAL (national decimal type)
+- Category external floating-point described with usage `NATIONAL` (national floating-point)
+- Category `DBCS`
+- Dynamic-length elementary items
+- Dynamic-length group items
+
+### COLLATING SEQUENCE phrase
+This phrase specifies the collating sequence to be used in alphanumeric comparisons for the KEY data items in the operation.
+
+The `COLLATING SEQUENCE` phrase has no effect for keys that are not alphabetic or alphanumeric.
+
+When the `COLLATING SEQUENCE` phrase is omitted, the PROGRAM `COLLATING SEQUENCE` clause (if specified) in the
+`OBJECT-COMPUTER` paragraph identifies the collating sequence to be used.
+
+When both the `COLLATING SEQUENCE` phrase of the statement and the PROGRAM `COLLATING SEQUENCE` clause of the
+`OBJECT-COMPUTER` paragraph are omitted, the **EBCDIC** collating sequence is used.
+
+`alphabet-name-1`
+- Must be specified in the `ALPHABET` clause of the `SPECIAL-NAMES` paragraph.
+  Any one of the alphabet-name clause phrases can be specified, with the following results:
+- `STANDARD-1`
+    - The **ASCII** collating sequence is used for all alphanumeric comparisons.
+
+- `STANDARD-2`
+    - The 7-bit code defined in the International Reference Version of ISO/IEC 646, 7-bit coded character set for
+      information interchange is used for all alphanumeric comparisons.
+- `NATIVE`
+    - The **EBCDIC** collating sequence is used for all alphanumeric comparisons.
+- `EBCDIC`
+    - The EBCDIC collating sequence is used for all alphanumeric comparisons.
+- `literal`
+    - The collating sequence established by the specification of literals in the `ALPHABET-NAME` clause is used for all
+      alphanumeric comparisons.
+
+### Segmentation considerations
+If a `SORT` or `MERGE` statement is coded in a **fixed** segment, any input or output procedure referenced by that statement
+must be:
+- totally within a fixed segment
+- or wholly contained in a single independent segment.
+
+
+If the statement is coded in an **independent** segment, any input or output procedure referenced by it must be:
+- totally within a fixed segment
+- or wholly contained within the **same** independent segment as that statement.
 
 \newpage
+
+
 # COBOL Challenges
 As you have now handled some basic exercises, we have prepared a new section containing more advanced exercises that test your ability to resolve bugs and other issues in COBOL programs. Each exercise will have a short description and a goal to be accomplished.
 
