@@ -10,8 +10,8 @@
 ## Meeting Minutes:
 Attendees: Mike, Sudharsana, Hartanto, Ahmed, Joe, Bernard
 
-1. Core Team members introductions
-2. Sudharsana a shared a brief overview of the COBOL project 
+1. Core Team member introductions
+2. Sudharsana shared a brief overview of the COBOL project 
 3. Hartanto & Ahmed shared in detail the work they have been driving through the Mentorship project
    - Updates to Chapter 1
    - Additional topics to Chapter 2
