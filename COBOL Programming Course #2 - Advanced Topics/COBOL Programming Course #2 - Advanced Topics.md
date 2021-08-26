@@ -700,36 +700,31 @@ This chapter discusses subprograms, the different between them and a paragraph o
 ## Subprograms in COBOL
 In COBOL, there are three ways of transferring control to a subprogram :
 
-1. `EXEC CICS LINK`
-    - The calling program contains a command in one of these forms:
-    ```
-    EXEC CICS LINK PROGRAM('subpgname')
-    EXEC CICS LINK PROGRAM(name)
-    ```    
-    - In the first form, the subprogram is an alphanumeric literal.
-    - In the second form, name refers to the COBOL data area with the name of the subprogram
+1. `EXEC CICS LINK` Where the calling program contains a command in one of these forms:
+```
+EXEC CICS LINK PROGRAM('subpgname')
+EXEC CICS LINK PROGRAM(name)
+```    
+In the first form, the subprogram is an alphanumeric literal, and in the second form, name refers to the COBOL data area with the name of the subprogram
 
 
-2. Static COBOL call
-    - The calling program contains a COBOL statement of the form:
-    ```
-     CALL 'subpgname'
-    ```
+2. Static COBOL call where the calling program contains a COBOL statement of the form:
+```
+CALL 'subpgname'
+```
 
-    - The subprogram is explicitly named as a literal string
+The subprogram is explicitly named as a literal string
 
 
-3. Dynamic COBOL call
-    - The calling program contains a COBOL statement of the form:
-    ```
-     CALL identifier
-    ```
+3. Dynamic COBOL call where the calling program contains a COBOL statement of the form:
+```
+CALL identifier
+```
 
-    - The identifier is the name of a COBOL data area that contain the name of the called subprogram.
+The identifier is the name of a COBOL data area that contain the name of the called subprogram.
 
 To learn more about the performance implications of using each of these methods to call a subprogram see
 [Enterprise COBOL Version 4 Release 2 Performance Tuning ](https://www.ibm.com/support/pages/enterprise-cobol-version-4-release-2-performance-tuning)
----
 
 ### Difference between a paragraph and a subprogram
 
@@ -746,7 +741,6 @@ their callers through the mechanism of shared data, as do the paragraphs
 
 subprograms communicate with their callers through the mechanism of argument-passing.
 
----
 
 ### Different between a program and subprogram
 
@@ -762,30 +756,27 @@ that makes a call to the subprogram.
 Finally, to terminate execution of a subprogram and return control to its caller, the statement `EXIT PROGRAM` is used,
 rather than `STOP RUN`.
 
-- `STOP RUN` have the effect of terminating execution of the whole program
-    - if it is executed within a subprogram, control will not return to its caller.
+`STOP RUN` have the effect of terminating execution of the whole program, and if it is executed within a subprogram, control will not return to its caller.
 
----
 
 ## Calling and Passing Arguments to a Subprogram
 
 `CALL <subprogram-name> USING <argument-list>`
 
-- A subprogram's name is that which is specified in its PROGRAM-ID paragraph.
+A subprogram's name is that which is specified in its PROGRAM-ID paragraph.
 
-- The argument list is a sequence of data-names (or literals), each (optionally) preceded by one of the two
+The argument list is a sequence of data-names (or literals), each (optionally) preceded by one of the two
   phrases `BY CONTENT` or `BY REFERENCE`, which specifies the mode under which the argument is passed
 
 
-- Call By Reference
-    - If the values of variables in the called program are modified, then their new values will reflect in the calling
-      program.
-    - If BY clause is not specified, then variables are always passed by reference.
+When a variable is called By Reference if the values of variables in the called program are modified, 
+then their new values will reflect in the calling program, 
+
+If BY clause is not specified, then variables are always passed by reference.
 
 
-- Call By Content
-    - If the values of variables in the called program are modified, then their new values will not reflect in the
-      calling program.
+When a variable  is called By Content if the values of variables in the called program are modified, 
+then their new values will not reflect in the calling program.
 
 #### Example
 ```
@@ -795,7 +786,6 @@ BY CONTENT   Arg2, 37
 BY REFERENCE Arg3 
 ```
 
----
 
 ### The contents of The subprogram
 
@@ -804,7 +794,6 @@ to external databases, for example, DB2® and DL / I),
 
 with the exception that an assembler language subprogram cannot CALL a lower level subprogram .
 
----
 
 ### The subprogram Language
 
@@ -815,7 +804,6 @@ LINK or XCTL are not required for inter-language communication, unless you want 
 See [Mixing languages in Language Environment](https://www.ibm.com/docs/kk/cics-ts/5.3?topic=environment-mixing-languages-in-language)
 for more information about inter-language communication
 
----
 
 ## Flow of control between programs and subprograms
 
@@ -829,9 +817,8 @@ in a CICS® environment, a run unit is entered at the start of a CICS task, or i
 A run unit can be defined as the execution of a program defined by a PROGRAM resource definition, even though for
 dynamic CALL, the subsequent PROGRAM definition is needed for the called program.
 
-- Note :
-    - When control is passed by an XCTL command, the program receiving control cannot return control to the calling
-      program by a RETURN command or a GOBACK statement, and is therefore not a **subprogram**.
+Note : When control is passed by an XCTL command, the program receiving control cannot return control to the calling
+  program by a RETURN command or a GOBACK statement, and is therefore not a **subprogram**.
 
 Each LINK command creates a new CICS application logical level , the called program being at a level one lower than the
 level of the calling program (CICS is taken to be at level 0).
@@ -860,191 +847,148 @@ CICS RETURN.
 See [Application program logical levels](https://www.ibm.com/docs/kk/cics-ts/5.3?topic=linking-application-program-logical-levels#dfhp35p)
 for more information about program logical levels.**
 
----
 
 ## Rules for calling subprograms
 
 ### Location of subprogram
 
-- `EXEC CICS LINK`
-    - The subprogram can be remote.
-- Static or dynamic COBOL call
-    - The subprogram must be local.
+With `EXEC CICS LINK` the subprogram can be remote, and for Static or dynamic COBOL call the subprogram must be local.
 
----
 
 ### Translation
 
-- If a compiler with an integrated translator is used, translation is not required.
+If a compiler with an integrated translator is used, translation is not required.
 
 
-- `EXEC CICS LINK`
-    - The linked subprogram must be translated if it, or any subprogram invoked from it, contains CICS function.
+With `EXEC CICS LINK` the linked subprogram must be translated if it, or any subprogram invoked from it, contains CICS function.
 
 
-- Static or dynamic COBOL call
-    - The called subprogram must be translated if it contains CICS commands or references to the EXEC interface block (
+With Static or dynamic COBOL calls the called subprogram must be translated if it contains CICS commands or references to the EXEC interface block (
       DFHEIBLK) or to the CICS communication area (DFHCOMMAREA).
 
----
 
 ### Compilation
 
-- You must always use the NODYNAM compiler option (the default) when you compile a COBOL program that is to run with
+You must always use the NODYNAM compiler option (the default) when you compile a COBOL program that is to run with
   CICS, even if the program issues dynamic calls.
 
----
 
 ### Link-editing
 
-- EXEC CICS LINK
-    - The linked subprogram must be compiled and link-edited as a separate program
+With EXEC CICS LINK the linked subprogram must be compiled and link-edited as a separate program
 
 
-- Static COBOL call
-    - The subprogram must be link-edited with the calling program to form a single load module (but the programs can be
-      compiled separately).
-    - This can produce large program modules, and it also stops two programs that call the same program from sharing a
-      copy of that program.
+For Static COBOL calls the subprogram must be link-edited with the calling program to form a single load module (but the programs can be compiled separately),
+which can produce large program modules, and it also stops two programs that call the same program from sharing a copy of that program.
 
 
-- Dynamic COBOL call
-    - The subprogram must be compiled and link-edited as a separate load module.
-    - It can reside in the link pack area or in a library that is shared with other CICS and non-CICS regions at the
-      same time.
+For Dynamic COBOL calls the subprogram must be compiled and link-edited as a separate load module,
+this can reside in the link pack area or in a library that is shared with other CICS and non-CICS regions at the
+same time.
 
----
 
 ### CICS CSD entries without autoinstall program
 
-- If you use the program autoinstall, you do not require an entry in the CSD.
+If you use the program autoinstall, you do not require an entry in the CSD.
 
 
-- EXEC CICS LINK
-    - The linked subprogram must be defined using RDO. If the linked subprogram is unknown or unavailable, even though
-      autoinstall is active, the LINK fails with the PGMIDERR condition.
+For EXEC CICS LINK the linked subprogram must be defined using RDO, and if the linked subprogram is unknown or 
+unavailable, even though autoinstall is active, the LINK fails with the PGMIDERR condition.
 
 
-- Static COBOL call
-    - The calling program must be defined in the CSD. If program A calls program B and then program B attempts to call
-      program A, COBOL issues a message and an abend (1015).
-    - The subprogram is part of the calling program so no CSD entry is required.
+For Static COBOL calls the calling program must be defined in the CSD, and if program A calls program B and then program
+B attempts to call program A, COBOL issues a message and an abend (1015), also the subprogram is part of the calling program so no CSD entry is required.
 
 
-- Dynamic COBOL call
-    - The calling program must be defined in the CSD. If program A calls program B and then program B attempts to call
-      program A, COBOL issues a message and an abend (1015).
-    - The subprogram must be defined in the CSD.
-    - If the subprogram cannot be loaded or is unavailable even though autoinstall is active, COBOL issues a message and
-      abends (1029).
+For Dynamic COBOL calls the calling program must be defined in the CSD, and if program A calls program B and then program B attempts to call
+program A, COBOL issues a message and an abend (1015), also the subprogram must be defined in the CSD, and if the subprogram cannot be loaded or is unavailable even though autoinstall is active, COBOL issues a message and
+abends (1029).
 
- ---
 
 ### Recursive calls in COBOL
 
-- If program A calls program B and program B attempts to call program A, Language Environment issues message IGZ0064S to
-  CEEMSG and an abend (4038).
+If program A calls program B and program B attempts to call program A, Language Environment issues message IGZ0064S to CEEMSG and an abend (4038).
 
+If program A and program B have the RECURSIVE keyword on the PROGRAM-ID, recursive calls are allowed.
 
-- If program A and program B have the RECURSIVE keyword on the PROGRAM-ID, recursive calls are allowed.
-
----
 
 ### Passing parameters to a subprogram
 
-- Data can be passed by any of the standard CICS methods (COMMAREA, TWA, TCTUA, TS queues) if the called or linked
+Data can be passed by any of the standard CICS methods (COMMAREA, TWA, TCTUA, TS queues) if the called or linked
   subprogram is processed by the CICS translator.
 
 
-- `EXEC CICS LINK`
-    - If the COMMAREA is used, its address must be passed in the LINK command.
-    - If the linked subprogram uses 24-bit addressing, and the COMMAREA is above the 16 MB line, CICS copies it to below
-      the 16 MB line, and recopies it on return.
+For `EXEC CICS LINK` If the COMMAREA is used, its address must be passed in the LINK command, and if the linked subprogram uses 24-bit 
+addressing, and the COMMAREA is above the 16 MB line, CICS copies it to below the 16 MB line, and recopies it on return.
 
 
-- Static COBOL call
-    - The CALL statement can pass DFHEIBLK and DFHCOMMAREA as the first two parameters, if the called program is to
-      issue EXEC CICS requests, or the called program can issue EXEC CICS ADDRESS commands.
-    - The COMMAREA is optional but if other parameters are passed, a dummy COMMAREA must also be passed.
-    - The rules for nested programs can be different.
+For Static COBOL calls the CALL statement can pass DFHEIBLK and DFHCOMMAREA as the first two parameters, 
+and if the called program is to issue EXEC CICS requests, or the called program can issue EXEC CICS ADDRESS commands, and 
+the COMMAREA is optional but if other parameters are passed, a dummy COMMAREA must also be passed.
+
+The rules for nested programs can be different.
 
 
-- Dynamic COBOL call
-    - The CALL statement can pass DFHEIBLK and DFHCOMMAREA as the first two parameters, if the called program is to
-      issue EXEC CICS requests, or the called program can issue EXEC CICS ADDRESS commands.
-    - The COMMAREA is optional but if other parameters are passed, a dummy COMMAREA must also be passed.
-    - If the subprogram uses 24-bit addressing and any parameter is above the 16MB line, COBOL issues a message and
-      abends (1033).
+For Dynamic COBOL call the CALL statement can pass DFHEIBLK and DFHCOMMAREA as the first two parameters, if the called program is to
+issue EXEC CICS requests, or the called program can issue EXEC CICS ADDRESS commands, and the COMMAREA is optional but 
+if other parameters are passed, a dummy COMMAREA must also be passed.
 
- ---
+If the subprogram uses 24-bit addressing and any parameter is above the 16MB line, COBOL issues a message and
+abends (1033).
+
 
 ### Return from a subprogram
 
-- `EXEC CICS LINK`
-    - The linked subprogram must return using either EXEC CICS RETURN or a native language return command such as the
-      COBOL statement GOBACK
+For `EXEC CICS LINK` the linked subprogram must return using either EXEC CICS RETURN or a native language return command such as the
+COBOL statement GOBACK
 
----
 
-- Static or dynamic COBOL call
-    - The subprogram must return using a native language return statement such as the COBOL statement GOBACK or EXIT
-      PROGRAM .
-    - The use of EXEC CICS RETURN in the called subprogram terminates the calling program.
+For Static or dynamic COBOL call the subprogram must return using a native language return statement such as the COBOL statement GOBACK or EXIT
+PROGRAM, and the use of EXEC CICS RETURN in the called subprogram terminates the calling program.
 
----
 
 ### Storage
 
-- `EXEC CICS LINK`
-    - On each entry to the linked subprogram, a new initialized copy of its `WORKING-STORAGE SECTION` is provided, and the
-      run unit is reinitialized (in some circumstances, this can cause a performance degradation).
-    - On each entry to the linked subprogram, a new initialized copy of its LOCAL-STORAGE section is provided.
+For `EXEC CICS LINK` On each entry to the linked subprogram, a new initialized copy of its `WORKING-STORAGE SECTION` is provided, and the
+run unit is reinitialized (in some circumstances, this can cause a performance degradation), and on 
+each entry to the linked subprogram, a new initialized copy of its LOCAL-STORAGE section is provided.
 
 
-- Static or dynamic COBOL call
-    - On the first entry to the subprogram within a CICS logical level, a new initialized copy of its
-      WORKING-STORAGE SECTION is provided.
-    - On subsequent entries to the called subprogram at the same logical level, the same WORKING STORAGE is provided in
-      its last-used state, that is, no storage is freed, acquired, or initialized.
-    - If performance is unsatisfactory with LINK commands, COBOL calls might give improved results.
-    - On every entry to the subprogram in a CICS logical level, a new initialized copy of its LOCAL-STORAGE SECTION is
+For Static or dynamic COBOL calls on the first entry to the subprogram within a CICS logical level, a new initialized copy of its
+WORKING-STORAGE SECTION is provided, and on subsequent entries to the called subprogram at the same logical level, the same WORKING STORAGE is provided in
+its last-used state, that is, no storage is freed, acquired, or initialized, also if performance is unsatisfactory with 
+LINK commands, COBOL calls might give improved results, and on every entry to the subprogram in a CICS logical level, a new initialized copy of its LOCAL-STORAGE SECTION is
       provided.
-
----
 
 ### CICS condition, AID, and `abend` handling
 
 On every entry to the subprogram in a CICS logical level, a new initialized copy of its LOCAL-STORAGE SECTION is
 provided.
 
-- `EXEC CICS LINK`
-    - On entry to the called subprogram, no abend or condition handling is active
-    - Within the subprogram, the normal CICS rules apply
-    - In order to establish an abend or condition handling environment, that exists for the duration of the subprogram,
-      a new HANDLE command should be issued on entry to the subprogram
-    - In order to establish an abend or condition handling environment, that exists for the duration of the subprogram,
-      a new HANDLE command should be issued on entry to the subprogram
+For `EXEC CICS LINK` on entry to the called subprogram, no abend or condition handling is active, and within the subprogram, the normal CICS rules apply
+
+In order to establish an abend or condition handling environment, that exists for the duration of the subprogram,
+a new HANDLE command should be issued on entry to the subprogram.
 
 
-- Static or dynamic COBOL call
-    - If the dynamically called COBOL program abends, with Language Environment® and CBLPSHPOP ON, on entry to the
-      called subprogram, no abend or condition handling is active.
-    - Within the subprogram, the normal CICS rules apply
-    - On entry to the called subprogram, COBOL issues a PUSH HANDLE to stack the calling program's condition or abend
-      handlers.
-    - In order to establish an abend or condition handling environment that exists for the duration of the subprogram, a
-      new HANDLE command should be issued on entry to the subprogram.
-    - The environment that this creates remains in effect until either a further HANDLE command is issued or the
-      subprogram returns control to the caller.
+For Static or dynamic COBOL call if the dynamically called COBOL program abends, with Language Environment® and CBLPSHPOP 
+ON, on entry to the called subprogram, no abend or condition handling is active.
 
-    - The environment that this creates remains in effect until either a further HANDLE command is issued or the
-      subprogram returns control to the caller.
-        - If the dynamically called COBOL program abends with CBLPSHPOP OFF, and condition, AID, or abend handling for
-          the calling program is active, the program ends with abend code APC2.
-        - For a statically called COBOL program, condition, AID, and abend handling remain in effect, irrespective of
-          the setting of CBLPSHPOP.
+Within the subprogram, the normal CICS rules apply, and on entry to the called subprogram, COBOL issues a PUSH HANDLE to stack the calling program's condition or abend
+handlers.
 
----
+In order to establish an abend or condition handling environment that exists for the duration of the subprogram, a
+  new HANDLE command should be issued on entry to the subprogram.
+
+The environment that this creates remains in effect until either a further HANDLE command is issued or the
+  subprogram returns control to the caller.
+
+If the dynamically called COBOL program abends with CBLPSHPOP OFF, and condition, AID, or abend handling for
+the calling program is active, the program ends with abend code APC2.
+
+For a statically called COBOL program, condition, AID, and abend handling remain in effect, irrespective of
+the setting of CBLPSHPOP.
+
 
 \newpage
 
