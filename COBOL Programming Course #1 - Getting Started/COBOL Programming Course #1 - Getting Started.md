@@ -1948,7 +1948,7 @@ That is because you submitted the job from the .CBL data set and not the .JCL da
 
 The difference is the return/completion code associated with each job output, located both next to the job output name within the JOBS section as shown above, or at the end of the compile output as, 0Return code ##. A return code of 12 means there was an error, but how do we know what that error was? Continue to find out!
 
-7. Find the compile error, IGYPA3146-S, in the job output, illustrated in Figure  6.
+7. Find the compilation error, IGYPA3146-S, in the job output, illustrated in Figure  6.
 
 ![](Images/image121.png)
 
@@ -3762,7 +3762,7 @@ This lab requires two COBOL programs, CBL0006 and CBL0007 and two respective JCL
 5. Submit CBL0007J
 
 
-6. Find the compile error, IGYPS2113-E, in the job output.
+6. Find the compilation error, IGYPS2113-E, in the job output.
 
 7. Go ahead and modify id.CBL(CBL0007) to correct the syntax error outlined by the IGYPS2113-E message.\*
 
@@ -3985,11 +3985,11 @@ This lab requires two COBOL programs, CBL0008 and CBL0009 and two respective JCL
 
  
 
-5. Was the job successful? If not, find the compile error message to understand why.  
+5. Was the job successful? If not, find the compilation error message to understand why.  
 
  
 
-6. Modify id.CBL(CBL0009), correcting the compile error.\*
+6. Modify id.CBL(CBL0009), correcting the compilation error.\*
 
 ![](Images/image166.png)
 
@@ -4355,13 +4355,13 @@ This lab requires two COBOL programs, CBL0011 and CBL0012 and two respective JCL
 
  
 
-5.  Observe the compile error.
+5.  Observe the compilation error.
 
 Previous lab programs made use of a date/time intrinsic function.  The date/time intrinsic function in this lab has a syntax error that needs to be identified and corrected.
 
  
 
-6.  Modify id.CBL(CBL0012) correcting compile error.\*
+6.  Modify id.CBL(CBL0012) correcting compilation error.\*
 
  
 
@@ -4374,7 +4374,7 @@ Previous lab programs made use of a date/time intrinsic function.  The date/time
 
 **Lab Hints**
 
-Refer to CBL0011 line 120 for the proper formatting of the function-name causing   the compile error.
+Refer to CBL0011 line 120 for the proper formatting of the function-name causing   the compilation error.
 
 \newpage
 # ABEND handling
