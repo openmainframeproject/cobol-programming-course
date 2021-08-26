@@ -427,7 +427,7 @@ The first thing you will notice when editing COBOL source code is that VSCode wi
 
 ### Variable expansion
 
-As you browse through CBL0001 type `CTRL + G` to jump to a specific line of code.  A small dialog will open asking you for the line you wish to jump to, type `68`, and press the enter key.  VSCode will highlight that line of code and navigate you directly to it, as shown in Figure  1.
+As you browse through CBL0001 type `CTRL + G` to jump to a specific line of code.  A small dialog will open asking you for the line you wish to jump to, type `87`, and press the enter key.  VSCode will highlight that line of code and navigate you directly to it, as shown in Figure  1.
 
 ![](Images/image006.png)
 
@@ -459,7 +459,7 @@ Within the explorer sidebar of VSCode, there is an outline view that will be pop
 
 ### Breadcrumb view
 
-Similarly, the breadcrumb view across the top of the editor can show where the current line of code exists within the structure of the COBOL source code.  As you navigate the source code in the editor, the breadcrumb trail will automatically update to reflect where you are in the structure of the program and provides you a mechanism to move to a different element of the code.  Again, if you open CBL0001 in VSCode and jump to line 36, this line is a declaration of the field USA-STATE within the structure ACCT-FIELDS, in the FILE-SECTION of the DATA-DIVISION.  Across the top of the editor, the breadcrumb trail will show the information displayed in Figure  4.
+Similarly, the breadcrumb view across the top of the editor can show where the current line of code exists within the structure of the COBOL source code.  As you navigate the source code in the editor, the breadcrumb trail will automatically update to reflect where you are in the structure of the program and provides you a mechanism to move to a different element of the code.  Again, if you open CBL0001 in VSCode and jump to line 50, this line is a declaration of the field USA-STATE within the structure ACCT-FIELDS, in the FILE-SECTION of the DATA-DIVISION.  Across the top of the editor, the breadcrumb trail will show the information displayed in Figure  4.
 
 ![](Images/image013.png)
 
@@ -473,9 +473,9 @@ Clicking on any of the items in the breadcrumb trail will highlight that element
 
 ### Jump to declaration / reference
 
-As you browse through code you will come across COBOL PERFORM statements or variable references.  Often you will need to navigate to the definition of that paragraph or variable to follow the execution of the code.  At line 50 of CBL0001, we see a set of PERFORM statements.  Place the cursor within the name, READ-RECORD, on line 51, right-click and select **Go to Definition**.  The editor then navigates to the READ-RECORD paragraph on line 63.  Instead of right-clicking, the same function can be reached by using the F12 key.
+As you browse through code you will come across COBOL PERFORM statements or variable references.  Often you will need to navigate to the definition of that paragraph or variable to follow the execution of the code.  At line 64 of CBL0001, we see a set of PERFORM statements.  Place the cursor within the name, READ-RECORD, on line 65, right-click and select **Go to Definition**.  The editor then navigates to the READ-RECORD paragraph on line 82.  Instead of right-clicking, the same function can be reached by using the F12 key.
 
-"Go to References" does the reverse of this operation and allows you to navigate from the definition of a paragraph or variable to all the places within the application that reference that paragraph or variable.  To demonstrate this, navigate to line 63 of CBL0001, which again is the declaration of the READ-RECORD paragraph.  To see all of the places where this paragraph is called, right-click and select **Go to References**, or hit the key combination **SHIFT+F12**.  This will summon a new pop-up dialog that shows all the references to this paragraph in the code, shown in Figure  6.
+"Go to References" does the reverse of this operation and allows you to navigate from the definition of a paragraph or variable to all the places within the application that reference that paragraph or variable.  To demonstrate this, navigate to line 82 of CBL0001, which again is the declaration of the READ-RECORD paragraph.  To see all of the places where this paragraph is called, right-click and select **Go to References**, or hit the key combination **SHIFT+F12**.  This will summon a new pop-up dialog that shows all the references to this paragraph in the code, shown in Figure  6.
 
  
 
@@ -513,13 +513,13 @@ Working with source code is seldom just about the initial creation, during a pro
 
 ### Renaming variables
 
-During maintenance of existing code, you might need to refactor variable names or paragraph names.  Doing this manually can be a painful process, as you probably need to update both the original declaration and all the references within the source code.  Fortunately, there is a function for that, let's work through an example.  Back in CBL0001 hit **CTRL+G** to bring up the go-to line function and go to line 29.  This is the declaration of the variable ACCT-NO.  Right-click on the variable and select "**Find All References** ".  From this, we can see that apart from the declaration, the variable is also referenced on line 68. So, if we rename the variable, we probably need to update this reference as well.  To perform the rename, ensure that the cursor is on the variable and then press **SHIFT/Fn+F2**.  This will bring up a small pop-up asking you to provide a new variable name, as shown in Figure  8.  Enter `ACCT-NO-TEST` and press **enter**.
+During maintenance of existing code, you might need to refactor variable names or paragraph names.  Doing this manually can be a painful process, as you probably need to update both the original declaration and all the references within the source code.  Fortunately, there is a function for that, let's work through an example.  Back in CBL0001 hit **CTRL+G** to bring up the go-to line function and go to line 40.  This is the declaration of the variable ACCT-NO.  Right-click on the variable and select "**Find All References** ".  From this, we can see that apart from the declaration, the variable is also referenced on line 88. So, if we rename the variable, we probably need to update this reference as well.  To perform the rename, ensure that the cursor is on the variable and then press **SHIFT/Fn+F2**.  This will bring up a small pop-up asking you to provide a new variable name, as shown in Figure  8.  Enter `ACCT-NO-TEST` and press **enter**.
 
 ![](Images/image021.png)
 
 *Figure  8.  Renaming variables*
 
-You will note that both the declaration of the variable and the reference on line 68 have been updated to the new value. As stated previously, the same process also works for paragraph names. For example, go ahead and refactor the name of the paragraph READ-RECORD to be READ-NEW-RECORD.
+You will note that both the declaration of the variable and the reference on line 88 have been updated to the new value. As stated previously, the same process also works for paragraph names. For example, go ahead and refactor the name of the paragraph READ-RECORD to be READ-NEW-RECORD.
 
 ### Handling errors
 
@@ -529,7 +529,7 @@ The IBM Z Open Editor plugin also provides a level of syntax checking for local 
 
 *Figure  9.  Problems view*
 
-Now we need to introduce an error into the code. After line 68, add the line:
+Now we need to introduce an error into the code. After line 87, add the line:
 
 `MOVE ACCT-NO TO ACCT-NO-NO.`
 
@@ -1954,7 +1954,7 @@ That is because you submitted the job from the .CBL data set and not the .JCL da
 
 The difference is the return/completion code associated with each job output, located both next to the job output name within the JOBS section as shown above, or at the end of the compile output as, 0Return code ##. A return code of 12 means there was an error, but how do we know what that error was? Continue to find out!
 
-7. Observe the text associated with IGYPA3146-S on line 137 within the job output (compile), illustrated in Figure  6.
+7. Find the compilation error, IGYPA3146-S, in the job output, illustrated in Figure  6.
 
 ![](Images/image121.png)
 
@@ -3365,7 +3365,7 @@ This lab utilizes two COBOL programs, CBL0004, and CBL0005, located within your 
 
 5. Modify id.CBL(CBL0005) to include the dollar currency symbol in the report.
 
-   **Hint: Compare with CBL0004 line 25**
+   **Hint: Compare with CBL0004 line 33**
 
 
 6. Re-submit job: CBL0005J
@@ -3768,7 +3768,7 @@ This lab requires two COBOL programs, CBL0006 and CBL0007, and two respective JC
 5. Submit CBL0007J
 
 
-6. Find the compile error, IGYPS2113-E, in the job output.
+6. Find the compilation error, IGYPS2113-E, in the job output.
 
 7. Go ahead and modify id.CBL(CBL0007) to correct the syntax error outlined by the IGYPS2113-E message.\*
 
@@ -3991,11 +3991,11 @@ This lab requires two COBOL programs, CBL0008 and CBL0009, and two respective JC
 
  
 
-5. Was the job successful? If not, find the compile error message to understand why.  
+5. Was the job successful? If not, find the compilation error message to understand why.  
 
  
 
-6. Modify id.CBL(CBL0009), correcting the compile error.\*
+6. Modify id.CBL(CBL0009), correcting the compilation error.\*
 
 ![](Images/image166.png)
 
@@ -4361,13 +4361,13 @@ This lab requires two COBOL programs, CBL0011 and CBL0012, and two respective JC
 
  
 
-5.  Observe the compile error.
+5.  Observe the compilation error.
 
 Previous lab programs made use of a date/time intrinsic function.  The date/time intrinsic function in this lab has a syntax error that needs to be identified and corrected.
 
  
 
-6.  Modify id.CBL(CBL0012) correcting compile error.\*
+6.  Modify id.CBL(CBL0012) correcting compilation error.\*
 
  
 
@@ -4380,7 +4380,7 @@ Previous lab programs made use of a date/time intrinsic function.  The date/time
 
 **Lab Hints**
 
-Refer to CBL0011 line 120 for the proper formatting of the function-name causing the compile error.
+Refer to CBL0011 line 120 for the proper formatting of the function-name causing the compilation error.
 
 \newpage
 # ABEND handling
