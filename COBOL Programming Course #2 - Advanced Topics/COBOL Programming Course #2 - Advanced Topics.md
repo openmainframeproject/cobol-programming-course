@@ -948,11 +948,11 @@ The data that we are going to use will come from https://www.data.gov/. Accordin
 To be more specific, we are going to get the monthly unemployment claims of the state of Missouri.
 I chose this because it is separated according to different categories:
 
-- **By Age:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-age-d20a7
-- **By Ethnicity:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-ethnicity-2a03b
-- **By Industry:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-industry-80e86
-- **By Race:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-race-32ab3
-- **By Gender:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-sex-f5cb6
+- **By Age:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-age
+- **By Ethnicity:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-ethnicity
+- **By Industry:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-industry
+- **By Race:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-race
+- **By Gender:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-sex
 
 You can consume the data in different formats such as CSV, RDF, JSON or XML. You can choose whatever format you like.
 
