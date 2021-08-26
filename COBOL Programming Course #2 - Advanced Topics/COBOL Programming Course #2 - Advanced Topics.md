@@ -736,7 +736,7 @@ enabling existing COBOL code to be accessed from Java.
 COBOL class definitions and methods cannot contain `EXEC SQL` statements and be compiled using the SQL compiler option,
 and cannot contain `EXEC CICS` statements, and be run in a CICS environment, and
   cannot be compiled using the CICS compiler option.
----
+
 
 ### Wrapping procedure-oriented COBOL programs
 A wrapper is a class that provides an interface between object-oriented code and procedure-oriented code.
@@ -747,7 +747,7 @@ To wrap COBOL code, do these steps:
 1. Create a simple COBOL class that contains a `FACTORY` paragraph.
 2. In the FACTORY paragraph, code a factory method that uses a `CALL` statement to call the procedural program.
 
----
+
 
 
 ### Notes
@@ -766,7 +766,7 @@ All classes that you define must have exactly one parent, and `java.lang.Object`
 
 The class structure of any object-oriented system defined in an OO COBOL application is a **tree**.
 
-----
+
 ### Example: Design an Account Class
 Consider the example of a bank in which customers can open accounts and make deposits to and withdrawals from their accounts.
 
@@ -820,7 +820,7 @@ That is why we define CheckingAccount as a subclass of Account.
 
 **Note** : _A number and colon with no method-name following them indicate that the method with that number is inherited from the superclass._
 
----
+
 
 
 ## Class Definition
@@ -1540,7 +1540,7 @@ cbl dll, thread
 *
  Identification Division.
  Factory.
-  Procedure division.
+  Procedure divahmedision.
 *
    Identification Division.
    Method ID. "main".
