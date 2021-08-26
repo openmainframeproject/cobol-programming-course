@@ -713,9 +713,8 @@ both formats can be used anywhere in the `PROCEDURE DIVISION`.
 ![Sort statement format](Images/sort-and-merge/SORT-format-1.png)
 _Format 1 of a sort statement_
 
-`file-name-1`:
-- the sort process uses this file as temporary file during the sort
-- The name given in the SD entry that describes the records to be sorted.
+`file-name-1` is used by the sort process as temporary file during the sort, also the name given in the SD entry describes the
+records to be sorted.
 
 
 No pair of **file-names** in a `SORT` statement can be specified in the same **SAME SORT AREA** clause or the SAME
@@ -728,12 +727,11 @@ however, they can be associated with the **SAME RECORD AREA** clause.
 ![Sort statement format](Images/sort-and-merge/SORT-format2.png)
 _Format 2 of a sort statement_
 
-`data-name-2`
-- Specifies a table data-name that is subject to the following rules:
-    - must have an `OCCURS` clause in the data description entry.
-    - can be qualified.
-    - can be subscripted.
-        - The rightmost or only subscript of the table must be omitted or replaced with the word `ALL`.
+`data-name-2` Specifies a table data-name that must have an `OCCURS` clause in the data description entry,
+can be qualified, and can be subscripted.
+
+
+The rightmost or only subscript of the table must be omitted or replaced with the word `ALL`.
 
 
 The number of occurrences of table elements that are referenced by `data-name-2` is determined by the rules in the
@@ -752,11 +750,9 @@ that is associated with `data-name-2`.
 This phrase specifies the name of a procedure that is to select or modify input records before the sorting operation
 begins.
 
-`procedure-name-1`
-- Specifies the first (or only) section or paragraph in the input procedure.
+`procedure-name-1` Specifies the first (or only) section or paragraph in the input procedure.
 
-`procedure-name-2`
-- Identifies the last section or paragraph of the input procedure.
+`procedure-name-2` Identifies the last section or paragraph of the input procedure.
 
 This procedure can consist of any procedure needed to select, modify, or copy the records that are made available one
 at a time by the `RELEASE` statement to the file referenced by `file-name-1`.
@@ -779,10 +775,10 @@ The range of the input procedure must not cause the execution of any `MERGE`, `R
 ### DUPLICATES phrase
 #### Format 1
 If the `DUPLICATES` phrase is specified, and the contents of all the key elements associated with one record are equal
-to the corresponding key elements in one or more other records, the order of return of these records is as follows:
-- The order of the associated input files as specified in the SORT statement, and Within a given file the order is that
-  in which the records are accessed from that file.
-- or, the order in which these records are released by an input procedure, **when an input procedure is specified.**
+to the corresponding key elements in one or more other records, the order of return of these records is
+the order of the associated input files as specified in the SORT statement, and Within a given file the order is that
+in which the records are accessed from that file, or the order in which these records are released by an input procedure,
+**when an input procedure is specified.**
 
 If the `DUPLICATES` phrase is not specified, the order of these records is undefined.
 
@@ -808,15 +804,13 @@ based on the specified phrase and sort keys.
 The KEY phrase can be omitted only if the description of the table that is referenced by `data-name-2` contains a KEY
 phrase.
 
-`data-name-1`
-- Specifies a KEY data name that is subject to the following rules:
-    - The data item that is identified by a key data-name must be the same as, or subordinate to, the data item that is
-      referenced by `data-name-2`.
-    - KEY data items can be qualified.
+`data-name-1` Specifies a KEY data name that is subject to the following rules:
+- The data item that is identified by a key data-name must be the same as, or subordinate to, the data item that is
+  referenced by `data-name-2`, and the KEY data items can be qualified.
 
 If the data item that is identified by a KEY data-name is subordinate to `data-name-2`, the following rules apply:
-- The data item cannot be described with an `OCCURS` clause.
-- The data item cannot be subordinate to an entry that is also subordinate to `data-name-2` and that contains an `OCCURS` clause.
+- The data item cannot be described with an `OCCURS` clause, and cannot be subordinate to an entry that is also subordinate
+  to `data-name-2` and that contains an `OCCURS` clause.
 
 The words `ASCENDING` and `DESCENDING` are transitive across all occurrences of `data-name-1` until another word
 `ASCENDING` or `DESCENDING` is encountered.
@@ -832,13 +826,17 @@ To determine the relative order in which table elements are stored, the contents
 compared according to the rules for comparison of operands in a relation condition.
 
 The sorting starts with the most significant key data item with the following rules:
-- If the contents of the corresponding key data items are not equal and the key is associated with the `ASCENDING`
-  phrase, the table element that contains the key data item with the lower value has the lower occurrence number.
 
-- If the contents of the corresponding key data items are not equal and the key is associated with the `DESCENDING` phrase,
-  the table element that contains the key data item with the higher value has the lower occurrence number.
-- If the contents of the corresponding key data items are equal, the determination is based on the contents of the next
-  most significant key data item.
+If the contents of the corresponding key data items are not equal and the key is associated with the `ASCENDING`
+phrase, the table element that contains the key data item with the lower value has the lower occurrence number.
+
+
+If the contents of the corresponding key data items are not equal and the key is associated with the `DESCENDING` phrase,
+the table element that contains the key data item with the higher value has the lower occurrence number.
+
+
+If the contents of the corresponding key data items are equal, the determination is based on the contents of the next
+most significant key data item.
 
 If the KEY phrase is not specified, the sequence is determined by the KEY phrase in the data description entry of the
 table that is referenced by `data-name-2`.
@@ -849,18 +847,14 @@ is referenced by `data-name-2`.
 If `data-name-1` is omitted, the data item that is referenced by `data-name-2` is the key data item.
 
 Format 2 `KEY` data items cannot be:
-- Class object or pointer
-- USAGE OBJECT, USAGE POINTER, USAGE PROCEDURE-POINTER, or USAGE FUNCTION-POINTER
-- Subscripted
+- Class object or pointer, USAGE OBJECT, USAGE POINTER, USAGE PROCEDURE-POINTER, USAGE FUNCTION-POINTER, or Subscripted.
 
 ### `SORT` Example: Sorting an employee data file
 Let's say for example I have a file with the company employee data, and I want to sort it using the first name in
 **ASCENDING** order.
 
-1. in the `ENVIRONMENT DIVISION` we need to define
-    - **the file to be sorted** (the input file),
-    - the **sorted file**,
-    - and the **work file**
+1. in the `ENVIRONMENT DIVISION` we need to define **the file to be sorted** (the input file), the **sorted file**,
+   and the **work file**
     ```
       ENVIRONMENT DIVISION.
              FILE-CONTROL.
@@ -872,7 +866,7 @@ Let's say for example I have a file with the company employee data, and I want t
              ....
 
     ```    
-    - Note: *the data in the work file will be released when the program is done*
+- Note: *the data in the work file will be released when the program is done*
 
 
 2. in the `DATA DIVISION` we put the file description for the input, output, and working files
@@ -903,12 +897,12 @@ Let's say for example I have a file with the company employee data, and I want t
             .....
     ```
 
-    - the sort is done using the first name, we can use more than one key by adding the keys one after the other separated by comma
-        - ex. sorting on first name and last name
-           ```
-              SORT WORKFILE ON ASCENDING KEY WSEMPLOYEEFNAME, WSEMPLOYEELNAME 
-                USING EMPLOYEEFILE GIVEN SORTEDEMPLOYEES.
-           ```
+- the sort is done using the first name, we can use more than one key by adding the keys one after the other separated by comma
+    - ex. sorting on first name and last name
+       ```
+          SORT WORKFILE ON ASCENDING KEY WSEMPLOYEEFNAME, WSEMPLOYEELNAME 
+            USING EMPLOYEEFILE GIVEN SORTEDEMPLOYEES.
+       ```
 
 ## MERGE
 The `MERGE` statement combines two or more identically sequenced files on one or more keys and makes records available
@@ -924,8 +918,7 @@ is not supported for programs compiled with the `THREAD` compiler option.
 - _Merge statement format_
 
 
-`file-name-1`
-- The name given in the `SD` entry that describes the records to be merged.
+`file-name-1` is the name given in the `SD` entry that describes the records to be merged.
 
 No file-name can be repeated in the **MERGE** statement.
 
@@ -940,10 +933,7 @@ accepted by the merge program and then merged according to the keys specified.
 
 ### Merge Example: merging employee, and interns data files together
 Two files (employees, interns) are to be merged together by first and last name:
-1. in the `ENVIRONMENT DIVISION` we define
-    - **the files to be sorted** (the input file),
-    - the **sorted file**,
-    - the **work file**
+1. in the `ENVIRONMENT DIVISION` we define**the files to be sorted** (the input file), the **sorted file**, the **work file**
     ```
     ENVIRONMENT DIVISION.
     FILE-CONTROL.
@@ -1037,11 +1027,9 @@ If an output procedure is specified, control passes to it after the file referen
 by the `SORT` or `MERGE` statement.
 
 
-`procedure-name-1`
-- Specifies the first (or only) section or paragraph in the `OUTPUT PROCEDURE`.
+`procedure-name-1` specifies the first (or only) section or paragraph in the `OUTPUT PROCEDURE`.
 
-`procedure-name-2`
-- Identifies the last section or paragraph of the `OUTPUT PROCEDURE`.
+`procedure-name-2` identifies the last section or paragraph of the `OUTPUT PROCEDURE`.
 
 
 The `OUTPUT PROCEDURE` can consist of any procedure needed to select, modify, or copy the records that are made
@@ -1078,13 +1066,13 @@ just as if it were named in a `PERFORM` statement.
 This phrase specifies that records are to be processed in ascending or descending sequence
 (depending on the phrase specified), based on the specified keys.
 
-`data-name-1`
-- Specifies a KEY data item on which the merge, or sort will be based.
-- Each such data-name must identify a data item in a record associated with `file-name-1`.
+`data-name-1` specifies a KEY data item on which the merge, or sort will be based, and each such data-name must identify a data item in a record associated with `file-name-1`.
 
 The direction of the merge operation depends on the specification of the `ASCENDING` or `DESCENDING` keywords as follows:
-- When `ASCENDING` is specified, the sequence is from the lowest key value to the highest key value.
-- When `DESCENDING` is specified, the sequence is from the highest key value to the lowest key value.
+
+When `ASCENDING` is specified, the sequence is from the lowest key value to the highest key value.
+
+When `DESCENDING` is specified, the sequence is from the highest key value to the lowest key value.
 
 The data-names following the word KEY are listed from left to right in the statement in order of decreasing
 significance without regard to how they are divided into KEY phrases.
@@ -1092,16 +1080,22 @@ significance without regard to how they are divided into KEY phrases.
 The leftmost **data-name** is the major key, the next **data-name** is the next most significant key, and so forth.
 
 #### KEYs rules
-- A specific KEY data item must be physically located in the same position and have the same data format in each input file.
-  However, it need not have the same data-name.
-- If `file-name-1` has more than one record description, the KEY data items need be described in only one of the record descriptions.
-- If `file-name-1` contains variable-length records, all the KEY data-items must be contained within the first n character positions
-  of the record, where n equals the minimum records size specified for `file-name-1`.
-- KEY data items must not contain an `OCCURS` clause or be subordinate to an item that contains an `OCCURS` clause.
-- KEY data items can be qualified.
-- If the KEY data item is described with usage NATIONAL, the sequence of the KEY values is based on the binary values
-  of the national characters.
-- If the KEY data item is internal floating point, the sequence of key values will be in numeric order.
+A specific KEY data item must be physically located in the same position and have the same data format in each input file.
+However, it need not have the same data-name.
+
+If `file-name-1` has more than one record description, the KEY data items need be described in only one of the record descriptions.
+
+If `file-name-1` contains variable-length records, all the KEY data-items must be contained within the first n character positions
+of the record, where n equals the minimum records size specified for `file-name-1`.
+
+KEY data items must not contain an `OCCURS` clause or be subordinate to an item that contains an `OCCURS` clause.
+
+KEY data items can be qualified.
+
+If the KEY data item is described with usage NATIONAL, the sequence of the KEY values is based on the binary values
+of the national characters.
+
+If the KEY data item is internal floating point, the sequence of key values will be in numeric order.
 
 When the `COLLATING SEQUENCE` phrase is not specified, the key comparisons are performed according to the rules for
 comparison of operands in a relation condition.
@@ -1140,36 +1134,27 @@ When the `COLLATING SEQUENCE` phrase is omitted, the PROGRAM `COLLATING SEQUENCE
 When both the `COLLATING SEQUENCE` phrase of the statement and the PROGRAM `COLLATING SEQUENCE` clause of the
 `OBJECT-COMPUTER` paragraph are omitted, the **EBCDIC** collating sequence is used.
 
-`alphabet-name-1`
-- Must be specified in the `ALPHABET` clause of the `SPECIAL-NAMES` paragraph.
-  Any one of the alphabet-name clause phrases can be specified, with the following results:
-- `STANDARD-1`
-    - The **ASCII** collating sequence is used for all alphanumeric comparisons.
+`alphabet-name-1` must be specified in the `ALPHABET` clause of the `SPECIAL-NAMES` paragraph.
 
-- `STANDARD-2`
-    - The 7-bit code defined in the International Reference Version of ISO/IEC 646, 7-bit coded character set for
-      information interchange is used for all alphanumeric comparisons.
-- `NATIVE`
-    - The **EBCDIC** collating sequence is used for all alphanumeric comparisons.
-- `EBCDIC`
-    - The EBCDIC collating sequence is used for all alphanumeric comparisons.
-- `literal`
-    - The collating sequence established by the specification of literals in the `ALPHABET-NAME` clause is used for all
-      alphanumeric comparisons.
+Any one of the alphabet-name clause phrases can be specified, with the following results:
+- `STANDARD-1` is the **ASCII** collating sequence is used for all alphanumeric comparisons.
+
+- `STANDARD-2` is the 7-bit code defined in the International Reference Version of ISO/IEC 646, 7-bit coded character set for
+  information interchange is used for all alphanumeric comparisons.
+- `NATIVE` is the **EBCDIC** collating sequence is used for all alphanumeric comparisons.
+- `EBCDIC` is the EBCDIC collating sequence is used for all alphanumeric comparisons.
+- `literal` is the collating sequence established by the specification of literals in the `ALPHABET-NAME` clause is used for all
+  alphanumeric comparisons.
 
 ### Segmentation considerations
 If a `SORT` or `MERGE` statement is coded in a **fixed** segment, any input or output procedure referenced by that statement
-must be:
-- totally within a fixed segment
-- or wholly contained in a single independent segment.
+must be totally within a fixed segment, or wholly contained in a single independent segment.
 
 
-If the statement is coded in an **independent** segment, any input or output procedure referenced by it must be:
-- totally within a fixed segment
-- or wholly contained within the **same** independent segment as that statement.
+If the statement is coded in an **independent** segment, any input or output procedure referenced by it must be totally within a fixed segment
+,or wholly contained within the **same** independent segment as that statement.
 
 \newpage
-
 
 # COBOL Challenges
 As you have now handled some basic exercises, we have prepared a new section containing more advanced exercises that test your ability to resolve bugs and other issues in COBOL programs. Each exercise will have a short description and a goal to be accomplished.
