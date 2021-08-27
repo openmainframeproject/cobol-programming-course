@@ -913,6 +913,179 @@ In a multithreaded environment, there are some limitations on COBOL programs. In
 To see more details on the limitation of COBOL with multithreading, check out the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=multithreading-handling-cobol-limitations).
 
 \newpage
+# Program tuning and simplification
+
+In the previous chapters, we have seen how you could code COBOL applications. But now, let us explore how to improve them.
+
+When a program is comprehensible, we can assess its performance. However, if the opposite is true, it can make your application difficult to understand and maintain, thus hindering optimization.
+
+To improve performance, we should take note of the following things:
+
+- The underlying algorithm of your business logic
+- Data structure
+
+Having a robust algorithm with the appropriate data structure is essential to improve performance.
+
+We can also write programs that result in more efficient use of the available services. We can also use coding techniques to improve our productivity.
+
+If you are interested in learning more about performance tuning with COBOL, check out the [Enterprise COBOL for z/OS Performance Tuning Guide](http://publibfp.dhe.ibm.com/epubs/pdf/igy6tg30.pdf).
+
+
+- **Optimal programming style**
+     
+     - **Using structured programming**
+
+     - **Factoring expressions**
+
+     - **Using symbolic constants**
+
+- **Choosing efficient data types**
+
+     - **Efficient computational data types**
+
+     - **Consistent data types**
+
+     - **Efficient arithmetic expressions**
+
+     - **Efficient exponentiations**
+
+- **Handling tables efficiently**
+
+- **Choosing compiler features to enhance performance**
+
+
+## Optimal programming style
+
+Enterprise COBOL came with an in-build optimizer, and the coding style we use can affect how it handles our code. We can improve optimization through the use of structured programming techniques, factoring expressions, using symbolic constants or grouping constant and duplicate computations.
+
+### Using structured programming
+
+Using structured programming statements, such as EVALUATE and inline PERFORM, can make our program more comprehensible and generates a more linear control flow, which enables the optimizer to produce a more efficient code.
+
+We can also use top-down programming constructs. In simpler term, we would work with a very general overview of what our program should do, before using that to build upon the required operations. In COBOL, out-of-line PERFORM statements are a natural way of doing top-down programming. It can be as efficient as an inline PERFORM because the compiler can simplify or remove the linkage code.
+
+Before we continue, let us talk a bit about in-line and out-of-line PERFORM statements. Chances are you have seen them without realizing what they are. Take a look at the example below:
+
+```
+PERFORM 010-INITIALIZE
+PERFORM UNTIL END-OF-FILE
+    READ FILE-DATA INTO WS-DATA
+    AT END
+        SET END-OF-FILE TO TRUE
+    NOT AT END
+        PERFORM 020-UPDATE-TRANSACTION
+    END-READ
+END-PERFORM
+```
+
+In the example above, we have two out-of-line PERFORM and one inline PERFORM. An inline PERFORM is executed in the normal flow of a program, while an out-of-line PERFORM will branch to the named paragraph.
+
+It is also suggested to avoid the use of the following constructs:
+
+- ALTER statements
+- Explicit GO TO statements
+- PERFORM procedures that involve irregular control flow
+
+### Factoring expressions
+
+We can also factor expressions in our programs to eliminate unnecessary computation. Take a look at the examples below. The first block of code is more efficient than the second block of code.
+
+```
+MOVE ZERO TO TOTAL
+PERFORM VARYING I FROM 1 BY 1 UNTIL I = 10
+    COMPUTE TOTAL = TOTAL + ITEM(I)
+END-PERFORM
+COMPUTE TOTAL = TOTAL * DISCOUNT
+```
+
+```
+MOVE ZERO TO TOTAL
+PERFORM VARYING I FROM 1 BY 1 UNTIL I = 10
+    COMPUTE TOTAL = TOTAL + ITEM(I) * DISCOUNT
+END-PERFORM
+```
+
+### Using symbolic constants
+
+If we have a data item that is constant throughout the program, we can initialize it with a VALUE clause and not change it anywhere in the program.
+
+However, if we pass a data item to a subprogram BY REFERENCE, the optimizer will treat it as an external data item and assumes that it is changed at every subprogram call.
+
+## Choosing efficient data types
+
+The use of consistent data types can reduce the need for conversions. We can also carefully determine when to use fixed-point and floating-point data types to improve performance.
+
+### Efficient computational data types
+
+When we use a data item mainly for arithmetic or subscripting purposes, we can code USAGE BINARY on the data description. The operations to manipulate binary data are faster than those for decimal data.
+
+However, when we are dealing with an intermediate result with a large precision, the compiler will use decimal arithmetic. Normally, for fixed-point arithmetic statements, the compiler will use binary arithmetics for precision of eight or fewer digits. Anything above 18 digits will always be computed using decimal arithmetics, and those in-between can use either form.
+
+Therefore, to produce the most efficient code for a BINARY data item, we need to ensure that it has a sign (indicated with an S in the PICTURE clause) and eight or fewer digits.
+
+But for a data item that is larger than eight digits or is used with DISPLAY or NATIONAL data items, we can use PACKED-DECIMAL. The code generated can be as fast as BINARY data items in some cases, especially if the statement is complicated or involves rounding.
+
+To produce the most efficient code for a PACKED-DECIMAL data item, we need to ensure it has a sign (indicated with an S in the PICTURE clause), an odd number of digits, and 15 or fewer digits in the PICTURE clause (since the instructions the compiler use are faster with 15 or fewer digits).
+
+### Consistent data types
+
+In operations with operands of different types, one of the operands will be converted to the same type as the other. This would require several instructions. 
+
+Therefore, to improve performance, we can avoid conversions by using consistent data types and by giving both operands the same usage and appropriate PICTURE specifications.
+
+### Efficient arithmetic expressions
+
+Computation of arithmetic expressions that are evaluated in floating point is most efficient when little or no conversion is involved. We can use operands that are COMP-1 or COMP-2 to produce the most efficient code.
+
+We can also define integer items as BINARY or PACKED-DECIMAL with nine or fewer digits to enable quick conversion to floating-point data. Note that conversion from COMP-1 or COMP-2 to a fixed-point integer with nine or fewer digits is efficient when the value of the COMP-1 or COMP-2 item is less than 1,000,000,000.
+
+### Efficient exponentiations
+
+We can use floating point for exponentiations for large exponents to achieve faster and more accurate results. For example, the first statement below is computed more quickly and accurately compared with the second statement:
+
+```
+COMPUTE FIXED-POINT1 = FIXED-POINT2 ** 100000.E+00
+COMPUTE FIXED-POINT1 = FIXED-POINT2 ** 100000
+```
+
+By using floating-point exponent, the compiler will use floating-point arithmetics to compute the exponentiations.
+
+## Handling tables efficiently
+
+We can also use several techniques to improve the efficiency of your table-handling applications.
+
+To refer to table elements efficiently, we can:
+
+- **Use indexing rather than subscripting.** Since the value of the index is already has the element size factored into it, preventing any need in calculating during run time.
+
+- **Use relative indexing.** Relative index references can be executed at least as fast as direct index references, and sometimes faster.
+
+Regardless of how you reference your table elements, we can also:
+
+- **Specify the element length to match that of related tables.** This will enable the optimizer to reuse the index or subscript computed for one table.
+
+- **Avoid errors in reference by coding index and subscript checks into your program.**
+
+We can also improve the efficiency of tables by:
+
+- Using binary data items for all subscripts
+- Using binary data items for variable-length table items
+- Using fixed-length data items whenever possible
+- Organize tables according to the type of search method used
+
+## Choosing compiler features to enhance performance
+
+Our choice of performance-related compiler options can affect how well our program is optimized. We may have a customized system that requires certain options to be set for optimum performance. We can choose compiler features by following these steps:
+
+1. Review the listed option settings to see your system defaults.
+2. Determine which options are fixed, and thus nonoverridable, by checking with your system programmer.
+3. For options that are not fixed, we can select performance-related options for compiling our program. Note that it is best practice to confer with your system programmer to ensure that the options you choose are appropriate for programs at your site.
+
+Another compiler feature to consider is the USE FOR DEBUGGING ON ALL PROCEDURES statement which can greatly affect the compiler optimizer. The use of the ON ALL PROCEDURES option will generate extra code at each transfer to a procedure name. Although these are useful for debugging, they will make your program larger and thus inhibit optimization.
+
+For a listing of performance-related compiler options, please check the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=performance-related-compiler-options).
+
+\newpage
 # COBOL Challenges
 As you have now handled some basic exercises, we have prepared a new section containing more advanced exercises that test your ability to resolve bugs and other issues in COBOL programs. Each exercise will have a short description and a goal to be accomplished.
 
@@ -1023,11 +1196,11 @@ The data that we are going to use will come from https://www.data.gov/. Accordin
 To be more specific, we are going to get the monthly unemployment claims of the state of Missouri.
 I chose this because it is separated according to different categories:
 
-- **By Age:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-age-d20a7
-- **By Ethnicity:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-ethnicity-2a03b
-- **By Industry:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-industry-80e86
-- **By Race:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-race-32ab3
-- **By Gender:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-sex-f5cb6
+- **By Age:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-age
+- **By Ethnicity:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-ethnicity
+- **By Industry:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-industry
+- **By Race:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-race
+- **By Gender:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-sex
 
 You can consume the data in different formats such as CSV, RDF, JSON or XML. You can choose whatever format you like.
 
