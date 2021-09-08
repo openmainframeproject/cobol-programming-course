@@ -7,10 +7,10 @@ Please note that the following instruction is provided as-is. Neither this proje
 ## Contents
 
 There are 4 folders within this directory:
-1. **cbl**, containing the actual COBOL source code
-2. **jcl**, containing the JCL used to compile, link, and execute COBOL source code
-3. **jclproc**, containing the supplied cataloged procedure used in the JCL
-4. **data**, containing the data used as input for the COBOL program
+- **cbl**, containing the actual COBOL source code
+- **jcl**, containing the JCL used to compile, link, and execute COBOL source code
+- **jclproc**, containing the supplied cataloged procedure used in the JCL
+- **data**, containing the data used as input for the COBOL program
 
 There are 2 kinds of data provided inside the **data** folder:
 - **data** is a binary file that is still encoded in EBCDIC with packed decimal

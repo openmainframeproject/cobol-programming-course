@@ -7,9 +7,9 @@ Please note that the following instruction is provided as-is. Neither this proje
 ## Contents
 
 There are 3 folders within this directory:
-1. **cbl**, containing the actual COBOL source code
-2. **jcl**, containing the JCL used to compile, link, and execute COBOL source code
-3. **jclproc**, containing the supplied cataloged procedure used in the JCL
+- **cbl**, containing the actual COBOL source code
+- **jcl**, containing the JCL used to compile, link, and execute COBOL source code
+- **jclproc**, containing the supplied cataloged procedure used in the JCL
 
 There are 3 supplied cataloged procedures inside the **jclproc** folder:
 - **DB2CBL** for COBOL code compilation, link-edit, and Db2 binding
