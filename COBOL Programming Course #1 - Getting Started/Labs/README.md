@@ -1,6 +1,6 @@
 # COBOL Programming Course #1 - Getting Started - Lab Setup
 
-The Labs on this Course is set up on z/OS 2.4 with Enterprise COBOL v6.3. Modification may be necessary if your installation uses a different version.
+The labs for this course are set up on z/OS 2.4 with Enterprise COBOL v6.3. Modification may be necessary if your installation uses a different version.
 
 Please note that the following instruction is provided as-is. Neither this project nor the Open Mainframe Project will be held responsible or liable for any loss, costs, liabilities, or damages resulting from your direct or indirect use of this Lab Setup.
 
