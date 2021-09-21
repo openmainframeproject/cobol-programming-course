@@ -19,11 +19,11 @@ header-includes:
               linkcolor=blue}
 ---
 \newpage
-## Additional information
+# Resources
 
 This section provides useful resources in the form of manuals and videos to assist in learning more about the basics of COBOL.
 
-### Professional manuals
+## Professional manuals
 
 As Enterprise COBOL experience advances, the need for the professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of April 2020, the current release of Enterprise COBOL is V6.3.  Highlight V6.3 tab, then select product documentation.
 
@@ -44,7 +44,7 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
    [http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf)
 
-### Learn more about recent COBOL advancements
+## Learn more about recent COBOL advancements
 
 - What’s New in Enterprise COBOL for z/OS V6.1:
 
@@ -59,6 +59,7 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
    [https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new)
 
 \newpage
+
 # Numerical Data Representation
 
 In the first COBOL Programming Course, various types of data representation were discussed. This chapter seeks to expand upon the binary and hexadecimal numbering systems as well as the various numeric representations in COBOL. 
