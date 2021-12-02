@@ -1,29 +1,26 @@
-# Description
+## Proposed changes
 
-Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
+Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context to communicate to the maintainers why we should accept this pull request.
 
 Fixes # (issue)
 
 ## Type of change
 
-Please delete options that are not relevant.
+What type of changes does your PR introduce to the COBOL Programming Course? _Put an `x` in the boxes that apply._
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] Bug fix (change which fixes one or more issues)
+- [ ] New feature (change which adds functionality or feature to the course)
+- [ ] Translations (change which adds or modify translations of the course)
+- [ ] Documentation (change which modify documentation related to the course)
 - [ ] This change requires an update to the course's z/OS environment
 
-# How Has This Been Tested?
+## Checklist:
 
-Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration
+_Put an `x` in the boxes that apply. You can also fill these out after creating the PR. If you're unsure about any of them, don't hesitate to ask. We're here to help! This checklist will be used as reference for both the contributor and the reviewer_
 
-# Checklist:
-
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
-- [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] New and existing unit tests pass locally with my changes
-- [ ] Any dependent changes have been merged and published in downstream modules
+- [ ] I have read the [Contributing Guideline](https://github.com/openmainframeproject/cobol-programming-course/blob/master/CONTRIBUTING.md)
+- [ ] I have included a title and description for this PR
+- [ ] I have DCO-signed all of my commits that are included in this PR
+- [ ] I have tested it manually and there are no regressions found
+- [ ] I have commented my code, particularly in hard-to-understand areas (if appropriate)
+- [ ] I have made corresponding changes to the documentation (if appropriate)
