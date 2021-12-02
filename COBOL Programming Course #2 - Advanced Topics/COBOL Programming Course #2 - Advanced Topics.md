@@ -19,11 +19,11 @@ header-includes:
               linkcolor=blue}
 ---
 \newpage
-## Additional information
+# Resources
 
 This section provides useful resources in the form of manuals and videos to assist in learning more about the basics of COBOL.
 
-### Professional manuals
+## Professional manuals
 
 As Enterprise COBOL experience advances, the need for the professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of April 2020, the current release of Enterprise COBOL is V6.3.  Highlight V6.3 tab, then select product documentation.
 
@@ -44,21 +44,22 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
    [http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf)
 
-### Learn more about recent COBOL advancements
+## Learn more about recent COBOL advancements
 
 - What’s New in Enterprise COBOL for z/OS V6.1:
 
-   [https://youtu.be/N_Zsd1W8hWc](https://youtu.be/N_Zsd1W8hWc)
+   [https://www.ibm.com/support/pages/cobol-v61-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v61-was-announced-whats-new)
 
 - What’s New in Enterprise COBOL for z/OS V6.2:
 
-   [https://youtu.be/H0iweEbVNFs](https://youtu.be/H0iweEbVNFs)
+   [https://www.ibm.com/support/pages/cobol-v62-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v62-was-announced-whats-new)
 
 - What’s New in Enterprise COBOL for z/OS V6.3:
 
-   [https://youtu.be/bRLKGeB6W2A](https://youtu.be/bRLKGeB6W2A)
+   [https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new)
 
 \newpage
+
 # Numerical Data Representation
 
 In the first COBOL Programming Course, various types of data representation were discussed. This chapter seeks to expand upon the binary and hexadecimal numbering systems as well as the various numeric representations in COBOL. 
@@ -548,6 +549,542 @@ The result is execution of COBOL program CBLDB21 to read the Db2 table and write
 
 7. Two additional COBOL programs with Db2 API exist, CBLDB22 and CBLDB23 using the same Db2 table as the data source.
 
+\newpage
+# COBOL Program Compilation
+
+In the previous course, we briefly mentioned how a COBOL program is compiled. In this chapter, we will deep dive into the Enterprise COBOL compiler and how you have interacted with it.
+
+To restate what we have learned, the compiler will translate the COBOL program we wrote into language that the system can process. It will also list errors in our source statements and provide information on how to debug them. After compilation, we can review the results and correct any detected errors.
+
+As part of the compilation, we need to define the necessary data sets and specify any compiler options necessary for our program.
+
+
+- **Compilation via JCL**
+
+     - **Catalogued JCL Procedure**
+
+     - **Writing JCL to compile programs**
+
+- **Specifying compiler options**
+
+     - **Specifying options in the PROCESS statement**
+
+     - **Specifying options in JCL**
+
+- **Batch compilation**
+
+     - **Compiler options in a batch compilation**
+
+
+## Compilation via JCL
+
+The primary method of COBOL program compilation we have done in this course is through JCL or Job Control Language. We have primarily used a set of catalogued procedures provided by IBM which reduces the amount of JCL that we need to write.
+
+In the JCL, we need to include the job description, statement to invoke the compiler and definitions of the needed data sets.
+
+### Catalogued JCL Procedure
+
+A catalogued procedure is a set of job control statements in a partitioned data set called the procedure library, or proclib for short. Take for example the following JCL which calls the IBM-supplied catalogued procedure IGYWC for compiling an Enterprise COBOL program:
+
+```
+//JOB1      JOB1
+//STEPA     EXEC PROC=IGYWC
+//COBOL.SYSIN DD *
+000100 IDENTIFICATION DIVISION
+      * (the source code)
+...
+/*
+```
+
+In the example above, the COBOL program we are trying to compile is sourced directly from within the JCL file. If we store our source code in a data set, we can replace the SYSIN DD statement with the appropriate parameters.
+
+We can also override any compiler options which are not explicitly set by using an EXEC statement that includes the required options. Take for example:
+
+```
+//STEPA EXEC IGYWC,
+//           PARM.COBOL='LIST,MAP,RENT'
+```
+
+The content of the PARM statement defines the Enterprise COBOL compiler options we are setting for the program that we wrote. We will discuss more details regarding compiler options in a later section.
+
+**Compile procedure (IGYWC)**
+
+The first of the supplied catalogued procedures is the single-step IGYWC. It is a procedure for compiling a program, and it will produce an object module. The step which compiled the program is called COBOL. We are required to supply the SYSIN DD statement for the step to indicate the location of the source program:
+
+```
+//COBOL.SYSIN DD  *    (or appropriate parameters)
+```
+
+If we use copybooks in the program we are compiling, we must also supply a SYSLIB DD statement to indicate the location of our copybooks:
+
+```
+//COBOL.SYSLIB  DD  DISP=SHR,DSN=Z99998.COBLIB
+```
+
+**Compile and link-edit procedure (IGYWCL)**
+
+The second procedure is the two-step IGYWCL. Like the previous IGYWC, it will produce an object module. But it will also supply that module into the binder (or linkage-editor). The additional step which executes the binder is called LKED. This binder will prepare a load module which will be brought into storage for execution.
+
+Just like IGYWC, you will need to supply a SYSIN DD statement and also a SYSLIB DD statement at the COBOL step if you use copybooks.
+
+**Compile, link-edit and run procedure (IGYWCLG)**
+
+The third and last of the IBM-supplied catalogued procedures is IGYWCLG. In addition to compiling and passing the object module to the binder, it will also run the program. The last step which runs the compiled and link-edited program is called GO. 
+
+Just like the other two procedures, you will need to supply a SYSIN DD statement and also a SYSLIB DD statement at the COBOL step if you use copybooks. Additionally, if your COBOL program refers to any data set during execution, you will need to specify them in the GO step. A valid DDName of up to 8 characters, as specified in the FILE CONTROL paragraph will be needed:
+
+```
+//GO.DDName  DD  DSN=data-set-name
+```
+
+### Writing JCL to compile programs
+
+Chances are you will not need to manually write any JCL to compile a program. However, if the catalogued procedure does not provide you with the flexibility you need, you can write your job control statements. Let us take a look and study the following example:
+
+```
+//jobname JOB acctno,name,MSGCLASS=1              (1)
+//stepname EXEC PGM=IGYCRCTL,PARM=(options)       (2)
+//STEPLIB  DD DSNAME=IGY.V6R3M0.SIGYCOMP,DISP=SHR (3)
+//         DD DSNAME=SYS1.SCEERUN,DISP=SHR
+//         DD DSNAME=SYS1.SCEERUN2,DISP=SHR
+//SYSUT1   DD UNIT=SYSALLDA,SPACE=(subparms)      (4)
+//SYSUT2   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT3   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT4   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT5   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT6   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT7   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT8   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT9   DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT10  DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT11  DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT12  DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT13  DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT14  DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSUT15  DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSMDECK DD UNIT=SYSALLDA,SPACE=(subparms)
+//SYSPRINT DD SYSOUT=A                            (5)
+//SYSLIN   DD DSNAME=MYPROG,UNIT=SYSALLDA,        (6)
+//            DISP=(MOD,PASS),SPACE=(subparms)
+//SYSIN    DD DSNAME=dsname,UNIT=device,          (7)
+              VOLUME=(subparms),DISP=SHR
+```
+
+**(1):** The JOB statement indicates the beginning of a job.
+
+**(2):** The EXEC statement specifies that the Enterprise COBOL compiler (IGYCRCTL) is to be invoked.
+
+**(3):** The DD statement here defines where the Enterprise COBOL compiler resides. You will need to check with your system programmer regarding where the compiler is installed on your system. Alongside them, the Language Environment SCEERUN and SCEERUN2 data sets must be included in the concatenation unless they are available in the LNKLST.
+
+**(4):** The SYSUT DD statements define the utility data sets that the compiler will use to process the source program. All SYSUT files must be on direct-access storage devices.
+
+**(5):** The SYSPRINT DD statement defines the data set that receives output from compiler options.
+
+**(6):** The SYSLIN DD statement defines the data set that receives output from the OBJECT compiler option.
+
+**(7):** The SYSIN DD statement defines the data set to be used as input to the job step, or in other words, the source code.
+
+For more information on the input and output data set that the Enterprise COBOL compiler can use, please refer to the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=zos-defining-compiler-input-output).
+
+## Specifying compiler options
+
+The compiler is installed with default compiler options. However, when installing the compiler, the system programmer can fix certain compiler settings. You cannot override any compiler options that are fixed.
+
+For the options that are not fixed, there are several ways in which you can override the default settings:
+- Code them on the PROCESS or CBL statement in the COBOL source code
+- Include them in the JCL when you start the compiler
+- Include them in an SYSOPTF data set, which is one of the input data sets the compiler can use
+
+The compiler will then recognize the options in the following order of precedence from highest to lowest:
+1. Fixed installation defaults
+2. Values of the BUFSIZE, OUTDD, SQL and SQLIMS compiler options for the first program in a batch
+3. Options specified on PROCESS (or CBL) statements, preceding the IDENTIFICATION DIVISION
+4. Options specified on the compiler invocation
+5. Installation defaults that are not fixed
+
+The precedence options in a SYSOPTF data set will depend on where the OPTFILE compiler option is specified. For example, if OPTFILE is specified in a PROCESS statement, the SYSOPTF options will supersede the options specified in the compiler invocation.
+
+Note that this order of precedence also determines which options are in effect when there are conflicting or mutually exclusive options.
+
+For a full list of compiler options, please refer to the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=program-compiler-options).
+
+### Specifying options in the PROCESS statement
+
+Within a COBOL program, you can modify most compiler options in the PROCESS statements. We will need to code the statements before the IDENTIFICATION DIVISION header and before any comment lines or compiler-directing statements.
+
+We can also use CBL as a synonym of PROCESS. One or more blanks will be needed to separate a PROCESS or CBL statement from the first option in the list of options. The options themselves must be separated by a comma or a blank, while no spaces should be inserted between individual options and their suboptions.
+
+Furthermore, we can code more than one PROCESS or CBL statement. If we do so, they must follow one another. Note that your organization can inhibit the use of PROCESS statements by fixing up certain compiler settings. If the PROCESS or CBL statement contains an option that is not allowed, the COBOL compiler will generate an error diagnostic.
+
+Take a look at the following example:
+
+```
+       PROCESS LIST,MAP.
+      *-----------------------
+       IDENTIFICATION DIVISION.
+      *-----------------------
+       PROGRAM-ID.    CBL0001
+       AUTHOR.        Otto B. Fun.
+      *--------------------
+      ...
+```
+
+### Specifying options in JCL
+
+We can also specify compiler options using JCL. Take a look at the following example for the catalogued procedures:
+
+```
+//STEPA EXEC IGYWC,
+//           PARM.COBOL='LIST,MAP,RENT'
+```
+
+Alternatively, if you are making your job control statement:
+
+```
+//STEPA EXEC PGM=IGYCRCTL,
+//           PARM='LIST,OBJECT,NOCOMPILE(S)'
+```
+
+## Batch compilation
+
+We can also compile a sequence of separate COBOL programs through a single invocation of the compiler. We can link the object program produced into one single program object or separate them through the use of the NAME compiler option.
+
+When we compile several programs as part of a single job, we need to determine how many program objects we want and also ensuring each program have the appropriate compiler options and termination sequence.
+
+To create separate program objects, we need to precede each set of objects with the NAME compiler option. When the compiler encounters the option, the first program and all subsequent programs until the next time the NAME compiler option is encountered are link-edited to a single program object.
+
+Additionally, to terminate each program in the sequence, we need to use the END PROGRAM marker. If we omit them, the next program in the sequence will be nested in the preceding program, which may cause a compilation error when a PROCESS statement is encountered.
+
+Take a look at the following example:
+
+```
+//jobname JOB acctno,name,MSGLEVEL=1
+//stepname EXEC IGYWCL
+//COBOL.SYSIN DD *
+010100 IDENTIFICATION DIVISION.
+010200 PROGRAM-ID PROG1.
+ . . .
+019000 END PROGRAM PROG1.
+020100 IDENTIFICATION DIVISION.
+020200 PROGRAM-ID PROG2.
+ . . .
+029000 END PROGRAM PROG2.
+ CBL NAME
+030100 IDENTIFICATION DIVISION.
+030200 PROGRAM-ID PROG3.
+ . . .
+039000 END PROGRAM PROG3.
+/*
+//LKED.SYSLMOD DD DSN=&&GOSET
+/*
+//P2 EXEC PGM=PROG2
+//STEPLIB DD DSN=&&GOSET,DISP=(SHR,PASS)
+. . . 
+/*
+//P3 EXEC PGM=PROG3
+//STEPLIB DD DSN=&&GOSET,DISP=(SHR,PASS)
+. . . 
+/*
+//
+```
+
+In the JCL, PROG1 and PROG2 are link-edited together to form one program object with the name PROG2. Despite the name, the entry point of this program object will default to the first program in the program object, PROG1. On the other hand, PROG3 is link-edited by itself into a program object with the name PROG3.
+
+### Compiler options in a batch compilation
+
+As with the compilation of a single program, the order of precedence for each program in the batch sequence is the same. 
+
+However, note that if the current program being compiled does not contain a CBL or PROCESS statements, the compiler will use the settings of options in effect for the previous program. On the other hand, if a CBL or PROCESS statement is included, it will be resolved together with the options in effect for the previous program.
+
+Additionally, if any program needs the BUFSIZE, DEFINE, OUTDD, SQL, or SQLIMS option, that option must be in effect for the first program in the sequence.
+
+\newpage
+# Multithreading and COBOL
+
+We can run COBOL programs in multiple threads. To do so, we compile using the THREAD compiler option.
+
+Note that COBOL does not directly support the management of the program threads. But we can run the programs that we compile in a multithreaded application server. So, other programs can call the COBOL program we wrote in a way that enables it to run in multiple threads.
+
+**Choosing LOCAL-STORAGE or WORKING-STORAGE** 
+
+- Data items in the LOCAL-STORAGE SECTION are allocated for each instance of a program invocation. So in this case, each copy of the program will have its copy of the LOCAL-STORAGE data.
+
+- Data items in the WORKING-STORAGE SECTION are only allocated once for each program, so they will be available in their last-used state to all programs invocation.
+
+So, if we want to isolate data to an individual invocation, we need to define the data in the LOCAL-STORAGE SECTION. If we decided to define them in the WORKING-STORAGE SECTION, we need to make sure that the data will not be accessed simultaneously from multiple threads, or if we do, write the appropriate serialization code for it.
+
+## Multithreading
+
+Let us first understand how multithreading works.
+
+The operating system and multithreaded applications handle execution flow within a *process*, which is the course of events when the program runs. Programs within a process can share resources, and the processes themselves can be manipulated.
+
+Within a process, an application can initiate one or more *threads*, basically a stream of computer instruction that controls it. A multithreaded process begins with one thread and can create more to perform tasks. These threads can run concurrently.
+
+In a multithreaded environment, a COBOL *run unit* is the portion of the process that includes threads that have actively executing COBOL programs. The run unit will continue until no COBOL program is active in any of the threads. Within the run unit, COBOL programs can call non-COBOL programs and vice versa.
+
+Within a thread, control is transferred between separate COBOL and non-COBOL programs. Each separately called program is a *program invocation instance*. Program invocation instances of a particular program can exist in multiple threads within a given process.
+
+## THREAD to support multithreading
+
+As mentioned previously, we will need to use the THREAD compiler option for multithreading support. Note that using THREAD might adversely affect performance due to the serialization logic that is generated.
+
+To run multiple COBOL programs in more than one thread, all of them must be compiled using the THREAD and RENT compiler option, and link them with the RENT option of the binder.
+
+We will also need to use the THREAD option to compile object-oriented clients and classes.
+
+## Transferring control to multithreaded programs
+
+When we write COBOL programs for a multithreaded environment, we will need to choose appropriate program linkage statements.
+
+Just like single-threaded environments, a called program is in its initial state when it is first called within a run unit and when it is first called after a CANCEL to the called program. We need to ensure that the program we want to CANCEL is not active on any thread, or a Language Environment severe error will be produced.
+
+## Ending multithreaded environment
+
+We can end a multithread program by using GOBACK, EXIT PROGRAM or STOP RUN.
+
+GO BACK will return control to the caller of the program. If the caller is the first program in a thread, the thread will be terminated. If the thread is the initial one in a process, the process will be terminated.
+
+EXIT PROGRAM runs the same way as GO BACK, except from the main program where it has no effect.
+
+STOP RUN will terminate the entire Language Environment process and return control to the caller of the main program (which might be the operating system). All threads in the process will also be terminated.
+
+## Processing files with multithreading
+
+In threaded applications, we can code COBOL statements for input and output in QSAM, VSAM, and line-sequential files.
+
+Each file definition has an implicit serialization lock, which is used with automatic serialization logic during the I/O operations associated with the following statements: OPEN, CLOSE, READ, WRITE, REWRITE, START, DELETE.
+
+However, automatic serialization is not applied to statements specified with the following conditional phrases: AT END, NOT AT END, INVALID KEY, NOT INVALID KEY, AT END-OF-PAGE, NOT AT END-OF-PAGE.
+
+### File-definition storage
+
+Upon program invocation, the storage associated with file definition (such as FD records) is allocated and available in its last-used state. Therefore, all threads of execution will share this storage. You can depend on automatic serialization for this storage during the execution of the statements mentioned previously, but not between uses of the statements.
+
+### Serializing file access with multithreading
+
+To take advantage of automatic serialization, we can use one of the recommended following file organization and usage patterns when we access files in threaded programs.
+
+Recommended file organizations:
+- Sequential organization
+- Line-sequential organization
+- Relative organization with sequential access
+- Indexed organization with sequential access
+
+The recommended pattern for input:
+```
+    OPEN INPUT fn
+    ...
+    READ fn INTO local-storage-item
+    ...
+  * Process the record from the local-storage item.
+    ...
+    CLOSE fn
+```
+
+The recommended pattern for output:
+```
+    OPEN OUTPUT fn
+    ...
+  * Construct output record in local-storage item.
+    ...
+    WRITE rec from local-storage-item
+    ...
+    CLOSE fn
+```
+
+With other usage patterns, you must ensure that two instances of the program are never simultaneously active on different threads or that serialization logic is coded explicitly by using calls to POSIX services.
+
+To avoid serialization problems, we can define the data items that are associated with the file in the LOCAL-STORAGE SECTION.
+
+## Limitation of COBOL with multithreading
+
+In a multithreaded environment, there are some limitations on COBOL programs. In general, we must synchronize access to resources that are visible to the application within a run unit. 
+
+- CICS: We cannot run a multithreaded application in CICS. However, programs compiled with the THREAD option can run in CICS as part of an application that does not have multiple threads.
+
+- Recursive: Since we code the programs in a multithreaded application as recursive, we must adhere to all the restrictions and programming constraints that apply to recursive programs.
+
+- Reentrancy: We must compile our multithreading programs with the RENT compiler option and link them with the RENT option of the binder.
+
+- AMODE: We must run multithreaded applications with AMODE 31. However, programs compiled with the THREAD option can run with AMODE 24 as part of an application that does not have multiple threads.
+
+- Older COBOL programs: To run your COBOL programs on multiple threads of a multithreaded application, we must compile them with Enterprise COBOL using the THREAD option.
+
+To see more details on the limitation of COBOL with multithreading, check out the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=multithreading-handling-cobol-limitations).
+
+\newpage
+# Program tuning and simplification
+
+In the previous chapters, we have seen how you could code COBOL applications. But now, let us explore how to improve them.
+
+When a program is comprehensible, we can assess its performance. However, if the opposite is true, it can make your application difficult to understand and maintain, thus hindering optimization.
+
+To improve performance, we should take note of the following things:
+
+- The underlying algorithm of your business logic
+- Data structure
+
+Having a robust algorithm with the appropriate data structure is essential to improve performance.
+
+We can also write programs that result in more efficient use of the available services. We can also use coding techniques to improve our productivity.
+
+If you are interested in learning more about performance tuning with COBOL, check out the [Enterprise COBOL for z/OS Performance Tuning Guide](http://publibfp.dhe.ibm.com/epubs/pdf/igy6tg30.pdf).
+
+
+- **Optimal programming style**
+     
+     - **Using structured programming**
+
+     - **Factoring expressions**
+
+     - **Using symbolic constants**
+
+- **Choosing efficient data types**
+
+     - **Efficient computational data types**
+
+     - **Consistent data types**
+
+     - **Efficient arithmetic expressions**
+
+     - **Efficient exponentiations**
+
+- **Handling tables efficiently**
+
+- **Choosing compiler features to enhance performance**
+
+
+## Optimal programming style
+
+Enterprise COBOL came with an in-build optimizer, and the coding style we use can affect how it handles our code. We can improve optimization through the use of structured programming techniques, factoring expressions, using symbolic constants or grouping constant and duplicate computations.
+
+### Using structured programming
+
+Using structured programming statements, such as EVALUATE and inline PERFORM, can make our program more comprehensible and generates a more linear control flow, which enables the optimizer to produce a more efficient code.
+
+We can also use top-down programming constructs. In simpler term, we would work with a very general overview of what our program should do, before using that to build upon the required operations. In COBOL, out-of-line PERFORM statements are a natural way of doing top-down programming. It can be as efficient as an inline PERFORM because the compiler can simplify or remove the linkage code.
+
+Before we continue, let us talk a bit about in-line and out-of-line PERFORM statements. Chances are you have seen them without realizing what they are. Take a look at the example below:
+
+```
+PERFORM 010-INITIALIZE
+PERFORM UNTIL END-OF-FILE
+    READ FILE-DATA INTO WS-DATA
+    AT END
+        SET END-OF-FILE TO TRUE
+    NOT AT END
+        PERFORM 020-UPDATE-TRANSACTION
+    END-READ
+END-PERFORM
+```
+
+In the example above, we have two out-of-line PERFORM and one inline PERFORM. An inline PERFORM is executed in the normal flow of a program, while an out-of-line PERFORM will branch to the named paragraph.
+
+It is also suggested to avoid the use of the following constructs:
+
+- ALTER statements
+- Explicit GO TO statements
+- PERFORM procedures that involve irregular control flow
+
+### Factoring expressions
+
+We can also factor expressions in our programs to eliminate unnecessary computation. Take a look at the examples below. The first block of code is more efficient than the second block of code.
+
+```
+MOVE ZERO TO TOTAL
+PERFORM VARYING I FROM 1 BY 1 UNTIL I = 10
+    COMPUTE TOTAL = TOTAL + ITEM(I)
+END-PERFORM
+COMPUTE TOTAL = TOTAL * DISCOUNT
+```
+
+```
+MOVE ZERO TO TOTAL
+PERFORM VARYING I FROM 1 BY 1 UNTIL I = 10
+    COMPUTE TOTAL = TOTAL + ITEM(I) * DISCOUNT
+END-PERFORM
+```
+
+### Using symbolic constants
+
+If we have a data item that is constant throughout the program, we can initialize it with a VALUE clause and not change it anywhere in the program.
+
+However, if we pass a data item to a subprogram BY REFERENCE, the optimizer will treat it as an external data item and assumes that it is changed at every subprogram call.
+
+## Choosing efficient data types
+
+The use of consistent data types can reduce the need for conversions. We can also carefully determine when to use fixed-point and floating-point data types to improve performance.
+
+### Efficient computational data types
+
+When we use a data item mainly for arithmetic or subscripting purposes, we can code USAGE BINARY on the data description. The operations to manipulate binary data are faster than those for decimal data.
+
+However, when we are dealing with an intermediate result with a large precision, the compiler will use decimal arithmetic. Normally, for fixed-point arithmetic statements, the compiler will use binary arithmetics for precision of eight or fewer digits. Anything above 18 digits will always be computed using decimal arithmetics, and those in-between can use either form.
+
+Therefore, to produce the most efficient code for a BINARY data item, we need to ensure that it has a sign (indicated with an S in the PICTURE clause) and eight or fewer digits.
+
+But for a data item that is larger than eight digits or is used with DISPLAY or NATIONAL data items, we can use PACKED-DECIMAL. The code generated can be as fast as BINARY data items in some cases, especially if the statement is complicated or involves rounding.
+
+To produce the most efficient code for a PACKED-DECIMAL data item, we need to ensure it has a sign (indicated with an S in the PICTURE clause), an odd number of digits, and 15 or fewer digits in the PICTURE clause (since the instructions the compiler use are faster with 15 or fewer digits).
+
+### Consistent data types
+
+In operations with operands of different types, one of the operands will be converted to the same type as the other. This would require several instructions. 
+
+Therefore, to improve performance, we can avoid conversions by using consistent data types and by giving both operands the same usage and appropriate PICTURE specifications.
+
+### Efficient arithmetic expressions
+
+Computation of arithmetic expressions that are evaluated in floating point is most efficient when little or no conversion is involved. We can use operands that are COMP-1 or COMP-2 to produce the most efficient code.
+
+We can also define integer items as BINARY or PACKED-DECIMAL with nine or fewer digits to enable quick conversion to floating-point data. Note that conversion from COMP-1 or COMP-2 to a fixed-point integer with nine or fewer digits is efficient when the value of the COMP-1 or COMP-2 item is less than 1,000,000,000.
+
+### Efficient exponentiations
+
+We can use floating point for exponentiations for large exponents to achieve faster and more accurate results. For example, the first statement below is computed more quickly and accurately compared with the second statement:
+
+```
+COMPUTE FIXED-POINT1 = FIXED-POINT2 ** 100000.E+00
+COMPUTE FIXED-POINT1 = FIXED-POINT2 ** 100000
+```
+
+By using floating-point exponent, the compiler will use floating-point arithmetics to compute the exponentiations.
+
+## Handling tables efficiently
+
+We can also use several techniques to improve the efficiency of your table-handling applications.
+
+To refer to table elements efficiently, we can:
+
+- **Use indexing rather than subscripting.** Since the value of the index is already has the element size factored into it, preventing any need in calculating during run time.
+
+- **Use relative indexing.** Relative index references can be executed at least as fast as direct index references, and sometimes faster.
+
+Regardless of how you reference your table elements, we can also:
+
+- **Specify the element length to match that of related tables.** This will enable the optimizer to reuse the index or subscript computed for one table.
+
+- **Avoid errors in reference by coding index and subscript checks into your program.**
+
+We can also improve the efficiency of tables by:
+
+- Using binary data items for all subscripts
+- Using binary data items for variable-length table items
+- Using fixed-length data items whenever possible
+- Organize tables according to the type of search method used
+
+## Choosing compiler features to enhance performance
+
+Our choice of performance-related compiler options can affect how well our program is optimized. We may have a customized system that requires certain options to be set for optimum performance. We can choose compiler features by following these steps:
+
+1. Review the listed option settings to see your system defaults.
+2. Determine which options are fixed, and thus nonoverridable, by checking with your system programmer.
+3. For options that are not fixed, we can select performance-related options for compiling our program. Note that it is best practice to confer with your system programmer to ensure that the options you choose are appropriate for programs at your site.
+
+Another compiler feature to consider is the USE FOR DEBUGGING ON ALL PROCEDURES statement which can greatly affect the compiler optimizer. The use of the ON ALL PROCEDURES option will generate extra code at each transfer to a procedure name. Although these are useful for debugging, they will make your program larger and thus inhibit optimization.
+
+For a listing of performance-related compiler options, please check the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=performance-related-compiler-options).
 
 \newpage
 # COBOL Challenges
@@ -660,11 +1197,11 @@ The data that we are going to use will come from https://www.data.gov/. Accordin
 To be more specific, we are going to get the monthly unemployment claims of the state of Missouri.
 I chose this because it is separated according to different categories:
 
-- **By Age:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-age-d20a7
-- **By Ethnicity:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-ethnicity-2a03b
-- **By Industry:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-industry-80e86
-- **By Race:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-race-32ab3
-- **By Gender:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-sex-f5cb6
+- **By Age:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-age
+- **By Ethnicity:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-ethnicity
+- **By Industry:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-industry
+- **By Race:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-race
+- **By Gender:** https://catalog.data.gov/dataset/missouri-monthly-unemployment-claims-by-sex
 
 You can consume the data in different formats such as CSV, RDF, JSON or XML. You can choose whatever format you like.
 
@@ -750,7 +1287,7 @@ We will explore the popular Hacker News website for this challenge. Hacker News 
 The site offers a dynamic list of posts/stories, submitted by users, each of which could be expanded into its own unique comment thread. Readers can upvote or downvote links and comments, and the top thirty links are featured on the front page. Today, more than five million people read Hacker News each month, and landing a blog post on the front page is a badge of honor for many technologists.
 
 ### Our Goal
-We will be working on a Hacker News 2015-2016 dataset from Kaggle with a full year’s worth of stories:  Our goal is to extract only the Mainframe/COBOL related stories and assign ranking scores to them based on (a simplified version) the published Hacker News ranking algorithm. We will create a front page report that reflects this ranking order. The algorithm works in a way that nothing stays on the front page for too long, so a story’s score will eventually drop to zero over time (the gravity effect). Since our posts are spread out over a year and as older posts will always have a lower (or zero) ranking, we will distort the data so all our stories have the same date and and consider only the times in the ranking score calculation. This will give all our posts a fair chance of landing the front page.  Our front page report is published at 11:59pm. [Here's some additional information on the ranking.](http://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html)
+We will be working on a Hacker News 2015-2016 dataset from Kaggle with a full year’s worth of stories:  Our goal is to extract only the Mainframe/COBOL related stories and assign ranking scores to them based on (a simplified version) the published Hacker News ranking algorithm. We will create a front page report that reflects this ranking order. The algorithm works in a way that nothing stays on the front page for too long, so a story’s score will eventually drop to zero over time (the gravity effect). Since our posts are spread out over a year and as older posts will always have a lower (or zero) ranking, we will distort the data so all our stories have the same date and and consider only the times in the ranking score calculation. This will give all our posts a fair chance of landing the front page.  Our front page report is published at 11:59pm. [Here's some additional information on the ranking.](https://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html)
 
 ### The Plan
  - There are different creative ways of accomplishing this but here’s our plan: We will have a COBOL program that reads the input CSV file and retrieves only the ***Mainframe/COBOL*** stories. It then calculates the ranking score for the stories by factoring in the time they were posted and the number of votes they received. Each of the records is then written to an output dataset along with the ranking score. 
@@ -778,9 +1315,9 @@ We will be working on a Hacker News 2015-2016 dataset from Kaggle with a full ye
 
 5. Next add a new step in the JCL member to run the `DFSORT` utility on the output dataset from the previous step. The sort should be done on the ranking score field, from highest to lowest. Use `DFSORT` to also print headers for our front page. As this is a new utility not covered in the course, please check out these links to explore this very powerful and versatile tool:
  
-   [Getting started with DFSORT](https://www.ibm.com/support/knowledgecenter/SSLTBW_2.4.0/com.ibm.zos.v2r4.iceg200/abstract.htm)
+   [Getting started with DFSORT](https://www.ibm.com/docs/en/zos/2.4.0?topic=dfsort-zos-getting-started)
 
-   [Example with DFSORT](https://www.ibm.com/support/knowledgecenter/SSLTBW_2.4.0/com.ibm.zos.v2r4.icea100/ice2ca_Example_10._Sort_with_OUTFIL.htm)
+   [Example with DFSORT](https://www.ibm.com/docs/en/zos/2.4.0?topic=examples-example-10-sort-outfil)
 
 
 6. Run and debug until the front page looks ready! Which posts ranked among the highest? Here's a look at the generated report:

@@ -2,26 +2,41 @@
 
 Thank you for your interest in contributing to COBOL Programming Course. This document explains our contribution process and procedures.
 
-For a description of the roles and responsibilities of the various members of the COBOL Programming Course community, see the [governance policies]. Briefly, Contributors are anyone who submits content to the project, Committers review and approve such submissions, and the Technical Steering Committee provides general project oversight.
+## Primary Intent
 
-If you just need help or have a question, refer to [SUPPORT.md](SUPPORT.md).
+The primary intent of the COBOL Programming Course is to offer free and accessible education for individuals interested in learning COBOL on z/OS architecture. To ensure this, all developer tooling leveraged in this course to interact with the mainframe environment must be free and publicly accessible so that participants can continue leveraging these technologies after completing the course.
 
-## How to Contribute a Bug Fix or Change
+For major changes, please open an issue first to discuss what you would like to change. All contributions should be made with the primary intent of the course in mind.
 
-To contribute code to the project, first read over the [governance policies] page to understand the roles involved. For major changes, please open an issue first to discuss what you would like to change.
+## Sign all of your git commits!
+All contributions must align with the [Open Mainframe Project contribution guidelines](https://github.com/openmainframeproject/tac/blob/master/process/contribution_guidelines.md), including having a DCO signoff on all commits.
 
-Each contribution must include..
+Whenever you make a commit, it is required to be signed. If you do not, you will have to re-write the git history to get all commits signed before they can be merged, which can be quite a pain.
 
-* Tests and documentation to explain the functionality.
-* Any new files have [copyright and license headers]
-* A [Developer Certificate of Origin signoff].
-* Submitted to the project as a pull request.
+Use the "-s" or "--signoff" flags to sign a commit.
 
-COBOL Programming Course is licensed under the [Creative Commons Attribution 4.0 International](LICENSE) license. Contributions should abide by that standard license.
+Example calls:
+* `git commit -s -m "Adding a test file to new_branch"`
+* `git commit --signoff -m "Adding a test file to new_branch"`
 
-Project committers will review the contribution in a timely manner, and advise of any changes needed to merge the request.
+Why? Sign-off is a line at the end of the commit message which certifies who is the author of the commit. Its main purpose is to improve tracking of who did what, especially with patches.
 
+Example commit in git history:
 
-[governance policies]: GOVERNANCE.md
-[copyright and license headers]: https://github.com/openmainframeproject/tac/blob/master/process/contribution_guidelines.md#license-specification
-[Developer Certificate of Origin signoff]: https://github.com/openmainframeproject/tac/blob/master/process/contribution_guidelines.md#developer-certificate-of-origin
+```
+Add tests for the payment processor.
+
+Signed-off-by: Humpty Dumpty <humpty.dumpty@example.com>
+```
+
+What to do if you forget to sign off on a commit?
+
+To sign old commits: `git rebase --exec 'git commit --amend --no-edit --signoff' -i <commit-hash>`
+
+where commit hash is one before your first commit in history
+
+If you are committing via the GitHub UI directly, check out these [useful tools](https://github.com/openmainframeproject/tac/blob/main/process/contribution_guidelines.md#useful-tools-to-make-doing-dco-signoffs-easier).
+
+## Pull Requests
+- All contributions must be reviewed by a [committer](COMMITTERS.csv) 
+- Anyone can comment on a pull request to request delay on merging or to get questions answered.
