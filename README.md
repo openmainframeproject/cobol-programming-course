@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/openmainframeproject/artwork/main/projects/cobol-pc/color/cobol-pc-color.png)
+![](https://raw.githubusercontent.com/openmainframeproject/artwork/main/projects/cobol-pc/horizontal/color/cobol-pc-horizontal-color.png)
 
 [![License](https://img.shields.io/github/license/OpenMainframeProject/cobol-programming-course)](LICENSE)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4770/badge)](https://bestpractices.coreinfrastructure.org/projects/4770)
