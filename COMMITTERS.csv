@@ -1,10 +1,10 @@
-Name,Email,GitHub ID
-Sudharsana Srinivasan,Sudharsana.Srinivasan@ibm.com,Sudharsana-Srinivasan
-Martin Keen,mkeen@us.ibm.com,martinkeen
-John Mertic,jmertic@linuxfoundation.org,jmertic
-Paul Newton,paulnewt@us.ibm.com,paulnewt
-Michael Bauer,Michael.Bauer2@broadcom.com,MikeBauerCA
-Jessielaine Punongbayan,Jessielaine.Punongbayan@broadcom.com,jellypuno
-Zeibura Kathau,Zeibura.Kathau@broadcom.com,zeibura
-Hartanto Ario Widjaya,hartanto@securitypuppy.com,tanto259
-Joe Winchester,winchest@uk.ibm.com,Joe-Winchester
+Name,Email,GitHub ID,Role
+Sudharsana Srinivasan,Sudharsana.Srinivasan@ibm.com,Sudharsana-Srinivasan,Lead
+Michael Bauer,Michael.Bauer2@broadcom.com,MikeBauerCA,Co-Lead
+Martin Keen,mkeen@us.ibm.com,martinkeen,
+John Mertic,jmertic@linuxfoundation.org,jmertic,
+Paul Newton,paulnewt@us.ibm.com,paulnewt,
+Jessielaine Punongbayan,Jessielaine.Punongbayan@broadcom.com,jellypuno,
+Zeibura Kathau,Zeibura.Kathau@broadcom.com,zeibura,
+Hartanto Ario Widjaya,hartanto@securitypuppy.com,tanto259,
+Joe Winchester,winchest@uk.ibm.com,Joe-Winchester,

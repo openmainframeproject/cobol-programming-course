@@ -8,11 +8,11 @@ There are a few ways to connect with the COBOL Programming Course project:
 
 ## How to Ask for Help
 
-If you have trouble installing, building, or using COBOL Programming Course, but there's not yet reason to suspect you've encountered a genuine bug, start by posting a question to the Slack channel. This is the place for question such has "How do I...".
+If you have trouble installing, building, or using COBOL Programming Course, but there's not yet reason to suspect you've encountered a genuine bug, start by posting a question to the Slack channel. This is the place for questions such as "How do I...".
 
 ## How to report a bug or request an enhancement
 
-COBOL Programming Course manages bug and enhancement using it's [issue tracker](https://github.com/openmainframeproject/cobol-programming-course/issues/new/choose). The issue template will guide you on making an effective report.
+COBOL Programming Course manages bug and enhancement using its [issue tracker](https://github.com/openmainframeproject/cobol-programming-course/issues/new/choose). The issue template will guide you in making an effective report.
 
 ## Contributing a fix
 
