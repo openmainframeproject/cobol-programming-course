@@ -5,10 +5,10 @@ If you are interested in contributing translations of the course into this proje
 
 ## Course #1 - Getting Started
 | Version | Language | Author |
-|---------|----------|--------|
-| | | |
+|:-------:|:--------:|:------:|
+| [2.3](https://github.com/openmainframeproject/cobol-programming-course/releases/download/2.3.0/COBOL-Programming-Course-1-Getting-Started-French.pdf) | French | Bernard Zisermann |
 
 ## Course #2 - Advanced Topics
 | Version | Language | Author |
-|---------|----------|--------|
+|:-------:|:--------:|:------:|
 | | | |
