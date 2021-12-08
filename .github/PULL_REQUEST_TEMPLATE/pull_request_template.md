@@ -9,9 +9,9 @@ Fixes # (issue)
 What type of changes does your PR introduce to the COBOL Programming Course? _Put an `x` in the boxes that apply._
 
 - [ ] Bug fix (change which fixes one or more issues)
-- [ ] New feature (change which adds functionality or feature to the course)
-- [ ] Translations (change which adds or modify translations of the course)
-- [ ] Documentation (change which modify documentation related to the course)
+- [ ] New feature (change which adds functionality or features to the course)
+- [ ] Translations (change which adds or modifies translations of the course)
+- [ ] Documentation (change which modifies documentation related to the course)
 - [ ] This change requires an update to the course's z/OS environment
 
 ## Checklist:

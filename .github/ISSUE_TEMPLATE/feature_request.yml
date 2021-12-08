@@ -5,7 +5,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for submitting a feature request. Please fill up the information below and we will get back to you as soon as possible.
+        Thank you for submitting a feature request. Please fill in the information below and we will get back to you as soon as possible.
+  
+        Before opening a feature request, please search our existing issues: https://github.com/openmainframeproject/cobol-programming-course/issues. 
   - type: dropdown
     attributes:
       label: Course Details

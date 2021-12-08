@@ -2,11 +2,11 @@
 
 ## Considerations
 
-The COBOL Programming Course does not produce any kind of software. This project produces a technical course aimed to educate people on COBOL programming. The output of this project came in the form of PDF documents detailing the course content. A Markdown version is also available on the repository.
+The COBOL Programming Course does not produce any kind of software. This project produces a technical course aimed to educate people on COBOL programming. The output of this project is in the form of PDF documents detailing the course content. A Markdown version is also available on the repository.
 
 ## Supported Version
 
-Only the [latest version](https://github.com/openmainframeproject/cobol-programming-course/releases/latest) of the course is supported with security updates.
+Only the [latest version](https://github.com/openmainframeproject/cobol-programming-course/releases/latest) of the course is supported.
 
 ## Reporting a Vulnerability
 
