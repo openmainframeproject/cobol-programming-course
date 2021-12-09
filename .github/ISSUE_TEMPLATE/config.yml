@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Slack Channel
+    url: https://slack.openmainframeproject.org
+    about: Need assistance on the course or just want to say hi? Join our Slack channel

@@ -1,0 +1,46 @@
+name: Bug Report
+description: Create a report to help us improve the COBOL Programming Course
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for submitting a bug report. Please fill in the information below and we will get back to you as soon as possible.
+
+        Before opening an issue, please search our existing issues: https://github.com/openmainframeproject/cobol-programming-course/issues. 
+  - type: dropdown
+    attributes:
+      label: Course Details
+      description: Where did you take the course?
+      options:
+        - GitHub
+        - IBM Learning Platform
+        - Coursera
+        - edX
+        - Pluralsight
+        - YouTube
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Description
+      description: What happened? 
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reproduction Steps
+      description: What do we need to do to reproduce this bug?
+      value: |
+        1.
+        2.
+        3.
+        ...
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional Context
+      description: Any other context about the problem?
+    validations:
+      required: false

@@ -1,1 +1,1 @@
-All participants agree to abide by the Code of Conduct available at https://github.com/openmainframeproject/tac/blob/master/CODE_OF_CONDUCT.md.
+All participants agree to abide by the Code of Conduct available at https://github.com/openmainframeproject/tac/blob/master/CODE_OF_CONDUCT.md. Please contact conduct@openmainframeproject.org to report any violations or concerns.
