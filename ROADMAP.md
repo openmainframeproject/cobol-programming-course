@@ -1,6 +1,6 @@
 # Roadmap
 
-These roadmap lists out the possible and planned future contents for the COBOL Programming Course. If you are interested in contributing content, please review our [contribution guidelines](https://github.com/openmainframeproject/cobol-programming-course/blob/master/CONTRIBUTING.md).
+This roadmap lists out the possible and planned future contents for the COBOL Programming Course. If you are interested in contributing content, please review our [contribution guidelines](https://github.com/openmainframeproject/cobol-programming-course/blob/master/CONTRIBUTING.md).
 
 ## In-Progress Future Contents
 
