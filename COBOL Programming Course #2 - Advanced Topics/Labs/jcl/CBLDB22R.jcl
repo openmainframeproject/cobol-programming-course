@@ -1,7 +1,10 @@
 //CBLDB22R JOB 1,NOTIFY=&SYSUID,REGION=0M
-//********************************************************************
-//*        RUN                                                       *
-//********************************************************************
+//***************************************************/
+//* Copyright Contributors to the COBOL Programming Course 
+//* SPDX-License-Identifier: CC-BY-4.0
+//***************************************************/
+//*        RUN                                   
+//***************************************************/
 //RUN     EXEC PGM=IKJEFT01
 //STEPLIB  DD DSN=DSNC10.SDSNLOAD,DISP=SHR
 //RECIN    DD *

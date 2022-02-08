@@ -1,4 +1,8 @@
 //LOADTBL JOB 1,NOTIFY=&SYSUID
+//***************************************************/
+//* Copyright Contributors to the COBOL Programming Course 
+//* SPDX-License-Identifier: CC-BY-4.0
+//***************************************************/
 //LOAD    EXEC DSNUPROC,PARM='DBCG,Z99'
 //TBLRECS  DD  DSN=ZOS.PUBLIC.SEQ.DATA,DISP=SHR
 //SYSIN    DD  *,SYMBOLS=CNVTSYS

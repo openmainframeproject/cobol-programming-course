@@ -1,3 +1,7 @@
+      *-----------------------
+      * Copyright Contributors to the COBOL Programming Course
+      * SPDX-License-Identifier: CC-BY-4.0
+      *-----------------------
       *         COBOL reference format (Figure 1., page 32)
       *Columns:
       *  1         2         3         4         5         6         7
