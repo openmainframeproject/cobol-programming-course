@@ -25,7 +25,7 @@ To set up your own environment for the Course,
 - You will need to copy the members from **cbl** to your own PDS. The Course Document and JCL assume that the PDS is `&SYSUID..CBL`.
 - You will need to copy the members from **jcl** to your own PDS. The Course Document assumes that the PDS is `&SYSUID..JCL`.
 - You will need to make sure that the procedures DB2CBL and DB2JCL are added from **jclproc** to your procedure library. 
-- You will need to make sure that the IBM-supplied procedure DSNUPROC is an IBM-supplied procedure. A copy is available on **jclproc**.
+- You will need to make sure that the IBM-supplied procedure DSNUPROC is available in your procedure library. A copy is available on **jclproc**.
 
 Note that the JCL references the following data sets,
 - `&SYSUID..CBL` where the COBOL source codes are stored
