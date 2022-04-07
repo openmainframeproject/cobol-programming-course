@@ -3050,7 +3050,7 @@ do{
     //move counter to msg-to-write
     //write print-rec
 }
-While(counter != 10);
+while(counter != 10);
 ```
 *Example 16.  Java while loop*
 
@@ -3066,14 +3066,13 @@ END-PERFORM.
 ```
 *Example 17.  Basic loop*
 
-In this example, the variable counter is tested to see if it equals 11, as long as it doesn't then it is incremented, and the sentences nested within the perform statement are executed.  This construct can be extended, exemplified in Example 18.
+In this example, the variable counter is tested to see if it equals 11, as long as it doesn't then it is incremented, and the statements nested within the perform statement are executed.  This construct can be extended, exemplified in Example 18. However, in this example, we can only execute paragraphs instead of nested statements.
 
 
 ```
-PERFORM VARYING COUNTER FROM 01 BY 1 UNTIL COUNTER EQUAL 11
-     AFTER COUNTER-2 FROM 01 BY 1 UNTIL COUNTER-2 EQUAL 5
-...
-END-PERFORM.
+PERFORM 1000-PARAGRAPH-A
+    VARYING COUNTER FROM 01 BY 1 UNTIL COUNTER EQUAL 11
+    AFTER COUNTER-2 FROM 01 BY 1 UNTIL COUNTER-2 EQUAL 5.
 ```
 *Example 18.  Extended loop*
 
@@ -3081,9 +3080,8 @@ This may seem complex, but compare it to this Java pseudo-code:
 
 ```
 for(int counter = 0; counter < 11; counter++){
-    for(int counter2 = 0; counter2 < 5; counter2++{
-       //move counter to msg-to-write
-       //write print-rec
+    for(int counter2 = 0; counter2 < 5; counter2++){
+       paragraphA();
     }
 }
 ```
