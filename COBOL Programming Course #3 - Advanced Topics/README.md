@@ -6,7 +6,7 @@ This project is a set of training materials and labs for an Advanced Topics cour
 
 There are currently no official releases of COBOL Programming Course #3 - Advanced Topics. All content remains in development. We encourage you to view and contribute to the [book](COBOL%30Programming%30Course%30%333%30-%30Advanced%30Topics.md) :)
 
-If you run into any issues, please don't hesitate to reach out on our [slack channel](https://openmainframeproject.slack.com/archives/C011NE33Z1T).
+If you run into any issues, please don't hesitate to reach out on our [slack channel](https://openmainframeproject.slack.com/archives/C011NE32Z1T).
 
 ## Providers
 

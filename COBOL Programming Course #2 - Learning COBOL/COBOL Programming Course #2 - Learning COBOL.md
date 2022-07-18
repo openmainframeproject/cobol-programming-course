@@ -17,10 +17,7 @@ header-includes:
     linewidth=\textwidth}
 - \hypersetup{colorlinks=true,
               linkcolor=blue}
----
-\newpage
 
-# Learning COBOL
 
 # Why COBOL?
 

@@ -26,7 +26,7 @@ These materials are being used by other organizations to provide COBOL training 
 The PDF is built using the following [pandoc](https://pandoc.org/) command. Note: pdflatex is required. [MiKTeX](https://miktex.org/) can be installed to accomodate this. 
 
 ```
-pandoc "COBOL Programming Course #1 - Learning COBOL.md" -o "COBOL Programming Course #1 - Learning COBOL.pdf" --number-sections --toc -B Front_Matter.tex --listings
+pandoc "COBOL Programming Course #2 - Learning COBOL.md" -o "COBOL Programming Course #2 - Learning COBOL.pdf" --number-sections --toc -B Front_Matter.tex --listings
 ```
 
-`Front_Matter.tex` contains the content before the table of contents. `COBOL Programming Course #1 - Learning COBOL.md` contains the body. The command combines the two, generates the section numbers and table of contents for the body, and outputs `COBOL Programming Course #1 - Learning COBOL.pdf`
+`Front_Matter.tex` contains the content before the table of contents. `COBOL Programming Course #2 - Learning COBOL.md` contains the body. The command combines the two, generates the section numbers and table of contents for the body, and outputs `COBOL Programming Course #2 - Learning COBOL.pdf`

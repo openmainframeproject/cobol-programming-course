@@ -20,7 +20,7 @@ header-includes:
 ---
 \newpage
 
-# Getting started
+
 
 # VSCode with Zowe Explorer
 
