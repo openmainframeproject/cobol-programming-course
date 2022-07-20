@@ -1,4 +1,4 @@
-# COBOL Programming Course #1 - Getting Started - Lab Setup
+# COBOL Programming Course #2 - Learning COBOL - Lab Setup
 
 The labs for this course are set up on z/OS 2.4 with Enterprise COBOL v6.3. Modification may be necessary for your installation.
 
