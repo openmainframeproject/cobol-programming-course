@@ -300,7 +300,7 @@ Additionally, we cannot compare or move dynamic-length group items to any other 
 
 To define a dynamic length item, we can include the DYNAMIC LENGTH clause on the data description entry. Here are a couple of examples of how to indicate the clause:
 
-```
+```COBOL
 01 MY-DYN PIC X DYNAMIC.
 01 NAME PIC X DYNAMIC LENGTH.
 01 DYN-PRICE PIC X DYNAMIC LIMIT 500.
@@ -321,7 +321,7 @@ There are three ways that Enterprise COBOL uses to define UTF-8 data items.
 
 This type of UTF-8 data item is defined when the PICTURE clause contains one or more 'U' characters, or a single 'U' followed by a repetition factor. Take for example the piece of code below:
 
-```
+```COBOL
 01 NEW-UTF-CHAR PIC U(10).
 ```
 
@@ -331,7 +331,7 @@ In this case, we define a fixed character-length UTF-8 data item that holds 10 U
 
 Like fixed character-length, we define this by the inclusion of the 'U' character in the PICTURE clause. But now, we will add a phrase called BYTE-LENGTH. Observe the code below:
 
-```
+```COBOL
 01 NEW-UTF-BYTE PIC U BYTE-LENGTH 10.
 ```
 
@@ -341,7 +341,7 @@ In this case, we define a fixed byte-length UTF-8 data item that holds 10 bytes 
 
 Lastly, we have the dynamic-length UTF-8 data items. This is defined when we have a PICTURE clause with the 'U' character and the DYNAMIC LENGTH clause. Observe the code below:
 
-```
+```COBOL
 01 NEW-UTF-DYN PIC U DYNAMIC LIMIT 10.
 ```
 
@@ -409,7 +409,7 @@ Each middleware has unique reserved words available to Enterprise COBOL.
 
 Enterprise COBOL unique API reserved words are in Example 1.
 
-```
+```COBOL
 EXEC SQL
 EXEC CICS
 CALL 'MQ...'
@@ -422,7 +422,7 @@ Each of the above COBOL API's enable the program to communcate with Db2, CICS, M
 ### COBOL EXEC SQL
 SQL, Structured Query Language, is the documented standard for communicating will all relational databases.  Enterprise COBOL is capable of including Db2 for z/OS SQL.  A few simple COBOL EXEC SQL reserved words are shown in Example 2.
 
-```
+```COBOL
  WORKING-STORAGE SECTION. 
 *****************************************************
 * SQL INCLUDE FOR SQLCA                             *
@@ -469,7 +469,7 @@ The fields in the Db2 table record were defined using CREATE TABLE SQL.  The EXE
 
 Observe ":CUSTOMER-RECORD" in the EXEC SQL FETCH statement.  A colon (:) precedes COBOL program defined variables that are used in SQL statements so that Db2 can distinguish a variable name from a column name.  Example 3. shows the COBOL program data items describing the COBOL program variable names.
 
-```
+```COBOL
 *****************************************************
 * STRUCTURE FOR CUSTOMER RECORD                     *
 *****************************************************
@@ -718,7 +718,7 @@ Furthermore, we can code more than one PROCESS or CBL statement. If we do so, th
 
 Take a look at the following example:
 
-```
+```COBOL
        PROCESS LIST,MAP.
       *-----------------------
        IDENTIFICATION DIVISION.
@@ -872,7 +872,7 @@ Recommended file organizations:
 - Indexed organization with sequential access
 
 The recommended pattern for input:
-```
+```COBOL
     OPEN INPUT fn
     ...
     READ fn INTO local-storage-item
@@ -883,7 +883,7 @@ The recommended pattern for input:
 ```
 
 The recommended pattern for output:
-```
+```COBOL
     OPEN OUTPUT fn
     ...
   * Construct output record in local-storage item.
@@ -967,7 +967,7 @@ We can also use top-down programming constructs. In simpler term, we would work 
 
 Before we continue, let us talk a bit about in-line and out-of-line PERFORM statements. Chances are you have seen them without realizing what they are. Take a look at the example below:
 
-```
+```COBOL
 PERFORM 010-INITIALIZE
 PERFORM UNTIL END-OF-FILE
     READ FILE-DATA INTO WS-DATA
@@ -991,7 +991,7 @@ It is also suggested to avoid the use of the following constructs:
 
 We can also factor expressions in our programs to eliminate unnecessary computation. Take a look at the examples below. The first block of code is more efficient than the second block of code.
 
-```
+```COBOL
 MOVE ZERO TO TOTAL
 PERFORM VARYING I FROM 1 BY 1 UNTIL I = 10
     COMPUTE TOTAL = TOTAL + ITEM(I)
@@ -999,7 +999,7 @@ END-PERFORM
 COMPUTE TOTAL = TOTAL * DISCOUNT
 ```
 
-```
+```COBOL
 MOVE ZERO TO TOTAL
 PERFORM VARYING I FROM 1 BY 1 UNTIL I = 10
     COMPUTE TOTAL = TOTAL + ITEM(I) * DISCOUNT
@@ -1044,7 +1044,7 @@ We can also define integer items as BINARY or PACKED-DECIMAL with nine or fewer 
 
 We can use floating point for exponentiations for large exponents to achieve faster and more accurate results. For example, the first statement below is computed more quickly and accurately compared with the second statement:
 
-```
+```COBOL
 COMPUTE FIXED-POINT1 = FIXED-POINT2 ** 100000.E+00
 COMPUTE FIXED-POINT1 = FIXED-POINT2 ** 100000
 ```

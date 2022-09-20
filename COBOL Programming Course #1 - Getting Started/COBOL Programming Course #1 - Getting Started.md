@@ -1981,7 +1981,7 @@ The objective of this chapter is to provide information for the reader to be abl
 
 To code a table, we need to give the table a group name and define a subordinate item which we are repeating n times.
 
-```
+```COBOL
 01  TABLE-NAME.
     05  SUBORDINATE-NAME OCCURS n TIMES.
         10  ELEMENT1  PIC X(2).
@@ -1992,7 +1992,7 @@ In the example above, TABLE-NAME is the name of the group item. The table also c
 
 Alternatively, we can also make simpler tables:
 
-```
+```COBOL
 01  TABLE-NAME.
     05  SUBORDINATE OCCURS n TIMES    PIC X(10).
 ```
@@ -2001,7 +2001,7 @@ In this case, TABLE-NAME contains n SUBORDINATE items, each can contain up to 10
 
 We can also nest multiple OCCURS elements to create a table of additional dimensions, up to a limit of seven dimensions. Note the example below:
 
-```
+```COBOL
 01  PROGRAM-DETAILS.
     05  PROGRAM-DEGREE                PIC X(32).
     05  COURSE-DETAILS OCCURS 10 TIMES.
@@ -2022,7 +2022,7 @@ While a table element has a collective name, the individual items within do not 
 
 Subscripting is using the data name of the table element, along with its occurrence number (which is called a subscript). The lowest possible subscript number is 1, which defines the first occurrence of a table element. We can also use literal or data name as a subscript. Note that if you are using a data name, it must be an elementary numeric integer.
 
-```
+```COBOL
 01  TABLE-NAME.
     05  TABLE-ELEMENT OCCURS 3 TIMES    PIC X(03) VALUE "ABC".
 ...
@@ -2035,7 +2035,7 @@ In the above example, the second TABLE-ELEMENT will contain "DEF" instead of "AB
 
 Alternatively, we can create an index using the INDEXED BY phrase of the OCCURS clause. This index is added to the address of the table to locate an item (as a displacement from the start of the table). For example,
 
-```
+```COBOL
 05  TABLE-ELEMENT OCCURS 10 TIMES INDEXED BY INX-A   PIC X(03).
 ```
 
@@ -2045,7 +2045,7 @@ If you happen to have another table with the same number of table elements of th
 
 We can also define an index data item using the USAGE IS INDEX clause. These index data items can be used with any table. For example,
 
-```
+```COBOL
 77  INX-B  USAGE IS INDEX.
 ...
     SET INX-A TO 10.
@@ -2060,7 +2060,7 @@ The index name INX-A is used to traverse the TABLE-ELEMENT table, while INX-B is
 
 We can also increment or decrement an index name by an elementary integer data item. For example,
 
-```
+```COBOL
 SET INX-A DOWN BY 3
 ```
 
@@ -2072,7 +2072,7 @@ The following example shows how to calculate displacements to elements that are 
 
 Consider the following two-dimensional table, TABLE-2D:
 
-```
+```COBOL
 01  TABLE-2D.
     05  TABLE-ROW OCCURS 2 TIMES INDEXED BY INX-A.
         10  TABLE-COL OCCURS 5 TIMES INDEXED BY INX-B  PIC X(4).
@@ -2100,7 +2100,7 @@ There are many ways we can load a table. The first one involves loading the tabl
 
 To load a table dynamically, we need to use the PERFORM statement with either subscripting or indexing. When doing this, we need to make sure that the data does not exceed the space allocated for the table. We will discuss file handling and the use of PERFORM clause in a later chapter. For example,
 
-```
+```COBOL
 PROCEDURE DIVISION
     ...
     PERFORM READ-FILE.
@@ -2116,7 +2116,7 @@ In this example above, we execute a paragraph that reads files, and then we will
 
 Consider the following example,
 
-```
+```COBOL
 WORKING-STORAGE SECTION.
 01  NUMBER-VALUES.
     05  FILLER  PIC X(05) VALUE "One  "
@@ -2135,7 +2135,7 @@ Here, we are taking hard-coded values of spelled-out numbers from 1 to 5 and loa
 
 We can also use the INITIALIZE statement to load data into a table. The table will be processed as a group item and each elementary data item within it will be recognized and processed. For example, assume that we have the following table:
 
-```
+```COBOL
 01  TABLE-ONE.
     05  TABLE-ELEMENT OCCURS 10 TIMES.
         10  NUMBER-CODE   PIC 9(02) VALUE 10.
@@ -2146,7 +2146,7 @@ Here we have a table that contains 10 elements, each with its own NUMBER-CODE (w
 
 We can move the value 3 to each of the elementary numeric data items and the value "X" into each of the elementary alphanumeric data items in the table:
 
-```
+```COBOL
 INITIALIZE TABLE-ONE REPLACING NUMERIC DATA BY 3.
 INITIALIZE TABLE-ONE REPLACING ALPHANUMERIC DATA BY "X".
 ```
@@ -2157,7 +2157,7 @@ After running the two INITIALIZE statements, NUMBER-CODE will contain the value 
 
 If a table is expected to contain stable values, we can set them when defining the table. Take for example, the WEEK-DAY-TABLES and TABLE-ONE on the previous sections. Both of them have assigned values when defined. Here are some more examples:
 
-```
+```COBOL
 01  TABLE-TWO                            VALUE "1234".
     05  TABLE-TWO-DATA OCCURS 4 TIMES    PIC X.
 ```
@@ -2168,7 +2168,7 @@ In the above example, the alphanumeric group data item TABLE-TWO uses a VALUE cl
 
 If we do not know before runtime how many times a table element will occur, we can define a variable-length table using the OCCURS DEPENDING ON (ODO) clause.
 
-```
+```COBOL
 X OCCURS 1 TO 10 TIMES DEPENDING ON Y
 ```
 
@@ -2186,7 +2186,7 @@ We must ensure that the ODO object correctly specifies the number of occurrences
 
 The following example shows how we can use an OCCURS DEPENDING ON clause:
 
-```
+```COBOL
 WORKING-STORAGE SECTION
 01  MAIN-AREA.
     03  REC-1.
@@ -2201,7 +2201,7 @@ If we are moving REC-1 to REC-2, the length of REC-1 will be determined immediat
 
 On the other hand, if we are moving to REC-1, the length is determined using the maximum number of occurrences. However, if REC-1 is followed by a variably located group, the ODO object will be used in the calculation of the actual length of REC-1. An example of such case is provided below:
 
-```
+```COBOL
 01  MAIN-AREA.
     03  REC-1.
         05  FIELD-1                       PIC 9.
@@ -2227,7 +2227,7 @@ We can do a serial search by using the SEARCH statement. The search will begin a
 
 For example, assume that we have a list of names:
 
-```
+```COBOL
 77  PEOPLE-SEARCH-DATA                PIC X(20).
 01  PEOPLE-SERIAL.
     05  PEOPLE-NAME  OCCURS 50 TIMES 
@@ -2254,7 +2254,7 @@ Using the WHEN phrase, you can test any key that is named in the ASCENDING or DE
 
 For example, assume that we have a list of names sorted in ascending order:
 
-```
+```COBOL
 77  PEOPLE-SEARCH-DATA                PIC X(20).
 01  PEOPLE-TABLE-BINARY.
     05  PEOPLE-NAME  OCCURS 50 TIMES
@@ -2706,7 +2706,7 @@ As you already know, a COBOL program is split into several divisions, including 
 
 Typically, execution in a COBOL program begins at the first statement within the procedure division and progresses sequentially through each line until it reaches the end of the source code.   For example, take a look at Example 1. Snippet from TOTEN1.  This is a simple program that displays a simple message counting to ten.
 
-```
+```COBOL
 OPEN OUTPUT PRINT-LINE.
 
 MOVE 'THE NUMBER IS: ' TO MSG-HEADER OF PRINT-REC.  
@@ -2734,7 +2734,7 @@ Although this code is very simple to read, it's not very elegant, there is a lot
 The PERFORM keyword is a very flexible element of the COBOL language, as it allows functions and loops to be entered.  At the most basic level, a PERFORM allows control to be transferred to another section of the code.  Once this section has been executed, control returns to the following line of code.  Take the following example:
 
 
-```
+```COBOL
     OPEN OUTPUT PRINT-LINE.
 
     MOVE 'THE NUMBER IS: ' TO MSG-HEADER OF PRINT-REC. 
@@ -2769,7 +2769,7 @@ In this example, the three lines of code that constructed a new line of output a
 The code we have built so far is still not optimal, the repetition of the perform statement ten times is inelegant and can be optimized.  Observe the following snippet of code:
 
 
-```
+```COBOL
 MOVE 'THE NUMBER IS: ' TO MSG-HEADER OF PRINT-REC.
 
 PERFORM VARYING COUNTER FROM 01 BY 1 UNTIL COUNTER EQUAL 11
@@ -2786,7 +2786,7 @@ In this example, we are using the PERFORM keyword in a way that is similar to a 
 
 
 
-```
+```JAVA
 for(int counter =0; counter<11; counter++){
     //move counter to msg-to-write
     //write print-rec
@@ -2803,7 +2803,7 @@ Programmers tend to have strong beliefs about the choice of editor, tabs, or spa
 
 
 
-```
+```COBOL
 PERFORM WRITE-NEW-RECORD.
 GO TO WRITE-NEW-RECORD.
 PERFORM WRITE-NEW-RECORD.
@@ -2826,7 +2826,7 @@ As we can see, the use of GO TO causes a branch of execution that doesn't return
 
 
 
-```
+```COBOL
 0 01  FLAG           PIC 9(1) VALUE 1.   
 
 1  OPEN OUTPUT PRINT-LINE.
@@ -2899,7 +2899,7 @@ There is no requirement about the order that paragraphs should appear within a C
 
 - Because the paragraphs are numbered and appear in the source code in that order, when a sentence references a paragraph it is easier to know where in the program that paragraph might appear.  When initially structuring a program in this way, the numbers used would only increment the highest significant figure, allowing for new paragraphs to be inserted in between if needed.  Although the rise of modern editors, which allow outlining and instant jumping to a reference or declaration, makes this technique of less necessity, it is still useful to understand.
 
-```
+```COBOL
            PERFORM 1000-OPEN-FILES.
            PERFORM 2000-READ-NEXT-RECORD.
            GO TO 3000-CLOSE-STOP.
@@ -2937,7 +2937,7 @@ There is no requirement about the order that paragraphs should appear within a C
 
 - Lastly, it is common to explicitly end a paragraph by coding an empty paragraph following each paragraph, see Example 9.  This empty paragraph does not contain any code, has the same name as the paragraph it is closing, suffixed with -END, and is in turn closed by the starting of the following paragraph. But it can be used as a visual delimiter and is useful when using the PERFORM THRU keyword, which is discussed further in this chapter. Some Java programmers who have learned COBOL have commented that it is equivalent to the closing brace ("}") at the end of a block of code.
 
-```
+```COBOL
  1000-OPEN-FILES.   
      OPEN INPUT  ACCT-REC.
      OPEN OUTPUT PRINT-LINE.    
@@ -2962,7 +2962,7 @@ So far in this chapter, we have discussed the importance of using paragraphs to 
 
 Perhaps the simplest way of repeating a perform statement is to use the TIMES keyword to perform a paragraph or sections of code a static number of times, shown in Example 10.   
 
-```
+```COBOL
  PERFORM 10 TIMES
   MOVE FIELD-A TO FIELD-B
   WRITE RECORD
@@ -2972,7 +2972,7 @@ Perhaps the simplest way of repeating a perform statement is to use the TIMES ke
 
 The required number of times that the code should be executed can either be a literal, as above, or the value of a numeric variable as shown in Example 11. where the PERFORM keyword is being used to execute a paragraph.
 
-```
+```COBOL
  PERFORM MY-NEW-PARAGRAPH COUNTER TIMES.
 ```
 *Example 11.  TIMES 2*
@@ -2984,7 +2984,7 @@ You may require a sequential list of paragraphs to be executed in turn, instead 
 
 
 
-```
+```COBOL
  1000-PARAGRAPH-A.   
      PERFORM 2000-PARAGRAPH-B THRU
              3000-PARAGRAPH-C.
@@ -3008,7 +3008,7 @@ You may require a sequential list of paragraphs to be executed in turn, instead 
 Adding the UNTIL keyword to a perform sentence allows you to iterate over a group of sentences until the Boolean condition is met.  Effectively allowing you to program while loops in COBOL, take this basic example:
 
 
-```
+```COBOL
  MOVE 0 TO COUNTER.
  PERFORM UNTIL COUNTER = 10
   ADD 1 TO COUNTER GIVING COUNTER
@@ -3020,7 +3020,7 @@ Adding the UNTIL keyword to a perform sentence allows you to iterate over a grou
 
 This would be equivalent to the Java code:
 
-```
+```JAVA
 while(counter != 10){
     //counter++
     //move counter to msg-to-write
@@ -3033,7 +3033,7 @@ In this case, the Boolean condition is evaluated before the loop is executed.  H
 
 
 
-```
+```COBOL
  PERFORM WITH TEST AFTER UNTIL COUNTER = 10
   ADD 1 TO COUNTER GIVING COUNTER
   MOVE COUNTER TO MSG-TO-WRITE
@@ -3044,7 +3044,7 @@ In this case, the Boolean condition is evaluated before the loop is executed.  H
 
 This would be similar to a "do while" loop in Java:
 
-```
+```JAVA
 do{
     //counter++
     //move counter to msg-to-write
@@ -3059,7 +3059,7 @@ while(counter != 10);
 
 We've already used the VARYING keyword earlier in the section titled Using performs to code a loop, recall:
 
-```
+```COBOL
 PERFORM VARYING COUNTER FROM 01 BY 1 UNTIL COUNTER EQUAL 11
 ...
 END-PERFORM.
@@ -3069,7 +3069,7 @@ END-PERFORM.
 In this example, the variable counter is tested to see if it equals 11, as long as it doesn't then it is incremented, and the statements nested within the perform statement are executed.  This construct can be extended, exemplified in Example 18. However, in this example, we can only execute paragraphs instead of nested statements.
 
 
-```
+```COBOL
 PERFORM 1000-PARAGRAPH-A
     VARYING COUNTER FROM 01 BY 1 UNTIL COUNTER EQUAL 11
     AFTER COUNTER-2 FROM 01 BY 1 UNTIL COUNTER-2 EQUAL 5.
@@ -3078,7 +3078,7 @@ PERFORM 1000-PARAGRAPH-A
 
 This may seem complex, but compare it to this Java pseudo-code:
 
-```
+```JAVA
 for(int counter = 0; counter < 11; counter++){
     for(int counter2 = 0; counter2 < 5; counter2++){
        paragraphA();
@@ -3107,7 +3107,7 @@ When calling another program, we need to consider three main concerns: how we wi
 To call a target program we will use the keyword CALL followed by a reference to the target program we wish to call.  The two main ways to do this are by a literal value or by referencing a variable, shown in Example 20.
 
 
-```
+```COBOL
 CALL 'PROGA1' ...
 ...
 MOVE 'PROGA2' TO PROGRAM-NAME.
@@ -3157,14 +3157,14 @@ This will tell the compiler to look for the copybooks on the supplied dataset.
 Let us take a look at an example of how we can use the COPY statement in a program.
 
 Assume that a copybook with the name of DOWORK is stored and contains the following statement:
-```
+```COBOL
 COMPUTE SPACE-AVAILABLE = TOTAL-FREE-SPACE
 MOVE SPACE-AVAILABLE TO PRINT-SPACE
 ```
 *Example 22.  Content of DOWORK copybook*
 
 We can retrieve the copybook by utilizing the COPY statement:
-```
+```COBOL
 PROCEDURE DIVISION.
 ...
     DISPLAY "RETRIEVE COPYBOOK".
@@ -3501,7 +3501,7 @@ The 88-level conditional data name is assigned a value at compile time.  The pro
 Observe in Example 1.  'The State is not Texas' is written as a result of the first IF STATE because the value of USA-STATE is AZ which is not equal to the 88-level conditional data name, TX.  The second IF STATE writes, 'The State is Texas' because the value of USA-STATE is equal to the assigned 88-level value of TX.
 
 
-```
+```COBOL
 WORKING-STORAGE.
 01 USA-STATE     PIC X(2) VALUE SPACES.
    88 STATE      VALUE 'TX'.
@@ -3532,7 +3532,7 @@ Numerous 88-level conditional data names can follow an 01-level data name.  As a
 Other level number data-names require the condition expression to include a Boolean operator as shown in Example 2. , where a value can be stored in the 05-level STATE data name to be compared with some other stored value.  Therefore, a little bit of extra coding is needed.
 
 
-```
+```COBOL
 WORKING-STORAGE.
 01 USA-STATE.
    05 STATE      PIC X(2) VALUE SPACES.
@@ -3588,7 +3588,7 @@ IF statements are used to implement or evaluate relational operations.  IF ELSE 
 Consider this, during program processing something occurs to change the value in the data-name, FACIAL-EXP.  Subsequent statements, the conditional expression, needs to check the value of the data name to decide on how to proceed in the program. Exemplified in Example 3. by the THEN DISPLAY and ELSE DISPLAY statements.
 
 
-```
+```COBOL
 IF FACIAL-EXP = 'HAPPY' THEN
    DISPLAY 'I am glad you are happy'
 ELSE DISPLAY 'What can I do to make you happy'
@@ -3602,7 +3602,7 @@ END-IF.
 
 EVALUATE statements are used to code a choice among three or more possible actions. The explicit terminator for an EVALUATE statement is END-EVALUATE.  The EVALUATE statement is an expanded form of the IF statement that allows you to avoid nesting IF statements, a common source of logic errors and debugging issues.  EVALUATE operates on both text string values and numerical variables.  Using the FACIAL-EXP conditional-name, observe the COBOL code implementing an EVALUATE statement, shown in Example 4.
 
-```
+```COBOL
 EVALUATE FACIAL-EXP
  WHEN 'HAPPY'
   DISPLAY 'I am glad you are happy'
@@ -3621,7 +3621,7 @@ END-EVALUATE
 A PERFORM with UNTIL phrase is a conditional expression.  In the UNTIL phrase format, the procedures referred to are performed until the condition specified by the UNTIL phrase evaluates to true.  Using the FACIAL-EXP conditional-name, the SAY-SOMETHING-DIFFERENT paragraph is executed continuously UNTIL FACIAL-EXP contains 'HAPPY', observe Example 5.
 
 
-```
+```COBOL
 WORKING-STORAGE.
 01 FACIAL-EXP    PIC X(11) VALUE SPACES.
    88 HAPPY      VALUE 'HAPPY'.
@@ -3639,7 +3639,7 @@ END-PERFORM.
 
 It is also possible to use PERFORM statement without the use of an 88-level conditional name, observe Example 6.
 
-```
+```COBOL
 WORKING-STORAGE.
 01 FACIAL-EXP    PIC X(11) VALUE SPACES.
 ....
@@ -3658,7 +3658,7 @@ END-PERFORM.
 
 The SEARCH statement searches a table for an element that satisfies the specified condition and adjusts the associated index to indicate that element. Tables, effectively an array of values, are created with an OCCURS clause applied to WORK-STORAGE data names. A WHEN clause is utilized in SEARCH statements to verify if the element searched for satisfies the specified condition. Assuming FACIAL-EXP has many possible values, then SEARCH WHEN is an alternative conditional expression, observe Example 7.
 
-```
+```COBOL
 WORKING-STORAGE.
 01  FACIAL-EXP-TABLE REDEFINES FACIAL-EXP-LIST.
     05  FACIAL-EXP  PIC X(11) OCCURS n TIMES INDEXED BY INX-A.
@@ -4176,7 +4176,7 @@ Written as:
 Where function-name must be one of the intrinsic function names.  You can reference a function by specifying its name, along with any required arguments, in a PROCEDURE DIVISION statement.  Functions are elementary data items, and return alphanumeric characters, national characters, numeric, or integer values.
 
 
-```
+```COBOL
 01  Item-1   Pic x(30)  Value "Hello World!".
 01  Item-2   Pic x(30).
 . . .
@@ -4235,7 +4235,7 @@ The current release of Enterprise COBOL for z/OS V6.3 includes 70 intrinsic func
 
 Example 2. is storing into X the total of A + B + value resulting from C divided by D.  FUNCTION SUM enables the arithmetic operation.
 
-```
+```COBOL
 Compute x = Function Sum(a b (c / d))
 ```
 
@@ -4246,7 +4246,7 @@ Compute x = Function Sum(a b (c / d))
 Example 3. shows three COBOL functions, MEAN, MEDIAN, and RANGE where the arithmetic values are stored in Avg-Tax, Median-Tax, and Tax-Range using the data names with assigned pic clause values.
 
 
-```
+```COBOL
 01  Tax-S           Pic 99v999 value .045.
 01  Tax-T           Pic 99v999 value .02.
 01  Tax-W           Pic 99v999 value .035.
@@ -4267,7 +4267,7 @@ Example 3. shows three COBOL functions, MEAN, MEDIAN, and RANGE where the arithm
 Example 4. shows usage of three COBOL functions, Current-Date, Integer-of-Date, and Date-of-Integer applied to MOVE, ADD, and COMPUTE statements.
 
 
-```
+```COBOL
 01  YYYYMMDD        Pic 9(8).
 01  Integer-Form    Pic S9(9).
 . . .
@@ -4284,7 +4284,7 @@ Example 4. shows usage of three COBOL functions, Current-Date, Integer-of-Date, 
 
 Example 5 shows an application of the COBOL function ANNUITY financial algorithm where values for the loan amount, payments, interest, and a number of periods are input to the ANNUITY function.
 
-```
+```COBOL
 01  Loan                 Pic 9(9)V99.
 01  Payment              Pic 9(9)V99.
 01  Interest             Pic 9(9)V99.
@@ -4303,7 +4303,7 @@ Example 5 shows an application of the COBOL function ANNUITY financial algorithm
 Example 6 shows a usage of the COBOL function UPPER-CASE where a string or alphabetic variables processed by UPPER-CASE will translate any lower case characters to upper case.
 
 
-```
+```COBOL
 MOVE FUNCTION UPPER-CASE("This is shouting!") TO SOME-FIELD
 DISPLAY SOME-FIELD
 Output - THIS IS SHOUTING!
@@ -4317,7 +4317,7 @@ Output - THIS IS SHOUTING!
 A reference modification defines a data item by specifying the leftmost character position and an optional length for the data item, where a colon (:) is used to distinguish the leftmost character position from the optional length, as shown in Example 7.
 
 
-```
+```COBOL
 05 LNAME    PIC X(20).
 
 LNAME(1:1)
@@ -4606,7 +4606,7 @@ Even when a system ABEND does not occur, there are possible situations where you
 
 Usually, such routines would be supplied by your place of employment. But it can be as simple as the following example:
 
-```
+```COBOL
 IF abend-condition
     PERFORM ABEND-ROUTINE.
 ...
