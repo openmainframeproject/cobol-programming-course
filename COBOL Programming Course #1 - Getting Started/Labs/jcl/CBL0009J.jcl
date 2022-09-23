@@ -1,5 +1,8 @@
 //CBL0009J JOB 1,NOTIFY=&SYSUID
 //***************************************************/
+//* Copyright Contributors to the COBOL Programming Course 
+//* SPDX-License-Identifier: CC-BY-4.0
+//***************************************************/
 //COBRUN  EXEC IGYWCL
 //COBOL.SYSIN  DD DSN=&SYSUID..CBL(CBL0009),DISP=SHR
 //LKED.SYSLMOD DD DSN=&SYSUID..LOAD(CBL0009),DISP=SHR

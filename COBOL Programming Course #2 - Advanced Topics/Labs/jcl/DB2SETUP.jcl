@@ -1,4 +1,8 @@
 //DB2SETUP JOB   1
+//***************************************************/
+//* Copyright Contributors to the COBOL Programming Course 
+//* SPDX-License-Identifier: CC-BY-4.0
+//***************************************************/
 //JOBSTEP  EXEC  PGM=IEBCOPY
 //SYSPRINT DD  SYSOUT=A
 //JCL      DD  DSNAME=&SYSUID..JCL,DISP=SHR
