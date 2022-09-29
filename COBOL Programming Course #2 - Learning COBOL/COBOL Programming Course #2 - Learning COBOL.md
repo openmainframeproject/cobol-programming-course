@@ -18,6 +18,8 @@ header-includes:
 - \hypersetup{colorlinks=true,
               linkcolor=blue}
 
+---
+\newpage
 
 # Why COBOL?
 
