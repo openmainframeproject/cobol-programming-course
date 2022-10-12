@@ -1,4 +1,4 @@
-# COBOL Programming Course #2 - Advanced Topics - Lab Setup
+# COBOL Programming Course #3 - Advanced Topics - Lab Setup
 
 The labs for this course are set up on z/OS 2.4 with Enterprise COBOL v6.3 and Db2 for z/OS 12. Modification may be necessary for your installation.
 
