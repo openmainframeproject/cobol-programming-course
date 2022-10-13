@@ -1777,9 +1777,8 @@ In this example, we are using the PERFORM keyword in a way that is similar to a 
 
 
 ```JAVA
-for(int counter =0; counter<11; counter++){
-    //move counter to msg-to-write
-    //write print-rec
+for (int counter = 1; counter < 11; counter++) {
+    System.out.println("The number is: " + counter);
 }
 ```
 *Example 4.  Java example*
@@ -2011,10 +2010,10 @@ Adding the UNTIL keyword to a perform sentence allows you to iterate over a grou
 This would be equivalent to the Java code:
 
 ```JAVA
-while(counter != 10){
-    //counter++
-    //move counter to msg-to-write
-    //write print-rec
+int counter = 0;
+while (counter != 10) {
+    counter++;
+    System.out.println("The number is: " + counter);
 }
 ```
 *Example 14.  Java while loop*
@@ -2035,12 +2034,11 @@ In this case, the Boolean condition is evaluated before the loop is executed.  H
 This would be similar to a "do while" loop in Java:
 
 ```JAVA
-do{
-    //counter++
-    //move counter to msg-to-write
-    //write print-rec
-}
-while(counter != 10);
+int counter = 0;
+do {
+    counter++;
+    System.out.println("The number is: " + counter);
+} while (counter != 10);
 ```
 *Example 16.  Java while loop*
 
@@ -2069,9 +2067,9 @@ PERFORM 1000-PARAGRAPH-A
 This may seem complex, but compare it to this Java pseudo-code:
 
 ```JAVA
-for(int counter = 0; counter < 11; counter++){
-    for(int counter2 = 0; counter2 < 5; counter2++){
-       paragraphA();
+for (int counter = 1; counter < 11; counter++) {
+    for (int counter2 = 1; counter2 < 5; counter2++) {
+        paragraphA();
     }
 }
 ```
