@@ -101,7 +101,7 @@
                 OPEN INPUT  RECIN.                                      
                 OPEN OUTPUT REPOUT.                                     
                 READ RECIN  RECORD INTO IOAREA                          
-                   AT END MOVE 'N' TO INPUT-SWITCH.                     
+                   AT END SET NOMORE-INPUT TO TRUE.
                 PERFORM PROCESS-INPUT                                   
                    UNTIL NOMORE-INPUT.                                  
       *                                                                 
@@ -116,7 +116,7 @@
                 ELSE                                                    
                    PERFORM GET-SPECIFIC.                                
                 READ RECIN  RECORD INTO IOAREA                          
-                   AT END MOVE 'N' TO INPUT-SWITCH.                     
+                   AT END SET NOMORE-INPUT TO TRUE.
       *                                                                 
        GET-ALL.                                                         
                 EXEC SQL OPEN CUR1  END-EXEC.                           
