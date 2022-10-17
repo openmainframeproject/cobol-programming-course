@@ -68,6 +68,6 @@
       *
        READ-RECORD.
            READ ACCT-REC
-           AT END MOVE 'Y' TO LASTREC
+           AT END SET END-OF-FILE TO TRUE
            END-READ.
       *
