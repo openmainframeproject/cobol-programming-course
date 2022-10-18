@@ -147,17 +147,17 @@
       *
        READ-NEXT-RECORD.
            PERFORM READ-RECORD
-            PERFORM UNTIL LASTREC = 'Y'
-            PERFORM LIMIT-BALANCE-TOTAL
-            PERFORM WRITE-RECORD
-            PERFORM READ-RECORD
-            END-PERFORM
+           PERFORM UNTIL LASTREC = 'Y'
+               PERFORM LIMIT-BALANCE-TOTAL
+               PERFORM WRITE-RECORD
+               PERFORM READ-RECORD
+           END-PERFORM
            .
        WRITE-TLIMIT-TBALANCE.
-            MOVE TLIMIT   TO TLIMIT-O.
-            MOVE TBALANCE TO TBALANCE-O.
-            WRITE PRINT-REC FROM TRAILER-1.
-            WRITE PRINT-REC FROM TRAILER-2.
+           MOVE TLIMIT   TO TLIMIT-O.
+           MOVE TBALANCE TO TBALANCE-O.
+           WRITE PRINT-REC FROM TRAILER-1.
+           WRITE PRINT-REC FROM TRAILER-2.
       *
        CLOSE-STOP.
            CLOSE ACCT-REC.
@@ -166,7 +166,7 @@
       *
        READ-RECORD.
            READ ACCT-REC
-           AT END MOVE 'Y' TO LASTREC
+               AT END MOVE 'Y' TO LASTREC
            END-READ.
       *
        LIMIT-BALANCE-TOTAL.
