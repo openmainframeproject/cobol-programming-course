@@ -10,7 +10,8 @@
   DSN SYSTEM(DBCG)                                                      
   RUN  PROGRAM(DSNTEP2) PLAN(DSNTEP12) +                                
        LIB('DSNC10.DBCG.RUNLIB.LOAD') PARMS('/ALIGN(MID)')              
-  END                                                                   
+  END
+/*
 //SYSPRINT DD  SYSOUT=*                                                 
 //SYSUDUMP DD  DUMMY                                                    
 //         PEND                                                         
