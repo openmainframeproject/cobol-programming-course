@@ -6,4 +6,5 @@
 //SQLEXEC EXEC DB2JCL                                                   
 //SYSIN   DD *,SYMBOLS=CNVTSYS                                          
 --******* SQL FOLLOWS                                                   
-  SELECT * FROM &SYSUID.T;                                              
+  SELECT * FROM &SYSUID.T;
+/*
