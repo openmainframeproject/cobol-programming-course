@@ -20,7 +20,7 @@ COPYOPER   COPY    OUTDD=JCL,INDD=DB2JCL
                            (CBLDB23C,,R),                              X
                            (CBLDB23R,,R),                              X
                            (CRETBL,,R),                                X
-                           (DBRMLIB,R),                                X
+                           (DBRMLIB,,R),                               X
                            (LOADTBL,,R),                               X
                            (SELTBL,,R),                                X
                            ($README,,R))
