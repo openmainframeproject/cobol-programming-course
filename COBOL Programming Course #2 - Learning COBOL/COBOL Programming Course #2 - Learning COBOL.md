@@ -1091,7 +1091,7 @@ There are many ways we can load a table. The first one involves loading the tabl
 To load a table dynamically, we need to use the PERFORM statement with either subscripting or indexing. When doing this, we need to make sure that the data does not exceed the space allocated for the table. We will discuss file handling and the use of PERFORM clause in a later chapter. For example,
 
 ```COBOL
-PROCEDURE DIVISION
+PROCEDURE DIVISION.
     ...
     PERFORM READ-FILE.
     PERFORM VARYING SUB FROM 1 BY 1 UNTIL END-OF-FILE
@@ -1177,7 +1177,7 @@ We must ensure that the ODO object correctly specifies the number of occurrences
 The following example shows how we can use an OCCURS DEPENDING ON clause:
 
 ```COBOL
-WORKING-STORAGE SECTION
+WORKING-STORAGE SECTION.
 01  MAIN-AREA.
     03  REC-1.
         05  FIELD-1                       PIC 9.
@@ -1763,8 +1763,8 @@ The code we have built so far is still not optimal, the repetition of the perfor
 MOVE 'THE NUMBER IS: ' TO MSG-HEADER OF PRINT-REC.
 
 PERFORM VARYING COUNTER FROM 01 BY 1 UNTIL COUNTER EQUAL 11
-MOVE COUNTER TO MSG-TO-WRITE
-WRITE PRINT-REC
+    MOVE COUNTER TO MSG-TO-WRITE
+    WRITE PRINT-REC
 END-PERFORM.
 
 CLOSE PRINT-LINE.
@@ -1899,8 +1899,8 @@ There is no requirement about the order that paragraphs should appear within a C
        2000-READ-NEXT-RECORD.   
            PERFORM 4000-READ-RECORD   
            PERFORM UNTIL LASTREC = 'Y'
-           PERFORM 5000-WRITE-RECORD  
-           PERFORM 4000-READ-RECORD   
+               PERFORM 5000-WRITE-RECORD  
+               PERFORM 4000-READ-RECORD   
            END-PERFORM. 
       *
        3000-CLOSE-STOP. 
@@ -1910,7 +1910,7 @@ There is no requirement about the order that paragraphs should appear within a C
       * 
        4000-READ-RECORD.  
            READ ACCT-REC  
-           AT END MOVE 'Y' TO LASTREC 
+               AT END MOVE 'Y' TO LASTREC
            END-READ.
       * 
        5000-WRITE-RECORD. 
@@ -1935,8 +1935,8 @@ There is no requirement about the order that paragraphs should appear within a C
  2000-READ-NEXT-RECORD.   
      PERFORM 4000-READ-RECORD   
      PERFORM UNTIL LASTREC = 'Y'
-     PERFORM 5000-WRITE-RECORD  
-     PERFORM 4000-READ-RECORD   
+         PERFORM 5000-WRITE-RECORD
+         PERFORM 4000-READ-RECORD
      END-PERFORM.
  2000-READ-NEXT-RECORD-END.   
 ```
@@ -1953,8 +1953,8 @@ Perhaps the simplest way of repeating a perform statement is to use the TIMES ke
 
 ```COBOL
  PERFORM 10 TIMES
-  MOVE FIELD-A TO FIELD-B
-  WRITE RECORD
+     MOVE FIELD-A TO FIELD-B
+     WRITE RECORD
  END-PERFORM.
 ```
 *Example 10.  TIMES*
@@ -2000,9 +2000,9 @@ Adding the UNTIL keyword to a perform sentence allows you to iterate over a grou
 ```COBOL
  MOVE 0 TO COUNTER.
  PERFORM UNTIL COUNTER = 10
-  ADD 1 TO COUNTER GIVING COUNTER
-  MOVE COUNTER TO MSG-TO-WRITE
-  WRITE PRINT-REC
+     ADD 1 TO COUNTER GIVING COUNTER
+     MOVE COUNTER TO MSG-TO-WRITE
+     WRITE PRINT-REC
  END-PERFORM.
 ```
 *Example 13.  PERFORM UNTIL*
@@ -2024,9 +2024,9 @@ In this case, the Boolean condition is evaluated before the loop is executed.  H
 
 ```COBOL
  PERFORM WITH TEST AFTER UNTIL COUNTER = 10
-  ADD 1 TO COUNTER GIVING COUNTER
-  MOVE COUNTER TO MSG-TO-WRITE
-  WRITE PRINT-REC
+     ADD 1 TO COUNTER GIVING COUNTER
+     MOVE COUNTER TO MSG-TO-WRITE
+     WRITE PRINT-REC
  END-PERFORM.
 ```
 *Example 15.  PERFORM WITH TEST AFTER UNTIL*
@@ -2490,7 +2490,7 @@ Observe in Example 1.  'The State is not Texas' is written as a result of the fi
 
 
 ```COBOL
-WORKING-STORAGE.
+WORKING-STORAGE SECTION.
 01 USA-STATE     PIC X(2) VALUE SPACES.
    88 STATE      VALUE 'TX'.
 ....
@@ -2521,7 +2521,7 @@ Other level number data-names require the condition expression to include a Bool
 
 
 ```COBOL
-WORKING-STORAGE.
+WORKING-STORAGE SECTION.
 01 USA-STATE.
    05 STATE      PIC X(2) VALUE SPACES.
 ....
@@ -2610,7 +2610,7 @@ A PERFORM with UNTIL phrase is a conditional expression.  In the UNTIL phrase fo
 
 
 ```COBOL
-WORKING-STORAGE.
+WORKING-STORAGE SECTION.
 01 FACIAL-EXP    PIC X(11) VALUE SPACES.
    88 HAPPY      VALUE 'HAPPY'.
 ....
@@ -2628,7 +2628,7 @@ END-PERFORM.
 It is also possible to use PERFORM statement without the use of an 88-level conditional name, observe Example 6.
 
 ```COBOL
-WORKING-STORAGE.
+WORKING-STORAGE SECTION.
 01 FACIAL-EXP    PIC X(11) VALUE SPACES.
 ....
 ....
@@ -2647,7 +2647,7 @@ END-PERFORM.
 The SEARCH statement searches a table for an element that satisfies the specified condition and adjusts the associated index to indicate that element. Tables, effectively an array of values, are created with an OCCURS clause applied to WORK-STORAGE data names. A WHEN clause is utilized in SEARCH statements to verify if the element searched for satisfies the specified condition. Assuming FACIAL-EXP has many possible values, then SEARCH WHEN is an alternative conditional expression, observe Example 7.
 
 ```COBOL
-WORKING-STORAGE.
+WORKING-STORAGE SECTION.
 01  FACIAL-EXP-TABLE REDEFINES FACIAL-EXP-LIST.
     05  FACIAL-EXP  PIC X(11) OCCURS n TIMES INDEXED BY INX-A.
         88  HAPPY VALUE "HAPPY".
@@ -2657,7 +2657,7 @@ PROCEDURE DIVISION.
 ....
 ....
 SEARCH FACIAL-EXP
-WHEN HAPPY(INX-A) DISPLAY 'I am glad you are happy'
+    WHEN HAPPY(INX-A) DISPLAY 'I am glad you are happy'
 END-SEARCH
 ```
 *Example 7. SEARCH WHEN statement*           
@@ -3294,7 +3294,9 @@ Example 6 shows a usage of the COBOL function UPPER-CASE where a string or alpha
 ```COBOL
 MOVE FUNCTION UPPER-CASE("This is shouting!") TO SOME-FIELD
 DISPLAY SOME-FIELD
-Output - THIS IS SHOUTING!
+```
+```
+Output: THIS IS SHOUTING!
 ```
 
 *Example 6.  Character-handling intrinsic function*
