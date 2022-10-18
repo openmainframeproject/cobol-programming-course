@@ -71,10 +71,10 @@
       *     and the call to WRITE-RECORD depend on READ-RECORD having
       *     been executed before.
       *     The loop starts at the next line with PERFORM UNTIL
-            PERFORM UNTIL LASTREC = 'Y'
-            PERFORM WRITE-RECORD
-            PERFORM READ-RECORD
-            END-PERFORM
+           PERFORM UNTIL LASTREC = 'Y'
+               PERFORM WRITE-RECORD
+               PERFORM READ-RECORD
+           END-PERFORM
            .
       *
        CLOSE-STOP.
@@ -84,7 +84,7 @@
       *
        READ-RECORD.
            READ ACCT-REC
-           AT END MOVE 'Y' TO LASTREC
+               AT END MOVE 'Y' TO LASTREC
            END-READ.
       *
        WRITE-RECORD.
