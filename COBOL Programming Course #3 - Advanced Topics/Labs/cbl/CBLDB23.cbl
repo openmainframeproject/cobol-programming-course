@@ -97,7 +97,7 @@
                 OPEN INPUT  CARDIN.                                     
                 OPEN OUTPUT REPOUT.                                     
                 READ CARDIN RECORD INTO IOAREA                          
-                   AT END MOVE 'N' TO INPUT-SWITCH.                     
+                   AT END SET NOMORE-INPUT TO TRUE.
                 PERFORM PROCESS-INPUT                                   
                    UNTIL NOMORE-INPUT.                                  
        PROG-END.                                                        
@@ -110,7 +110,7 @@
                 ELSE                                                    
                    PERFORM GET-SPECIFIC.                                
                 READ CARDIN RECORD INTO IOAREA                          
-                   AT END MOVE 'N' TO INPUT-SWITCH.                     
+                   AT END SET NOMORE-INPUT TO TRUE.
        GET-ALL.                                                         
                 EXEC SQL OPEN CUR1  END-EXEC.                           
                 EXEC SQL FETCH CUR1  INTO :CUSTOMER-RECORD END-EXEC.    
