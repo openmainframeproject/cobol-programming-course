@@ -20,7 +20,7 @@ COPYOPER   COPY    OUTDD=JCL,INDD=DB2JCL
                            (CBLDB23C,,R),                              X
                            (CBLDB23R,,R),                              X
                            (CRETBL,,R),                                X
-                           (DBRMLIB,R),                                X
+                           (DBRMLIB,,R),                               X
                            (LOADTBL,,R),                               X
                            (SELTBL,,R),                                X
                            ($README,,R))
@@ -29,8 +29,8 @@ COPYOPER   COPY    OUTDD=CBL,INDD=DB2CBL
                            (CBLDB22,,R),                               X
                            (CBLDB23,,R),                               X
                            ($README,,R))
+/*
 //DBRMLIB EXEC PGM=IEFBR14
 //DBRMLIB DD DSN=&SYSUID..DBRMLIB,DISP=(,CATLG),
 // UNIT=3390,VOL=SER=DB2004,SPACE=(CYL,(1,1)),
 // DCB=(RECFM=FB,LRECL=80,BLKSIZE=4000,DSORG=PO),DSNTYPE=LIBRARY
-/*

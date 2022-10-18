@@ -33,4 +33,5 @@
                    USING STOGROUP DB2DISK  PRIQTY 12 ERASE NO           
                    BUFFERPOOL BP0 CLOSE NO;                             
 --*******************************************************               
-  COMMIT;                                                               
+  COMMIT;
+/*
