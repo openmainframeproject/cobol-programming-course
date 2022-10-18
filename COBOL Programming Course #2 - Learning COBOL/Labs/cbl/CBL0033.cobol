@@ -74,8 +74,8 @@
       *
        2100-READ-TEN-RECORDS.
            PERFORM 10 TIMES
-            PERFORM 4000-READ-RECORD
-            PERFORM 5000-WRITE-RECORD
+               PERFORM 4000-READ-RECORD
+               PERFORM 5000-WRITE-RECORD
            END-PERFORM.
        2100-READ-TEN-RECORDS-END.
       *TIMES repeats a perform statement, it's number can be
@@ -88,9 +88,8 @@
       *paragraphs will be executed in a sequential order
       *
        2300-READ-NEXT-RECORDS.
-           PERFORM VARYING COUNTER FROM 1 BY 1 UNTIL COUNTER
-           EQUAL 34
-            PERFORM 4000-READ-RECORD THRU 5000-WRITE-RECORD
+           PERFORM VARYING COUNTER FROM 1 BY 1 UNTIL COUNTER EQUAL 34
+               PERFORM 4000-READ-RECORD THRU 5000-WRITE-RECORD
            END-PERFORM.
        2300-READ-NEXT-RECORDS-END.
       *Loop printing the remaining 34 records by varying the
@@ -115,7 +114,7 @@
       *
        4000-READ-RECORD.
            READ ACCT-REC
-           AT END MOVE 'Y' TO LASTREC
+               AT END MOVE 'Y' TO LASTREC
            END-READ.
        4000-READ-RECORD-END.
       *
