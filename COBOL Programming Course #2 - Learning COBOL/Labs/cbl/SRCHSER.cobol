@@ -67,6 +67,6 @@
       *
        READ-RECORD.
            READ ACCT-REC
-           AT END SET END-OF-FILE TO TRUE
+               AT END SET END-OF-FILE TO TRUE
            END-READ.
       *

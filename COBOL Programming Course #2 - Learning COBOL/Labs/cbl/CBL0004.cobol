@@ -136,13 +136,13 @@
       *    paragraph of the code, executes it and returns control to
       *    the following line.
       *
-            PERFORM UNTIL LASTREC = 'Y'
+           PERFORM UNTIL LASTREC = 'Y'
       *     here PERFORM allows a loops to be entered   
       *
-            PERFORM WRITE-RECORD
-            PERFORM READ-RECORD
-            END-PERFORM
-            .
+               PERFORM WRITE-RECORD
+               PERFORM READ-RECORD
+           END-PERFORM
+           .
       *
        CLOSE-STOP.
            CLOSE ACCT-REC.
@@ -151,7 +151,7 @@
       *
        READ-RECORD.
            READ ACCT-REC
-           AT END MOVE 'Y' TO LASTREC
+               AT END MOVE 'Y' TO LASTREC
            END-READ.
       *
        WRITE-RECORD.

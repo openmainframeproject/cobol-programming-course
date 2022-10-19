@@ -140,12 +140,12 @@
       *
        READ-NEXT-RECORD.
            PERFORM READ-RECORD
-            PERFORM UNTIL LASTREC = 'Y'
-            PERFORM IS-STATE-VIRGINIA
-            PERFORM IS-OVERLIMIT
-            PERFORM WRITE-RECORD
-            PERFORM READ-RECORD
-            END-PERFORM
+           PERFORM UNTIL LASTREC = 'Y'
+               PERFORM IS-STATE-VIRGINIA
+               PERFORM IS-OVERLIMIT
+               PERFORM WRITE-RECORD
+               PERFORM READ-RECORD
+           END-PERFORM
            .
       *
        CLOSE-STOP.
@@ -157,7 +157,7 @@
       *
        READ-RECORD.
            READ ACCT-REC
-           AT END MOVE 'Y' TO LASTREC
+               AT END MOVE 'Y' TO LASTREC
            END-READ.
       *
        IS-OVERLIMIT.
