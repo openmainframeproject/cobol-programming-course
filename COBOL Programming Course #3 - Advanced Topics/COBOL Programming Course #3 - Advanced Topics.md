@@ -538,16 +538,19 @@ The result is a personal Db2 tablespace, table, indexspace, and index
  
 3. SUBMIT JCL(LOADTBL)
 The result is data loaded into the personal Db2 tablespace, table, indexspace, and index
+
+4. SUBMIT JCL(SELTBL)
+Performs an SQL select to verify that your personal Db2 table is properly loaded with data.
  
-4. Edit each COBOL source code member in your CBL partition data set changing all occurrences of Z# to your personal ID. Example - If your ID was Z80001, then change all occurrences of Z#  to Z80001.
+5. Edit each COBOL source code member in your CBL partition data set changing all occurrences of Z# to your personal ID. Example - If your ID was Z80001, then change all occurrences of Z#  to Z80001.
  
-5. SUBMIT JCL(CBLDB21C)
+6. SUBMIT JCL(CBLDB21C)
 The result is compile of CBL program CBLDB21 and a Db2 Plan needed for program execution
  
-6. SUBMIT JCL(CBLDB21R)
+7. SUBMIT JCL(CBLDB21R)
 The result is execution of COBOL program CBLDB21 to read the Db2 table and write each record from the Db2 table .
 
-7. Two additional COBOL programs with Db2 API exist, CBLDB22 and CBLDB23 using the same Db2 table as the data source.
+8. Two additional COBOL programs with Db2 API exist, CBLDB22 and CBLDB23 using the same Db2 table as the data source.
 
 \newpage
 # COBOL Program Compilation
