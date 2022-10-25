@@ -168,7 +168,7 @@
       * file changes again. A handled error is easier to find and fix 
       * than a buffer overwrite error.
                IF SUB1 > OVERLIMIT-MAX THEN
-                   DISPLAY 'OVERFOLW TABLE OVERLIMIT'
+                   DISPLAY 'OVERFLOW TABLE OVERLIMIT'
                    MOVE 1000 TO RETURN-CODE
                    STOP RUN
                END-IF
