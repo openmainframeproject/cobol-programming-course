@@ -36,6 +36,17 @@
       * SQL INCLUDE FOR SQLCA                             *             
       *****************************************************             
                 EXEC SQL INCLUDE SQLCA  END-EXEC.                       
+      *****************************************************
+      * DECLARATIONS FOR SQL ERROR HANDLING               *
+      *****************************************************
+       01 ERROR-MESSAGE.
+           02 ERROR-LEN      PIC S9(4)  COMP VALUE +1320.
+           02 ERROR-TEXT     PIC X(132) OCCURS 10 TIMES
+                                        INDEXED BY ERROR-INDEX.
+       77 ERROR-TEXT-LEN     PIC S9(9)  COMP VALUE +132.
+       77 ERROR-TEXT-HBOUND  PIC S9(9)  COMP VALUE +10.
+      * USER DEFINED ERROR MESSAGE
+       01 UD-ERROR-MESSAGE   PIC X(80)  VALUE SPACES.
       *****************************************************             
       * SQL DECLARATION FOR VIEW ACCOUNTS                 *             
       *****************************************************             
@@ -89,10 +100,23 @@
       *****************************************************             
        LIST-ALL.                                                        
                 EXEC SQL OPEN CUR1 END-EXEC.                            
+                IF SQLCODE NOT = 0 THEN
+                   MOVE 'OPEN CUR1' TO UD-ERROR-MESSAGE
+                   PERFORM SQL-ERROR-HANDLING
+                END-IF
                 EXEC SQL FETCH CUR1 INTO :CUSTOMER-RECORD END-EXEC.     
                 PERFORM PRINT-AND-GET1                                  
                      UNTIL SQLCODE IS NOT EQUAL TO ZERO.                
+                IF SQLCODE NOT = 100 THEN
+                   MOVE 'FETCH CUR1' TO UD-ERROR-MESSAGE
+                   PERFORM SQL-ERROR-HANDLING
+                END-IF
                 EXEC SQL CLOSE CUR1   END-EXEC.                         
+                IF SQLCODE NOT = 0 THEN
+                   MOVE 'CLOSE CUR1' TO UD-ERROR-MESSAGE
+                   PERFORM SQL-ERROR-HANDLING
+                END-IF
+                .
        PRINT-AND-GET1.                                                  
                 PERFORM PRINT-A-LINE.                                   
                 EXEC SQL FETCH CUR1 INTO :CUSTOMER-RECORD END-EXEC.     
@@ -104,3 +128,17 @@
                 MOVE  ACCT-FIRSTN  TO  ACCT-FIRSTN-O.                   
                 MOVE  ACCT-COMMENT TO  ACCT-COMMENT-O.                  
                 WRITE REPREC AFTER ADVANCING 2 LINES.                   
+      
+       SQL-ERROR-HANDLING.
+           DISPLAY 'ERROR AT ' FUNCTION TRIM(UD-ERROR-MESSAGE, TRAILING)
+           CALL 'DSNTIAR' USING SQLCA ERROR-MESSAGE ERROR-TEXT-LEN.
+           PERFORM VARYING ERROR-INDEX FROM 1 BY 1
+                     UNTIL ERROR-INDEX > ERROR-TEXT-HBOUND
+                        OR ERROR-TEXT(ERROR-INDEX) = SPACES
+              DISPLAY FUNCTION TRIM(ERROR-TEXT(ERROR-INDEX), TRAILING)
+           END-PERFORM
+           IF SQLCODE NOT = 0 AND SQLCODE NOT = 100
+              MOVE 1000 TO RETURN-CODE
+              STOP RUN
+           END-IF
+           .

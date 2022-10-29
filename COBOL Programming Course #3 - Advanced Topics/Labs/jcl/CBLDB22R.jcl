@@ -7,6 +7,7 @@
 //***************************************************/
 //RUN     EXEC PGM=IKJEFT01
 //STEPLIB  DD DSN=DSNC10.SDSNLOAD,DISP=SHR
+//REPORT   DD SYSOUT=*
 //RECIN    DD *
 LINCOLN
 /*
