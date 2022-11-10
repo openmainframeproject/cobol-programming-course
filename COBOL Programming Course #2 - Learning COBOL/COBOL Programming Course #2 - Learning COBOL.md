@@ -420,26 +420,26 @@ In this lab exercise, you will connect to an IBM Z system, view a simple COBOL h
 *Figure  5.  Extract the ZIP file*
 
 
-5. Open the extracted file. You could find these two files.
+5. Open the extracted file. You could find these two files as shown in Figure 6.
 
 ![](Images/image0002.png)
 
 *Figure  6.  Inside the Team configuration file*
 
 
-6. Now open your VS Code, As you open you could see option "Open folder" in the top left.
+6. Now open your VS Code, As you open you could see option "Open folder" in the top left as shown in Figure 7.
 
 ![](Images/image0006.png)
 
 *Figure  7.  Click the open folder button *
 
-7. A pop would arrive on your screen, you have to select the Team configuration file.
+7. A pop would arrive on your screen, you have to select the Team configuration file as shown in Figure 8.
 
 ![](Images/image0003.png)
 
 *Figure  8.  Select the Team Configuration File*
 
-8. Your connection will be added automatically to the DATASET list under Favorites as shown in fig 8
+8. Your connection will be added automatically to the DATASET list under Favorites as shown in Figure 9.
 
 ![](Images/image0004.png)
 
