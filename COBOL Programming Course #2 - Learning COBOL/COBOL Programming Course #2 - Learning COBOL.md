@@ -391,6 +391,8 @@ If you installed Code4z, the list should include:
    4. HLASM Language Support
    5. Debugger for Mainframe
    6. COBOL Control Flow
+   7. Abend Analyzer for Mainframe
+   8. Data Editor for Mainframe
 
    In these exercises, you will only use the COBOL Language Support and Zowe Explorer extensions.
 
@@ -404,9 +406,9 @@ If you installed Code4z, the list should include:
 
 ![](Images/image046.png)
 
-*Figure  3.   Zowe Explorer   Zowe Explorer icon*
+*Figure  3.   Zowe Explorer icon*
 
-3. In order to connect to the lab system, get your team configuration zip file and extract it.
+3. In order to connect to the lab system, get your team configuration zip file and extract it. You can obtain the team configuration zip file from the [Releases section of the course's GitHub repository](https://github.com/openmainframeproject/cobol-programming-course/releases/latest).
 
 ![](Images/image0001.png)
 
@@ -418,7 +420,7 @@ If you installed Code4z, the list should include:
 
 *Figure  5.  Inside the Team configuration file*
 
-5. Now back on your VSCode window, select the Explorer tab and press the "Open folder" button in the left bar.
+5. Now back on your VSCode window, select the Explorer tab, and press the "Open folder" button in the left bar.
 
 ![](Images/image0006.png)
 
@@ -436,7 +438,7 @@ If you installed Code4z, the list should include:
 
 *Figure  8a.  LearnCOBOL Connection*
 
-   If the connection does not appear, hover to the far right of the Data Sets line and press the + icon. Afterwards, select the **LearnCOBOL** connection as shown in Figure  8b.  
+   If the connection does not appear, hover to the far right of the Data Sets line and press the + icon. Afterward, select the **LearnCOBOL** connection as shown in Figure  8b.  
 
 ![](Images/image0005.png)
 
@@ -502,7 +504,7 @@ If you installed Code4z, the list should include:
 
 *Figure  18.  `<USERNAME>.CBL`*
 
-18. Expand **`<USERNAME>.JCL`** to view JCL and select member HELLO which is the JCL to compile and execute simple ‘Hello World!’ COBOL source code as shown in Figure  19.
+18. Expand **`<USERNAME>.JCL`** to view JCL members and select member HELLO which is the JCL used to compile and execute a simple ‘Hello World!’ COBOL source code as shown in Figure  19.
 
 ![](Images/image095.png)
 
@@ -543,6 +545,8 @@ If you installed Code4z, the list should include:
 ![](Images/image106.png)
 
 *Figure  25.  COBOL program execution*
+
+25.   Do note that you will need to open the **LearnCOBOL** folder every time you connect to the system, repeating step 5 to 7. To enable your connection profile to be accessible anywhere on your machine, you will need to move your configuration files (i.e. `zowe.config.json` and `zowe.schema.json`) from the LearnCOBOL folder to the Zowe global location. By default this is `C:\Users\%USERNAME%\.zowe` for Windows or `~/.zowe` for Linux and macOS.
 
 25.   The following URL is another excellent document describing the above VSCode and Zowe Explore details with examples:
       [https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe)
