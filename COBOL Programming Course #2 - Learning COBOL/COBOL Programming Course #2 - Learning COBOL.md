@@ -379,11 +379,11 @@ In this lab exercise, you will connect to an IBM Z system, view a simple COBOL h
    1. IBM Z Open Editor
    2. Zowe Explorer
 
-![](Images/image044.png)
+   ![](Images/image044.png)
 
-*Figure  2a.  The IBM Z Open Editor and Zowe Explorer VSCode extensions*
+   *Figure  2a.  The IBM Z Open Editor and Zowe Explorer VSCode extensions*
 
-If you installed Code4z, the list should include:
+   If you installed Code4z, the list should include:
 
    1. COBOL Language Support
    2. Zowe Explorer
@@ -396,155 +396,161 @@ If you installed Code4z, the list should include:
 
    In these exercises, you will only use the COBOL Language Support and Zowe Explorer extensions.
 
-![](Images/image044b.png)
+   ![](Images/image044b.png)
 
-*Figure  2b.  The Code4z package of VSCode extensions.*
+   *Figure  2b.  The Code4z package of VSCode extensions.*
 
    **Note:** If your list contains both Z Open Editor and COBOL Language Support, disable one of them, by clicking on the **cog** icon next to the extension in the extensions list, and selecting **disable**.
 
 2. Click the Zowe Explorer icon as shown in Figure  3. Zowe Explorer can list Data Sets, Unix System Services (USS) files, and Jobs output. 
 
-![](Images/image046.png)
+   ![](Images/image046.png)
 
-*Figure  3.   Zowe Explorer icon*
+   *Figure  3.   Zowe Explorer icon*
 
 3. In order to connect to the lab system, get your team configuration zip file and extract it. You can obtain the team configuration zip file from the [Releases section of the course's GitHub repository](https://github.com/openmainframeproject/cobol-programming-course/releases/latest).
 
-![](Images/image0001.png)
+   ![](Images/image0001.png)
 
-*Figure  4.  Extract the ZIP file*
+   *Figure  4.  Extract the ZIP file*
 
 4. Open the extracted folder. You will find the two configuration files as shown in Figure  5.
 
-![](Images/image0002.png)
+   ![](Images/image0002.png)
 
-*Figure  5.  Inside the Team configuration file*
+   *Figure  5.  Inside the Team configuration file*
 
 5. Now back on your VSCode window, select the Explorer tab, and press the "Open folder" button in the left bar.
 
-![](Images/image0006.png)
+   ![](Images/image0006.png)
 
-*Figure  6.  Click the open folder button*
+   *Figure  6.  Click the open folder button*
 
 6. A pop-up window would show up, select the folder containing the team configuration files.
 
-![](Images/image0003.png)
+   ![](Images/image0003.png)
 
-*Figure  7.  Select the team Configuration folder*
+   *Figure  7a.  Select the team Configuration folder*
+
+   If you are prompted to trust the authors of the files in the folder as shown in Figure  7b, select **Yes, I trust the authors**.
+
+   ![](Images/image0008.png)
+
+   *Figure  7b.  Trust the authors of files the folder*
 
 7. Your connection should be added automatically to the Data Sets list as shown in Figure  8a.
 
-![](Images/image0004.png)
+   ![](Images/image0004.png)
 
-*Figure  8a.  LearnCOBOL Connection*
+   *Figure  8a.  LearnCOBOL Connection*
 
    If the connection does not appear, hover to the far right of the Data Sets line and press the + icon. Afterward, select the **LearnCOBOL** connection as shown in Figure  8b.  
 
-![](Images/image0005.png)
+   ![](Images/image0005.png)
 
-*Figure  8b.  Adding LearnCOBOL Connection manually*
+   *Figure  8b.  Adding LearnCOBOL Connection manually*
 
 8. Press the LearnCOBOL connection.
 
-![](Images/image0007.png)
+   ![](Images/image0007.png)
 
-*Figure  9.  Pressing the LearnCOBOL Connection*
+   *Figure  9.  Pressing the LearnCOBOL Connection*
 
 9. The connection prompts for a username as shown in Figure  10.
 
-![](Images/image061.png)
+   ![](Images/image061.png)
 
-*Figure  10.  User name prompt*
+   *Figure  10.  User name prompt*
 
 10. **Please enter the username assigned to you! Do not use the sample username of Z99998.** A sample username, is entered as shown in Figure  11.  The ID is assigned by the System Administrator.
 
-![](Images/image064.png)
+    ![](Images/image064.png)
 
-*Figure  11.  Specified user name*
+    *Figure  11.  Specified user name*
 
 11. The connection prompts for a password as shown in Figure  12.
 
-![](Images/image067.png)
+    ![](Images/image067.png)
 
-*Figure  12.  Password prompt*
+    *Figure  12.  Password prompt*
 
 12. Enter your assigned password as shown in Figure  13.
 
-![](Images/image070.png)
+    ![](Images/image070.png)
 
-*Figure  13.  Specified password*
+    *Figure  13.  Specified password*
 
 13. Expanding LearnCOBOL shows “Use the search button to display datasets”. Click the magnifying glass icon as shown in Figure  14.
 
-![](Images/image084.png)
+    ![](Images/image084.png)
 
-*Figure  14.  Magnifying glass icon to set a filter*
+    *Figure  14.  Magnifying glass icon to set a filter*
 
 14. A prompt to "Search Data Sets" will appear as shown in Figure  15.
 
-![](Images/image086.png)
+    ![](Images/image086.png)
 
-*Figure  15. Filter name to be searched*
+    *Figure  15. Filter name to be searched*
 
 15. Each user has a high-level qualifier that is the same as their username. Therefore, enter your assigned username as the search criteria as shown in Figure 16. **Please enter the username assigned to you! Do not use the sample username of Z99998.**
 
-![](Images/image088.png)
+    ![](Images/image088.png)
 
-*Figure  16. Entered filter name*
+    *Figure  16. Entered filter name*
 
 16. A list of data set names beginning with your username will appear as shown in Figure  17.
 
-![](Images/image090.png)
+    ![](Images/image090.png)
 
-*Figure  17. Filtered data set names*
+    *Figure  17. Filtered data set names*
 
 17. Expand **`<USERNAME>.CBL`** to view COBOL source members, then select member **HELLO** to see a simple COBOL ‘Hello World!’ program as shown in Figure  18.
 
-![](Images/image093.png)
+    ![](Images/image093.png)
 
-*Figure  18.  `<USERNAME>.CBL`*
+    *Figure  18.  `<USERNAME>.CBL`*
 
 18. Expand **`<USERNAME>.JCL`** to view JCL members and select member HELLO which is the JCL used to compile and execute a simple ‘Hello World!’ COBOL source code as shown in Figure  19.
 
-![](Images/image095.png)
+    ![](Images/image095.png)
 
-*Figure  19.  `<USERNAME>.JCL`*
+    *Figure  19.  `<USERNAME>.JCL`*
 
-19.   Right-click on JCL member **HELLO**.  A section box appears.  Select **Submit Job** for the system to process HELLO JCL as shown in Figure  20.  The submitted JCL job compiles the COBOL HELLO source code, then executes the COBOL HELLO program.
+19. Right-click on JCL member **HELLO**.  A section box appears.  Select **Submit Job** for the system to process HELLO JCL as shown in Figure  20.  The submitted JCL job compiles the COBOL HELLO source code, then executes the COBOL HELLO program.
 
-![](Images/image097.png)
+    ![](Images/image097.png)
 
-*Figure  20.  Submit Job*
+    *Figure  20.  Submit Job*
 
-20.   Observe the ‘Jobs’ section in Zowe Explorer as shown in Figure  21.
+20. Observe the ‘Jobs’ section in Zowe Explorer as shown in Figure  21.
 
-![](Images/image098.png)
+    ![](Images/image098.png)
 
-*Figure  21.  JOBS section*
+    *Figure  21.  JOBS section*
 
-21.   Again, click on the + to the far right on the Jobs selection.  The result is another prompt to ‘Create new’.  Select **LearnCOBOL** from the list as shown in Figure  22.
+21. Again, click on the + to the far right on the Jobs selection.  The result is another prompt to ‘Create new’.  Select **LearnCOBOL** from the list as shown in Figure  22.
 
-![](Images/image100.png)
+    ![](Images/image100.png)
 
-*Figure  22.   Select LearnCOBOL connection*
+    *Figure  22.   Select LearnCOBOL connection*
 
-22.   As a result, the JCL jobs owned by your username appear.  HELLOCBL is the JCL job name previously submitted.  Expand **HELLOCBL** output to view sections of the output as shown in Figure  23.
+22. As a result, the JCL jobs owned by your username appear.  HELLOCBL is the JCL job name previously submitted.  Expand **HELLOCBL** output to view sections of the output as shown in Figure  23.
 
-![](Images/image102.png)
+    ![](Images/image102.png)
 
-*Figure  23.  HELLOCBL output*
+    *Figure  23.  HELLOCBL output*
 
-23.   Select **COBRUN:SYSPRINT(101)** to view the COBOL compiler output.  Scroll forward in the COBOL compile to locate the COBOL source code compiled into an executable module as shown in Figure  24.  Observe the Indicator Area in column 7, A Area beginning in column 8, and B Area beginning in column 12.  Also, observe the period (.) scope terminators in the COBOL source.
+23. Select **COBRUN:SYSPRINT(101)** to view the COBOL compiler output.  Scroll forward in the COBOL compile to locate the COBOL source code compiled into an executable module as shown in Figure  24.  Observe the Indicator Area in column 7, A Area beginning in column 8, and B Area beginning in column 12.  Also, observe the period (.) scope terminators in the COBOL source.
 
-![](Images/image104.png)
+    ![](Images/image104.png)
 
-*Figure  24.  COBOL compiler output*
+    *Figure  24.  COBOL compiler output*
 
-24.   View the COBOL program execution by selecting **COBRUN:SYSOUT(104)** from the LEARNCOBOL in the Jobs section of Zowe Explorer as shown in Figure  25.
+24. View the COBOL program execution by selecting **COBRUN:SYSOUT(104)** from the LEARNCOBOL in the Jobs section of Zowe Explorer as shown in Figure  25.
 
-![](Images/image106.png)
+    ![](Images/image106.png)
 
-*Figure  25.  COBOL program execution*
+    *Figure  25.  COBOL program execution*
 
 25.   Do note that you will need to open the **LearnCOBOL** folder every time you connect to the system, repeating step 5 to 7. To enable your connection profile to be accessible anywhere on your machine, you will need to move your configuration files (i.e. `zowe.config.json` and `zowe.schema.json`) from the LearnCOBOL folder to the Zowe global location. By default this is `C:\Users\%USERNAME%\.zowe` for Windows or `~/.zowe` for Linux and macOS.
 
