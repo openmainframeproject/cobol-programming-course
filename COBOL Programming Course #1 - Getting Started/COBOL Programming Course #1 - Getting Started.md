@@ -15,8 +15,8 @@ header-includes:
     breakatwhitespace=true,
     breakautoindent=true,
     linewidth=\textwidth}
-- \hypersetup{colorlinks=true,
-              linkcolor=blue}
+colorlinks: true
+toccolor: Blue
 ---
 \newpage
 
