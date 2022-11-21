@@ -79,7 +79,7 @@ From a software engineering perspective, that even makes sense.  Rewrites are al
 
 # Basic COBOL
 
-This chapter introduces the basics of COBOL syntax. It then demonstrates how to view and run a basic COBOL program in VSCode.
+This chapter introduces the basics of COBOL syntax. It then demonstrates how to view and run a basic COBOL program in VS Code.
 
 
 - **COBOL characteristics**
@@ -370,9 +370,9 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
 ## Lab
 
-In this lab exercise, you will connect to an IBM Z system, view a simple COBOL hello world program in VSCode, submit JCL to compile the COBOL program, and view the output.  Refer to "Installation of VSCode and extensions" to configure VSCode if you have not already done so. You can either use IBM Z Open Editor and Zowe Explorer, or Code4z.
+In this lab exercise, you will connect to an IBM Z system, view a simple COBOL hello world program in VS Code, submit JCL to compile the COBOL program, and view the output.  Refer to "Installation of VS Code and extensions" to configure VS Code if you have not already done so. You can either use IBM Z Open Editor and Zowe Explorer, or Code4z.
 
-1. The lab assumes installation of VSCode with either IBM Z Open Editor and Zowe Explorer extensions, as shown in Figure  2a, or the Code4z extension pack, as shown in Figure  2b.
+1. The lab assumes installation of VS Code with either IBM Z Open Editor and Zowe Explorer extensions, as shown in Figure  2a, or the Code4z extension pack, as shown in Figure  2b.
 
    Click the **Extensions** icon. If you installed IBM Z Open Editor and Zowe Explorer, the list should include:
 
@@ -381,7 +381,7 @@ In this lab exercise, you will connect to an IBM Z system, view a simple COBOL h
 
    ![](Images/image044.png)
 
-   *Figure  2a.  The IBM Z Open Editor and Zowe Explorer VSCode extensions*
+   *Figure  2a.  The IBM Z Open Editor and Zowe Explorer VS Code extensions*
 
    If you installed Code4z, the list should include:
 
@@ -398,7 +398,7 @@ In this lab exercise, you will connect to an IBM Z system, view a simple COBOL h
 
    ![](Images/image044b.png)
 
-   *Figure  2b.  The Code4z package of VSCode extensions.*
+   *Figure  2b.  The Code4z package of VS Code extensions.*
 
    **Note:** If your list contains both Z Open Editor and COBOL Language Support, disable one of them, by clicking on the **cog** icon next to the extension in the extensions list, and selecting **disable**.
 
@@ -420,7 +420,7 @@ In this lab exercise, you will connect to an IBM Z system, view a simple COBOL h
 
    *Figure  5.  Inside the Team configuration file*
 
-5. Now back on your VSCode window, select the Explorer tab, and press the "Open folder" button in the left bar.
+5. Now back on your VS Code window, select the Explorer tab, and press the "Open folder" button in the left bar.
 
    ![](Images/vscode-add-folder.png)
 
@@ -554,7 +554,7 @@ In this lab exercise, you will connect to an IBM Z system, view a simple COBOL h
 
 25.   Do note that you will need to open the **LearnCOBOL** folder every time you connect to the system, repeating step 5 to 7. To enable your connection profile to be accessible anywhere on your machine, you will need to move your configuration files (i.e. `zowe.config.json` and `zowe.schema.json`) from the LearnCOBOL folder to the Zowe global location. By default this is `C:\Users\%USERNAME%\.zowe` for Windows or `~/.zowe` for Linux and macOS.
 
-25.   The following URL is another excellent document describing the above VSCode and Zowe Explore details with examples:
+26.   The following URL is another excellent document describing the above VS Code and Zowe Explorer details with examples:
       [https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe)
 
 ## Lab - Zowe CLI & Automation
@@ -563,18 +563,18 @@ In this lab exercise, you will use the Zowe CLI to automate submitting the JCL t
 ### Zowe CLI - Interactive Usage
 In this section, we will use the Zowe CLI interactively to view data set members, submit jobs, and review spool output.
 
-1. Within VS Code, open the integrated terminal (Terminal -> New Terminal). In the terminal, issue `zowe --version` to confirm the Zowe CLI is installed as depicted in the following figure. If it is not installed, please refer to the section on the "Installation of Zowe CLI and Plug-ins." Also, notice that the default shell selected (outlined in red) is `bash`. I would recommend selecting the default shell as either `bash` or `cmd` for this lab.
+1. Within VS Code, open the integrated terminal (Terminal -> New Terminal). In the terminal, issue `zowe --version` to confirm the Zowe CLI is installed as depicted in the following figure. If it is not installed, please refer to the section on the "Installation of Zowe CLI and Plug-ins." Also, notice that the default shell selected is `cmd`. I would recommend selecting the default shell as either `bash` or `cmd` for this lab.
 
    ![](Images/zowe/zowe-cli-version.png)
 
    *Figure  26.  `zowe --version` command in VS Code Integrated Terminal*
 
-2. In order for Zowe CLI to interact with z/OSMF the CLI must know the connection details such as host, port, username, password, etc. While you could enter this information on each command, Zowe provides the ability to store this information in configurations file. 
+2. In order for Zowe CLI to interact with z/OSMF the CLI must know the connection details such as host, port, username, password, etc. While you could enter this information on each command, Zowe provides the ability to store this information in configuration files. 
 
    If you have done the configuration in the first lab, you will have a folder containing your team configuration files. Make sure that your terminal is at that location and issue the following command.
 
    ```
-   zowe config list
+   zowe config list --locations
    ```
 
    The following figure demonstrates the outcome of the command.
@@ -605,24 +605,18 @@ In this section, we will use the Zowe CLI interactively to view data set members
 
    *Figure  28.  zowe files list ds and am commands*
 
-5. Next, we will download our COBOL and JCL data set members to our local machine. First, create and open a new folder in your file explorer. Note that you could also create a workspace to manage multiple projects. See the following figure for help:
-
-   ![](Images/vscode-add-folder.png)
-
-   *Figure  29.  File explorer view to demonstrate opening a new folder*
-
-   Once you have an empty folder opened, return to the integrated terminal, ensure you are in your folder, and issue commands similar to:
+5. Next, we will download our COBOL and JCL data set members to our local machine. From the terminal, issue commands similar to:
 
    ```
    zowe files download am "Z99998.CBL" -e ".cbl"
    zowe files download am "Z99998.JCL" -e ".jcl"
    ```
 
-   Then open `hello.cbl` in your file explorer. A completed example is shown in the following figure:
+   A completed example is shown in the following figure:
 
    ![](Images/zowe/zowe-files-download-am.png)
 
-   *Figure  30.  Download and view data set members using the CLI*
+   *Figure  29.  Download and view data set members using the CLI*
 
 6. Next, we will submit the job in member `Z99998.JCL(HELLO)`. To submit the job, wait for it to complete, and view all spool content, issue:
 
@@ -639,22 +633,22 @@ In this section, we will use the Zowe CLI interactively to view data set members
    To list spool files associated with this job id, issue:
 
    ```
-   zowe jobs list sfbj JOB09413
+   zowe jobs list sfbj JOB04064
    ```
 
-   where `JOB09413` was returned from the previous command.
+   where `JOB04064` was returned from the previous command.
     
    To view a specific spool file (COBRUN:SYSOUT), issue:
 
    ```
-   zowe jobs view sfbi JOB09413 104
+   zowe jobs view sfbi JOB04064 105
    ```
 
-   where `JOB09413` and `104` are obtained from the previous commands.
+   where `JOB04064` and `105` are obtained from the previous commands.
 
    ![](Images/zowe/zowe-jobs-submit-ds-and-view-spool-output.png)
 
-   *Figure  31.  Submit a job, wait for it to complete, then list spool files for the job, and view a specific spool file*
+   *Figure  30.  Submit a job, wait for it to complete, then list spool files for the job, and view a specific spool file*
 
    If desired, you can also easily submit a job, wait for it to complete, and download the spool content using the following command (see the following figure for the completed state):
 
@@ -664,22 +658,22 @@ In this section, we will use the Zowe CLI interactively to view data set members
 
    ![](Images/zowe/zowe-jobs-submit-ds-and-download-spool-output.png)
 
-   *Figure  32.  Submit a job, wait for it to complete, download and view spool files*
+   *Figure  31.  Submit a job, wait for it to complete, download and view spool files*
 
    The Zowe CLI was built with scripting in mind. For example, you can use the `--rfj` flag to receive output in JSON format for easy parsing. See the next figure for an example.
 
    ![](Images/zowe/zowe-jobs-submit-ds-rfj.png)
 
-   *Figure  33.  The `--rfj` flag allows for easy programmatic usage*
+   *Figure  32.  The `--rfj` flag allows for easy programmatic usage*
 
 ### Zowe CLI - Programmatic Usage
 In this section, we will leverage the Zowe CLI programmatically to automate submitting the JCL to compile, link, and run the COBOL program and downloading the spool output. Once you have the content locally you could use any number of distributed scripting and testing tools to eliminate the need to manually review the spool content itself. Historically, in Mainframe, we use REXX Exec, CLIST, etc. for automation, but today we are going to use CLI and distributed tooling.
 
-1. Since we already have Node and npm installed, let’s just create a node project for our automation. To initialize a project, issue `npm init` in your project’s folder and follow the prompts. You can accept the defaults by just pressing enter. Only the description and author fields should be changed. See the following figure.
+1. Since we already have Node and npm installed, let’s just create a node project for our automation. To initialize a project, issue `npm init` in your project’s folder and follow the prompts. You can accept the defaults by just pressing enter. Only the description and author fields should be changed. See the following figure. Do note that to use the team configuration files as mentioned on previous section, this project must be a subdirectory of the **LearnCOBOL** folder.
 
    ![](Images/npm/npm-init-example.png)
 
-   *Figure  34.  Use of `npm init` to create `package.json` for the project*
+   *Figure  33.  Use of `npm init` to create `package.json` for the project*
 
 2. Now that we have our `package.json` simply replace the `test` script with a `clg` script that runs the following zowe command (replace `Z99998` with your high-level qualifier):
 
@@ -691,13 +685,13 @@ In this section, we will leverage the Zowe CLI programmatically to automate subm
 
    ![](Images/npm/npm-run-clg.png)
 
-   *Figure  35.  Final `package.json` and `npm run clg` execution*
+   *Figure  34.  Final `package.json` and `npm run clg` execution*
 
 3. If you prefer a graphical trigger, you can leverage VS Code as shown in the following figure. Essentially, the CLI enables you to quickly build your own buttons for your custom z/OS tasks. You could also invoke a script rather than a single command to accommodate more complex scenarios.
 
    ![](Images/npm/npm-run-clg-button.png)
 
-   *Figure  36.  `clg` task triggered via button*
+   *Figure  35.  `clg` task triggered via button*
 
 \newpage
 
@@ -1444,9 +1438,9 @@ Again, the READ-RECORD paragraph executes the COBOL READ statement, resulting in
 
 The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL coding technique for reading all data records from a sequential file. If a step has an asterisk (\*) next to it, it will have a hint associated at the end of the lab content.
 
-1. If not already, open VSCode and select Zowe Explorer from the left sidebar.
+1. If not already, open VS Code and select Zowe Explorer from the left sidebar.
 
-**Note**: If you are opening a new instance of VSCode (i.e. you closed out of it after the previous usage), you may need to 'Select a filter' again. You can do so by selecting the search icon ![](Images/image132.png) next to your named connection in the DATA SETS section and then reselecting the filter previously used. It should be in the listed filters after you have selected the search symbol.
+**Note**: If you are opening a new instance of VS Code (i.e. you closed out of it after the previous usage), you may need to 'Select a filter' again. You can do so by selecting the search icon ![](Images/image132.png) next to your named connection in the DATA SETS section and then reselecting the filter previously used. It should be in the listed filters after you have selected the search symbol.
 
  
 
@@ -2122,7 +2116,7 @@ In summary, this chapter should provide the necessary foundation to understand s
 
 This lab utilizes COBOL program CBL0033, located within your id.CBL data set, as well as JCL job CBL0033J, located within your id.JCL data set.  The JCL jobs are used to compile and execute the COBOL programs, as discussed in previous chapters.
 
-#### Using VSCode and Zowe Explorer
+#### Using VS Code and Zowe Explorer
 
 1. Take a moment and look over the source code of the COBOL program provided: CBL0033. 
 
@@ -2275,7 +2269,7 @@ PRINT-REC is opened for output resulting in PRINT-REC FROM following through wit
 
 This lab utilizes two COBOL programs, CBL0004, and CBL0005, located within your id.CBL data set, as well as two JCL jobs, CBL0004J and CBL0005J, located within your id.JCL data set.  The JCL jobs are used to compile and execute the COBOL programs, as discussed in previous chapters.
 
-#### Using VSCode and Zowe Explorer
+#### Using VS Code and Zowe Explorer
 
 1. Submit job: CBL0004J
 
@@ -2673,9 +2667,9 @@ The sign condition determines whether the algebraic value of a numeric operand i
 
 ## Lab
 
-This lab requires two COBOL programs, CBL0006 and CBL0007, and two respective JCL Jobs, CBL0006J and CBL0007J, to compile and execute the COBOL programs. All of which are provided to you in your VSCode - Zowe Explorer.
+This lab requires two COBOL programs, CBL0006 and CBL0007, and two respective JCL Jobs, CBL0006J and CBL0007J, to compile and execute the COBOL programs. All of which are provided to you in your VS Code - Zowe Explorer.
 
-#### Using VSCode and Zowe Explorer:
+#### Using VS Code and Zowe Explorer:
 
 1. Take a moment and look over the source code of the two COBOL programs provided: CBL0006 and CBL0007. 
 
@@ -2900,9 +2894,9 @@ The WRITE-TLIMIT-TBALANCE paragraph shown in Figure  5. is positioned within the
 
 ## Lab
 
-This lab requires two COBOL programs, CBL0008 and CBL0009, and two respective JCL Jobs, CBL0008J and CBL0009J, to compile and execute the COBOL programs. All of which are provided to you in your VSCode - Zowe Explorer.
+This lab requires two COBOL programs, CBL0008 and CBL0009, and two respective JCL Jobs, CBL0008J and CBL0009J, to compile and execute the COBOL programs. All of which are provided to you in your VS Code - Zowe Explorer.
 
-#### Using VSCode and Zowe Explorer
+#### Using VS Code and Zowe Explorer
 
 1. Take a moment and look over the source code of the two COBOL programs provided: CBL0008 and CBL0009.
 
@@ -3034,7 +3028,7 @@ Many of the previous COBOL lab programs you have worked with thus far are readin
 
 What happens when an internal packed decimal field is not described using COMP-3? Without using COMP-3 to describe the field, the COBOL program treats the data as DISPLAY data (EBCDIC format). This lab demonstrates what happens during program execution without using COMP-3.
 
-#### Using VSCode and Zowe Explorer
+#### Using VS Code and Zowe Explorer
 
 1. Submit the job, id.JCL(CBL0010J)
 
@@ -3270,9 +3264,9 @@ Reference modification, LNAME(1:1), would return only the first character of dat
 
 This lab contains data that includes a last name, where last name is all upper-case.  It demonstrates the use of intrinsic functions together with reference modification to lower-case the last name characters, except the first character of the last name.
 
-This lab requires two COBOL programs, CBL0011 and CBL0012, and two respective JCL Jobs, CBL0011J and CBL0012J, to compile and execute the COBOL programs. All of which are provided to you in your VSCode - Zowe Explorer.
+This lab requires two COBOL programs, CBL0011 and CBL0012, and two respective JCL Jobs, CBL0011J and CBL0012J, to compile and execute the COBOL programs. All of which are provided to you in your VS Code - Zowe Explorer.
 
-#### Using VSCode and Zowe Explorer
+#### Using VS Code and Zowe Explorer
 
 1. Submit job, CBL0011J.
 
