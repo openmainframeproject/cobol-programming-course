@@ -1063,7 +1063,7 @@ We will also need to use the THREAD option to compile object-oriented clients an
 
 When we write COBOL programs for a multithreaded environment, we will need to choose appropriate program linkage statements.
 
-Just like single-threaded environmentcons, a called program is in its initial state when it is first called within a run unit and when it is first called after a CANCEL to the called program. We need to ensure that the program we want to CANCEL is not active on any thread, or a Language Environment severe error will be produced.
+Just like single-threaded environments, a called program is in its initial state when it is first called within a run unit and when it is first called after a CANCEL to the called program. We need to ensure that the program we want to CANCEL is not active on any thread, or a Language Environment severe error will be produced.
 
 ## Ending multithreaded environment
 
