@@ -553,6 +553,229 @@ The result is execution of COBOL program CBLDB21 to read the Db2 table and write
 8. Two additional COBOL programs with Db2 API exist, CBLDB22 and CBLDB23 using the same Db2 table as the data source.
 
 \newpage
+# COBOL for Web Services
+
+## How to Parse JSON Documents in COBOL:
+
+There are numerous scenarios in which we can parse JSON.
+### Scenario 1: Parsing JSON documents in normal conditions.
+Input: 
+```
+{"data":{"ver":1,"uid":1234,"txt":"I love learning"}}
+```
+COBOL Code:
+```
+IDENTIFICATION DIVISION.
+    PROGRAM-ID. SCENE1.
+
+DATA DIVISION.
+   WORKING-STORAGE SECTION.
+    01 DATA.
+      02 VER USAGE COMP-1.
+      02 UID PIC 9(4).
+      02 TXT PIC X(32).
+
+   LINKAGE SECTION.
+    1 LK-JSON-TEXT PIC X(128).
+
+ PROCEDURE DIVISION USING LK-JSON-TEXT.
+
+      JSON PARSE JSON-TEXT INTO DATA
+      END-JSON.
+
+      IF VER EQUAL TO 1 THEN
+        DISPLAY "MESSAGE ID IS " UID
+        DISPLAY "MESSAGE TEXT IS '" TXT "'".
+
+      GOBACK.
+  END PROGRAM SCENE1.
+  ```
+
+Output:
+```
+Message ID is 1234
+Message text is ‘I love learning
+```
+
+### Scenario 2: When JSON names are not valid COBOL data names
+JSON names can contain more characters and character types than COBOL data names. To help match JSON names with COBOL data names, we can use the NAME phrase in the JSON PARSE statement.
+Input:
+```
+{“num+”: 9978}
+```
+
+COBOL Code:
+```
+IDENTIFICATION DIVISION.
+     PROGRAM-ID. Scene2.
+DATA DIVISION.
+    WORKING-STORAGE SECTION.
+      01 WS-INP-DATA   pic 9(4).
+    LINKAGE SECTION.
+      01 LK-INP-JSON   pic X(128).
+PROCEDURE DIVISION using LK-INP-JSON.
+
+       Json parse LK-INP-JSON into WS-INP-DATA
+         name of WS-INP-DATA is "num+"
+       end-json.
+
+       Display "Input Data is " WS-INP-DATA.
+
+       Goback.
+
+   End program Scene2.
+   ```
+
+The output of the above code will be shown below.
+Output: 
+Input Data is 9978
+When processing the example above, the following issues require attention:
+The CCSID of the active CODEPAGE compiler option is assumed to have been used to encode characters that appear in literal-1 on the NAME phrase.
+In contrast to the case-insensitive matching of COBOL data names, characters appearing in literal-1 will be matched to the JSON names.
+The NAME phrase as a whole cannot produce an unclear name specification.
+
+### Scenario 3:  When we want to override the value parsed by JSON.
+We may not always require specific data items related to the receiver to be populated by the JSON PARSE statement. To avoid this, we usually use the SUPPRESS phrase of the JSON PARSE statement to tell the parser to ignore the item and thus override the input value.
+Input:
+```
+{"data":{"sno":5,"rollnum":10,"name":"Sam"}}
+```
+
+COBOL Code:
+```
+IDENTIFICATION DIVISION.
+
+    PROGRAM-ID. Scene3.
+
+DATA DIVISION.
+
+   WORKING-STORAGE SECTION.
+    01 DATA.
+      02 SNO usage comp-1.
+      02 ROLLNUM   pic 9(4).
+      02 NAME      pic x(32).
+
+   LINKAGE SECTION.
+    01 LK-INP-JSON   pic X(128).
+
+PROCEDURE DIVISION using LK-INP-JSON.
+
+      Move 1122 to ROLLNUM.
+
+      Json parse LK-INP-JSON INTO data
+        SUPPRESS rollnum
+      end-json.
+
+      If sno equal to 5 then
+        display "Roll number is " rollnum
+        display "Name is '" name "'".
+
+      Goback.
+
+  End program Scene3.
+  ```
+
+Output:
+```
+Roll Number is 1122
+Name is Sam’
+```
+
+The data item Rollnum was assigned to the value 1122 in the programme, and its assignment was suppressed in the JSON PARSE statement using the SUPPRESS Phrase. As we can see, rather than being populated with the value 10, the data item uid retained its value of 1122.
+
+### Scenario 4: When we want to handle the input data in an array.
+JSON arrays can be parsed to generate COBOL data description entries with the OCCURS or OCCURS DEPENDING ON clause. Consider the following example, in which a JSON array named "data" is broken down into a COBOL data item of the same name.
+Input:
+```
+{"emp-data":{"data":[{"sno":10,"id":100,"txt":"Jenny"},{"sno":11,"id":101,"txt":"Sai"},{"sno":12,"id":102,"txt":"Kevin"}]}}
+```
+COBOL Code:
+```
+IDENTIFICATION DIVISION.
+
+    PROGRAM-ID. Scene4.
+
+DATA DIVISION.
+    WORKING-STORAGE SECTION.
+     01 WS-EMP-DATA.
+       02 WS-DATA OCCURS 3 times.
+         04 WS-SNO usage comp-1.
+         04 WS-ID  pic 9(4).
+         04 WS-NAME pic x(32).
+
+    LINKAGE SECTION.
+     01 LK-JSON-TEXT pic x(128).
+
+ PROCEDURE DIVISION using LK-JSON-TEXT.
+
+      Json parse LK-JSON-TEXT into WS-EMP-DATA
+      end-json.
+
+      If WS-SNO(1) equal to 10 then
+        Display "EMP ID is " WS-ID(1)
+        Display "Name is '" WS-NAME(1) "'".
+      If WS-SNO(2) equal to 11 then
+        Display " EMP ID is " WS-ID(2)
+        Display " Name is '" WS-NAME(2) "'".
+      If WS-SNO(3) equal to 12 then
+        Display " EMP ID is " WS-ID(3)
+        Display " Name is '" WS-NAME(3) "'".
+
+      Goback.
+
+  END PROGRAM Scene4.
+  ```
+
+
+
+Output:
+```
+EMP ID is 0100
+Name is ‘Jenny’
+EMP ID is 0101
+Name is ‘Sai 
+EMP ID is 0102
+Name is ‘Kevin
+Invalid Message Version, ID is 0001 
+Message count: 3 
+```
+
+Because the JSON text lacks a fourth table entry for the msg table, the JSON PARSE statement does not assign subordinate data items of table element data(4). Furthermore, before the JSON PARSE statement is executed, the OCCURS DEPENDING ON object, defined in this example as n, must not be subordinate to data item some-data and must be assigned a value. The value of the object OCCURS DEPENDING ON represents the maximum number of table elements that the JSON PARSE statement can populate. If the JSON text contains more table elements than the value of the OCCURS DEPENDING ON object, the table elements are ignored, and the condition is recorded in the JSON-STATUS special register.
+The OCCURS DEPENDING ON object is not set or updated by the JSON PARSE statement.
+
+## How to Produce JSON Output:
+
+To express COBOL data items as JSON text, use the JSON GENERATE statement, which identifies the source and output data items.
+JSON text can also be used to represent a resource for a web service interface, and it is encoded in UTF-8 for alphanumeric output data items and UTF-16 for national output data items.
+
+COBOL Code:
+```
+IDENTIFICATION DIVISION.
+    PROGRAM-ID. prodj.
+
+DATA DIVISION.
+    WORKING-STORAGE SECTION.
+      01 WS-TEXT. 
+        02 WS-MSG pic x(80) value 'Hello, World!'.
+      01 WS-Jtext national pic n(80). 
+      01 ws-i binary pic 99.
+    
+PROCEDURE DIVISION.
+
+JSON generate WS-Jtext from WS-TEXT count in ws-i 
+   on exception 
+      Display 'JSON generation error: ' json-code
+   not on exception 
+      Display function display-of(WS-Jtext(1:ws-i)) 
+End-JSON.
+End program prodj.
+Output:
+{"WS-TEXT":{"WS-MSG":"Hello, World!"}}
+```
+
+
+
+\newpage
 # COBOL Program Compilation
 
 In the previous course, we briefly mentioned how a COBOL program is compiled. In this chapter, we will deep dive into the Enterprise COBOL compiler and how you have interacted with it.
@@ -840,7 +1063,7 @@ We will also need to use the THREAD option to compile object-oriented clients an
 
 When we write COBOL programs for a multithreaded environment, we will need to choose appropriate program linkage statements.
 
-Just like single-threaded environments, a called program is in its initial state when it is first called within a run unit and when it is first called after a CANCEL to the called program. We need to ensure that the program we want to CANCEL is not active on any thread, or a Language Environment severe error will be produced.
+Just like single-threaded environmentcons, a called program is in its initial state when it is first called within a run unit and when it is first called after a CANCEL to the called program. We need to ensure that the program we want to CANCEL is not active on any thread, or a Language Environment severe error will be produced.
 
 ## Ending multithreaded environment
 
