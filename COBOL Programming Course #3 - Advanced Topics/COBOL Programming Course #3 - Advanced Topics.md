@@ -559,11 +559,11 @@ The result is execution of COBOL program CBLDB21 to read the Db2 table and write
 
 There are numerous scenarios in which we can parse JSON.
 ### Scenario 1: Parsing JSON documents in normal conditions.
-Input: 
+**Input:**
 ```
 {"data":{"ver":1,"uid":1234,"txt":"I love learning"}}
 ```
-COBOL Code:
+**COBOL Code:**
 ```
 IDENTIFICATION DIVISION.
     PROGRAM-ID. SCENE1.
@@ -585,7 +585,7 @@ DATA DIVISION.
   END PROGRAM SCENE1.
   ```
 
-Output:
+**Output:**
 ```
 Message ID is 1234
 Message text is ‘I love learning
@@ -593,12 +593,12 @@ Message text is ‘I love learning
 
 ### Scenario 2: When JSON names are not valid COBOL data names
 JSON names can contain more characters and character types than COBOL data names. To help match JSON names with COBOL data names, we can use the NAME phrase in the JSON PARSE statement.
-Input:
+**Input:**
 ```
 {“num+”: 9978}
 ```
 
-COBOL Code:
+**COBOL Code:**
 ```
 IDENTIFICATION DIVISION.
      PROGRAM-ID. Scene2.
@@ -616,22 +616,23 @@ PROCEDURE DIVISION using LK-INP-JSON.
    End program Scene2.
    ```
 
-The output of the above code will be shown below.
-Output: 
-Input Data is 9978
+The output of the above code will be shown below. <br>
+**Output:** 
+```Input Data is 9978``` <br>
 When processing the example above, the following issues require attention:
-The CCSID of the active CODEPAGE compiler option is assumed to have been used to encode characters that appear in literal-1 on the NAME phrase.
-In contrast to the case-insensitive matching of COBOL data names, characters appearing in literal-1 will be matched to the JSON names.
-The NAME phrase as a whole cannot produce an unclear name specification.
+  * The CCSID of the active CODEPAGE compiler option is assumed to have been used to encode characters that appear in literal-1 on the NAME phrase.
+  * In contrast to the case-insensitive matching of COBOL data names, characters appearing in literal-1 will be matched to the JSON names.
+  * The NAME phrase as a whole cannot produce an unclear name specification.
 
 ### Scenario 3:  When we want to override the value parsed by JSON.
 We may not always require specific data items related to the receiver to be populated by the JSON PARSE statement. To avoid this, we usually use the SUPPRESS phrase of the JSON PARSE statement to tell the parser to ignore the item and thus override the input value.
-Input:
+
+**Input:**
 ```
 {"data":{"sno":5,"rollnum":10,"name":"Sam"}}
 ```
 
-COBOL Code:
+**COBOL Code:**
 ```
 IDENTIFICATION DIVISION.
     PROGRAM-ID. Scene3.
@@ -655,7 +656,7 @@ PROCEDURE DIVISION using LK-INP-JSON.
   End program Scene3.
   ```
 
-Output:
+**Output:**
 ```
 Roll Number is 1122
 Name is Sam’
@@ -665,11 +666,12 @@ The data item Rollnum was assigned to the value 1122 in the programme, and its a
 
 ### Scenario 4: When we want to handle the input data in an array.
 JSON arrays can be parsed to generate COBOL data description entries with the OCCURS or OCCURS DEPENDING ON clause. Consider the following example, in which a JSON array named "data" is broken down into a COBOL data item of the same name.
-Input:
+
+**Input:**
 ```
 {"emp-data":{"data":[{"sno":10,"id":100,"txt":"Jenny"},{"sno":11,"id":101,"txt":"Sai"},{"sno":12,"id":102,"txt":"Kevin"}]}}
 ```
-COBOL Code:
+**COBOL Code:**
 ```
 IDENTIFICATION DIVISION.
     PROGRAM-ID. Scene4.
@@ -700,7 +702,7 @@ DATA DIVISION.
 
 
 
-Output:
+**Output:**
 ```
 EMP ID is 0100
 Name is ‘Jenny’
@@ -720,7 +722,7 @@ The OCCURS DEPENDING ON object is not set or updated by the JSON PARSE statement
 To express COBOL data items as JSON text, use the JSON GENERATE statement, which identifies the source and output data items.
 JSON text can also be used to represent a resource for a web service interface, and it is encoded in UTF-8 for alphanumeric output data items and UTF-16 for national output data items.
 
-COBOL Code:
+**COBOL Code:**
 ```
 IDENTIFICATION DIVISION.
     PROGRAM-ID. prodj.
@@ -745,73 +747,70 @@ Output:
 
 ## Processing XML input
 
-The XML PARSE statement can be used in a COBOL program to handle XML input. The COBOL language interface to either of two fast XML parsers is the XML PARSE statement. You choose the best parser for your application using the XMLPARSE compiler option:
-The z/OS XML System Services parser is selected by XMLPARSE(XMLSS).
-This option offers improved features like namespace processing, XML document validation in accordance with an XML schema, and text fragment conversion to national character representation (Unicode UTF-16).
-  The COBOL library's integrated XML parser is chosen by XMLPARSE(COMPAT). The XML parser and a processing procedure where you handle parser events exchange control as you process XML input.
-To process XML input, use the COBOL facilities listed below:
-the XML PARSE statement, which identifies the source XML document, the processing method, and the start of XML parsing.
-The XML PARSE statement's additional optional clauses can be used as well:
-    ENCODING to define the XML document's encoding
-    VALIDATING to specify the XML schema that the XML document should be validated against
-  Receiving and processing XML events and any associated document fragments before returning them to the parser for further processing is the processing procedure used to control parsing.
-  Unique registers for information exchange between the parser and the processing method:
-    XML-CODE to learn how well the XML parsing is going and, in some cases, to return data to the parser
-    XML-EVENT to ask the parser for the names of each XML event
-    A method for quickly determining whether an XML event is complete is provided by XML-INFORMATION.
-    For XML document fragments that are returned as national
+* The XML PARSE statement can be used in a COBOL program to handle XML input. The COBOL language interface to either of two fast XML parsers is the XML PARSE statement. You choose the best parser for your application using the XMLPARSE compiler option:
+* The z/OS XML System Services parser is selected by XMLPARSE(XMLSS).
+* This option offers improved features like namespace processing, XML document validation in accordance with an XML schema, and text fragment conversion to national character representation (Unicode UTF-16).
+  * The COBOL library's integrated XML parser is chosen by XMLPARSE(COMPAT). The XML parser and a processing procedure where you handle parser events exchange control as you process XML input.
+* To process XML input, use the COBOL facilities listed below:
+  * The XML PARSE statement, which identifies the source XML document, the processing method, and the start of XML parsing.
+  * The XML PARSE statement's additional optional clauses can be used as well:
+    * ENCODING to define the XML document's encoding
+    * VALIDATING to specify the XML schema that the XML document should be validated against
+  * Receiving and processing XML events and any associated document fragments before returning them to the parser for further processing is the processing procedure used to control parsing.
+  * Unique registers for information exchange between the parser and the processing method:
+    * XML-CODE to learn how well the XML parsing is going and, in some cases, to return data to the parser
+    * XML-EVENT to ask the parser for the names of each XML event
+    * A method for quickly determining whether an XML event is complete is provided by XML-INFORMATION.
+    * For XML document fragments that are returned as national
     character data, use XML-NTEXT.
-    Receiving document fragments as alphanumeric data via XML-TEXT
-    To receive a namespace identifier for an element name or attribute name that is in a namespace, use the tags XML-NAMESPACE or XML-NNAMESPACE.
-    Use the tags XML-NAMESPACE-PREFIX or XML-NNAMESPACE-PREFIX to
+    * Receiving document fragments as alphanumeric data via XML-TEXT
+    * To receive a namespace identifier for an element name or attribute name that is in a namespace, use the tags XML-NAMESPACE or XML-NNAMESPACE.
+    * Use the tags XML-NAMESPACE-PREFIX or XML-NNAMESPACE-PREFIX to
     request a namespace prefix for an NAMESPACE-DECLARATION XML event, an element name, or an attribute name.
-  The XML PARSE statement's optional RETURNING NATIONAL clause can be used to
+  * The XML PARSE statement's optional RETURNING NATIONAL clause can be used to
   specify that alphanumeric data items containing XML document fragments should be converted to UTF-16 and then processed using the national special registers XML- NTEXT, XML-NNAMESPACE, and XML-NNAMESPACE-PREFIX.
-Only when XMLPARSE(XMLSS) is active can you use the XML PARSE statement's ENCODING, VALIDATING, and RETURNING NATIONAL phrases.
+* Only when XMLPARSE(XMLSS) is active can you use the XML PARSE statement's ENCODING, VALIDATING, and RETURNING NATIONAL phrases.
 
 ### XML parser in COBOL
-With the help of COBOL's event-based interface, you can parse XML files and convert them into COBOL data structures.
-The processing procedure acts on the fragments that the XML parser finds in the source XML document. The fragments are linked to specific XML events, and you must program the processing method to address each individual XML event.
-The parsing process is started and the parser's processing protocol is established upon execution of the XML PARSE statement. For each XML event it encounters while analysing the document, the parser hands off control to the processing procedure.
-The processing procedure automatically hands back control to the parser after processing the event. The parser continues to examine the XML document after each typical return from the processing procedure in order to report the subsequent event. During this operation, control alternates between the parser and the processing method.
-A high-level view of the fundamental control transfer between the parser and your COBOL program is provided in the following figure.
+* With the help of COBOL's event-based interface, you can parse XML files and convert them into COBOL data structures.
+* The processing procedure acts on the fragments that the XML parser finds in the source XML document. The fragments are linked to specific XML events, and you must program the processing method to address each individual XML event.
+* The parsing process is started and the parser's processing protocol is established upon execution of the XML PARSE statement. For each XML event it encounters while analysing the document, the parser hands off control to the processing procedure.
+* The processing procedure automatically hands back control to the parser after processing the event. The parser continues to examine the XML document after each typical return from the processing procedure in order to report the subsequent event. During this operation, control alternates between the parser and the processing method.
+* A high-level view of the fundamental control transfer between the parser and your COBOL program is provided in the following figure.
 
 //
 ![](Images/xml_flow.png)
 
-Parsing typically goes on until the entire XML document has been processed.
+* Parsing typically goes on until the entire XML document has been processed.
 
 ### Accessing XML documents
-You must first make the XML document accessible to your program in order to parse it using an XML PARSE statement. An XML document can typically be obtained by reading it from a file, a WebSphere® MQ message, a CICS® transient queue or communication area, an IMS message processing queue, or a transient queue or communication area.
+* You must first make the XML document accessible to your program in order to parse it using an XML PARSE statement. An XML document can typically be obtained by reading it from a file, a WebSphere® MQ message, a CICS® transient queue or communication area, an IMS message processing queue, or a transient queue or communication area.
 Use standard COBOL facilities to insert the XML file into a data item in your program if the XML document you want to parse is stored in a file:
-  a FILE-CONTROL entry for your program's definition of the file.
-  a file-opening OPEN statement.
-  To read every record from the file into a data item, use READ statements (either an elementary item of category alphanumeric or national, or an alphanumeric or national group). Either the LOCAL-STORAGE SECTION or the WORKING-STORAGE SECTION can define the data item.
-  Optionally, use the STRING statement to handle variable-length records, remove extraneous blanks, and string together all of the individual records into a single continuous stream.
-You can parse an XML document that is stored in a file if the XMLPARSE(XMLSS) option is enabled by sending the parser one record (or text segment) from the file at a time. The ability to parse very large XML documents is helpful.
+  * A FILE-CONTROL entry for your program's definition of the file.
+  * A file-opening OPEN statement.
+  * To read every record from the file into a data item, use READ statements (either an elementary item of category alphanumeric or national, or an alphanumeric or national group). Either the LOCAL-STORAGE SECTION or the WORKING-STORAGE SECTION can define the data item.
+  * Optionally, use the STRING statement to handle variable-length records, remove extraneous blanks, and string together all of the individual records into a single continuous stream.
+* You can parse an XML document that is stored in a file if the XMLPARSE(XMLSS) option is enabled by sending the parser one record (or text segment) from the file at a time. The ability to parse very large XML documents is helpful.
 
 ### Parsing XML documents
 
 #### Writing procedures to process XML
-Include code statements to handle XML events in your processing procedure.
-The parser sends data to the processing procedure in a number of specialised registers for each event it encounters. Utilize the information in those unique registers to control and populate COBOL data structures.
-To find out which event the parser sent to the processing procedure, look in the XML-EVENT special register.
-An event name, like "START-OF-ELEMENT," is contained in the XML-EVENT tag.
-From the XML-TEXT or XML-NTEXT special register, retrieve the text related to the event.
-If the XMLPARSE(XMLSS) option is enabled, you can check the special registers XML- NAMESPACE or XML-NNAMESPACE to see if there is a namespace identifier, if any, associated with the XML event, and XML-NAMESPACE-PREFIX or XML-NNAMESPACE- PREFIX to see if there is a prefix.
-The XML special registers are implicitly defined as GLOBAL in the outermost program when used in nested programs.
-By following this following link you can check table containing more information about the XML special registers:
+* Include code statements to handle XML events in your processing procedure.
+* The parser sends data to the processing procedure in a number of specialised registers for each event it encounters. Utilize the information in those unique registers to control and populate COBOL data structures.
+* To find out which event the parser sent to the processing procedure, look in the XML-EVENT special register.
+* An event name, like "START-OF-ELEMENT," is contained in the XML-EVENT tag.
+* From the XML-TEXT or XML-NTEXT special register, retrieve the text related to the event.
+* If the XMLPARSE(XMLSS) option is enabled, you can check the special registers XML- NAMESPACE or XML-NNAMESPACE to see if there is a namespace identifier, if any, associated with the XML event, and XML-NAMESPACE-PREFIX or XML-NNAMESPACE- PREFIX to see if there is a prefix.
+* The XML special registers are implicitly defined as GLOBAL in the outermost program when used in nested programs.
+* By following this following link you can check table containing more information about the XML special registers: https://www.ibm.com/docs/en/cobol-zos/6.4?topic=documents-writing-procedures-process- xml#:~:text=Table%201.%20Special%20registers%20used%20by%20the%20XML%20parser
 
-https://www.ibm.com/docs/en/cobol-zos/6.4?topic=documents-writing-procedures-process- xml#:~:text=Table%201.%20Special%20registers%20used%20by%20the%20XML%20parser
+* Restrictions:
+  * An XML PARSE statement may not be executed by a processing function directly. However, if a processing procedure uses an INVOKE or CALL statement to transfer control to a method or outermost program, the target method or program can choose to execute the same or a different XML PARSE statement. Using a program with several threads, you can also run the same XML statement or several different XML statements at once.
+  * Any GOBACK or EXIT PROGRAM statement cannot be executed within the scope of the processing procedure, with the exception of returning control from a method or program to which control was transferred by an INVOKE or CALL statement, respectively, that is executed within the scope of the prfocessing procedure.
+  * To stop a run unit, code a STOP RUN statement in a processing routine.
 
-Restrictions:
-  An XML PARSE statement may not be executed by a processing function directly. However, if a processing procedure uses an INVOKE or CALL statement to transfer control to a method or outermost program, the target method or program can choose to execute the same or a different XML PARSE statement. Using a program with several threads, you can also run the same XML statement or several different XML statements at once.
-  Any GOBACK or EXIT PROGRAM statement cannot be executed within the scope of the processing procedure, with the exception of returning control from a method or program to which control was transferred by an INVOKE or CALL statement, respectively, that is executed within the scope of the prfocessing procedure.
-  To stop a run unit, code a STOP RUN statement in a processing routine.
-
-Taking an Example of parsing an XML with an undeclared namespace prefix:
-
-Input:
+**Taking an Example of parsing an XML with an undeclared namespace prefix:**
+**Input:**
 
 ```<section
  xmlns="http://www.example.com/events"
@@ -827,7 +826,7 @@ Input:
   </section>
 ```
 
-Output:
+**Output:**
 
 ```
 IDENTIFICATION DIVISION.
@@ -861,16 +860,16 @@ DATA DIVISION.
        End program XML1.
 ```
 
-Now let’s take an example of parsing an XML document one segment at a time: 
+**Now let’s take an example of parsing an XML document one segment at a time:**
 
-Input:
+**Input:**
 
 ```<?xml version='1.0'?>
 <Tagline>
 I Love COBOL
 </Tagline>
 ```
-COBOL Program:
+**COBOL Program:**
 ```IDENTIFICATION DIVISION.                                                 
      PROGRAM-ID. XML2. 
                                                    
@@ -939,7 +938,7 @@ COBOL Program:
   END PROGRAM XML2.
   ```
 
-Output:
+**Output:**
 ```Starting with:   <?xml version='1.0'?> 
 Event number and name      Content of XML-TEXT
   01: START-OF-DOCUMENT      {} 
@@ -957,60 +956,69 @@ Continuing with:    </Tagline>
   10: END-OF-DOCUMENT        {}
   ```
 
-The XML PARSE statement is used by this program to pass a record from the XML document that it has read from file INPUT-FILE to the parser. Each XML event's processing procedure is given control by the parser after it has processed the XML text. Once each event has been handled, the processing procedure passes control back to the parser.
-The parser changes XML-CODE to zero, sets XML-EVENT to END-OF-INPUT, and hands control to the processing procedure at the end of the segment. After setting XML-CODE to 1, the processing procedure exits the parser and reads the following XML record into the parse data item. Up until the READ statement returns the end-of-file status code, the processing procedure and the parser continue to communicate. The processing procedure returns to the parser with XML-CODE still set to zero to indicate
-the end of segment processing.
+* The XML PARSE statement is used by this program to pass a record from the XML document that it has read from file INPUT-FILE to the parser. Each XML event's processing procedure is given control by the parser after it has processed the XML text. Once each event has been handled, the processing procedure passes control back to the parser.
+* The parser changes XML-CODE to zero, sets XML-EVENT to END-OF-INPUT, and hands control to the processing procedure at the end of the segment. * * After setting XML-CODE to 1, the processing procedure exits the parser and reads the following XML record into the parse data item. Up until the READ statement returns the end-of-file status code, the processing procedure and the parser continue to communicate. The processing procedure returns to the parser with XML-CODE still set to zero to indicate the end of segment processing.
 
 #### Transforming XML text to COBOL data items
-When transferring XML data to a COBOL data item, special techniques must be used because XML data has neither a fixed length nor a fixed format.
-Choose whether the XML data belongs at the right end of the COBOL data item or the left end (the default) for alphanumeric items. In the item's definition, include the JUSTIFIED RIGHT clause if the data should go at the right end.
-Pay special attention to numerical XML values, especially "decorated" dollar amounts like "$1,234.00" or "$1234". If used as COBOL sending fields, these two strings, which may have the same meaning in XML, require entirely different definitions.
-When converting XML data to COBOL data items, use one of the following methods:
-  Code a MOVE to an alphanumeric item that you redefine appropriately as a numeric-edited item if the format is reasonably regular. Then, make the last move to a numeric (operational) item by moving away from the numeric-edited item and subsequently de-editing it. (In a standard format,
+* When transferring XML data to a COBOL data item, special techniques must be used because XML data has neither a fixed length nor a fixed format.
+* Choose whether the XML data belongs at the right end of the COBOL data item or the left end (the default) for alphanumeric items. In the item's definition, include the JUSTIFIED RIGHT clause if the data should go at the right end.
+* Pay special attention to numerical XML values, especially "decorated" dollar amounts like "$1,234.00" or "$1234". If used as COBOL sending fields, these two strings, which may have the same meaning in XML, require entirely different definitions.
+* When converting XML data to COBOL data items, use one of the following methods:
+  * Code a MOVE to an alphanumeric item that you redefine appropriately as a numeric-edited item if the format is reasonably regular. Then, make the last move to a numeric (operational) item by moving away from the numeric-edited item and subsequently de-editing it. (In a standard format,
 
-  The number of digits after the decimal point would be the same, there would be a comma to separate values greater than 999, and so on.)
-  Use the following intrinsic functions for alphanumeric XML data for simplicity and significantly increased flexibility:
-    XML data that contains plain numbers can be extracted and decoded using NUMVAL.
-    To extract and decode numerical values from XML data that depicts monetary amounts, use NUMVAL-C.
-Utilizing these features, though, degrades performance.
+  * The number of digits after the decimal point would be the same, there would be a comma to separate values greater than 999, and so on.)
+  * Use the following intrinsic functions for alphanumeric XML data for simplicity and significantly increased flexibility:
+    * XML data that contains plain numbers can be extracted and decoded using NUMVAL.
+    * To extract and decode numerical values from XML data that depicts monetary amounts, use NUMVAL-C.
+* Utilizing these features, though, degrades performance.
 
-Encoding of XML documents:
-A supported code page must be used to encrypt XML documents.
-XML documents must be encoded in Unicode UTF-16 big-endian format, CCSID 1200, when created in or parsed from national data items.
-A single-byte EBCDIC encoding, such as Unicode UTF-8 (CCSID 1208), or one of the single- byte EBCDIC encodings listed in the table below, must be used to encode documents created from alphanumeric data items for XML GENERATE statements. Any CCSID from that table may be used in the XML GENERATE statement's ENCODING phrase.
-Documents in alphanumeric data items must be encoded as follows for XML PARSE statements:
-  When XMLPARSE(XMLSS) is active:
-    If the XML PARSE statement specifies the RETURNING NATIONAL phrase, it should be in any EBCDIC or ASCII encoding that z/OS® Unicode Services supports for conversion to UTF-16.
-    If the XML PARSE statement does not specify the RETURNING NATIONAL phrase, use UTF-8 (CCSID 1208) or one of the single-byte EBCDIC encodings shown in the table below.
-    When XMLPARSE(COMPAT) is active: the table below lists the single-byte EBCDIC encodings.If XMLPARSE(COMPAT) is in effect: in one of the single-byte EBCDIC encodings listed in the table below
-You can use any supported CCSID (as described above for XML PARSE) in the ENCODING phrase of the XML PARSE statement if XMLPARSE(XMLSS) is active.
+#### Encoding of XML documents:
+* A supported code page must be used to encrypt XML documents.
+* XML documents must be encoded in Unicode UTF-16 big-endian format, CCSID 1200, when created in or parsed from national data items.
+* A single-byte EBCDIC encoding, such as Unicode UTF-8 (CCSID 1208), or one of the single- byte EBCDIC encodings listed in the table below, must be used to encode documents created from alphanumeric data items for XML GENERATE statements. Any CCSID from that table may be used in the XML 
+* GENERATE statement's ENCODING phrase.
+* Documents in alphanumeric data items must be encoded as follows for XML PARSE statements:
+  * When XMLPARSE(XMLSS) is active:
+    * If the XML PARSE statement specifies the RETURNING NATIONAL phrase, it should be in any EBCDIC or ASCII encoding that z/OS® Unicode Services supports for conversion to UTF-16.
+    * If the XML PARSE statement does not specify the RETURNING NATIONAL phrase, use UTF-8 (CCSID 1208) or one of the single-byte EBCDIC encodings shown in the table below.
+    * When XMLPARSE(COMPAT) is active: the table below lists the single-byte EBCDIC encodings.If XMLPARSE(COMPAT) is in effect: in one of the single-byte EBCDIC encodings listed in the table below
+* You can use any supported CCSID (as described above for XML PARSE) in the ENCODING phrase of the XML PARSE statement if XMLPARSE(XMLSS) is active.
 
-For coded character sets for XML documents table, please visit: https://www.ibm.com/docs/en/cobol-zos/6.4?topic=input-encoding-xml- documents#:~:text=Table%201.%20Coded%20character%20sets%20for%20XML%20document s
+* For coded character sets for XML documents table, please visit: https://www.ibm.com/docs/en/cobol-zos/6.4?topic=input-encoding-xml
 
 ### Handling XML PARSE exceptions
 
-When an anomaly or error is encountered by the XML parser while parsing, it signals an XML exception event and sets an exception code in the XML-CODE special register. Depending on how the XMLPARSE compiler option is set, different exception codes can occur and different actions can be taken in response to them.
-For XMLPARSE(XMLSS): 
-Return code and reason code: The return code and reason code produced by the parser are combined to create the exception code. Both the return code and the reason code are binary values that are half a word long. These two values are concatenated to create the value in XML-CODE.
-If you parse the document without performing validation, the return code is hexadecimal 000C (XRC NOT WELL FORMED), and the reason code is hexadecimal 3035 (XRSN ENDTAG NAME MISMATCH).
-In the XML-CODE special register, the processing procedure receives the concatenation of these two values, which is represented by the hexadecimal value 000C3035.
-The values returned in XML-CODE for any well-formedness errors when parsing a document with validation are different from the values returned for the same errors when parsing a document without validation. For any validation error, the z/OS XML System Services parser generates the return code 24. (hexadecimal 0018).
-See the related reference about exceptions with XMLPARSE(XMLSS) in effect for more details regarding the return codes and reason codes that may be generated.
-Processing procedures cannot manage exception events or make parsing resume if XMLPARSE(XMLSS) is active. The parser does not signal any additional events once a processing procedure has returned to it from an exception event. The XML PARSE statement's ON EXCEPTION phrase specifies the statement to which the parser passes control. Control is transferred to the end of the XML PARSE statement if you did not code an ON EXCEPTION phrase. The initial exception code set by the parser is contained in XML-CODE.
-Control is transferred to the statement specified in the NOT ON EXCEPTION phrase if no exceptions are encountered while parsing. Control is passed to the end of the XML PARSE statement if you did not code a NOT ON EXCEPTION phrase. XML-CODE has no content.
+* When an anomaly or error is encountered by the XML parser while parsing, it signals an XML exception event and sets an exception code in the XML-CODE special register. Depending on how the XMLPARSE compiler option is set, different exception codes can occur and different actions can be taken in response to them.
+  **For XMLPARSE(XMLSS):** <br>
+  **Return code and reason code:**
+  * The return code and reason code produced by the parser are combined to create the exception code. Both the return code and the reason code are binary values that are half a word long. These two values are concatenated to create the value in XML-CODE.
+  * If you parse the document without performing validation, the return code is hexadecimal 000C (XRC NOT WELL FORMED), and the reason code is hexadecimal 3035 (XRSN ENDTAG NAME MISMATCH).
+  * In the XML-CODE special register, the processing procedure receives the concatenation of these two values, which is represented by the hexadecimal value 000C3035.
+  * The values returned in XML-CODE for any well-formedness errors when parsing a document with validation are different from the values returned for the same errors when parsing a document without validation. For any validation error, the z/OS XML System Services parser generates the return code 24. (hexadecimal 0018).
+  * See the related reference about exceptions with XMLPARSE(XMLSS) in effect for more details regarding the return codes and reason codes that may be generated.
+  * Processing procedures cannot manage exception events or make parsing resume if XMLPARSE(XMLSS) is active. The parser does not signal any additional events once a processing procedure has returned to it from an exception event. The XML PARSE statement's ON EXCEPTION phrase specifies the statement to which the parser passes control. Control is transferred to the end of the XML PARSE statement if you did not code an ON EXCEPTION phrase. The initial exception code set by the parser is contained in XML-CODE.
+  * Control is transferred to the statement specified in the NOT ON EXCEPTION phrase if no exceptions are encountered while parsing. Control is passed to the end of the XML PARSE statement if you did not code a NOT ON EXCEPTION phrase. XML-CODE has no content.
 
 ### Terminating XML parsing
-By setting XML-CODE to -1 in your processing procedure before the procedure returns to the parser from any normal XML event, you can immediately stop parsing without processing any remaining XML text (that is, any event other than EXCEPTION). This technique can be used when the processing procedure has examined enough of the document or has discovered an irregularity in the document that prevents further meaningful processing. When you stop parsing in this manner, the parser does not signal any additional XML events, including the exception event. If the ON EXCEPTION phrase of the XML PARSE statement was specified, control is transferred to that phrase. By testing whether XML-CODE contains -1 in the ON EXCEPTION phrase's imperative statement, you can determine whether parsing was intentionally terminated. If the ON EXCEPTION phrase is not specified, control is transferred to the end of the XML PARSE statement. If the XMLPARSE(COMPAT) compiler option is enabled, you can also stop parsing after any XML EXCEPTION event by returning to the parser without changing the value in XML-CODE. The result is similar to that of intentional termination, except that the parser returns to the XML PARSE statement with the original exception code in XML-CODE. If the XMLPARSE(XMLSS) option is enabled, parsing always ends when an exception occurs.
+* By setting XML-CODE to -1 in your processing procedure before the procedure returns to the parser from any normal XML event, you can immediately stop parsing without processing any remaining XML text (that is, any event other than EXCEPTION). 
+* This technique can be used when the processing procedure has examined enough of the document or has discovered an irregularity in the document that prevents further meaningful processing. 
+* When you stop parsing in this manner, the parser does not signal any additional XML events, including the exception event. 
+* If the ON EXCEPTION phrase of the XML PARSE statement was specified, control is transferred to that phrase. 
+* By testing whether XML-CODE contains -1 in the ON EXCEPTION phrase's imperative statement, you can determine whether parsing was intentionally terminated. 
+* If the ON EXCEPTION phrase is not specified, control is transferred to the end of the XML PARSE statement. 
+* If the XMLPARSE(COMPAT) compiler option is enabled, you can also stop parsing after any XML EXCEPTION event by returning to the parser without changing the value in XML-CODE. 
+* The result is similar to that of intentional termination, except that the parser returns to the XML PARSE statement with the original exception code in XML-CODE. 
+* If the XMLPARSE(XMLSS) option is enabled, parsing always ends when an exception occurs.
 
 ## Producing XML output
-Using the XML GENERATE statement, a COBOL program can generate XML output. The source and the output data items are specified in the XML GENERATE statement.
-Optionally, we can create an XML declaration for the document and force the expression of eligible source data items as attributes rather than as elements in the output.
-The XML-CODE special register can be used to check on the progress of XML generation.
-Following the conversion of COBOL data items to XML, the output XML can be used in a variety of ways, including deployment in a web service, transmission as a message to MQ(Pipeline), and conversion to a CICS(frontend) communication area.
+* Using the XML GENERATE statement, a COBOL program can generate XML output. The source and the output data items are specified in the XML GENERATE statement.
+* Optionally, we can create an XML declaration for the document and force the expression of eligible source data items as attributes rather than as elements in the output.
+* The XML-CODE special register can be used to check on the progress of XML generation.
+* Following the conversion of COBOL data items to XML, the output XML can be used in a variety of ways, including deployment in a web service, transmission as a message to MQ(Pipeline), and conversion to a CICS(frontend) communication area.
 
-The XML generation example is shown below:
-
+**The XML generation example is shown below:**
 There are several COBOL programs because we are calling one another within the program.
+
 ```IDENTIFICATION DIVISION.
   PROGRAM-ID. OPXML.
 
@@ -1293,7 +1301,7 @@ END PROGRAM PROGRAMP.
 ```
 
 
-Output: 
+**Output:**
 
 ```<?xml version="1.0" encoding="IBM-037"?>
 <po:purchaseOrder xmlns:po="http://www.example.com" orderDate="'2022-11-30" orde
