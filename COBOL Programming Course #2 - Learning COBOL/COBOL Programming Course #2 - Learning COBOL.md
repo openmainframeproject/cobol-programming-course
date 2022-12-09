@@ -212,7 +212,7 @@ COBOL programming language has many words with specific meaning to the COBOL com
 
 A few COBOL reserved words pertinent to this book are: PERFORM, MOVE, COMPUTE, IF, THEN, ELSE, EVALUATE, PICTURE, etc.  You can find a table of all COBOL reserved words is located at:
 
-[https://www.ibm.com/docs/en/cobol-zos/6.3?topic=appendixes-reserved-words](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=appendixes-reserved-words)
+[https://www.ibm.com/docs/en/cobol-zos/6.4?topic=appendixes-reserved-words](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=appendixes-reserved-words)
 
 
 ### What is a COBOL statement?
@@ -335,7 +335,7 @@ This section provides useful resources in the form of manuals and videos to assi
 
 ### Professional manuals
 
-As Enterprise COBOL experience advances, the need for professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of April 2020, the current release of Enterprise COBOL is V6.3.  Highlight the V6.3 tab, then select product documentation.
+As Enterprise COBOL experience advances, the need for professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of December 2022, the current release of Enterprise COBOL is V6.4.  Highlight the V6.4 tab, then select product documentation.
 
 [https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library](https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library)
 
@@ -344,15 +344,15 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
 1. Language Reference - Describes the COBOL language such as program structure, reserved words, etc. 
 
-   [http://publibfp.boulder.ibm.com/epubs/pdf/igy6lr30.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/igy6lr30.pdf)
+   [https://publibfp.dhe.ibm.com/epubs/pdf/igy6lr40.pdf](https://publibfp.dhe.ibm.com/epubs/pdf/igy6lr40.pdf)
 
 2. Programming Guide - Describes advanced topics such as COBOL compiler options, program performance optimization, handling errors, etc.
 
-   [http://publibfp.boulder.ibm.com/epubs/pdf/igy6pg30.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/igy6pg30.pdf)
+   [https://publibfp.dhe.ibm.com/epubs/pdf/igy6pg40.pdf](https://publibfp.dhe.ibm.com/epubs/pdf/igy6pg40.pdf)
 
 3. Messages and Codes - To better understand certain COBOL compiler messages and return codes to diagnose problems.
 
-   [http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf)
+   [https://publibfp.dhe.ibm.com/epubs/pdf/c2746482.pdf](https://publibfp.dhe.ibm.com/epubs/pdf/c2746482.pdf)
 
 ### Learn more about recent COBOL advancements
 
@@ -367,6 +367,10 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 - What’s New in Enterprise COBOL for z/OS V6.3:
 
    [https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new)
+
+- What’s New in Enterprise COBOL for z/OS V6.4:
+
+   [https://www.ibm.com/docs/en/cobol-zos/6.4?topic=wn-what-is-new-in-enterprise-cobol-zos-64-cobol-64-ptfs-installed](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=wn-what-is-new-in-enterprise-cobol-zos-64-cobol-64-ptfs-installed)
 
 ## Lab
 
@@ -837,7 +841,7 @@ The maximum length of a picture clause is dependent upon the data type and compi
 
 Where cs is any valid currency symbols such as the dollar sign ($).
 
-All PIC clause symbols are described in the [Enterprise COBOL for z/OS Language Reference manual](http://publibfp.boulder.ibm.com/epubs/pdf/igy6lr30.pdf). 
+All PIC clause symbols are described in the [Enterprise COBOL for z/OS Language Reference manual](https://publibfp.dhe.ibm.com/epubs/pdf/igy6lr40.pdf). 
 
 
 ### Coding COBOL variable / data-item names
@@ -2721,7 +2725,7 @@ The sign condition determines whether the algebraic value of a numeric operand i
 
 **Note**: To read more information about these conditions please visit the link:
 
-[https://www.ibm.com/docs/en/cobol-zos/6.3?topic=structure-conditional-expressions](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=structure-conditional-expressions)
+[https://www.ibm.com/docs/en/cobol-zos/6.4?topic=structure-conditional-expressions](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=structure-conditional-expressions)
 
 
 ## Lab
@@ -2904,7 +2908,7 @@ COMPUTE | Restriction does not apply
 
 *Table 2.  How the composite of operands is determined*
 
-In all arithmetic statements, it is important to define data with enough digits and decimal places to ensure the required accuracy in the result.  Arithmetic precision details are available in the [IBM Enterprise COBOL Programming Guide Appendix A](http://publibfp.boulder.ibm.com/epubs/pdf/igy6pg30.pdf).
+In all arithmetic statements, it is important to define data with enough digits and decimal places to ensure the required accuracy in the result.  Arithmetic precision details are available in the [IBM Enterprise COBOL Programming Guide Appendix A](https://publibfp.dhe.ibm.com/epubs/pdf/igy6pg40.pdf).
 
  
 
@@ -3134,7 +3138,7 @@ Previous COBOL industry specifications included intrinsic functions, which remai
 
      - **Categories of intrinsic functions**
 
-- **Intrinsic functions in Enterprise COBOL for z/OS V6.3**
+- **Intrinsic functions in Enterprise COBOL for z/OS V6.4**
 
      - **Mathematical example**
 
@@ -3214,9 +3218,9 @@ Intrinsic functions operate against alphanumeric, national, numeric, and integer
 
 - **Integer** functions are of class and category numeric.  The returned value is always considered to have an operational sign and is an integer intermediate result.  The number of digit positions in the value returned is determined by the function definition.
 
-## Intrinsic functions in Enterprise COBOL for z/OS V6.3
+## Intrinsic functions in Enterprise COBOL for z/OS V6.4
 
-The current release of Enterprise COBOL for z/OS V6.3 includes 70 intrinsic functions.  Each one of these functions falling into one of the aforementioned six categories.  While an entire book could be written on intrinsic functions, a single example for each of the six categories is provided in this section.
+The current release of Enterprise COBOL for z/OS V6.4 includes 82 intrinsic functions.  Each one of these functions falling into one of the aforementioned six categories.  While an entire book could be written on intrinsic functions, a single example for each of the six categories is provided in this section.
 
 
 ### Mathematical example

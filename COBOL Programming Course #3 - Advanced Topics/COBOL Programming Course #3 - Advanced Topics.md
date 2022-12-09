@@ -25,7 +25,7 @@ This section provides useful resources in the form of manuals and videos to assi
 
 ## Professional manuals
 
-As Enterprise COBOL experience advances, the need for the professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of April 2020, the current release of Enterprise COBOL is V6.3.  Highlight V6.3 tab, then select product documentation.
+As Enterprise COBOL experience advances, the need for professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of December 2022, the current release of Enterprise COBOL is V6.4.  Highlight the V6.4 tab, then select product documentation.
 
 [https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library](https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library)
 
@@ -34,15 +34,15 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
 1. Language Reference - Describes the COBOL language such as program structure, reserved words, etc. 
 
-   [http://publibfp.boulder.ibm.com/epubs/pdf/igy6lr30.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/igy6lr30.pdf)
+   [https://publibfp.dhe.ibm.com/epubs/pdf/igy6lr40.pdf](https://publibfp.dhe.ibm.com/epubs/pdf/igy6lr40.pdf)
 
 2. Programming Guide - Describes advanced topics such as COBOL compiler options, program performance optimization, handling errors, etc.
 
-   [http://publibfp.boulder.ibm.com/epubs/pdf/igy6pg30.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/igy6pg30.pdf)
+   [https://publibfp.dhe.ibm.com/epubs/pdf/igy6pg40.pdf](https://publibfp.dhe.ibm.com/epubs/pdf/igy6pg40.pdf)
 
 3. Messages and Codes - To better understand certain COBOL compiler messages and return codes to diagnose problems.
 
-   [http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf)
+   [https://publibfp.dhe.ibm.com/epubs/pdf/c2746482.pdf](https://publibfp.dhe.ibm.com/epubs/pdf/c2746482.pdf)
 
 ## Learn more about recent COBOL advancements
 
@@ -57,6 +57,10 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 - What’s New in Enterprise COBOL for z/OS V6.3:
 
    [https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new)
+
+- What’s New in Enterprise COBOL for z/OS V6.4:
+
+   [https://www.ibm.com/docs/en/cobol-zos/6.4?topic=wn-what-is-new-in-enterprise-cobol-zos-64-cobol-64-ptfs-installed](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=wn-what-is-new-in-enterprise-cobol-zos-64-cobol-64-ptfs-installed)
 
 \newpage
 
@@ -270,7 +274,7 @@ COMP-2 supersedes COMP-1 for more precise scientific data storage as well as com
 # Dynamic-Length Item
 So far during this course, we have only explored data items that have a fixed length. In other words, you need to define the length you need for each data type. But in this section, we will explore a fairly new concept in Enterprise COBOL - dynamic-length items.
 
-Enterprise COBOL v6.3 supports dynamic-length items, which are items whose logical length might change at runtime.
+Starting from Enterprise COBOL v6.3 dynamic-length items, which are items whose logical length might change at runtime, are supported.
 
 ## Dynamic-Length Elementary Items
 
@@ -280,7 +284,7 @@ If the content received is longer than the current length, a new larger buffer w
 
 Now, if the dynamic-length elementary item is used to receive data and we reference-modified it, the item will be treated as a fixed-length item with with a length equals to the current length of the dynamic-length item. In such cases, the compiler will not allocate or reallocated the buffer.
 
-Note that not all statement supports dynamic-length elementary items. Common statement like REDEFINE or RENAME will not work. Additionally, we cannot take their address using the ADDRESS-OF special register. The full list of the statements supported is available on the [Language Reference](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=relationships-dynamic-length-items).
+Note that not all statement supports dynamic-length elementary items. Common statement like REDEFINE or RENAME will not work. Additionally, we cannot take their address using the ADDRESS-OF special register. The full list of the statements supported is available on the [Language Reference](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=relationships-dynamic-length-items).
 
 When we compare a dynamic-length item with a fixed-length item, the comparison will follow the normal comparison rules (the shorter item will be extended to the right with enough spaces to make both items equal in length and then each character will be compared). Meanwhile, if you compare two dynamic-length elementary items, the lengths will be compared first and if they matched, the characters will then be examined.
 
@@ -375,7 +379,7 @@ Generally speaking, a UTF-8 data item can be moved only to those of category Nat
 
 Additionally, we can use the intrinsic function DISPLAY-OF to convert national to UTF-8 and UTF-8 to alphanumeric or the intrinsic function NATIONAL-OF to convert UTF-8 to national.
 
-**Note** : For more information, please refer to the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=cobol-converting-from-utf-8-unicode-representation).
+**Note** : For more information, please refer to the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=cobol-converting-from-utf-8-unicode-representation).
 
 \newpage
 # COBOL Application Programming Interface (API)
@@ -687,7 +691,7 @@ Chances are you will not need to manually write any JCL to compile a program. Ho
 
 **(7):** The SYSIN DD statement defines the data set to be used as input to the job step, or in other words, the source code.
 
-For more information on the input and output data set that the Enterprise COBOL compiler can use, please refer to the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=zos-defining-compiler-input-output).
+For more information on the input and output data set that the Enterprise COBOL compiler can use, please refer to the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=zos-defining-compiler-input-output).
 
 ## Specifying compiler options
 
@@ -709,7 +713,7 @@ The precedence options in a SYSOPTF data set will depend on where the OPTFILE co
 
 Note that this order of precedence also determines which options are in effect when there are conflicting or mutually exclusive options.
 
-For a full list of compiler options, please refer to the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=program-compiler-options).
+For a full list of compiler options, please refer to the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=program-compiler-options).
 
 ### Specifying options in the PROCESS statement
 
@@ -914,7 +918,7 @@ In a multithreaded environment, there are some limitations on COBOL programs. In
 
 - Older COBOL programs: To run your COBOL programs on multiple threads of a multithreaded application, we must compile them with Enterprise COBOL using the THREAD option.
 
-To see more details on the limitation of COBOL with multithreading, check out the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=multithreading-handling-cobol-limitations).
+To see more details on the limitation of COBOL with multithreading, check out the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=multithreading-handling-cobol-limitations).
 
 \newpage
 # Program tuning and simplification
@@ -932,7 +936,7 @@ Having a robust algorithm with the appropriate data structure is essential to im
 
 We can also write programs that result in more efficient use of the available services. We can also use coding techniques to improve our productivity.
 
-If you are interested in learning more about performance tuning with COBOL, check out the [Enterprise COBOL for z/OS Performance Tuning Guide](http://publibfp.dhe.ibm.com/epubs/pdf/igy6tg30.pdf).
+If you are interested in learning more about performance tuning with COBOL, check out the [Enterprise COBOL for z/OS Performance Tuning Guide](https://publibfp.dhe.ibm.com/epubs/pdf/igy6tg40.pdf).
 
 
 - **Optimal programming style**
@@ -1087,7 +1091,7 @@ Our choice of performance-related compiler options can affect how well our progr
 
 Another compiler feature to consider is the USE FOR DEBUGGING ON ALL PROCEDURES statement which can greatly affect the compiler optimizer. The use of the ON ALL PROCEDURES option will generate extra code at each transfer to a procedure name. Although these are useful for debugging, they will make your program larger and thus inhibit optimization.
 
-For a listing of performance-related compiler options, please check the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=performance-related-compiler-options).
+For a listing of performance-related compiler options, please check the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=performance-related-compiler-options).
 
 \newpage
 # COBOL Challenges
@@ -1318,9 +1322,9 @@ We will be working on a Hacker News 2015-2016 dataset from Kaggle with a full ye
 
 5. Next add a new step in the JCL member to run the `DFSORT` utility on the output dataset from the previous step. The sort should be done on the ranking score field, from highest to lowest. Use `DFSORT` to also print headers for our front page. As this is a new utility not covered in the course, please check out these links to explore this very powerful and versatile tool:
  
-   [Getting started with DFSORT](https://www.ibm.com/docs/en/zos/2.4.0?topic=dfsort-zos-getting-started)
+   [Getting started with DFSORT](https://www.ibm.com/docs/en/zos/2.5.0?topic=dfsort-zos-getting-started)
 
-   [Example with DFSORT](https://www.ibm.com/docs/en/zos/2.4.0?topic=examples-example-10-sort-outfil)
+   [Example with DFSORT](https://www.ibm.com/docs/en/zos/2.5.0?topic=examples-example-10-sort-outfil)
 
 
 6. Run and debug until the front page looks ready! Which posts ranked among the highest? Here's a look at the generated report:
