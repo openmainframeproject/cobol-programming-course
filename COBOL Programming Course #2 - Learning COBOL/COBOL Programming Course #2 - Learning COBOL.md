@@ -3472,8 +3472,8 @@ To read more on data sets, visit the IBM Knowledge Center:
 - S013-68: Block size is larger than 32752
 - S013-A4: SYSIN or SYSOUT is not QSAM file
 - S013-A8: Invalid record format for SYSIN or SYSOUT
-- S013-D0: Attemped to define PDS with FBS or FS record format
-- S013-E4: Attemped to concatenate more than 16 PDSs
+- S013-D0: Attempted to define PDS with FBS or FS record format
+- S013-E4: Attempted to concatenate more than 16 PDSs
 
 **Frequent Causes:**
 Most of the reason for this ABEND code is due to inconsistencies between the JCL and the COBOL program.
