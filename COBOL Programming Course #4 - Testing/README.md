@@ -16,7 +16,7 @@ These materials are being used by other organizations to provide COBOL training 
 
 ## Build
 
-A PDF can be built using the following [pandoc](https://pandoc.org/) command. Note: pdflatex is required. [MiKTeX](https://miktex.org/) can be installed to accomodate this. 
+A PDF can be built using the following [pandoc](https://pandoc.org/) command. Note: pdflatex is required. [MiKTeX](https://miktex.org/) can be installed to accommodate this. 
 
 ```
 pandoc "COBOL Programming Course #4 - Testing.md" -o "COBOL Programming Course #4 - Testing.pdf" --number-sections --toc --listings

@@ -25,7 +25,7 @@ This section provides useful resources in the form of manuals and videos to assi
 
 ## Professional manuals
 
-As Enterprise COBOL experience advances, the need for the professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of April 2020, the current release of Enterprise COBOL is V6.3.  Highlight V6.3 tab, then select product documentation.
+As Enterprise COBOL experience advances, the need for professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of December 2022, the current release of Enterprise COBOL is V6.4.  Highlight the V6.4 tab, then select product documentation.
 
 [https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library](https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library)
 
@@ -34,15 +34,15 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
 1. Language Reference - Describes the COBOL language such as program structure, reserved words, etc. 
 
-   [http://publibfp.boulder.ibm.com/epubs/pdf/igy6lr30.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/igy6lr30.pdf)
+   [https://publibfp.dhe.ibm.com/epubs/pdf/igy6lr40.pdf](https://publibfp.dhe.ibm.com/epubs/pdf/igy6lr40.pdf)
 
 2. Programming Guide - Describes advanced topics such as COBOL compiler options, program performance optimization, handling errors, etc.
 
-   [http://publibfp.boulder.ibm.com/epubs/pdf/igy6pg30.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/igy6pg30.pdf)
+   [https://publibfp.dhe.ibm.com/epubs/pdf/igy6pg40.pdf](https://publibfp.dhe.ibm.com/epubs/pdf/igy6pg40.pdf)
 
 3. Messages and Codes - To better understand certain COBOL compiler messages and return codes to diagnose problems.
 
-   [http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf](http://publibfp.boulder.ibm.com/epubs/pdf/c2746481.pdf)
+   [https://publibfp.dhe.ibm.com/epubs/pdf/c2746482.pdf](https://publibfp.dhe.ibm.com/epubs/pdf/c2746482.pdf)
 
 ## Learn more about recent COBOL advancements
 
@@ -57,6 +57,10 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 - What’s New in Enterprise COBOL for z/OS V6.3:
 
    [https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new](https://www.ibm.com/support/pages/cobol-v63-was-announced-whats-new)
+
+- What’s New in Enterprise COBOL for z/OS V6.4:
+
+   [https://www.ibm.com/docs/en/cobol-zos/6.4?topic=wn-what-is-new-in-enterprise-cobol-zos-64-cobol-64-ptfs-installed](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=wn-what-is-new-in-enterprise-cobol-zos-64-cobol-64-ptfs-installed)
 
 \newpage
 
@@ -270,7 +274,7 @@ COMP-2 supersedes COMP-1 for more precise scientific data storage as well as com
 # Dynamic-Length Item
 So far during this course, we have only explored data items that have a fixed length. In other words, you need to define the length you need for each data type. But in this section, we will explore a fairly new concept in Enterprise COBOL - dynamic-length items.
 
-Enterprise COBOL v6.3 supports dynamic-length items, which are items whose logical length might change at runtime.
+Starting from Enterprise COBOL v6.3 dynamic-length items, which are items whose logical length might change at runtime, are supported.
 
 ## Dynamic-Length Elementary Items
 
@@ -278,9 +282,9 @@ Let us consider a dynamic-length elementary item. To recall, an elementary item 
 
 If the content received is longer than the current length, a new larger buffer will be allocated for it. Additionally, if the length of the sender is zero, the receiver's length will be set to zero as well.
 
-Now, if the dynamic-length elementary item is used to receive data and we reference-modified it, the item will be treated as a fixed-length item with with a length equals to the current length of the dynamic-length item. In such cases, the compiler will not allocate or reallocated the buffer.
+Now, if the dynamic-length elementary item is used to receive data and we reference-modified it, the item will be treated as a fixed-length item with a length equals to the current length of the dynamic-length item. In such cases, the compiler will not allocate or reallocated the buffer.
 
-Note that not all statement supports dynamic-length elementary items. Common statement like REDEFINE or RENAME will not work. Additionally, we cannot take their address using the ADDRESS-OF special register. The full list of the statements supported is available on the [Language Reference](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=relationships-dynamic-length-items).
+Note that not all statement supports dynamic-length elementary items. Common statement like REDEFINE or RENAME will not work. Additionally, we cannot take their address using the ADDRESS-OF special register. The full list of the statements supported is available on the [Language Reference](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=relationships-dynamic-length-items).
 
 When we compare a dynamic-length item with a fixed-length item, the comparison will follow the normal comparison rules (the shorter item will be extended to the right with enough spaces to make both items equal in length and then each character will be compared). Meanwhile, if you compare two dynamic-length elementary items, the lengths will be compared first and if they matched, the characters will then be examined.
 
@@ -375,7 +379,7 @@ Generally speaking, a UTF-8 data item can be moved only to those of category Nat
 
 Additionally, we can use the intrinsic function DISPLAY-OF to convert national to UTF-8 and UTF-8 to alphanumeric or the intrinsic function NATIONAL-OF to convert UTF-8 to national.
 
-**Note** : For more information, please refer to the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=cobol-converting-from-utf-8-unicode-representation).
+**Note** : For more information, please refer to the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=cobol-converting-from-utf-8-unicode-representation).
 
 \newpage
 # COBOL Application Programming Interface (API)
@@ -399,7 +403,7 @@ Business application solutions were architected decades ago using programming la
     - **Using VSCode and Zowe Explorer**
 
 ## Enterprise COBOL APIs
-IBM mainframe flagship operating system, z/OS, includes software that has enabled large scale business applications for decades.  The software is frequently referred to as 'middleware'. Examples of z/OS 'middleware' is Db2, a relational database, CICS, transactional processor, IMS, both transactional and hierarchical database, and MQSeries, a mechanism to store and forward data between systems asynchonously.
+IBM mainframe flagship operating system, z/OS, includes software that has enabled large scale business applications for decades.  The software is frequently referred to as 'middleware'. Examples of z/OS 'middleware' is Db2, a relational database, CICS, transactional processor, IMS, both transactional and hierarchical database, and MQSeries, a mechanism to store and forward data between systems asynchronously.
 
 ### z/OS Middleware
 A fundamental capability of z/OS middleware software is communication enablement of programming languages.  The z/OS middleware software includes documentation and examples of how any specific programming language can communicate with the specific z/OS middleware software.  A programming language, such as Enterprise COBOL, would use documented interfaces and techniques to initiate services and pass data between the COBOL application program and the middleware. 
@@ -488,7 +492,7 @@ Observe ":CUSTOMER-RECORD" in the EXEC SQL FETCH statement.  A colon (:) precede
 *Example 3. COBOL Data Item for storing variables where Db2 is the data source*
 
 ## SQL Capability within Enterprise COBOL
-Learning SQL is a separate technical skill.  The objective of this brief chapter is familiarization with Enterprise COBOL use of SQL API.  A COBOL program is capable of any SQL communication with Db2 for z/OS assuming necessary authority is granted.  SQL has four catagories as outlined in Example 4.  Learning SQL is necessary for a COBOL programmer to become proficient with using the Db2 API for a variety of possible applications where COBOL provides the what, how, and when logic of executing specific SQL.  
+Learning SQL is a separate technical skill.  The objective of this brief chapter is familiarization with Enterprise COBOL use of SQL API.  A COBOL program is capable of any SQL communication with Db2 for z/OS assuming necessary authority is granted.  SQL has four categories as outlined in Example 4.  Learning SQL is necessary for a COBOL programmer to become proficient with using the Db2 API for a variety of possible applications where COBOL provides the what, how, and when logic of executing specific SQL.  
 
 ```
 DDL - Data Definition Language
@@ -502,7 +506,7 @@ INSERT
 UPDATE
 DELETE 
 
-DCL - Data Control Langauge
+DCL - Data Control Language
 GRANT
 REVOKE
 
@@ -516,7 +520,7 @@ ROLLBACK
 Db2 for z/OS V12 is the most current release of Db2 at the moment.  The Db2 V12 for z/OS Application Programming and SQL Guide is available using internet search SC27-8845, the Db2 for z/OS professional manual number.  Db2 V12 for z/OS SQL Reference is also necessary to advance programming API capability (SC27-8859).
 
 ### Db2 Data Base Administration (DBA) vs Application Programming
-In large enterprise, the roles and responsibilities are divided for a number of reasons.  The responsibility of the DBA would include the DDL and DCL outlined in Example 4.  The DBA is responsibile for managing the entire relational data base environment to insure availability, security, performance, etc.  The system programmers and DBAs frequently setup the application development procedures for COBOL programmer development, testing, and maintenance of the COBOL business applications.  A COBOL application programmer is typically provided documented procedures to follow to apply their COBOL programming and SQL API expertise.
+In large enterprise, the roles and responsibilities are divided for a number of reasons.  The responsibility of the DBA would include the DDL and DCL outlined in Example 4.  The DBA is responsible for managing the entire relational data base environment to insure availability, security, performance, etc.  The system programmers and DBAs frequently setup the application development procedures for COBOL programmer development, testing, and maintenance of the COBOL business applications.  A COBOL application programmer is typically provided documented procedures to follow to apply their COBOL programming and SQL API expertise.
 
 Enterprise COBOL is a learning journey.  Each Enterprise COBOL API is a separate learning journey.  As is the case with most professional endeavors, learning, repetition, and applying what is learned is re-iterative process leading to advanced skill levels.
 
@@ -526,7 +530,7 @@ The lab contains data used in previous labs from "COBOL Programming Course #1 - 
 The lab contains Enterprise COBOL source code with Db2 APIs along with the JCL to compile and execute the COBOL programs.
 
 ### Using VSCode and Zowe Explorer
-Zowe Explorer is currently without the ability to execute Db2 SQL interactively. It is inevitable Zowe Explorer will eventually have the capability of connectiong to relational databases and executing SQL.
+Zowe Explorer is currently without the ability to execute Db2 SQL interactively. It is inevitable Zowe Explorer will eventually have the capability of connecting to relational databases and executing SQL.
 
 Therefore, JCL members were created to create and load user tables following examples provided.
 
@@ -687,7 +691,7 @@ Chances are you will not need to manually write any JCL to compile a program. Ho
 
 **(7):** The SYSIN DD statement defines the data set to be used as input to the job step, or in other words, the source code.
 
-For more information on the input and output data set that the Enterprise COBOL compiler can use, please refer to the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=zos-defining-compiler-input-output).
+For more information on the input and output data set that the Enterprise COBOL compiler can use, please refer to the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=zos-defining-compiler-input-output).
 
 ## Specifying compiler options
 
@@ -709,7 +713,7 @@ The precedence options in a SYSOPTF data set will depend on where the OPTFILE co
 
 Note that this order of precedence also determines which options are in effect when there are conflicting or mutually exclusive options.
 
-For a full list of compiler options, please refer to the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=program-compiler-options).
+For a full list of compiler options, please refer to the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=program-compiler-options).
 
 ### Specifying options in the PROCESS statement
 
@@ -914,7 +918,7 @@ In a multithreaded environment, there are some limitations on COBOL programs. In
 
 - Older COBOL programs: To run your COBOL programs on multiple threads of a multithreaded application, we must compile them with Enterprise COBOL using the THREAD option.
 
-To see more details on the limitation of COBOL with multithreading, check out the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=multithreading-handling-cobol-limitations).
+To see more details on the limitation of COBOL with multithreading, check out the [Programming Guide](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=multithreading-handling-cobol-limitations).
 
 \newpage
 # Program tuning and simplification
@@ -932,7 +936,7 @@ Having a robust algorithm with the appropriate data structure is essential to im
 
 We can also write programs that result in more efficient use of the available services. We can also use coding techniques to improve our productivity.
 
-If you are interested in learning more about performance tuning with COBOL, check out the [Enterprise COBOL for z/OS Performance Tuning Guide](http://publibfp.dhe.ibm.com/epubs/pdf/igy6tg30.pdf).
+If you are interested in learning more about performance tuning with COBOL, check out the [Enterprise COBOL for z/OS Performance Tuning Guide](https://publibfp.dhe.ibm.com/epubs/pdf/igy6tg40.pdf).
 
 
 - **Optimal programming style**
@@ -1087,7 +1091,7 @@ Our choice of performance-related compiler options can affect how well our progr
 
 Another compiler feature to consider is the USE FOR DEBUGGING ON ALL PROCEDURES statement which can greatly affect the compiler optimizer. The use of the ON ALL PROCEDURES option will generate extra code at each transfer to a procedure name. Although these are useful for debugging, they will make your program larger and thus inhibit optimization.
 
-For a listing of performance-related compiler options, please check the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.3?topic=performance-related-compiler-options).
+For a listing of performance-related compiler options, please check the [IBM Documentation](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=performance-related-compiler-options).
 
 \newpage
 # COBOL Challenges
@@ -1119,7 +1123,7 @@ Clearly, Mari’s changes to the program that generates the reports have broken 
 
 Can you fix the code to get the correct result? The new source code is named **CBL0106** and the JCL is **CBL0106J**. In case you get stuck, the solution is in the file **CBL0106C**. 
 
-You can find them in the github repository for the COBOL course, in the subfolder **/COBOL Programming Course #2 - Advanced Topics/Challenges/Debugging**.
+You can find them in the GitHub repository for the COBOL course, in the subfolder **/COBOL Programming Course #3 - Advanced Topics/Challenges/Debugging**.
 
 \newpage
 ## COBOL Challenge - The COVID-19 Reports
@@ -1290,7 +1294,7 @@ We will explore the popular Hacker News website for this challenge. Hacker News 
 The site offers a dynamic list of posts/stories, submitted by users, each of which could be expanded into its own unique comment thread. Readers can upvote or downvote links and comments, and the top thirty links are featured on the front page. Today, more than five million people read Hacker News each month, and landing a blog post on the front page is a badge of honor for many technologists.
 
 ### Our Goal
-We will be working on a Hacker News 2015-2016 dataset from Kaggle with a full year’s worth of stories:  Our goal is to extract only the Mainframe/COBOL related stories and assign ranking scores to them based on (a simplified version) the published Hacker News ranking algorithm. We will create a front page report that reflects this ranking order. The algorithm works in a way that nothing stays on the front page for too long, so a story’s score will eventually drop to zero over time (the gravity effect). Since our posts are spread out over a year and as older posts will always have a lower (or zero) ranking, we will distort the data so all our stories have the same date and and consider only the times in the ranking score calculation. This will give all our posts a fair chance of landing the front page.  Our front page report is published at 11:59pm. [Here's some additional information on the ranking.](https://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html)
+We will be working on a Hacker News 2015-2016 dataset from Kaggle with a full year’s worth of stories:  Our goal is to extract only the Mainframe/COBOL related stories and assign ranking scores to them based on (a simplified version) the published Hacker News ranking algorithm. We will create a front page report that reflects this ranking order. The algorithm works in a way that nothing stays on the front page for too long, so a story’s score will eventually drop to zero over time (the gravity effect). Since our posts are spread out over a year and as older posts will always have a lower (or zero) ranking, we will distort the data so all our stories have the same date and consider only the times in the ranking score calculation. This will give all our posts a fair chance of landing the front page.  Our front page report is published at 11:59pm. [Here's some additional information on the ranking.](https://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html)
 
 ### The Plan
  - There are different creative ways of accomplishing this but here’s our plan: We will have a COBOL program that reads the input CSV file and retrieves only the ***Mainframe/COBOL*** stories. It then calculates the ranking score for the stories by factoring in the time they were posted and the number of votes they received. Each of the records is then written to an output dataset along with the ranking score. 
@@ -1318,9 +1322,9 @@ We will be working on a Hacker News 2015-2016 dataset from Kaggle with a full ye
 
 5. Next add a new step in the JCL member to run the `DFSORT` utility on the output dataset from the previous step. The sort should be done on the ranking score field, from highest to lowest. Use `DFSORT` to also print headers for our front page. As this is a new utility not covered in the course, please check out these links to explore this very powerful and versatile tool:
  
-   [Getting started with DFSORT](https://www.ibm.com/docs/en/zos/2.4.0?topic=dfsort-zos-getting-started)
+   [Getting started with DFSORT](https://www.ibm.com/docs/en/zos/2.5.0?topic=dfsort-zos-getting-started)
 
-   [Example with DFSORT](https://www.ibm.com/docs/en/zos/2.4.0?topic=examples-example-10-sort-outfil)
+   [Example with DFSORT](https://www.ibm.com/docs/en/zos/2.5.0?topic=examples-example-10-sort-outfil)
 
 
 6. Run and debug until the front page looks ready! Which posts ranked among the highest? Here's a look at the generated report:

@@ -9,6 +9,7 @@ This roadmap lists out the possible and planned future contents for the COBOL Pr
 - Object-Oriented COBOL
 - Subprograms
 - Sorting and Merging
+- Processing JSON and XML
 
 ## Possible Future Contents
 
@@ -17,4 +18,3 @@ This roadmap lists out the possible and planned future contents for the COBOL Pr
 - COBOL Dynamic Link Libraries
 - Communication with Java Methods
 - Debugging and Testing
-- Processing JSON and XML

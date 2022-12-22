@@ -23,7 +23,7 @@ These materials are being used by other organizations to provide COBOL training 
 
 ## Build
 
-The PDF is built using the following [pandoc](https://pandoc.org/) command. Note: pdflatex is required. [MiKTeX](https://miktex.org/) can be installed to accomodate this. 
+The PDF is built using the following [pandoc](https://pandoc.org/) command. Note: pdflatex is required. [MiKTeX](https://miktex.org/) can be installed to accommodate this. 
 
 ```
 pandoc "COBOL Programming Course #1 - Getting Started.md" -o "COBOL Programming Course #1 - Getting Started.pdf" --number-sections --toc -B Front_Matter.tex --listings
