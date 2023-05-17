@@ -34,6 +34,8 @@ Zowe Explorer is an open-source extension for VS Code that lets developers and s
      - **Editing Profiles**
      - **Deleting Profiles**
 - **Summary**
+- **Highlights**
+     - **several facts on the use of COBOL on today's era.**
 
 ## Introduction to Zowe Explorer
 
@@ -1026,4 +1028,30 @@ For offline installation of vendor plug-ins, please reach out to the specific ve
 
 ## Summary
 In this chapter, we walked through the process of installing the prerequisite software, Node.js, and npm, as well as Zowe CLI and various plug-ins.
+
+## Highlights
+
+
+
+### several facts on the use of COBOL on today's era based on OMP CWG's Survey
+#### 1. 250 billion lines of COBOL in use
+The first of those is the amount of COBOL in production use in the world: 250 billion lines, based on our extrapolation! That’s apparently the largest it’s ever been, and slightly larger than the 240 billion that some estimated in the 1990’s. Some folks take this to mean that COBOL’s not going anywhere, while others point out that it is indeed going somewhere—just not “away.”
+
+Industries with greatest reliance on COBOL include Financial
+Services, Government, Software, LogIstIcs, Retail, Manufacturing, Other
+![](Images/facts-cobol/fact_001.png)
+
+
+#### 2. The future of COBOL is bright
+The next major finding, which, given the above proof of the inevitability of COBOL, seems typically conservative of those who work in the business contexts where it runs, demonstrates that even among this too-pessimistic crowd, the future of COBOL is recognized as bright and persistent. Fully 58% of respondents were willing to admit that their COBOL applications will be sticking around for the next half decade or more.
+
+The figure below illustrates this, demonstrating an even greater optimism among respondents from the financial services industry, where over 55% expect them to stick around for indefinitely more than the next decade.
+![](Images/facts-cobol/fact_002.png)
+#### 3. The COBOL skills challenge
+
+The third major highlight is the skills challenge. In a way, this is almost funny, given how COBOL was designed to be an easy language to write and read, and not require advanced computing abilities to learn and develop with it. Organizations that have their own internal training programs need not spend their time worrying where they’ll find new COBOL programmers—they can just hire competent and willing new staff and get them proficient and functioning in an acceptably finite time.
+
+ Be that as it may, as figure given below illustrates, people are worried about it, and that certainly shows how important and persistent their investment in COBOL is. And while it’s interesting that organizations at the extremes (fewer than 500 employees or more than 100,000) have relatively lower degrees of immediate concern than those in the middle, no more than a third of any group have no concerns about COBOL staffing.
+
+ ![](Images/facts-cobol/fact_003.png)
 
