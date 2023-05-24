@@ -543,13 +543,13 @@ In this lab exercise, you will connect to an IBM Z system, view a simple COBOL h
 
     *Figure  23.  HELLOCBL output*
 
-23. Select **COBRUN:SYSPRINT(101)** to view the COBOL compiler output.  Scroll forward in the COBOL compile to locate the COBOL source code compiled into an executable module as shown in Figure  24.  Observe the Indicator Area in column 7, A Area beginning in column 8, and B Area beginning in column 12.  Also, observe the period (.) scope terminators in the COBOL source.
+23. Select **COBRUN:SYSPRINT - COBOL** to view the COBOL compiler output.  Scroll forward in the COBOL compile to locate the COBOL source code compiled into an executable module as shown in Figure  24.  Observe the Indicator Area in column 7, A Area beginning in column 8, and B Area beginning in column 12.  Also, observe the period (.) scope terminators in the COBOL source.
 
     ![](Images/image104.png)
 
     *Figure  24.  COBOL compiler output*
 
-24. View the COBOL program execution by selecting **COBRUN:SYSOUT(104)** from the LEARNCOBOL in the Jobs section of Zowe Explorer as shown in Figure  25.
+24. View the COBOL program execution by selecting **COBRUN:SYSOUT - GO** from the LEARNCOBOL in the Jobs section of Zowe Explorer as shown in Figure  25.
 
     ![](Images/image106.png)
 
