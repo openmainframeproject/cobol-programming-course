@@ -28,6 +28,8 @@ This chapter introduces COBOL, specifically regarding its use in enterprise syst
 
 - **How is COBOL being used today?**
 
+- **What insights does the survey conducted by Open Mainframe Project's COBOL Working Group provide?**
+
 - **Why should I care about COBOL?**
 
 ## What is COBOL?
@@ -42,21 +44,31 @@ Continuously updated to incorporate modernized and proven programming paradigms 
 
 ## How is COBOL being used today?
 
-COBOL is everywhere. You have probably used an application written in COBOL today. For example, consider the following statistics:
+COBOL is omnipresent, and it's highly likely that you've interacted with a COBOL application today. Let's take a look at some compelling statistics:
 
-- About 95% of ATM swipes use COBOL code.
+- Approximately 95% of ATM transactions rely on COBOL codes.
+- COBOL powers 80% of face-to-face transactions.
+- Each day, COBOL systems facilitate a staggering $3 trillion in commerce.
 
-- COBOL powers 80% of in-person transactions.
+To truly grasp the extent of COBOL's prevalence, consider these mind-boggling facts:
 
-- Every day, COBOL systems handle $3 trillion in commerce.
+- On a daily basis, there are 200 times more COBOL transactions executed than there are Google searches.
+- Presently, there are over 250 billion lines of actively running COBOL programs, accounting for roughly 80% of the world's actively utilized code.
+- Every year, approximately 1.5 billion lines of new COBOL code are written.
 
-How pervasive is COBOL? Consider these mind-boggling facts:
+## What insights does the survey conducted by Open Mainframe Project's COBOL Working Group provide?
 
-- Every day there are 200 times more COBOL transactions executed than there are Google searches.
+Highlights from the survey conducted by the Open Mainframe Project's COBOL Working Group in 2021 shed further light on the use of COBOL in today's era:
 
-- There are over 220 billion lines of COBOL programs running today, which equates to around 80% of the world's actively used code.
+1. **Over 250 billion lines of COBOL are currently in production worldwide**, marking a notable increase from previous estimates. This figure indicates that COBOL's relevance is not waning; in fact, it continues to play a vital role.
 
-- 1,500,000,000 lines of new COBOL code are written each year.
+   Industries with the greatest reliance on COBOL include Financial Services, Government, Software, Logistics, Retail, and Manufacturing, among others.
+
+2. **The future of COBOL appears promising**. Despite skeptics, 58% of respondents anticipate that their COBOL applications will persist for at least the next five years. Financial services professionals, in particular, exhibit even greater optimism, with over 55% expecting COBOL to endure indefinitely.
+
+
+3. **The challenge lies in the availability of COBOL skills**. Interestingly, COBOL was originally designed to be an accessible language that didn't necessitate advanced computing expertise.However, companies are worried about not having enough skilled COBOL programmers. Even though they can train their own employees, this concern shows that COBOL is still important and worth investing in.
+
 
 ## Why should I care about COBOL?
 
