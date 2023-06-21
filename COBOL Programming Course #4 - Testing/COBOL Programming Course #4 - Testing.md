@@ -38,6 +38,16 @@ We will look at some of the background to software testing and the different typ
 
      - **The role of exploratory testing**
 
+- **Why does automated testing matter?**
+
+    - **Value of automated testing in continuous delivery**
+
+    - **Dangers of not automating testing**
+
+    - **Risks of not adopting continuous delivery**
+
+    - **Use of automated testing for system reliability**
+
 - **Basics of continuous integration, continuous delivery**
 
      - **Introduction to DevOps and CI/CD pipelines**
@@ -53,16 +63,6 @@ We will look at some of the background to software testing and the different typ
      - **Importance of testing on z/OS**
 
      - **Challenges for test automation on z/OS**
-
-- **Why does this matter?**
-
-     - **Value of automated testing in continuous delivery**
-
-     - **Dangers of not automating testing**
-
-     - **Risks of not adopting continuous delivery**
-
-     - **Use of automated testing for system reliability**
 
 - **How can test automation be achieved on z/OS?**
 
@@ -159,6 +159,34 @@ Exploratory testing is often referred to as being a 'thinking' activity.  It is 
  
 
 This type of testing makes the best use of the skills of the tester, but clearly by its very nature does not lend itself to automation.  The value of automation of testing lies in freeing the tester from the need to manually carry out repetitive and un-thinking testing.
+
+
+## Why does automated testing matter?
+
+Organizations that use z/OS for their mission-critical systems have enjoyed growth and success for many years.  So, does it matter if most of the testing is done manually?  In today's world, it is important to be able to respond very rapidly to new market opportunities and threats, and to have confidence in the quality and robustness of the services that you provide.
+
+
+### Value of automated testing in continuous delivery
+
+As we have seen, if testing cannot be automated, then it is difficult if not impossible to gain the benefits of continuous delivery, reducing the agility of an organization and its ability to react and innovate quickly.  Even responding to a new competitive threat or compliance regulation might not be possible without a CI/CD pipeline and automated testing.
+
+
+### Dangers of not automating testing
+
+If an organization continues to test manually, then they run the risk that the test cycle will be too long to enable the required agility and speed to market, or the amount of testing will have to be reduced, leading to uncertainty over the quality of the software being delivered, or perhaps both.
+
+
+### Risks of not adopting continuous delivery
+
+If an organization does not adopt a continuous delivery approach, in which small changes can be constantly delivered and tested, then there is a tendency to save up all the changes until enough have been made to justify the large effort involved in testing a software release.  Not only does this mean that users endure a long wait for new function to become available, but if problems occur then it is harder to identify the cause and to isolate the failing component.
+
+
+Even more damaging could be the impact of being unable to deliver function rapidly into the marketplace, and missing opportunities as a result.
+
+
+### Use of automated testing for system reliability
+
+With automated testing in place, it is easy to run the checks which ensure the software is working as expected.  So, whenever a change is introduced into the system, such as applying maintenance, a hardware upgrade, or updates to another component, there is automation available to verify that all is as it should be.  This also means that such changes can be made more easily and with more confidence.
 
  
 ## Basics of continuous integration, continuous delivery
@@ -298,36 +326,7 @@ Why is test automation such a challenge on z/OS?  Some of the reasons are:
 
 The difficulty in achieving this has resulted in falling back to manual processes and checks, and as a result continuing to use waterfall processes.  To quote Sandeep Johri again, "If you move to Agile development but your testing cycle is still 6 to 12 weeks due to manual testing, you’ll fall right back into a Waterfall mode” ([https://devops.com/devops-chat-continuous-testing-w-sandeep-johri-ceo-tricentis/](https://devops.com/devops-chat-continuous-testing-w-sandeep-johri-ceo-tricentis/)).  If the testing cycle takes a long time, then developers will be tempted to group together lots of changes to get them tested all together, which is entirely counter to the idea of continuous integration.
 
- 
 
-## Why does this matter?
-
-Organizations that use z/OS for their mission-critical systems have enjoyed growth and success for many years.  So, does it matter if most of the testing is done manually?  In today's world, it is important to be able to respond very rapidly to new market opportunities and threats, and to have confidence in the quality and robustness of the services that you provide. 
-
- 
-### Value of automated testing in continuous delivery
-
-As we have seen, if testing cannot be automated, then it is difficult if not impossible to gain the benefits of continuous delivery, reducing the agility of an organization and its ability to react and innovate quickly.  Even responding to a new competitive threat or compliance regulation might not be possible without a CI/CD pipeline and automated testing.
-
-
-### Dangers of not automating testing
-
-If an organization continues to test manually, then they run the risk that the test cycle will be too long to enable the required agility and speed to market, or the amount of testing will have to be reduced, leading to uncertainty over the quality of the software being delivered, or perhaps both.
-
-
-### Risks of not adopting continuous delivery
-
-If an organization does not adopt a continuous delivery approach, in which small changes can be constantly delivered and tested, then there is a tendency to save up all the changes until enough have been made to justify the large effort involved in testing a software release.  Not only does this mean that users endure a long wait for new function to become available, but if problems occur then it is harder to identify the cause and to isolate the failing component.
- 
-
-Even more damaging could be the impact of being unable to deliver function rapidly into the marketplace, and missing opportunities as a result.
-
-
-### Use of automated testing for system reliability
-
-With automated testing in place, it is easy to run the checks which ensure the software is working as expected.  So, whenever a change is introduced into the system, such as applying maintenance, a hardware upgrade, or updates to another component, there is automation available to verify that all is as it should be.  This also means that such changes can be made more easily and with more confidence.
-
- 
 ## How can test automation be achieved on z/OS?
 
 Many organizations have built, or are now building, CI/CD pipelines for their z/OS applications, with considerable success.  These teams are looking to test automation to help them achieve an efficient pipeline. This chapter described an approach to test automation on z/OS, by using a framework for automating tests which offers deep integration with z/OS capabilities.
