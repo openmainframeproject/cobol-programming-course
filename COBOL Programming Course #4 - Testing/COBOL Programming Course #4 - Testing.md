@@ -339,6 +339,8 @@ In this chapter, we discuss the concept of unit testing in cobol-programming lan
 - **Introduction to Cobol Check**
 
   - **What is Cobol Check ?**
+  - **Where Can you run Cobol Check ?**
+  - **How does Cobol Check accomplish unit testing?**
 
 
 ## Introduction to Cobol Check
@@ -350,6 +352,13 @@ Cobol Check serves as a unit testing framework specifically designed to assist C
 
 ### Where Can you run Cobol Check ?
 
-COBOL Check strives to facilitate the maintenance and modernization of legacy COBOL applications on IBM zSeries systems. It achieves this by providing developers with the flexibility to work on either the mainframe platform or off-platform environments such as Windows, Unix, Linux, or OS X instances disconnected from the mainframe. By harnessing the advantages of fine-grained "micro test" development at the level of individual Cobol paragraphs. 
+Cobol Check strives to facilitate the maintenance and modernization of legacy COBOL applications on IBM zSeries systems. It achieves this by providing developers with the flexibility to work on either the mainframe platform or off-platform environments such as Windows, Unix, Linux, or OS X instances disconnected from the mainframe. By harnessing the advantages of fine-grained "micro test" development at the level of individual Cobol paragraphs. 
 
 In this chapter, our focus will be on utilizing COBOL Check with Enterprise COBOL on a mainframe environment.
+
+## How does Cobol Check accomplish unit testing?
+
+With cobol-check we can exercise individual cobol-paragraphs in isolation from the rest of the program and without any access to any external resources such as datasets or CICS facilities. Cobol is not designed to do this kind of thing at runtime then how does cobol check accomplish it?
+Developers write test cases using the DSL (domain specific language). The DSL is designed to look similar to cobol-source code so it could be intuitive for cobol-programmers.
+Cobol-check interprets these test cases and converts them into standard cobol statements and merges them with the source of the program under the test. This copy of the program under test which contains test code is then compiled and executed.
+The test code does not run the entire procedure division; instead it only calls the specific paragraphs that are mentioned in the test case.
