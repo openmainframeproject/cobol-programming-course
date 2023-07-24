@@ -330,3 +330,19 @@ The difficulty in achieving this has resulted in falling back to manual processe
 ## How can test automation be achieved on z/OS?
 
 Many organizations have built, or are now building, CI/CD pipelines for their z/OS applications, with considerable success.  These teams are looking to test automation to help them achieve an efficient pipeline. This chapter described an approach to test automation on z/OS, by using a framework for automating tests which offers deep integration with z/OS capabilities.
+
+# Cobol Check
+
+In this chapter, we discuss the concept of unit testing in cobol-programming language with the use of Cobol Check. It delivers precise, fine-grained unit testing/checking capabilities for Cobol, matching the conceptual level of detail found in unit testing frameworks designed for popular languages like Python, Ruby, C#, and Java.
+
+
+- **Introduction to Cobol Check**
+
+  - **What is Cobol Check ?**
+
+
+## Introduction to Cobol Check
+
+### What is Cobol Check ?
+
+COBOL Check serves as a unit testing framework specifically designed to assist COBOL programmers who encounter challenges with modern development methods like test-driven development. One notable drawback of existing tools for COBOL and other mainframe languages is their limited granularity when it comes to unit testing, especially when compared to languages like Java, C++, and C# etc. However, COBOL Check offers a solution by enabling developers to conduct fine-grained unit testing using both gnuCOBOL and Enterprise COBOL.
