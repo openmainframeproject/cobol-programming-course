@@ -345,4 +345,11 @@ In this chapter, we discuss the concept of unit testing in cobol-programming lan
 
 ### What is Cobol Check ?
 
-COBOL Check serves as a unit testing framework specifically designed to assist COBOL programmers who encounter challenges with modern development methods like test-driven development. One notable drawback of existing tools for COBOL and other mainframe languages is their limited granularity when it comes to unit testing, especially when compared to languages like Java, C++, and C# etc. However, COBOL Check offers a solution by enabling developers to conduct fine-grained unit testing using both gnuCOBOL and Enterprise COBOL.
+Cobol Check serves as a unit testing framework specifically designed to assist COBOL programmers who encounter challenges with modern development methods like test-driven development. One notable drawback of existing tools for COBOL and other mainframe languages is their limited granularity when it comes to unit testing, especially when compared to languages like Java, C++, and C# etc. However, COBOL Check offers a solution by enabling developers to conduct fine-grained unit testing using both gnuCOBOL and Enterprise COBOL.
+
+
+### Where Can you run Cobol Check ?
+
+COBOL Check strives to facilitate the maintenance and modernization of legacy COBOL applications on IBM zSeries systems. It achieves this by providing developers with the flexibility to work on either the mainframe platform or off-platform environments such as Windows, Unix, Linux, or OS X instances disconnected from the mainframe. By harnessing the advantages of fine-grained "micro test" development at the level of individual Cobol paragraphs. 
+
+In this chapter, our focus will be on utilizing COBOL Check with Enterprise COBOL on a mainframe environment.
