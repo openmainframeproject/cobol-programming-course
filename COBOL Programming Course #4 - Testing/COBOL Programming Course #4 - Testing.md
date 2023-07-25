@@ -330,3 +330,36 @@ The difficulty in achieving this has resulted in falling back to manual processe
 ## How can test automation be achieved on z/OS?
 
 Many organizations have built, or are now building, CI/CD pipelines for their z/OS applications, with considerable success.  These teams are looking to test automation to help them achieve an efficient pipeline. This chapter described an approach to test automation on z/OS, by using a framework for automating tests which offers deep integration with z/OS capabilities.
+
+# COBOL Check
+
+In this chapter, we discuss the concept of unit testing in COBOL programming language with the use of COBOL Check. It delivers precise, fine-grained unit testing/checking capabilities for COBOL, matching the conceptual level of detail found in unit testing frameworks designed for popular languages like Python, Ruby, C#, and Java.
+
+
+- **Introduction to COBOL Check**
+
+  - **What is COBOL Check?**
+  - **Where Can you run COBOL Check?**
+  - **How does COBOL Check accomplish unit testing?**
+
+
+## Introduction to COBOL Check
+
+### What is COBOL Check?
+
+COBOL Check serves as a unit testing framework specifically designed to assist COBOL programmers who encounter challenges with modern development methods like test-driven development. One notable drawback of existing tools for COBOL and other mainframe languages is their limited granularity when it comes to unit testing, especially when compared to languages like Java, C++, and C# etc. However, COBOL Check offers a solution by enabling developers to conduct fine-grained unit testing using both gnuCOBOL and Enterprise COBOL.
+
+
+### Where Can you run COBOL Check?
+
+COBOL Check strives to facilitate the maintenance and modernization of legacy COBOL applications on IBM zSeries systems. It achieves this by providing developers with the flexibility to work on either the mainframe platform or off-platform environments such as Windows, Unix, Linux, or OS X instances disconnected from the mainframe. By harnessing the advantages of fine-grained "micro test" development at the level of individual COBOL paragraphs. 
+
+In this chapter, our focus will be on utilizing COBOL Check with Enterprise COBOL on a mainframe environment.
+
+## How does COBOL Check accomplish unit testing?
+
+With COBOL Check we can exercise individual COBOL paragraphs in isolation from the rest of the program and without any access to any external resources such as datasets or CICS facilities. COBOL is not designed to do this kind of thing at runtime then how does COBOL check accomplish it?
+
+Developers write test cases using the DSL (domain specific language). The DSL is designed to look similar to COBOL source code, so that it could be intuitive for COBOL programmers.
+
+COBOL Check interprets these test cases and converts them into standard COBOL statements and merges them with the source of the program under the test. This copy of the program under test which contains test code is then compiled and executed. The test code does not run the entire procedure division; instead, it only calls the specific paragraphs that are mentioned in the test case.
