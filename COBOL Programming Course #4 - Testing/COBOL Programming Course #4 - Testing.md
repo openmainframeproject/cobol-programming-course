@@ -359,6 +359,7 @@ In this chapter, our focus will be on utilizing COBOL Check with Enterprise COBO
 ## How does COBOL Check accomplish unit testing?
 
 With COBOL Check we can exercise individual COBOL paragraphs in isolation from the rest of the program and without any access to any external resources such as datasets or CICS facilities. COBOL is not designed to do this kind of thing at runtime then how does COBOL check accomplish it?
+
 Developers write test cases using the DSL (domain specific language). The DSL is designed to look similar to COBOL source code, so that it could be intuitive for COBOL programmers.
-COBOL-check interprets these test cases and converts them into standard COBOL statements and merges them with the source of the program under the test. This copy of the program under test which contains test code is then compiled and executed.
-The test code does not run the entire procedure division; instead, it only calls the specific paragraphs that are mentioned in the test case.
+
+COBOL Check interprets these test cases and converts them into standard COBOL statements and merges them with the source of the program under the test. This copy of the program under test which contains test code is then compiled and executed. The test code does not run the entire procedure division; instead, it only calls the specific paragraphs that are mentioned in the test case.
