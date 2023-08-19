@@ -382,3 +382,37 @@ Act: Execute the code under examination.
 Assert: Validate the anticipated outcome of the test
 
 You can take a look at the COBOL Check wiki for better understanding: https://github.com/openmainframeproject/cobol-check/wiki/A-Brief-Example
+
+
+## Lab
+
+In this lab exercise, you will learn to set up your environment for the COBOL Check by connecting to an IBM Z system to access the USS(Unix System Services), view a simple COBOL program and test suites in VS Code, compile them on the USS using COBOL Check to generate a copy of the program under test that includes the test cases and paragraphs to be tested. Then you will copy the newly generated program from USS to MVS datasets and submit JCL to compile the copied COBOL program, and view the output. Refer to “Installation of VS Code and extensions” to configure VS Code if you have not already done so. You can either use IBM Z Open Editor and Zowe Explorer, or Code4z.
+
+To proceed further it's better to have some knowledge of JCL and linux terminal commands.
+
+1. Get the latest COBOL Check distribution from the github repository of the COBOL Check https://github.com/openmainframeproject/cobol-check/tree/Developer/build/distributions.
+  Click on the “View raw” button or the download button on the right most corner. You will get the .zip of COBOL Check.
+
+    ![](Images/image209.png)
+    ![](Images/image210.png)
+
+2. Check your download location to view the .zip file and then extract it.
+   ![](Images/image211.png)
+
+3. Open your vs code with the same team configuration file with the Learn Cobol folder which you have used in chapter 2. If not you can also download it from https://github.com/openmainframeproject/cobol-programming-course/releases/tag/3.0.0
+  
+4. click on the icon of Zowe Explore extension on left side bar of VS code.
+   ![](Images/image212.png)
+
+   In the DATA SETS section you can view all the PDS (Partitioned datasets) and sequential files present. In the USS (Unix System Services ) section you can view the files or folder that is stored in the USS. USS is a posix compliant linux like environment which makes it easy for developers to interact with previous knowledge of using linux terminals and commands. In the JOBS section you can view all about the running or completed jobs.
+
+5. Put your username and password in all the three sections by click on the search icon to view the files (DATA SETS, USS, JOBS) which you have learned in the previous chapters.
+   ![](Images/image213.png)
+
+   ![](Images/image214.png)
+
+6. After entering your username and password for the USS section search for /z/z999XX . put your username in place of z999XX. Now you can able to view all the files that are present in the USS.
+7. Another way of interacting with the USS is through the SSH connection. Open your terminal in the vs code window. Issue the command ssh z99998@192.86.32.250 , in the place of z99998 use your own username. You can find the ip address in the zowe.config file that comes with the team configuration folder.
+8. 
+
+    
