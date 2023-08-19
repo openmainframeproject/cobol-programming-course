@@ -363,3 +363,22 @@ With COBOL Check we can exercise individual COBOL paragraphs in isolation from t
 Developers write test cases using the DSL (domain specific language). The DSL is designed to look similar to COBOL source code, so that it could be intuitive for COBOL programmers.
 
 COBOL Check interprets these test cases and converts them into standard COBOL statements and merges them with the source of the program under the test. This copy of the program under test which contains test code is then compiled and executed. The test code does not run the entire procedure division; instead, it only calls the specific paragraphs that are mentioned in the test case.
+
+COBOL Check uses a default directory structure to retrieve the COBOL programs , the test suites , copybooks etc. you can take look at the wiki to get a clear understanding of the directory structures: https://github.com/openmainframeproject/cobol-check/wiki/Default-Directory-Structure
+
+### Test suites and test cases
+
+TESTSUITE - Provides a description for a series of test cases. The description is echoed in the output from the test run.
+TESTCASE - identifies a test case. The description is echoed in the output of the test run.
+
+A program can have multiple test suites and each test suite can have multiple test cases.
+
+The typical automated check follows these steps:
+
+Arrange: Establish the preconditions for the test case.
+
+Act: Execute the code under examination.
+
+Assert: Validate the anticipated outcome of the test
+
+You can take a look at the COBOL Check wiki for better understanding: https://github.com/openmainframeproject/cobol-check/wiki/A-Brief-Example
