@@ -71,9 +71,7 @@ We will look at some of the background to software testing and the different typ
 
 If software is not tested, how can you or your users have confidence that it will behave as intended?
 
- 
 
->
 ### What is testing and why do it?
 
 Testing is the process of validating that software carries out the actions and provides the results that are expected.  It can, and should, encompass a number of different types of testing carried out at a number of different phases during the development lifecycle of the product, and potentially continue after the software has been released.  This allows errors and omissions in the software to be uncovered, as well as ensuring that it meets the user requirements.
@@ -264,6 +262,15 @@ Developers write test cases using the DSL (domain specific language). The DSL is
 COBOL Check interprets these test cases and converts them into standard COBOL statements and merges them with the source of the program under the test. This copy of the program under test which contains test code is then compiled and executed. The test code does not run the entire procedure division; instead, it only calls the specific paragraphs that are mentioned in the test case.
 
 COBOL Check uses a default directory structure to retrieve the COBOL programs , the test suites , copybooks etc. you can take look at the wiki to get a clear understanding of the directory structures: https://github.com/openmainframeproject/cobol-check/wiki/Default-Directory-Structure
+
+### The test pyramid
+
+
+Cobol-check supports fine-grained unit-testing. Let's provide some contextual information to make the meaning of that clearer. This is a popular level of test automation; lets call it a pyramid or a triangle. The key idea is that we need to test our software at multiple levels of abstraction as we move higher in the diagram we are testing larger pieces of software lower in the diagram we are testing smaller pieces of software.
+
+The figure is wide at the bottom and narrow at the top to suggest that we want a large number of small test cases and a smaller number of big test cases. It is preferred because considering how difficult it is to test an entire application with all its external dependencies, environment configuration and test data and to test every combination of inputs and operating conditions at this level would be very tedious and time-consuming. Organizations that do all their testing by running the full system often lack sufficient time to test thoroughly before each release. If we push most of the test cases down to a level, we find we can write more test cases with less effort so we can exercise each part of the code thoroughly. The test case runs in less time and each test failure is easier to diagnose and fix.
+
+
 
 ### Test suites and test cases
 
