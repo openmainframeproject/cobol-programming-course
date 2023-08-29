@@ -264,7 +264,7 @@ COBOL Check interprets these test cases and converts them into standard COBOL st
 COBOL Check uses a default directory structure to retrieve the COBOL programs , the test suites , copybooks etc. you can take look at the wiki to get a clear understanding of the directory structures: https://github.com/openmainframeproject/cobol-check/wiki/Default-Directory-Structure
 
 ### The test pyramid
-
+![](Images/image235.png)
 
 Cobol-check supports fine-grained unit-testing. Let's provide some contextual information to make the meaning of that clearer. This is a popular level of test automation; lets call it a pyramid or a triangle. The key idea is that we need to test our software at multiple levels of abstraction as we move higher in the diagram we are testing larger pieces of software lower in the diagram we are testing smaller pieces of software.
 
@@ -277,7 +277,7 @@ The figure is wide at the bottom and narrow at the top to suggest that we want a
 TESTSUITE - Provides a description for a series of test cases. The description is echoed in the output from the test run.
 TESTCASE - identifies a test case. The description is echoed in the output of the test run.
 
-A program can have multiple test suites and each test suite can have multiple test cases.
+A program can have multiple test suites, and each test suite can have multiple test cases.
 
 The typical automated check follows these steps:
 
