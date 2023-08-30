@@ -299,48 +299,80 @@ To proceed further it's better to have some knowledge of JCL and linux terminal 
 1. Get the latest COBOL Check distribution from the github repository of the COBOL Check https://github.com/openmainframeproject/cobol-check/tree/Developer/build/distributions.
   Click on the “View raw” button or the download button on the right most corner. You will get the .zip of COBOL Check.
 
-    ![](Images/image209.png)
-    ![](Images/image210.png)
+![](Images/image209.png)
+
+*Figure 1.  Download COBOL Check distribution*
+
+![](Images/image210.png)
+
+*Figure 2.  Button to download the .zip file*
 
 2. Check your download location to view the .zip file and then extract it.
-   ![](Images/image211.png)
+
+![](Images/image211.png)
+
+*Figure 3.  COBOL Check folder*
 
 3. Open your vs code with the same team configuration file with the Learn Cobol folder which you have used in chapter 2. If not you can also download it from https://github.com/openmainframeproject/cobol-programming-course/releases/tag/3.0.0
   
 4. click on the icon of Zowe Explore extension on left side bar of VS code.
-   ![](Images/image212.png)
+
+![](Images/image212.png)
+
+*Figure 4.  Zowe explorer*
 
    In the DATA SETS section you can view all the PDS (Partitioned datasets) and sequential files present. In the USS (Unix System Services ) section you can view the files or folder that is stored in the USS. USS is a posix compliant linux like environment which makes it easy for developers to interact with previous knowledge of using linux terminals and commands. In the JOBS section you can view all about the running or completed jobs.
 
 
 5. Put your username and password in all the three sections by click on the search icon to view the files (DATA SETS, USS, JOBS) which you have learned in the previous chapters.
 
-   ![](Images/image213.png)
+![](Images/image213.png)
 
-   ![](Images/image214.png)
+*Figure 5.  Enter your username*
 
+![](Images/image214.png)
+
+*Figure 6.  Enter your password*
 
 6. After entering your username and password for the USS section search for `/z/z999XX` . put your username in place of z999XX. Now you can view all the files that are present in the USS.
 
-   ![](Images/image215.png)
+![](Images/image215.png)
 
+*Figure 7.  Search for /z/z999XX*
 
 7. Another way of interacting with the USS is through the SSH connection. Open your terminal in the vs code window. Issue the command `ssh z99998@192.86.32.250` , in the place of z99998 use your own username. You can find the ip address in the zowe.config file that comes with the team configuration folder.
-   ![](Images/image216.png)
+
+![](Images/image216.png)
+
+*Figure 8.  ssh connection*
 
 8. Enter your password to view the directories in the USS. Issue your first command `pwd` which will show the directory you are currently in , that is your root directory. Issue the command `ls` to list all the files and folders in this directory.
-   ![](Images/image217.png)
-9. You need to create a directory for COBOL Check and copy the contents of the COBOL Check distribution that you have downloaded earlier. Issue the command `mkdir cobolcheck` - This will create an empty directory. Then use `ls` command to view the created directory.
-   ![](Images/image218.png)
 
-10. Issue `cd cobolcheck` to enter into the directory .
-    ![](Images/image219.png)
-    Note: If you left your terminal idle for some time , you need to kill that terminal, again you have to ssh into the mainframe . you can follow from step 8 again.
+![](Images/image217.png)
+
+*Figure 9.  present working directory*
+
+9. You need to create a directory for COBOL Check and copy the contents of the COBOL Check distribution that you have downloaded earlier. Issue the command `mkdir cobolcheck` - This will create an empty directory. Then use `ls` command to view the created directory.
+
+![](Images/image218.png)
+
+*Figure 10.  Create COBOL Check directory in the USS*
+
+10. Issue `cd cobolcheck` to enter into the directory.
+
+![](Images/image219.png)
+
+*Figure 11.  Enter into COBOL Check directory in the USS*
+
+    Note: If you left your terminal idle for some time, you need to kill that terminal, again you have to ssh into the mainframe. you can follow from step 8 again.
 
 11. Open another terminal tab and go to the file location where the files and folders of COBOL Check are present. Then use `ls` to see those.
-     ![](Images/image220.png)
 
-12. To copy all the files and folders from this directory you need to use the command : `zowe zos-files upload dir-to-uss "." "/z/z99998/cobolcheck" --recursive  --binary-files "cobol-check-0.2.8.jar"` . Then enter your username and password.(Remember to type all the alphabets in small letters) .
+![](Images/image220.png)
+
+*Figure 12.  COBOL Check directory on the local system*
+
+12. To copy all the files and folders from this directory, you need to use the command : `zowe zos-files upload dir-to-uss "." "/z/z99998/cobolcheck" --recursive  --binary-files "cobol-check-0.2.8.jar"` . Then enter your username and password. (Remember to type all the alphabets in small letters).
 
     
 In this command the `.` represents the current directory
@@ -354,43 +386,98 @@ To know more about copying the files from local machine to USS, you can refer to
 
 ![](Images/image221.png)
 
+*Figure 13.  Command to copy the files from local machine to USS*
+
 After entering the command, you will get a message uploaded successfully.
 
 ![](Images/image222.png)
 
+*Figure 14.  Successfully uploaded message*
+
 13. Now again open your terminal and ssh into the mainframe to view the files and folders in the COBOL Check directory. You can see the contents of uploaded.
 
-    ![](Images/image223.png)
+![](Images/image223.png)
+
+*Figure 15.  View the contents in the directory*
+
 14. you can use the USS tab of your vs code to view the COBOL Check directory.
 
-    ![](Images/image224.png)   
-15. Issue `ls -al` command to see the file permission of COBOL Check then issue `chmod +x COBOL Check. This will give COBOL Check file the executable permission.
+![](Images/image224.png)
 
-    ![](Images/image225.png)   
+*Figure 16.  Locate the directories on the USS section in the zowe*
+
+15. Issue `ls -al` command to see the file permission of COBOL Check then issue `chmod +x cobolcheck`. This will give COBOL Check file the executable permission.
+
+![](Images/image225.png)
+
+*Figure 17.  Providing executable permission*
+
 16. Do the same as done above in the `/scripts` folder. Issue command : `cd scripts` to enter into scripts directory then use `chmod +x linux_gnucobol_run_tests` to make this file executable.
-    ![](Images/image226.png)
-    Then issue command `cd ..` to come back to the parent directory.
+
+![](Images/image226.png)
+
+*Figure 18.  Providing executable permission*
+
+Then issue command `cd ..` to come back to the parent directory.
+
 17. View the COBOL source code and the test case files. You can also use the USS tab.
 
-    ![](Images/image227.png)    
+![](Images/image227.png)
+
+*Figure 19. view files in the USS tab*
+
 18. You can see it comes with some source code and test files. You need to run COBOL Check using the NUMBERS.CBL to check whether COBOL Check is working correctly.
     Issue the command `./cobolcheck -p NUMBERS`.
-    ![](Images/image228.png)
-19. After running the command, the COBOL Check will generate a new source code named `CC##99.CBL` which includes the cobol source code along with the test cases embedded.
-    ![](Images/image229.png)
+
+![](Images/image228.png)
+
+*Figure 20.  Run a COBOL program with the cobolcheck command*
+
+19. After running the command, the COBOL Check will generate a new source code named `CC##99.CBL` which includes the COBOL source code along with the test cases embedded.
+
+![](Images/image229.png)
+
+*Figure 21.  Output: A new COBOL program with the test cases embedded as statements*
+
 20. You need to copy this file to the MVS data sets (Z99998.CBL) which you can view in your DATA SETS tab. Use the command cp CC##99.CBL `//’Z99998.CBL(NUMBERS)’`
-    ![](Images/image230.png)
+
+![](Images/image230.png)
+
+*Figure 22.  Copy the newly generate COBOL program to the mainframe*
+
 21. view the files in the DATA SETS tab, you can see NUMBERS in Z99998.CBL.
-    ![](Images/image231.png)
+
+![](Images/image231.png)
+
+*Figure 23.  View the file on the DATA SETS tab*
+
 22. you can view the source code by right-clicking on it then click on ‘pull from mainframe’
-23.  Now, to run this code on the mainframe, you need to write a JCL in the ZXXXXX.CBL with the same name NUMBERS (this course assumes you have basic knowledge about JCL).
-     ![](Images/image232.png)
+
+
+23.  Now, to run this code on the mainframe, you need to write a JCL in the Z99XXX.CBL with the same name NUMBERS (this course assumes you have basic knowledge about JCL).
+
+![](Images/image232.png)
+
+*Figure 24.  JCL to run the program*
+
 24.  Now submit the job.
-     ![](Images/image233.png)
+
+![](Images/image233.png)
+
+*Figure 25.  Submit the job*
+
 25. Open the submitted job in the JOBS tab. Then expand it. Click on `RUN:SYSOUT` to see the desired output of the test case passed or failed. 
     The code `CC 0000` is success. If you get something else, then check the steps and JCL, then resubmit it.
 
-    ![](Images/image234.png)
+![](Images/image234.png)
+
+*Figure 26.  RUN:SYSOUT-117  view the job output*
+
+
+\newpage
+
+
+
 
 
 
