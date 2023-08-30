@@ -475,10 +475,151 @@ Then issue command `cd ..` to come back to the parent directory.
 
 
 \newpage
+## Lab 2
 
+To run NEW COBOL SOURCE codes
 
+1. In the USS tab, right-click on the cobol folder then click on create file. Name the file with .CBL extension.
 
+![](Images/image236.png)
 
+![](Images/image237.png)
+
+2. Click on the new file (EMPPAY.CBL) or click on pull it from mainframe to view the file in the vs code editor. Then write the COBOL code.
+
+```
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. EMPPAY.
+       AUTHOR. ASHIS KUMAR NAIK.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       77  REC-COUNTER              PIC 9(1).
+       01  EMP-RECORD.
+           05  EMP-NAME.
+                10 EMP-FNAME        PIC X(15) VALUE 'FRANCISCO'.
+                10 EMP-LNAME        PIC X(15).
+           05  EMP-HOURLY-RATE      PIC 9(3)V99.
+           05  EMP-OT-RATE          PIC V99.
+           05  EMP-REWARD           PIC V99.
+           05  EMP-HOURS            PIC 9(3).
+           05  EMP-PAY-WEEK         PIC 9(7)V99.
+           05  EMP-PAY-MONTH        PIC 9(7)V99.
+       
+       PROCEDURE DIVISION.
+           PERFORM INITIALIZATION.
+           PERFORM PAYMENT-WEEKLY.
+           PERFORM PAYMENT-MONTHLY.
+           PERFORM SHOW-OUTPUT.
+           STOP RUN.
+       INITIALIZATION.
+           MOVE "Millard"           TO EMP-FNAME.
+           MOVE "Fillmore"          TO EMP-LNAME.
+           MOVE 19                  TO EMP-HOURS.
+           MOVE 23.50               TO EMP-HOURLY-RATE.
+       PAYMENT-WEEKLY.
+           
+           IF  EMP-HOURS >= 40
+               MOVE .25 TO  EMP-OT-RATE
+           ELSE IF EMP-HOURS >= 50
+               MOVE .50 TO EMP-OT-RATE 
+           ELSE
+               MOVE ZERO TO EMP-OT-RATE.
+           COMPUTE EMP-PAY-WEEK =
+                (EMP-HOURS * EMP-HOURLY-RATE) * (1 + EMP-OT-RATE).
+       PAYMENT-MONTHLY.
+           
+           IF  EMP-HOURS > 150
+               MOVE .50 TO  EMP-REWARD
+           ELSE
+               MOVE ZERO TO EMP-REWARD.
+           COMPUTE EMP-PAY-MONTH =
+                (EMP-PAY-WEEK * 4) * (1 + EMP-REWARD).
+       SHOW-OUTPUT.
+           DISPLAY "Name: " EMP-NAME.
+           DISPLAY "Hours Worked Per Week: " EMP-HOURS.
+           DISPLAY "Hourly Rate: " EMP-HOURLY-RATE.
+           DISPLAY "Bonus-Rate: " EMP-OT-RATE.
+           DISPLAY "Gross Pay Per Week: " EMP-PAY-WEEK .
+           DISPLAY "Gross Pay Per Month: " EMP-PAY-MONTH .
+           DISPLAY "Hi Chris - how's Loretta today?".
+
+```
+
+3. Right-click on the cobol directory under the test directory. Click on the create new directory and name it the same as the program name (EMPPAY).
+
+![](Images/image238.png)
+
+![](Images/image239.png)
+
+4. create a new file inside the EMPPAY directory as you learned above with the extension .cut which will be a testsuite file. Then write the test suites and test cases.
+
+```
+            TestSuite 'Checks the employee payment'
+
+            TestCase 'checks the EMP-OT-RATE TO be 0.25'
+            MOVE 50 TO EMP-HOURS
+            MOVE 23.50 TO EMP-HOURLY-RATE
+            PERFORM PAYMENT-WEEKLY
+            EXPECT EMP-OT-RATE TO BE 0.25
+
+            TestCase 'checks the EMP-PAY-WEEKLY > 900 if EMP-HOURS >= 40'
+            MOVE 40 TO EMP-HOURS
+            MOVE 23.50 TO EMP-HOURLY-RATE
+            PERFORM PAYMENT-WEEKLY
+            EXPECT EMP-PAY-WEEK >= 900
+
+            TestCase 'checks the EMP-PAY-WEEKLY > 1600 '
+            MOVE 60 TO EMP-HOURS
+            MOVE 23.50 TO EMP-HOURLY-RATE
+            PERFORM PAYMENT-WEEKLY
+            EXPECT EMP-PAY-WEEK >= 1600
+
+            TestCase 'checks the EMP-PAY-MONTHLY to be greater than 9600'
+            MOVE 160 TO EMP-HOURS
+            MOVE 1600 TO EMP-PAY-WEEK
+            PERFORM PAYMENT-MONTHLY
+            EXPECT EMP-PAY-MONTH >= 9600
+```
+
+5. SSH into your USS of the mainframe. Then run the usual command ./cobolcheck -p EMPPAY. Here the flag -p represents the program name. Now the new cobol source code with the name CC##99.CBL is generated as we have seen earlier.
+
+![](Images/image240.png)
+
+6. Copy the newly generate source code to DATA SETS (Z99998.CBL) just like as we have seen earlier, use the command `cp CC##99.CBL “//’Z99998.CBL(EMPPAY)’”`
+
+![](Images/image241.png)
+
+7. Write a JCL script with the same name as EMPPAY for running the program (EMPPAY.CBL) on z/os.
+
+```
+//EMPPAY JOB 1,NOTIFY=&SYSUID
+//***************************************************/
+//* Copyright Contributors to the COBOL Programming Course
+//* SPDX-License-Identifier: CC-BY-4.0
+//***************************************************/
+//COBRUN  EXEC IGYWCL
+//COBOL.SYSIN  DD DSN=&SYSUID..CBL(EMPPAY),DISP=SHR
+//LKED.SYSLMOD DD DSN=&SYSUID..LOAD(EMPPAY),DISP=SHR
+//***************************************************/
+// IF RC = 0 THEN
+//***************************************************/
+//RUN     EXEC PGM=EMPPAY
+//STEPLIB   DD DSN=&SYSUID..LOAD,DISP=SHR
+//ACCTREC   DD DSN=&SYSUID..DATA,DISP=SHR
+//PRTLINE   DD SYSOUT=*,OUTLIM=15000
+//SYSOUT    DD SYSOUT=*,OUTLIM=15000
+//CEEDUMP   DD DUMMY
+//SYSUDUMP  DD DUMMY
+//***************************************************/
+// ELSE
+// ENDIF
+
+```
+
+8. Submit the job and view the output in the JOBS section.
+
+![](Images/image242.png)
 
 
 ## Basics of continuous integration, continuous delivery
