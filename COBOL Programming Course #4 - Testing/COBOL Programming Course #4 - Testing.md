@@ -439,7 +439,7 @@ Then issue command `cd ..` to come back to the parent directory.
 
 *Figure 21.  Output: A new COBOL program with the test cases embedded as statements*
 
-20. You need to copy this file to the MVS data sets (Z99998.CBL) which you can view in your DATA SETS tab. Use the command cp CC##99.CBL `//’Z99998.CBL(NUMBERS)’`
+20. You need to copy this file to the MVS data sets (Z99998.CBL) which you can view in your DATA SETS tab. Use the command `cp CC##99.CBL "//’Z99998.CBL(NUMBERS)'"`
 
 ![](Images/image230.png)
 
