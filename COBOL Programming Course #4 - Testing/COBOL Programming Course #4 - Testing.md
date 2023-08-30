@@ -621,6 +621,84 @@ To run NEW COBOL SOURCE codes
 
 ![](Images/image242.png)
 
+## Lab 3
+
+```
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. DEPTPAY.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  DEPT-RECORD.
+           05  DEPT-NAME            PIC X(20).
+           05  DEPT-LOC             PIC X(12).
+           05  DEPT-MANAGER.
+                10 MANAGER-FNAME    PIC X(15).
+                10 MANAGER-LNAME    PIC X(15).
+           05  DEPT-NBR-EMPS        PIC 9(3).
+           05  DEPT-TOTAL-SALARIES  PIC 9(7)V99.
+           05  DEPT-AVG-SALARY      PIC 9(7)V99.
+       PROCEDURE DIVISION.
+           PERFORM AVERAGE-SALARY.
+           PERFORM DISPLAY-DETAILS.
+           STOP RUN.
+
+       AVERAGE-SALARY.
+           MOVE "FINANCE"           TO DEPT-NAME.
+           MOVE "SOUTHWEST"         TO DEPT-LOC.
+           MOVE "Millard"           TO MANAGER-FNAME.
+           MOVE "Fillmore"          TO MANAGER-LNAME.
+           MOVE 19                  TO DEPT-NBR-EMPS.
+           MOVE 111111.11           TO DEPT-TOTAL-SALARIES.
+           COMPUTE DEPT-AVG-SALARY =
+                (DEPT-TOTAL-SALARIES / DEPT-NBR-EMPS).
+      *****
+       DISPLAY-DETAILS.
+           DISPLAY "Department Name: " DEPT-NAME.
+           DISPLAY "Department Location: " DEPT-LOC.
+           DISPLAY "Manager FNAME: " MANAGER-FNAME.
+           DISPLAY "Manager NAME: " MANAGER-FNAME.
+           DISPLAY "Department AVG Salary: " DEPT-AVG-SALARY.
+           DISPLAY "Number of employees: " DEPT-NBR-EMPS.
+
+```
+
+
+``` JCL
+
+//DEPTPAYJ JOB 1,NOTIFY=&SYSUID
+//COPY2DS1 EXEC PGM=IKJEFT01
+//INUNIX DD PATHOPTS=(ORDONLY),
+// PATH='/z/z99998/cobolcheck/CC##99.CBL'
+//OUTMVS DD DSN=Z99998.CBL(DEPTPAY),DISP=SHR
+//SYSTSPRT DD SYSOUT=*
+//SYSTSIN DD *
+ OCOPY IND(INUNIX) OUTDD(OUTMVS) TEXT CONVERT(YES) PATHOPTS(USE)
+/*
+//COBRUN  EXEC IGYWCL
+//COBOL.SYSIN  DD DSN=Z99998.CBL(DEPTPAY),DISP=SHR
+//LKED.SYSLMOD DD DSN=Z99998.LOAD(DEPTPAY),DISP=SHR
+//RUN     EXEC PGM=DEPTPAY
+//STEPLIB   DD DSN=Z99998.LOAD,DISP=SHR
+
+
+```
+
+```
+            TestSuite "Average Salary"
+
+            TestCase 'NUMBER OF PERSON TO BE 19'
+            PERFORM AVERAGE-SALARY.
+            EXPECT DEPT-NBR-EMPS TO BE 19
+
+            TestCase 'TOTAL AVERAGE SALARY TO BE 111111.11'
+            PERFORM AVERAGE-SALARY.
+            EXPECT DEPT-TOTAL-SALARIES TO BE 111111.11
+
+            TestCase 'average salary will be greater than 5840'
+            PERFORM AVERAGE-SALARY.
+            EXPECT DEPT-AVG-SALARY >= 5840
+```
 
 ## Basics of continuous integration, continuous delivery
 

@@ -1,0 +1,13 @@
+            TestSuite "Average Salary"
+
+            TestCase 'NUMBER OF PERSON TO BE 19'
+            PERFORM AVERAGE-SALARY.
+            EXPECT DEPT-NBR-EMPS TO BE 19
+
+            TestCase 'TOTAL AVERAGE SALARY TO BE 111111.11'
+            PERFORM AVERAGE-SALARY.
+            EXPECT DEPT-TOTAL-SALARIES TO BE 111111.11
+
+            TestCase 'average salary will be greater than 5840'
+            PERFORM AVERAGE-SALARY.
+            EXPECT DEPT-AVG-SALARY >= 5840
