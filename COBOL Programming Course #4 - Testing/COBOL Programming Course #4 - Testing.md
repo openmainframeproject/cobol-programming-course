@@ -475,15 +475,23 @@ Then issue command `cd ..` to come back to the parent directory.
 
 
 \newpage
+# Unit Testing with COBOL Check
+In the previous Chapter, you have learned to set up the environment for COBOL Check on the USS (Unix System Services). In this chapter, you will see how to take any COBOL program and write unit tests for it (Lab 2). Also, Later in the chapter, you will see the concept of Test-Driven development (Lab 3).
+
 ## Lab 2
 
-To run NEW COBOL SOURCE codes
+In this lab, You will have to write test cases for a given COBOL program to check the paragraphs of the program. Here the code is written first, then the tests are done to check the correctness of the code, but in a later portion of the chapter you will see the TDD where the tests are written first then the code is written to pass the tests. i.e., the tests drive the code.
+
 
 1. In the USS tab, right-click on the cobol folder then click on create file. Name the file with .CBL extension.
 
 ![](Images/image236.png)
 
+*Figure 1.  Create new file*
+
 ![](Images/image237.png)
+
+*Figure 2.  Name the newly created file*
 
 2. Click on the new file (EMPPAY.CBL) or click on pull it from mainframe to view the file in the vs code editor. Then write the COBOL code.
 
@@ -550,7 +558,11 @@ To run NEW COBOL SOURCE codes
 
 ![](Images/image238.png)
 
+*Figure 3.  Create a new directory*
+
 ![](Images/image239.png)
+
+*Figure 4.  Name the directory*
 
 4. create a new file inside the EMPPAY directory as you learned above with the extension .cut which will be a testsuite file. Then write the test suites and test cases.
 
@@ -586,11 +598,15 @@ To run NEW COBOL SOURCE codes
 
 ![](Images/image240.png)
 
+*Figure 5. ssh connection*
+
 6. Copy the newly generate source code to DATA SETS (Z99998.CBL) just like as we have seen earlier, use the command `cp CC##99.CBL “//’Z99998.CBL(EMPPAY)’”`
 
 ![](Images/image241.png)
 
-7. Write a JCL script with the same name as EMPPAY for running the program (EMPPAY.CBL) on z/os.
+*Figure 6. Copy files from USS to PDS*
+
+7. Write a JCL script with the same name as EMPPAY.JCL for running the program (EMPPAY.CBL) on z/os.
 
 ```
 //EMPPAY JOB 1,NOTIFY=&SYSUID
@@ -621,7 +637,36 @@ To run NEW COBOL SOURCE codes
 
 ![](Images/image242.png)
 
+*Figure 7. Job output*
+
+## Test Driven Development: Unit test with TDD
+
+If your team is hesitant to skip traditional unit tests, remember: TDD drives the code development, and every line of code has an associated test case, so unit testing is integrated into the practice. Unit testing is repeatedly done on the code until each unit function per the requirements, eliminating the need for you to write more unit test cases.
+
+At IBM, teams found that the built-in unit testing produces better code. One team recently worked on a project where a small portion of the team used TDD while the rest wrote unit tests after the code. When the code was complete, the developers that wrote unit tests were surprised to see that the TDD coders were done and had more solid code.
+
+Unlike unit testing that focuses only on testing the functions, classes, and procedures, TDD drives the complete development of the application. Therefore, you can also write functional and acceptance tests first.
+
+To gain the full benefits of unit testing and TDD, automate the tests by using automated unit test tools. Automating your tests is essential for continuous integration and is the first step in creating an automated continuous delivery pipeline.
+
 ## Lab 3
+1. First write the desired test cases in a file with `deptpay.cut` extension and store it in a directory (name of directory: DEPTPAY, same as the program name) inside the desired COBOL Check directory configuration as we have seen earlier.
+
+```
+            TestSuite "Calculation of average Salary"
+
+            TestCase 'NUMBER OF PERSON TO BE 19'
+            PERFORM AVERAGE-SALARY.
+            EXPECT DEPT-NBR-EMPS TO BE 19
+
+            TestCase 'TOTAL AVERAGE SALARY TO BE 111111.11'
+            PERFORM AVERAGE-SALARY.
+            EXPECT DEPT-TOTAL-SALARIES TO BE 111111.11
+```
+
+The name of testsuite describes with 
+
+2. Write the COBOL source code for the program and save it as `DEPTPAY.CBL` in desired COBOL Check directory.
 
 ```
 
@@ -663,8 +708,9 @@ To run NEW COBOL SOURCE codes
 
 ```
 
+3. Write the jcl for automatically copying the program form USS to PDS (partitioned Data sets) and submitting it. Each time you have made some changes to the code or test cases you need to run the command in USS `./cobolcheck -p DEPTPAY`
 
-``` JCL
+``` 
 
 //DEPTPAYJ JOB 1,NOTIFY=&SYSUID
 //COPY2DS1 EXEC PGM=IKJEFT01
@@ -683,22 +729,18 @@ To run NEW COBOL SOURCE codes
 
 
 ```
+In the Jobs section, see the output. 
+Note: JOBS status code `CC 0000` is for success. If you got something else, correct the code and the test suites. Then resubmit.
+
+4. Add a new testcase to the `deptpay.cut` file.
 
 ```
-            TestSuite "Average Salary"
-
-            TestCase 'NUMBER OF PERSON TO BE 19'
-            PERFORM AVERAGE-SALARY.
-            EXPECT DEPT-NBR-EMPS TO BE 19
-
-            TestCase 'TOTAL AVERAGE SALARY TO BE 111111.11'
-            PERFORM AVERAGE-SALARY.
-            EXPECT DEPT-TOTAL-SALARIES TO BE 111111.11
-
-            TestCase 'average salary will be greater than 5840'
-            PERFORM AVERAGE-SALARY.
-            EXPECT DEPT-AVG-SALARY >= 5840
+TestCase 'average salary will be greater than 5840'
+PERFORM AVERAGE-SALARY.
+EXPECT DEPT-AVG-SALARY >= 5840
 ```
+
+Then submit the jcl and see the output.
 
 ## Basics of continuous integration, continuous delivery
 
