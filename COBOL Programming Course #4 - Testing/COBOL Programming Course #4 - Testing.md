@@ -230,7 +230,7 @@ The difficulty in achieving this has resulted in falling back to manual processe
 
 # COBOL Check
 
-In this chapter, we discuss the concept of unit testing in COBOL programming language with the use of COBOL Check. It delivers precise, fine-grained unit testing/checking capabilities for COBOL, matching the conceptual level of detail found in unit testing frameworks designed for popular languages like Python, Ruby, C#, and Java.
+In this chapter, we discuss the concept of unit testing in COBOL programming language with the use of COBOL Check. It delivers precise, fine-grained unit testing/checking capabilities for COBOL, matching the conceptual level of detail found in unit testing frameworks designed for popular languages like Python, Ruby, C#, Java etc.
 
 
 - **Introduction to COBOL Check**
@@ -255,20 +255,20 @@ In this chapter, our focus will be on utilizing COBOL Check with Enterprise COBO
 
 ## How does COBOL Check accomplish unit testing?
 
-With COBOL Check we can exercise individual COBOL paragraphs in isolation from the rest of the program and without any access to any external resources such as datasets or CICS facilities. COBOL is not designed to do this kind of thing at runtime then how does COBOL check accomplish it?
+With COBOL Check, we can exercise individual COBOL paragraphs in isolation from the rest of the program and without any access to any external resources such as datasets or CICS facilities. COBOL is not designed to do this kind of thing at runtime then how does COBOL check accomplish it?
 
 Developers write test cases using the DSL (domain specific language). The DSL is designed to look similar to COBOL source code, so that it could be intuitive for COBOL programmers.
 
 COBOL Check interprets these test cases and converts them into standard COBOL statements and merges them with the source of the program under the test. This copy of the program under test which contains test code is then compiled and executed. The test code does not run the entire procedure division; instead, it only calls the specific paragraphs that are mentioned in the test case.
 
-COBOL Check uses a default directory structure to retrieve the COBOL programs , the test suites , copybooks etc. you can take look at the wiki to get a clear understanding of the directory structures: https://github.com/openmainframeproject/cobol-check/wiki/Default-Directory-Structure
+COBOL Check uses a default directory structure to retrieve the COBOL programs, the test suites, copybooks etc. you can take a look at the wiki to get a clear understanding of the directory structures: https://github.com/openmainframeproject/cobol-check/wiki/Default-Directory-Structure
 
 ### The test pyramid
 ![](Images/image235.png)
 
-Cobol-check supports fine-grained unit-testing. Let's provide some contextual information to make the meaning of that clearer. This is a popular level of test automation; lets call it a pyramid or a triangle. The key idea is that we need to test our software at multiple levels of abstraction as we move higher in the diagram we are testing larger pieces of software lower in the diagram we are testing smaller pieces of software.
+Cobol-check supports fine-grained unit-testing. Let's provide some contextual information to make the meaning of that clearer. This is a popular level of test automation; lets call it a pyramid or a triangle. The key idea is that we need to test our software at multiple levels of abstraction as we move higher in the diagram, we are testing larger pieces of software lower in the diagram, we are testing smaller pieces of software.
 
-The figure is wide at the bottom and narrow at the top to suggest that we want a large number of small test cases and a smaller number of big test cases. It is preferred because considering how difficult it is to test an entire application with all its external dependencies, environment configuration and test data and to test every combination of inputs and operating conditions at this level would be very tedious and time-consuming. Organizations that do all their testing by running the full system often lack sufficient time to test thoroughly before each release. If we push most of the test cases down to a level, we find we can write more test cases with less effort so we can exercise each part of the code thoroughly. The test case runs in less time and each test failure is easier to diagnose and fix.
+The figure is wide at the bottom and narrow at the top to suggest that we want a large number of small test cases and a smaller number of big test cases. It is preferred because considering how difficult it is to test an entire application with all its external dependencies, environment configuration and test data and to test every combination of inputs and operating conditions at this level would be very tedious and time-consuming. Organizations that do all their testing by running the full system often lack sufficient time to test thoroughly before each release. If we push most of the test cases down to a level, we find we can write more test cases with less effort, so we can exercise each part of the code thoroughly. The test case runs in less time, and each test failure is easier to diagnose and fix.
 
 
 
@@ -313,18 +313,18 @@ To proceed further it's better to have some knowledge of JCL and linux terminal 
 
 *Figure 3.  COBOL Check folder*
 
-3. Open your vs code with the same team configuration file with the Learn Cobol folder which you have used in chapter 2. If not you can also download it from https://github.com/openmainframeproject/cobol-programming-course/releases/tag/3.0.0
+3. Open your vs code with the same team configuration file with the Learn Cobol folder which you have used in course 2. If not, you can also download it from https://github.com/openmainframeproject/cobol-programming-course/releases/latest
   
-4. click on the icon of Zowe Explore extension on left side bar of VS code.
+4. click on the icon of Zowe Explore an extension on the left sidebar of VS code.
 
 ![](Images/image212.png)
 
 *Figure 4.  Zowe explorer*
 
-   In the DATA SETS section you can view all the PDS (Partitioned datasets) and sequential files present. In the USS (Unix System Services ) section you can view the files or folder that is stored in the USS. USS is a posix compliant linux like environment which makes it easy for developers to interact with previous knowledge of using linux terminals and commands. In the JOBS section you can view all about the running or completed jobs.
+   In the DATA SETS section, you can view all the PDS (Partitioned datasets) and sequential files present. In the USS (Unix System Services) section, you can view the files or folder that is stored in the USS. USS is a posix compliant linux like environment which makes it easy for developers to interact with previous knowledge of using linux terminals and commands. In the JOBS section, you can view all about the running or completed jobs.
 
 
-5. Put your username and password in all the three sections by click on the search icon to view the files (DATA SETS, USS, JOBS) which you have learned in the previous chapters.
+5. Put your username and password in all the three sections by clicking on the search icon to view the files (DATA SETS, USS, JOBS) which you have learned in the previous chapters.
 
 ![](Images/image213.png)
 
@@ -346,7 +346,7 @@ To proceed further it's better to have some knowledge of JCL and linux terminal 
 
 *Figure 8.  ssh connection*
 
-8. Enter your password to view the directories in the USS. Issue your first command `pwd` which will show the directory you are currently in , that is your root directory. Issue the command `ls` to list all the files and folders in this directory.
+8. Enter your password to view the directories in the USS. Issue your first command `pwd` which will show the directory you are currently in, that is your root directory. Issue the command `ls` to list all the files and folders in this directory.
 
 ![](Images/image217.png)
 
@@ -373,6 +373,9 @@ To proceed further it's better to have some knowledge of JCL and linux terminal 
 *Figure 12.  COBOL Check directory on the local system*
 
 12. To copy all the files and folders from this directory, you need to use the command : `zowe zos-files upload dir-to-uss "." "/z/z99998/cobolcheck" --recursive  --binary-files "cobol-check-0.2.8.jar"` . Then enter your username and password. (Remember to type all the alphabets in small letters).
+
+
+`Note: Use the latest version (or the version you are using) of the COBOL Check on the above command.`
 
     
 In this command the `.` represents the current directory
@@ -428,6 +431,8 @@ Then issue command `cd ..` to come back to the parent directory.
 
 18. You can see it comes with some source code and test files. You need to run COBOL Check using the NUMBERS.CBL to check whether COBOL Check is working correctly.
     Issue the command `./cobolcheck -p NUMBERS`.
+
+`Note: You may see the NullPointerException, but that can be ignored.`
 
 ![](Images/image228.png)
 
@@ -554,7 +559,7 @@ In this lab, You will have to write test cases for a given COBOL program to chec
 
 ```
 
-3. Right-click on the cobol directory under the test directory. Click on the create new directory and name it the same as the program name (EMPPAY).
+3. Right-click on the cobol directory under the test directory. Click on the `Create Directory` and name it the same as the program name (EMPPAY).
 
 ![](Images/image238.png)
 
