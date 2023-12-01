@@ -317,7 +317,7 @@ To proceed further, it's better to have some knowledge of JCL and linux terminal
 
 3. Open your VS Code with the same team configuration file with the Learn Cobol folder which you have used in course 2. If not, you can also download it from https://github.com/openmainframeproject/cobol-programming-course/releases/latest
   
-4. click on the icon of Zowe Explore of VS code.
+4. click on the icon of Zowe Explore of VS Code.
 
 ![](Images/image212.png)
 
