@@ -266,7 +266,7 @@ COBOL Check uses a default directory structure to retrieve the COBOL programs, t
 ### The test pyramid
 ![](Images/image235.png)
 
-Cobol-check supports fine-grained unit-testing. Let's provide some contextual information to make the meaning of that clearer. This is a popular level of test automation; lets call it a pyramid or a triangle. The key idea is that we need to test our software at multiple levels of abstraction as we move higher in the diagram, we are testing larger pieces of software lower in the diagram, we are testing smaller pieces of software.
+Cobol Check supports fine-grained unit-testing. Let's provide some contextual information to make the meaning of that clearer. This is a popular level of test automation; lets call it a pyramid or a triangle. The key idea is that we need to test our software at multiple levels of abstraction as we move higher in the diagram, we are testing larger pieces of software lower in the diagram, we are testing smaller pieces of software.
 
 The figure is wide at the bottom and narrow at the top to suggest that we want a large number of small test cases and a smaller number of big test cases. It is preferred because considering how difficult it is to test an entire application with all its external dependencies, environment configuration and test data and to test every combination of inputs and operating conditions at this level would be very tedious and time-consuming. Organizations that do all their testing by running the full system often lack sufficient time to test thoroughly before each release. If we push most of the test cases down to a level, we find we can write more test cases with less effort, so we can exercise each part of the code thoroughly. The test case runs in less time, and each test failure is easier to diagnose and fix.
 
@@ -274,29 +274,30 @@ The figure is wide at the bottom and narrow at the top to suggest that we want a
 
 ### Test suites and test cases
 
-TESTSUITE - Provides a description for a series of test cases. The description is echoed in the output from the test run.
-TESTCASE - identifies a test case. The description is echoed in the output of the test run.
+* TESTSUITE - Provides a description for a series of test cases. The description is echoed in the output from the test run.  
+
+* TESTCASE - identifies a test case. The description is echoed in the output of the test run.
 
 A program can have multiple test suites, and each test suite can have multiple test cases.
 
 The typical automated check follows these steps:
 
-Arrange: Establish the preconditions for the test case.
+* Arrange: Establish the preconditions for the test case.
 
-Act: Execute the code under examination.
+* Act: Execute the code under examination.
 
-Assert: Validate the anticipated outcome of the test
+* Assert: Validate the anticipated outcome of the test
 
-You can take a look at the COBOL Check wiki for better understanding: https://github.com/openmainframeproject/cobol-check/wiki/A-Brief-Example
+You can take a look at the COBOL Check wiki page for better understanding: https://github.com/openmainframeproject/cobol-check/wiki/A-Brief-Example
 
 
 ## Lab
 
 In this lab exercise, you will learn to set up your environment for the COBOL Check by connecting to an IBM Z system to access the USS(Unix System Services), view a simple COBOL program and test suites in VS Code, compile them on the USS using COBOL Check to generate a copy of the program under test that includes the test cases and paragraphs to be tested. Then you will copy the newly generated program from USS to MVS datasets and submit JCL to compile the copied COBOL program, and view the output. Refer to “Installation of VS Code and extensions” to configure VS Code if you have not already done so. You can either use IBM Z Open Editor and Zowe Explorer, or Code4z.
 
-To proceed further it's better to have some knowledge of JCL and linux terminal commands.
+To proceed further, it's better to have some knowledge of JCL and linux terminal commands.
 
-1. Get the latest COBOL Check distribution from the github repository of the COBOL Check https://github.com/openmainframeproject/cobol-check/tree/Developer/build/distributions.
+1. Get the latest COBOL Check distribution from the GitHub repository of the COBOL Check https://github.com/openmainframeproject/cobol-check/tree/Developer/build/distributions.
   Click on the “View raw” button or the download button on the right most corner. You will get the .zip of COBOL Check.
 
 ![](Images/image209.png)
@@ -313,13 +314,13 @@ To proceed further it's better to have some knowledge of JCL and linux terminal 
 
 *Figure 3.  COBOL Check folder*
 
-3. Open your vs code with the same team configuration file with the Learn Cobol folder which you have used in course 2. If not, you can also download it from https://github.com/openmainframeproject/cobol-programming-course/releases/latest
+3. Open your VS Code with the same team configuration file with the Learn Cobol folder which you have used in course 2. If not, you can also download it from https://github.com/openmainframeproject/cobol-programming-course/releases/latest
   
-4. click on the icon of Zowe Explore an extension on the left sidebar of VS code.
+4. click on the icon of Zowe Explore of VS code.
 
 ![](Images/image212.png)
 
-*Figure 4.  Zowe explorer*
+*Figure 4.  Zowe Explorer*
 
    In the DATA SETS section, you can view all the PDS (Partitioned datasets) and sequential files present. In the USS (Unix System Services) section, you can view the files or folder that is stored in the USS. USS is a posix compliant linux like environment which makes it easy for developers to interact with previous knowledge of using linux terminals and commands. In the JOBS section, you can view all about the running or completed jobs.
 
