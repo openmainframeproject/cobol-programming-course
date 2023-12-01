@@ -266,7 +266,8 @@ COBOL Check uses a default directory structure to retrieve the COBOL programs, t
 ### The test pyramid
 ![](Images/image235.png)
 
-Cobol Check supports fine-grained unit-testing. Let's provide some contextual information to make the meaning of that clearer. This is a popular level of test automation; lets call it a pyramid or a triangle. The key idea is that we need to test our software at multiple levels of abstraction as we move higher in the diagram, we are testing larger pieces of software lower in the diagram, we are testing smaller pieces of software.
+Cobol Check supports fine-grained unit-testing. Let's provide some contextual information to make the meaning of that clearer. This is a popular level of test automation; lets call it a pyramid or a triangle.
+The fundamental concept revolves around conducting software testing at various levels of abstraction. As we ascend in the diagram, the testing scope encompasses larger software components, whereas descending in the diagram involves testing smaller software elements.
 
 The figure is wide at the bottom and narrow at the top to suggest that we want a large number of small test cases and a smaller number of big test cases. It is preferred because considering how difficult it is to test an entire application with all its external dependencies, environment configuration and test data and to test every combination of inputs and operating conditions at this level would be very tedious and time-consuming. Organizations that do all their testing by running the full system often lack sufficient time to test thoroughly before each release. If we push most of the test cases down to a level, we find we can write more test cases with less effort, so we can exercise each part of the code thoroughly. The test case runs in less time, and each test failure is easier to diagnose and fix.
 
