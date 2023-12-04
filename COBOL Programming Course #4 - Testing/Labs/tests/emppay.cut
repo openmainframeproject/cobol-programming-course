@@ -1,0 +1,25 @@
+            TestSuite 'Checks the employee payment'
+
+            TestCase 'checks the EMP-OT-RATE TO be 0.25'
+            MOVE 50 TO EMP-HOURS
+            MOVE 23.50 TO EMP-HOURLY-RATE
+            PERFORM PAYMENT-WEEKLY
+            EXPECT EMP-OT-RATE TO BE 0.25
+
+            TestCase 'checks the EMP-PAY-WEEKLY > 900 if EMP-HOURS >= 40'
+            MOVE 40 TO EMP-HOURS
+            MOVE 23.50 TO EMP-HOURLY-RATE
+            PERFORM PAYMENT-WEEKLY
+            EXPECT EMP-PAY-WEEK >= 900
+
+            TestCase 'checks the EMP-PAY-WEEKLY > 1600 '
+            MOVE 60 TO EMP-HOURS
+            MOVE 23.50 TO EMP-HOURLY-RATE
+            PERFORM PAYMENT-WEEKLY
+            EXPECT EMP-PAY-WEEK >= 1600
+
+            TestCase 'checks the EMP-PAY-MONTHLY to be greater than 9600'
+            MOVE 160 TO EMP-HOURS
+            MOVE 1600 TO EMP-PAY-WEEK
+            PERFORM PAYMENT-MONTHLY
+            EXPECT EMP-PAY-MONTH >= 9600
