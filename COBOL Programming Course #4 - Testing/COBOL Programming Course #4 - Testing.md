@@ -445,7 +445,7 @@ Then issue command `cd ..` to come back to the parent directory.
 
 *Figure 21.  Output: A new COBOL program with the test cases embedded as statements*
 
-20. You need to copy this file to the MVS data sets (Z99998.CBL) which you can view in your DATA SETS tab. Use the command `cp CC##99.CBL "//’Z99998.CBL(NUMBERS)'"`
+20. You need to copy this file to the MVS data sets (Z99998.CBL) which you can view in your DATA SETS tab. Use the command `cp CC##99.CBL "//'Z99998.CBL(NUMBERS)'"`
 
 ![](Images/image230.png)
 
@@ -606,7 +606,7 @@ In this lab, You will have to write test cases for a given COBOL program to chec
 
 *Figure 5. ssh connection*
 
-6. Copy the newly generate source code to DATA SETS (Z99998.CBL) just like as we have seen earlier, use the command `cp CC##99.CBL “//’Z99998.CBL(EMPPAY)’”`
+6. Copy the newly generate source code to DATA SETS (Z99998.CBL) just like as we have seen earlier, use the command `cp CC##99.CBL "//'Z99998.CBL(EMPPAY)'"`
 
 ![](Images/image241.png)
 

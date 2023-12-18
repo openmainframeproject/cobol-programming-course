@@ -11,8 +11,6 @@ This project is a set of training materials and labs for COBOL on z/OS. The foll
     - [COBOL Programming Course #1 - Getting Started](COBOL%20Programming%20Course%20%231%20-%20Getting%20Started/README.md)
     - [COBOL Programming Course #2 - Learning COBOL](COBOL%20Programming%20Course%20%232%20-%20Learning%20COBOL/README.md)
     - [COBOL Programming Course #3 - Advanced Topics](COBOL%20Programming%20Course%20%233%20-%20Advanced%20Topics/README.md)
-
-- Incubation
     - [COBOL Programming Course #4 - Testing](COBOL%20Programming%20Course%20%234%20-%20Testing/README.md)
 
 If you run into any issues, please don't hesitate to reach out on our [Slack channel](https://openmainframeproject.slack.com/archives/C011NE32Z1T).
@@ -39,7 +37,7 @@ This project is openly governed as defined in [GOVERNANCE.md](GOVERNANCE.md).
 
 ## Credits
 
-The courseware materials were made available through a joint collaboration between IBM, its clients, and American River College and proposed as a new project by IBM.
+The course materials were made available through a joint collaboration between IBM, its clients, and American River College and proposed as a new project by IBM.
 
 ## Video Course Links
 
