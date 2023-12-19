@@ -4,7 +4,14 @@ This project is a set of training materials and labs for testing COBOL applicati
 
 ## How to get started
 
-There are currently no official releases of COBOL Programming Course #4 - Testing. All content remains in development. We encourage you to view and contribute to the [book](COBOL%20Programming%20Course%20%233%20-%20Testing.md) :)
+To begin, select a recent [release](https://github.com/openmainframeproject/cobol-programming-course/releases) of the course. Under a given release, you should see two assets.
+
+- The COBOL Programming Course #4 - Testing PDF asset contains the course instructions.
+- The Source code asset contains everything that was in the project when the release was published.
+
+To complete the course, you will also need to do one of the following: 
+- Select a [provider](#providers) below and follow their registration process. Once complete, you should be given system details to use in the course.
+- Upload the source code for the course (located in the Labs folder) to your mainframe environment.
 
 If you run into any issues, please don't hesitate to reach out on our [slack channel](https://openmainframeproject.slack.com/archives/C011NE32Z1T).
 
@@ -16,8 +23,8 @@ These materials are being used by other organizations to provide COBOL training 
 
 ## Build
 
-A PDF can be built using the following [pandoc](https://pandoc.org/) command. Note: pdflatex is required. [MiKTeX](https://miktex.org/) can be installed to accommodate this. 
+A PDF can be built using the following [pandoc](https://pandoc.org/) command. Note: pdflatex is required. [MiKTeX](https://miktex.org/) can be installed to accommodate this. Prior to issuing the following command, all subscript and superscript notation must be changed. Find all instances of `<sub>` and `</sub>` and replace them with `~`. Find all instances of `<sup>` and `</sup>` and replace them with `^`. This is the notation required for pandoc but this would make it difficult to read the markdown in GitHub.
 
 ```
-pandoc "COBOL Programming Course #4 - Testing.md" -o "COBOL Programming Course #4 - Testing.pdf" --number-sections --toc --listings
+pandoc "COBOL Programming Course #4 - Testing.md" -o "COBOL Programming Course #4 - Testing.pdf" --number-sections --toc -B Front_Matter.tex --listings
 ```
