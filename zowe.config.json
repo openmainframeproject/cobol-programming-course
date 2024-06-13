@@ -3,7 +3,7 @@
     "profiles": {
         "LearnCOBOL": {
             "properties": {
-                "host": "192.86.32.250"
+                "host": "204.90.115.200"
             },
             "profiles": {
                 "zosmf": {
