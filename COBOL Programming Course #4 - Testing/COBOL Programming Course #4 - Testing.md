@@ -293,9 +293,216 @@ You can take a look at the COBOL Check wiki page for better understanding: https
 
 ## Lab
 
-In this lab exercise, you will learn to set up your environment for the COBOL Check by connecting to an IBM Z system to access the USS(Unix System Services), view a simple COBOL program and test suites in VS Code, compile them on the USS using COBOL Check to generate a copy of the program under test that includes the test cases and paragraphs to be tested. Then you will copy the newly generated program from USS to MVS datasets and submit JCL to compile the copied COBOL program, and view the output. Refer to “Installation of VS Code and extensions” to configure VS Code if you have not already done so. You can either use IBM Z Open Editor and Zowe Explorer, or Code4z.
+In this lab exercise, you will learn to set up and automate the COBOL Check environment using GitHub Actions. You'll create a GitHub repository that connects to an IBM Z system, accesses USS (Unix System Services), and automates the process of running COBOL Check on sample programs.
 
-To proceed further, it's better to have some knowledge of JCL and linux terminal commands.
+
+You will:
+
+1. Set up a GitHub repository with necessary workflows and scripts.
+
+2. Use GitHub Actions to automatically upload COBOL Check files to USS.
+
+3. Run COBOL Check on sample programs via automated scripts.
+
+4. Automatically copy generated programs from USS to MVS datasets.
+
+5. Submit JCL to compile the copied COBOL programs and view the output using Zowe Explorer in VS Code.
+
+
+This lab introduces modern DevOps practices to mainframe development, demonstrating how to integrate traditional COBOL testing with contemporary CI/CD pipelines.
+
+
+**Prerequisites:**
+
+* GitHub account
+
+* Basic knowledge of Git, GitHub, and GitHub Actions
+
+* VS Code with Zowe Explorer extension installed
+
+* Basic understanding of JCL and Linux terminal commands
+
+
+Note: While many steps are automated, you'll still interact directly with the mainframe using Zowe Explorer to submit jobs and view results, providing a blend of automated and hands-on experience.
+
+
+By the end of this lab, you'll have practical experience in setting up an automated testing environment for COBOL programs, bridging the gap between mainframe development and modern DevOps practices.
+
+//
+
+### Set up a GitHub repository with necessary workflows and scripts
+1. **Create a new GitHub repository**
+   - Log into your GitHub account
+   - Click the '+' icon in the top right corner and select \"New repository\"
+   - Name your repository (e.g., \"cobol-check-automation\")
+   - Choose to make it public or private
+   - Check the box to \"Add a README file\"
+   - Click \"Create repository\"
+
+2. **Clone the repository locally**
+   - On the repository page, click the green \"Code\" button\n   - Copy the HTTPS URL\n   - Open your terminal or command prompt
+   - Navigate to where you want to store the project
+   - Run: `git clone <paste-your-repository-url-here>`
+   - Change into the new directory: `cd cobol-check-automation`
+
+3. **Set up GitHub Secrets**
+   - In your GitHub repository, go to \"Settings\" > \"Secrets and variables\" > \"Actions\"
+   - Add two new repository secrets:
+   - Name: ZOWE_USERNAME, Value: zXXXXX *(for example)*
+   - Name: ZOWE_PASSWORD, Value: Your IBM Z system password
+
+4. **Create directory structure**
+   - Create the following directories in your local repository:
+    ``` 
+    mkdir -p .github/workflows
+    mkdir -p .github/scripts\n
+    mkdir cobol-check     
+    ```
+
+5. **Create workflow file**
+   - Create a new file: `.github/workflows/zowe-cli-operations.yml`
+   - Copy and paste the following content into this file:
+
+    ```
+    name: Zowe CLI Operations
+    on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+    jobs:
+    zowe-operations:
+        runs-on: ubuntu-latest
+
+        steps:
+        - uses: actions/checkout@v3
+
+        - name: Setup Node.js
+            uses: actions/setup-node@v3
+            with:
+            node-version: "18"
+
+        - name: Install Zowe CLI
+            run: npm install -g @zowe/cli@latest
+
+        - name: Make scripts executable
+            run: |
+            chmod +x .github/scripts/zowe_operations.sh
+            chmod +x .github/scripts/mainframe_operations.sh
+
+        - name: Run Zowe operations
+            env:
+            ZOWE_OPT_HOST: 192.86.32.250
+            ZOWE_OPT_PORT: 10443
+            ZOWE_OPT_USER: ${{ secrets.ZOWE_USERNAME }}
+            ZOWE_OPT_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
+            ZOWE_OPT_REJECT_UNAUTHORIZED: false
+            ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
+            run: .github/scripts/zowe_operations.sh
+
+        - name: Perform mainframe operations
+            env:
+            ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
+            ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
+            run: |
+            sshpass -p "$ZOWE_PASSWORD" ssh -o StrictHostKeyChecking=no $ZOWE_USERNAME@192.86.32.250 'sh -s' < .github/scripts/mainframe_operations.sh
+    ```
+
+6. **Create script files**
+   - Create `.github/scripts/zowe_operations.sh` and add the following:
+     
+       ```
+       #!/bin/bash
+       # zowe_operations.sh
+
+       # Convert username to lowercase
+       LOWERCASE_USERNAME=$(echo "$ZOWE_USERNAME" | tr '[:upper:]' '[:lower:]')
+
+       # Check if directory exists, create if it doesn't
+       if ! zowe zos-files list uss-files "/z/$LOWERCASE_USERNAME/cobolcheck" &>/dev/null; then
+       echo "Directory does not exist. Creating it..."
+       zowe zos-files create uss-directory /z/$LOWERCASE_USERNAME/cobolcheck
+       else
+       echo "Directory already exists."
+       fi
+
+       # Upload files
+       zowe zos-files upload dir-to-uss "./cobol-check" "/z/$LOWERCASE_USERNAME/cobolcheck" --recursive --binary-files "cobol-check-0.2.9.jar"
+
+       # Verify upload
+       echo "Verifying upload:"
+       zowe zos-files list uss-files "/z/$LOWERCASE_USERNAME/cobolcheck"
+
+       ```
+   - Create `.github/scripts/mainframe_operations.sh` and add the following:
+     
+       ```
+       #!/bin/bash
+       # mainframe_operations.sh
+
+       # Set up environment
+       export PATH=$PATH:/usr/lpp/java/J8.0_64/bin
+       export JAVA_HOME=/usr/lpp/java/J8.0_64
+       export PATH=$PATH:/usr/lpp/zowe/cli/node/bin
+
+       # Check Java availability
+       java -version
+
+       # Change to the appropriate directory
+       cd /z/$ZOWE_USERNAME/cobolcheck
+       ls -al
+       chmod +x cobolcheck
+       ls -al
+       cd scripts
+       ls -al
+       chmod +x linux_gnucobol_run_tests
+       cd ..
+       pwd
+
+       # Run COBOL check on NUMBERS
+       ./cobolcheck -p NUMBERS
+
+       # Copy NUMBERS files to datasets
+       cp CC##99.CBL "//'${ZOWE_USERNAME}.CBL(NUMBERS)'"
+       cp NUMBERS.JCL "//'${ZOWE_USERNAME}.JCL(NUMBERS)'"
+
+       # Run COBOL check on EMPPAY
+       ./cobolcheck -p EMPPAY
+
+       # Copy EMPPAY files to datasets
+       cp CC##99.CBL "//'${ZOWE_USERNAME}.CBL(EMPPAY)'"
+       cp EMPPAY.JCL "//'${ZOWE_USERNAME}.JCL(EMPPAY)'"
+
+       # Run COBOL check on DEPTPAY
+       ./cobolcheck -p DEPTPAY
+
+       # Copy DEPTPAY files to datasets
+       cp CC##99.CBL "//'${ZOWE_USERNAME}.CBL(DEPTPAY)'"
+       cp DEPTPAY.JCL "//'${ZOWE_USERNAME}.JCL(DEPTPAY)'"
+
+       echo "Mainframe operations completed"
+
+       ```
+   - Ensure both scripts have Unix-style line endings (LF, not CRLF)
+  
+7. **Add COBOL Check files**
+   - Download the latest COBOL Check distribution from the official repository
+   - Extract the contents into your `cobol-check` directory
+
+8. **Commit and push your changes**
+   - Stage your new files: `git add .`
+   - Commit the changes: `git commit -m \"Initial setup for COBOL Check automation\"`
+   - Push to GitHub: `git push origin main`
+
+9.  **Verify workflow**
+    - Go to the \"Actions\" tab in your GitHub repository
+    - You should see the workflow running (triggered by your push)
+    - Wait for it to complete and check the logs for any errors
+
+
+By following these steps, you'll have set up a GitHub repository with the necessary workflow and scripts to automate COBOL Check operations. This setup forms the foundation for the rest of the lab exercises, where you'll use this automation to interact with the mainframe and run COBOL Check on your programs."
+
+//
 
 1. Get the latest COBOL Check distribution from the GitHub repository of the COBOL Check https://github.com/openmainframeproject/cobol-check/tree/Developer/build/distributions.
   Click on the “View raw” button or the download button on the right most corner. You will get the .zip of COBOL Check.
