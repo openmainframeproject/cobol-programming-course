@@ -291,6 +291,8 @@ The typical automated check follows these steps:
 You can take a look at the COBOL Check wiki page for better understanding: https://github.com/openmainframeproject/cobol-check/wiki/A-Brief-Example
 
 
+//
+
 ## Lab
 
 In this lab exercise, you will learn to set up and automate the COBOL Check environment using GitHub Actions. You'll create a GitHub repository that connects to an IBM Z system, accesses USS (Unix System Services), and automates the process of running COBOL Check on sample programs.
@@ -327,8 +329,6 @@ Note: While many steps are automated, you'll still interact directly with the ma
 
 
 By the end of this lab, you'll have practical experience in setting up an automated testing environment for COBOL programs, bridging the gap between mainframe development and modern DevOps practices.
-
-//
 
 ### Set up a GitHub repository with necessary workflows and scripts
 1. **Create a new GitHub repository**
@@ -438,56 +438,111 @@ By the end of this lab, you'll have practical experience in setting up an automa
      
        ```
        #!/bin/bash
-       # mainframe_operations.sh
+        # mainframe_operations.sh
 
-       # Set up environment
-       export PATH=$PATH:/usr/lpp/java/J8.0_64/bin
-       export JAVA_HOME=/usr/lpp/java/J8.0_64
-       export PATH=$PATH:/usr/lpp/zowe/cli/node/bin
+        # Set up environment
+        export PATH=$PATH:/usr/lpp/java/J8.0_64/bin
+        export JAVA_HOME=/usr/lpp/java/J8.0_64
+        export PATH=$PATH:/usr/lpp/zowe/cli/node/bin
 
-       # Check Java availability
-       java -version
+        # Check Java availability
+        java -version
 
-       # Change to the appropriate directory
-       cd /z/$ZOWE_USERNAME/cobolcheck
-       ls -al
-       chmod +x cobolcheck
-       ls -al
-       cd scripts
-       ls -al
-       chmod +x linux_gnucobol_run_tests
-       cd ..
-       pwd
+        # Change to the appropriate directory
+        cd /z/$ZOWE_USERNAME/cobolcheck || { echo "Directory not found"; exit 1; }
+        ls -al
 
-       # Run COBOL check on NUMBERS
-       ./cobolcheck -p NUMBERS
+        # Check if cobolcheck exists and make it executable
+        if [ -f cobolcheck ]; then
+            chmod +x cobolcheck
+            ls -al
+        else
+            echo "cobolcheck file not found"
+            exit 1
+        fi
 
-       # Copy NUMBERS files to datasets
-       cp CC##99.CBL "//'${ZOWE_USERNAME}.CBL(NUMBERS)'"
-       cp NUMBERS.JCL "//'${ZOWE_USERNAME}.JCL(NUMBERS)'"
+        # Check and make linux_gnucobol_run_tests executable
+        if [ -d scripts ] && [ -f scripts/linux_gnucobol_run_tests ]; then
+            cd scripts
+            chmod +x linux_gnucobol_run_tests
+            cd ..
+        else
+            echo "scripts directory or linux_gnucobol_run_tests not found"
+            exit 1
+        fi
 
-       # Run COBOL check on EMPPAY
-       ./cobolcheck -p EMPPAY
+        pwd
 
-       # Copy EMPPAY files to datasets
-       cp CC##99.CBL "//'${ZOWE_USERNAME}.CBL(EMPPAY)'"
-       cp EMPPAY.JCL "//'${ZOWE_USERNAME}.JCL(EMPPAY)'"
+        # Function to run COBOL check and copy files
+        run_cobol_check() {
+            local program=$1
+            if [ -f "${program}.CBL" ] && [ -f "${program}.JCL" ]; then
+                ./cobolcheck -p "$program"
+                if [ -f CC##99.CBL ]; then
+                    cp CC##99.CBL "//'${ZOWE_USERNAME}.CBL(${program})'"
+                    cp "${program}.JCL" "//'${ZOWE_USERNAME}.JCL(${program})'"
+                    echo "${program} processed successfully"
+                else
+                    echo "CC##99.CBL not generated for ${program}"
+                fi
+            else
+                echo "${program}.CBL or ${program}.JCL not found"
+            fi
+        }
 
-       # Run COBOL check on DEPTPAY
-       ./cobolcheck -p DEPTPAY
+        # Run COBOL check on NUMBERS, EMPPAY, and DEPTPAY
+        for program in NUMBERS EMPPAY DEPTPAY; do
+            run_cobol_check "$program"
+        done
 
-       # Copy DEPTPAY files to datasets
-       cp CC##99.CBL "//'${ZOWE_USERNAME}.CBL(DEPTPAY)'"
-       cp DEPTPAY.JCL "//'${ZOWE_USERNAME}.JCL(DEPTPAY)'"
-
-       echo "Mainframe operations completed"
+        echo "Mainframe operations completed"
 
        ```
    - Ensure both scripts have Unix-style line endings (LF, not CRLF)
   
 7. **Add COBOL Check files**
-   - Download the latest COBOL Check distribution from the official repository
-   - Extract the contents into your `cobol-check` directory
+    * Get the latest COBOL Check distribution from the GitHub repository of the COBOL Check https://github.com/openmainframeproject/cobol-check/tree/Developer/build/distributions. Click on the “View raw” button or the download button on the right most corner. You will get the .zip of COBOL Check.
+
+        ![](Images/image209.png)
+
+        *Figure 1.  Download COBOL Check distribution*
+
+        ![](Images/image210.png)
+
+        *Figure 2.  Button to download the .zip file*
+
+    * Check your download location to view the .zip file and then extract it to the root of your local repository.
+
+        ![](Images/image211.png)
+
+        *Figure 3.  COBOL Check folder*
+
+    * Open your VS Code with the same team configuration file with the Learn Cobol folder which you have used in course 2. If not, you can also download it from https://github.com/openmainframeproject/cobol-programming-course/releases/latest
+    
+    * click on the icon of Zowe Explore of VS Code.
+
+        ![](Images/image212.png)
+
+        *Figure 4.  Zowe Explorer*
+
+    In the DATA SETS section, you can view all the PDS (Partitioned datasets) and sequential files present. In the USS (Unix System Services) section, you can view the files or folder that is stored in the USS. USS is a posix compliant linux like environment which makes it easy for developers to interact with previous knowledge of using linux terminals and commands. In the JOBS section, you can view all about the running or completed jobs.
+
+
+    * Put your username and password in all the three sections by clicking on the search icon to view the files (DATA SETS, USS, JOBS) which you have learned in the previous chapters.
+
+        ![](Images/image213.png)
+
+        *Figure 5.  Enter your username*
+
+        ![](Images/image214.png)
+
+    *Figure 6.  Enter your password*
+    
+    * After entering your username and password for the USS section search for `/z/z999XX` . put your username in place of z999XX. Now you can view all the files that are present in the USS.
+
+        ![](Images/image215.png)
+
+        *Figure 7.  Search for /z/z999XX*
 
 8. **Commit and push your changes**
    - Stage your new files: `git add .`
@@ -504,161 +559,7 @@ By following these steps, you'll have set up a GitHub repository with the necess
 
 //
 
-1. Get the latest COBOL Check distribution from the GitHub repository of the COBOL Check https://github.com/openmainframeproject/cobol-check/tree/Developer/build/distributions.
-  Click on the “View raw” button or the download button on the right most corner. You will get the .zip of COBOL Check.
-
-![](Images/image209.png)
-
-*Figure 1.  Download COBOL Check distribution*
-
-![](Images/image210.png)
-
-*Figure 2.  Button to download the .zip file*
-
-2. Check your download location to view the .zip file and then extract it.
-
-![](Images/image211.png)
-
-*Figure 3.  COBOL Check folder*
-
-3. Open your VS Code with the same team configuration file with the Learn Cobol folder which you have used in course 2. If not, you can also download it from https://github.com/openmainframeproject/cobol-programming-course/releases/latest
-  
-4. click on the icon of Zowe Explore of VS Code.
-
-![](Images/image212.png)
-
-*Figure 4.  Zowe Explorer*
-
-   In the DATA SETS section, you can view all the PDS (Partitioned datasets) and sequential files present. In the USS (Unix System Services) section, you can view the files or folder that is stored in the USS. USS is a posix compliant linux like environment which makes it easy for developers to interact with previous knowledge of using linux terminals and commands. In the JOBS section, you can view all about the running or completed jobs.
-
-
-5. Put your username and password in all the three sections by clicking on the search icon to view the files (DATA SETS, USS, JOBS) which you have learned in the previous chapters.
-
-![](Images/image213.png)
-
-*Figure 5.  Enter your username*
-
-![](Images/image214.png)
-
-*Figure 6.  Enter your password*
-
-6. After entering your username and password for the USS section search for `/z/z999XX` . put your username in place of z999XX. Now you can view all the files that are present in the USS.
-
-![](Images/image215.png)
-
-*Figure 7.  Search for /z/z999XX*
-
-7. Another way of interacting with the USS is through the SSH connection. Open your terminal in the vs code window. Issue the command `ssh z99998@192.86.32.250` , in the place of z99998 use your own username. You can find the ip address in the zowe.config file that comes with the team configuration folder.
-
-![](Images/image216.png)
-
-*Figure 8.  ssh connection*
-
-8. Enter your password to view the directories in the USS. Issue your first command `pwd` which will show the directory you are currently in, that is your root directory. Issue the command `ls` to list all the files and folders in this directory.
-
-![](Images/image217.png)
-
-*Figure 9.  present working directory*
-
-9. You need to create a directory for COBOL Check and copy the contents of the COBOL Check distribution that you have downloaded earlier. Issue the command `mkdir cobolcheck` - This will create an empty directory. Then use `ls` command to view the created directory.
-
-![](Images/image218.png)
-
-*Figure 10.  Create COBOL Check directory in the USS*
-
-10. Issue `cd cobolcheck` to enter into the directory.
-
-![](Images/image219.png)
-
-*Figure 11.  Enter into COBOL Check directory in the USS*
-
-    Note: If you left your terminal idle for some time, you need to kill that terminal, again you have to ssh into the mainframe. you can follow from step 8 again.
-
-11. Open another terminal tab and go to the file location where the files and folders of COBOL Check are present. Then use `ls` to see those.
-
-![](Images/image220.png)
-
-*Figure 12.  COBOL Check directory on the local system*
-
-12. To copy all the files and folders from this directory, you need to use the command : `zowe zos-files upload dir-to-uss "." "/z/z99998/cobolcheck" --recursive  --binary-files "cobol-check-0.2.8.jar"` . Then enter your username and password. (Remember to type all the alphabets in small letters).
-
-
-`Note: Use the latest version (or the version you are using) of the COBOL Check on the above command.`
-
-    
-In this command the `.` represents the current directory
-and the flag `--recursive` is used for copying all the folders which are even inside other folders.
-By default, this command will copy all the files in ascii mode,
-but you need to copy `the cobol-check-0.2.8.jar` in binary mode that's why the flag `--binary-files` is used.
-You can look into your `/bin` folder of COBOL Check to see the latest version and name which need to use there.
-At the time of writing this course material, it is version 0.2.8. 
-
-To know more about copying the files from local machine to USS, you can refer to zowe cli docs: https://docs.zowe.org/v2.4.x/web_help/index.html?p=zowe_zos-files_upload_dir-to-uss.
-
-![](Images/image221.png)
-
-*Figure 13.  Command to copy the files from local machine to USS*
-
-After entering the command, you will get a message uploaded successfully.
-
-![](Images/image222.png)
-
-*Figure 14.  Successfully uploaded message*
-
-13. Now again open your terminal and ssh into the mainframe to view the files and folders in the COBOL Check directory. You can see the contents of uploaded.
-
-![](Images/image223.png)
-
-*Figure 15.  View the contents in the directory*
-
-14. you can use the USS tab of your vs code to view the COBOL Check directory.
-
-![](Images/image224.png)
-
-*Figure 16.  Locate the directories on the USS section in the zowe*
-
-15. Issue `ls -al` command to see the file permission of COBOL Check then issue `chmod +x cobolcheck`. This will give COBOL Check file the executable permission.
-
-![](Images/image225.png)
-
-*Figure 17.  Providing executable permission*
-
-16. Do the same as done above in the `/scripts` folder. Issue command : `cd scripts` to enter into scripts directory then use `chmod +x linux_gnucobol_run_tests` to make this file executable.
-
-![](Images/image226.png)
-
-*Figure 18.  Providing executable permission*
-
-Then issue command `cd ..` to come back to the parent directory.
-
-17. View the COBOL source code and the test case files. You can also use the USS tab.
-
-![](Images/image227.png)
-
-*Figure 19. view files in the USS tab*
-
-18. You can see it comes with some source code and test files. You need to run COBOL Check using the NUMBERS.CBL to check whether COBOL Check is working correctly.
-    Issue the command `./cobolcheck -p NUMBERS`.
-
-`Note: You may see the NullPointerException, but that can be ignored.`
-
-![](Images/image228.png)
-
-*Figure 20.  Run a COBOL program with the cobolcheck command*
-
-19. After running the command, the COBOL Check will generate a new source code named `CC##99.CBL` which includes the COBOL source code along with the test cases embedded.
-
-![](Images/image229.png)
-
-*Figure 21.  Output: A new COBOL program with the test cases embedded as statements*
-
-20. You need to copy this file to the MVS data sets (Z99998.CBL) which you can view in your DATA SETS tab. Use the command `cp CC##99.CBL "//'Z99998.CBL(NUMBERS)'"`
-
-![](Images/image230.png)
-
-*Figure 22.  Copy the newly generate COBOL program to the mainframe*
-
-21. view the files in the DATA SETS tab, you can see NUMBERS in Z99998.CBL.
+1.  view the files in the DATA SETS tab, you can see NUMBERS in Z99998.CBL.
 
 ![](Images/image231.png)
 
