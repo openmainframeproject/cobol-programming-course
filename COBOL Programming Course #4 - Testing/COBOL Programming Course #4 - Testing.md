@@ -347,9 +347,10 @@ By the end of this lab, you'll have practical experience in setting up an automa
 
 3. **Set up GitHub Secrets**
    - In your GitHub repository, go to \"Settings\" > \"Secrets and variables\" > \"Actions\"
+![](Images/image243.png)
    - Add two new repository secrets:
-   - Name: ZOWE_USERNAME, Value: zXXXXX *(for example)*
-   - Name: ZOWE_PASSWORD, Value: Your IBM Z system password
+      - Name: ZOWE_USERNAME, Value: ZXXXXX *(for example)*
+     - Name: ZOWE_PASSWORD, Value: Your IBM Z system password
 
 4. **Create directory structure**
    - Create the following directories in your local repository:
