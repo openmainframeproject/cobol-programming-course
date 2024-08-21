@@ -393,7 +393,7 @@ By the end of this lab, you'll have practical experience in setting up an automa
 
         - name: Run Zowe operations
             env:
-            ZOWE_OPT_HOST: 192.86.32.250
+            ZOWE_OPT_HOST: 204.90.115.200
             ZOWE_OPT_PORT: 10443
             ZOWE_OPT_USER: ${{ secrets.ZOWE_USERNAME }}
             ZOWE_OPT_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
@@ -406,7 +406,7 @@ By the end of this lab, you'll have practical experience in setting up an automa
             ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
             ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
             run: |
-            sshpass -p "$ZOWE_PASSWORD" ssh -o StrictHostKeyChecking=no $ZOWE_USERNAME@192.86.32.250 'sh -s' < .github/scripts/mainframe_operations.sh
+            sshpass -p "$ZOWE_PASSWORD" ssh -o StrictHostKeyChecking=no $ZOWE_USERNAME@204.90.115.200 'sh -s' < .github/scripts/mainframe_operations.sh
     ```
 
 6. **Create script files**
