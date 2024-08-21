@@ -449,51 +449,60 @@ By the end of this lab, you'll have practical experience in setting up an automa
         # Check Java availability
         java -version
 
-        # Change to the appropriate directory
-        cd /z/$ZOWE_USERNAME/cobolcheck || { echo "Directory not found"; exit 1; }
+        # Set ZOWE_USERNAME
+        ZOWE_USERNAME="Z36963"  # Replace with the actual username or dataset prefix
+
+        # Change to the cobolcheck directory
+        cd cobolcheck
+        echo "Changed to $(pwd)"
         ls -al
 
-        # Check if cobolcheck exists and make it executable
-        if [ -f cobolcheck ]; then
-            chmod +x cobolcheck
-            ls -al
-        else
-            echo "cobolcheck file not found"
-            exit 1
-        fi
+        # Make cobolcheck executable
+        chmod +x cobolcheck
+        echo "Made cobolcheck executable"
 
-        # Check and make linux_gnucobol_run_tests executable
-        if [ -d scripts ] && [ -f scripts/linux_gnucobol_run_tests ]; then
-            cd scripts
-            chmod +x linux_gnucobol_run_tests
-            cd ..
-        else
-            echo "scripts directory or linux_gnucobol_run_tests not found"
-            exit 1
-        fi
+        # Make script in scripts directory executable
+        cd scripts
+        chmod +x linux_gnucobol_run_tests
+        echo "Made linux_gnucobol_run_tests executable"
+        cd ..
 
-        pwd
-
-        # Function to run COBOL check and copy files
-        run_cobol_check() {
-            local program=$1
-            if [ -f "${program}.CBL" ] && [ -f "${program}.JCL" ]; then
-                ./cobolcheck -p "$program"
-                if [ -f CC##99.CBL ]; then
-                    cp CC##99.CBL "//'${ZOWE_USERNAME}.CBL(${program})'"
-                    cp "${program}.JCL" "//'${ZOWE_USERNAME}.JCL(${program})'"
-                    echo "${program} processed successfully"
-                else
-                    echo "CC##99.CBL not generated for ${program}"
-                fi
+        # Function to run cobolcheck and copy files
+        run_cobolcheck() {
+        program=$1
+        echo "Running cobolcheck for $program"
+        
+        # Run cobolcheck, but don't exit if it fails
+        ./cobolcheck -p $program
+        echo "Cobolcheck execution completed for $program (exceptions may have occurred)"
+        
+        # Check if CC##99.CBL was created, regardless of cobolcheck exit status
+        if [ -f "CC##99.CBL" ]; then
+            # Copy to the MVS dataset
+            if cp CC##99.CBL "//'${ZOWE_USERNAME}.CBL($program)'"; then
+            echo "Copied CC##99.CBL to ${ZOWE_USERNAME}.CBL($program)"
             else
-                echo "${program}.CBL or ${program}.JCL not found"
+            echo "Failed to copy CC##99.CBL to ${ZOWE_USERNAME}.CBL($program)"
             fi
+        else
+            echo "CC##99.CBL not found for $program"
+        fi
+        
+        # Copy the JCL file if it exists
+        if [ -f "${program}.JCL" ]; then
+            if cp ${program}.JCL "//'${ZOWE_USERNAME}.JCL($program)'"; then
+            echo "Copied ${program}.JCL to ${ZOWE_USERNAME}.JCL($program)"
+            else
+            echo "Failed to copy ${program}.JCL to ${ZOWE_USERNAME}.JCL($program)"
+            fi
+        else
+            echo "${program}.JCL not found"
+        fi
         }
 
-        # Run COBOL check on NUMBERS, EMPPAY, and DEPTPAY
+        # Run for each program
         for program in NUMBERS EMPPAY DEPTPAY; do
-            run_cobol_check "$program"
+        run_cobolcheck $program
         done
 
         echo "Mainframe operations completed"
