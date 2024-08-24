@@ -294,16 +294,6 @@ You can take a look at the COBOL Check wiki page for better understanding: https
 //
 
 # Automation with GitHub Actions
-Hello everyone! My name is Ali, and I'm excited to be here as a mentee for the COBOL Programming Course.
-
-As part of my journey in this course, I've been tasked with an exciting project that I'd like to share with you today. My role has been to automate the process of running and testing COBOL programs using a tool called cobolcheck.
-
-Initially, we were planning to use Jenkins for this automation. However, after consulting with some experts in the field, we made an interesting pivot. We decided to go with GitHub Actions instead. This choice was made because GitHub Actions is more accessible and easier to understand, especially for those who might be new to automation or continuous integration.
-
-This shift to GitHub Actions has been an exciting part of the learning process. It's taught me the importance of flexibility in software development and how choosing the right tools can make a big difference in project efficiency.
-
-Now on the topic of GitHub actions…
-
 GitHub Actions allows you to automate workflows within your GitHub repository. We thought that it would be a powerful and easy to use platform for automating tasks related to Zowe CLI commands and running COBOL Check. It allows defining workflows in a YAML configuration file, similar to other CI/CD tools.
 
 This YAML file can specify Zowe CLI commands to be executed along with options for handling outputs and chaining actions.
