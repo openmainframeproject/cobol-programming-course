@@ -13,7 +13,7 @@ This project is a set of training materials and labs for COBOL on z/OS. The foll
     - [COBOL Programming Course #3 - Advanced Topics](COBOL%20Programming%20Course%20%233%20-%20Advanced%20Topics/README.md)
     - [COBOL Programming Course #4 - Testing](COBOL%20Programming%20Course%20%234%20-%20Testing/README.md)
 
-If you run into any issues, please don't hesitate to reach out on our [Slack channel](https://openmainframeproject.slack.com/archives/C011NE32Z1T).
+If you run into any issues, please don't hesitate to reach out on our [Slack channel](https://openmainframeproject.slack.com).
 
 ## Discussion
 
