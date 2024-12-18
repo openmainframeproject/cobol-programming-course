@@ -692,7 +692,7 @@ Code4z is an all-in-one, open-source mainframe extension package for developers 
 
 #### Install Code4z
 
-Open VSCode and in the left side tool menu select **Extensions**.  From there, in the "Search Extensions in Marketplace" search field, type `Code4z`.  Search results will begin populating, select **" Code4z "** and click **install**.
+Open VSCode and in the left side tool menu select **Extensions**.  From there, in the "Search Extensions in Marketplace" search field, type `Code4z`.  Search results will begin populating, select **"Code4z"** and click **install**.
 
 The extension pack contains a number of extensions that can be leveraged when working with the mainframe, including the COBOL Language Support extension which provides similar functionality to the Z Open Editor extension. Therefore, ensure only one of these extensions is enabled. Extensions can be disabled within VS Code by locating the extension in the Extensions menu, clicking the settings gear, and selecting `Disable`. Other extensions included in the Code4z pack will work with either COBOL Language Support or Z Open Editor.
 
