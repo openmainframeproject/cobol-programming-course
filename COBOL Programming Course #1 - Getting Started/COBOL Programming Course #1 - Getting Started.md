@@ -30,9 +30,8 @@ Zowe Explorer is an open-source extension for VS Code that lets developers and s
 - **Using Zowe Explorer**
 - **Profiles in Zowe Explorer**
      - **Secure Credentials**
-     - **Creating a New Profile**
+     - **Creating a Team Configuration File**
      - **Editing Profiles**
-     - **Deleting Profiles**
 - **Summary**
 
 ## Introduction to Zowe Explorer
@@ -101,174 +100,61 @@ Zowe Explorer has a built-in Secure Credential Store. This enables you to encryp
 To enable this feature, follow these steps:
 
 1. Click the **Gear Icon** at the bottom left and select **Settings**
-2. Click **User Settings** > **Extensions** > **Zowe Explorer Settings**
-   Look for the **Zowe Security: Credential Key** field
+2. Click **User Settings** > **Extensions** > **Zowe Explorer**
+3. Look for the **Zowe Security: Check For Custom Credential Managers and Secure Credentials Enabled** field
 
 ![](Images/code4z/code4z-img6.png)
 
-3. Type **Zowe-Plugin** in the text box. This will trigger the Built-in Secure Credential Store.
-
-Alternatively, to enable this feature by editing settings.json, hover over the gear icon and click "Copy Setting as JSON".
-You can then paste that to settings.json and update the value to Zowe Plugin.
-
-![](Images/code4z/code4z-img7.png)
-
-Note: If you are using Zowe CLI and you’ve installed the Secure-Credential-Store Plugin, the steps to activate it will still be the same.
-
-### Creating a New Profile
+### Creating a Team Configuration File
 
 Follow these steps:
 
-1. Navigate to the Zowe Explorer tree on the right side and look for the + sign.
+1. Navigate to the Zowe Explorer tree and check if you already have a zosmf team configuration file.
 
-![](Images/code4z/code4z-img8.png)
+<img src="Images/code4z/code4z-img8.png" width="400" />
 
-2. Click on the + sign.
-A dialog box will appear and ask if you want to "Create a New Connection to z/OS".
+2. If you don't have one, click on the + sign. A dialog box will appear and ask if you want to “Create a New Team Configuration File”.
 
 3. Press enter or click on that selection.
 
 ![](Images/code4z/code4z-img9.png)
 
-4. Enter a Profile name in the "Connection Name" field.
+4. You can initialize the config file either in the Zowe home directory or in the current working directory.
 
 ![](Images/code4z/code4z-img10.png)
 
-5. Enter the URL and Port that you received by email when you registered for the COBOL Course. The connection information that you need has the title of "IP address for VSCode extension".
-
-![](Images/code4z/code4z-img11.png)
-
-6. Enter your Username. This is also included in the email.
-
-![](Images/code4z/code4z-img12-18.png)
-
-Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
-
-7. Enter your Password.
-
-![](Images/code4z/code4z-img13-19.png)
-
-Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
-
-8. Select True/False if you want to accept or reject Self-Signed Certificates. For this course, please select false.
-
-![](Images/code4z/code4z-img14-20.png)
-
-9. Enter the base path for your API mediation layer instance. For this course, please leave it empty and press **Enter** to continue
-
-![](Images/image073-1.png)
-
-10. Enter the protocol used for the connection. For this course, please leave the default ("HTTPS") and press **Enter** to continue.
-
-![](Images/image073-2.png)
-
-11. Enter the encoding used for the download and upload of z/OS data sets and USS files. For this course, please leave it empty and press **Enter** to continue.
-
-![](Images/image073-3.png)
-
-12. Enter the maximum waiting time for a response. For this course, please leave it empty and press **Enter** to continue.
-
-![](Images/image073-4.png)
-
-If you are successful, you will receive this informational message:
-
-![](Images/code4z/code4z-img15.png)
-
 ### Editing Profiles
 
-The Zowe Explorer v1.5.0 release introduces profile editing. This allows you to revise your existing profile information and continue using Zowe Explorer.
+The Zowe Explorer v3.0 enables users to edit their profiles, allowing them to update their existing profile information and continue using Zowe Explorer.
 
 Follow these steps:
 
-1. Add your profile to any of the Zowe Explorer Trees.
-2. Right-click on the profile you want to edit 
-3. from the dropdown choose **Update Profile**. A dialog box opens displaying the current information in your profile, which you can edit as required.
+1. Right-click on the Team Configuration File you want to edit.
+2. from the dropdown choose **Manage Profile**
 
-![](Images/code4z/code4z-img16.png)
+<img src="Images/code4z/code4z-img16.png" width="400" />
 
-3. Edit the URL information if changes are required, or enter to confirm the information is still correct.
+3. A dialog box opens, displaying a list of available profile modifications.
 
 ![](Images/code4z/code4z-img11.png)
 
-4. Edit your Username.
+4. Click on Edit Profile. Now you will be getting the zowe.config.json file.
+
+![](Images/code4z/code4z-img11-1.png)
+
+5. Ensure you are connected to the correct host: 204.90.115.200, and set 'rejectUnauthorized' to false for a successful connection.
+
+![](Images/code4z/code4z-img11-2.png)
+
+6. Click on Update Credentials. Enter your username and password.
 
 ![](Images/code4z/code4z-img12-18.png)
 
-Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
-
-5. Edit your Password.
-
 ![](Images/code4z/code4z-img13-19.png)
-
-Note: You can leave this blank if you do not want to save your credentials in your machine. You will be prompted for your username once you start using Zowe Explorer.
-
-6. Edit your authorized connections
-
-![](Images/code4z/code4z-img14-20.png)
-
-7. Edit your API base path
-
-![](Images/image073-1.png)
-
-8. Edit the connection protocol
-
-![](Images/image073-2.png)
-
-9. Edit the encoding 
-
-![](Images/image073-3.png)
-
-10. Edit the maximum time delay for a response 
-
-![](Images/image073-4.png)
-
-If you are successful, an information message will appear:
-
-![](Images/code4z/code4z-img21.png)
-
-### Deleting Profiles
-
-The Zowe Explorer v1.5.0 release introduces the option to delete profiles. This allows you to permanently delete unwanted profiles and clean up your files. You can delete profiles either using the command palette or in the tree.
-
-Follow these steps:
-
-Command Palette:
-
-1. Press **CTRL+SHIFT+P** or Click **View** > **Command Palette** to open the Command Palette
-
-2. Type "Zowe: Delete". This command allows you to permanently delete a profile.
-
-![](Images/code4z/code4z-img22.png)
-
-3. Select the Profile that you want to delete.
-
-![](Images/code4z/code4z-img23.png)
-
-4. Confirm that you want to delete your profile.
-
-![](Images/code4z/code4z-img24-27.png)
-
-Once confirmed, the following message is displayed:
-
-![](Images/code4z/code4z-img25-28.png)
-
-Zowe Explorer Tree:
-
-1. Right-click on the profile and select **Delete Profile**.
-
-![](Images/code4z/code4z-img26.png)
-
-2. Confirm that you want to delete your profile.
-
-![](Images/code4z/code4z-img24-27.png)
-
-3. Once confirmed, the following message is displayed:
-
-![](Images/code4z/code4z-img25-28.png)
 
 ## Summary
 
-In this section, you have learned the basic features of the Zowe Explorer extension and how to create and work with Zowe compatible `zosmf` profiles.
+In this section, you have learned the basic features of the Zowe Explorer extension and how to create and work with Zowe compatible `zosmf` profile.
 
 \newpage
 
@@ -311,7 +197,7 @@ This section introduces the IBM Z Open Editor.
 
 ### What is the IBM Z Open Editor?
 
-The IBM Z Open Editor is a free extension for Visual Studio Code (VSCode) that provides language support for COBOL, PL/I, and JCL languages.  Along with this language support it also provides content assistance for applications that call CICS, MQ, IMS, and DB2 APIs.  The source code doesn't even need to reside on z/OS, it could be in a source code repository, locally in a file, or on z/OS.  Although this course focuses on COBOL as a source language, a lot of the functions we will discuss will also apply to PL/I and JCL.
+The IBM Z Open Editor is a free extension for Visual Studio Code (VSCode) that provides language support for COBOL, PL/I, and JCL languages.  Along with this language support it also provides content assistance for applications that call CICS, MQ, and DB2 APIs.  The source code doesn't even need to reside on z/OS, it could be in a source code repository, locally in a file, or on z/OS.  Although this course focuses on COBOL as a source language, a lot of the functions we will discuss will also apply to PL/I and JCL.
 
 ### The role of the Language Server Protocol
 
@@ -431,7 +317,7 @@ As you browse through code you will come across COBOL PERFORM statements or vari
 
 ## Code-completion
 
-Code completion isn't exactly a new concept in most IDEs.  For example, the Eclipse editor has provided auto-completion for Java APIs for a long time.  The same key combination, **CTRL+SPACE**, triggers this auto-completion function while you are coding and can be used to help guide you through COBOL syntax and CICS, IMS API calls.
+Code completion isn't exactly a new concept in most IDEs.  For example, the Eclipse editor has provided auto-completion for Java APIs for a long time.  The same key combination, **CTRL+SPACE**, triggers this auto-completion function while you are coding and can be used to help guide you through COBOL syntax and CICS API calls.
 
 ### COBOL reserved word completion
 
@@ -620,7 +506,7 @@ The Zowe CLI can be leveraged for quick exploration of z/OS services as well as 
 
 ### Installing Zowe CLI
 
-The Zowe CLI is a node package and is one of over 1.2 million node packages available on the public npm registry. After Node.js and npm are installed on the client machine, the core CLI can be installed by simply issuing `npm install -g @zowe/cli@zowe-v1-lts`. There is an alternative installation method if your workstation does not have access to the public registry. More details on installing Zowe CLI and Zowe CLI plug-ins are provided in a future section titled "Installation of Zowe CLI and plug-ins". 
+The Zowe CLI is a node package and is one of over 1.2 million node packages available on the public npm registry. After Node.js and npm are installed on the client machine, the core CLI can be installed by simply issuing `npm install -g @zowe/cli@zowe-v3-lts`. There is an alternative installation method if your workstation does not have access to the public registry. More details on installing Zowe CLI and Zowe CLI plug-ins are provided in a future section titled "Installation of Zowe CLI and plug-ins". 
 
 ### Interactive Help
 
@@ -639,35 +525,31 @@ In the example above, multiple extensions are installed. The structure of comman
 Don’t have the CLI installed yet? You can also check out a copy of the web help for the core Zowe CLI and Zowe plug-ins [here](https://docs.zowe.org/stable/web_help/index.html).
 
 ### Zowe Profiles
-Zowe client technologies like Zowe CLI and the Zowe Explorer VS Code Extension store connection information in files commonly known as profiles. This provides convenience as after profiles for services are created, users do not have to constantly provide this information. For the secure storage of credentials, there is the Secure Credential Store plug-in which is discussed more in a later section titled "Installation of Zowe CLI and plug-ins". The Secure Credential Store provides a means to store creds in the operating system’s secure credential vault.
 
-When creating profiles you can also specify the `prompt*` keyword to be prompted for your username and password so they will be masked on the command line. Figure 3 shows a sample command to create a zosmf profile. This will eliminate the need to provide these details on future commands.
-
-![](Images/zowe/zowe-cli-zosmf-profile-creation-command.png)
-
-*Figure 3. Zowe CLI z/OSMF Profile Creation Command*
+Zowe client technologies like Zowe CLI and the Zowe Explorer VS Code Extension store connection information in files commonly known as profiles. This provides convenience as after profiles for services are created, users do not have to constantly provide this information.
 
 ### Interacting with z/OS Data Sets
+
 Zowe CLI provides a significant suite of z/OS data set interaction functionality. See the following figures for details on available actions and a sample list command.
 
 ![](Images/zowe/zowe-cli-zos-files-actions.png)
 
-*Figure 4. Zowe CLI zos-files actions*
+*Figure 3. Zowe CLI zos-files actions*
 
 ![](Images/zowe/zowe-cli-zos-files-list-ds-command.png)
 
-*Figure 5. Sample Zowe CLI zos-files list ds command*
+*Figure 4. Sample Zowe CLI zos-files list ds command*
 
 ### Interacting with z/OS Jobs
 Zowe CLI provides a significant suite of z/OS jobs interaction functionality. See the following figures for details on available actions and a sample job submission command. 
 
 ![](Images/zowe/zowe-cli-zos-jobs-actions.png)
 
-*Figure 6. Zowe CLI zos-jobs actions*
+*Figure 5. Zowe CLI zos-jobs actions*
 
 ![](Images/zowe/zowe-cli-zos-jobs-submit-ds-command.png)
 
-*Figure 7. Sample Zowe CLI zos-jobs submit ds command*
+*Figure 6. Sample Zowe CLI zos-jobs submit ds command*
 
 ## Automating tasks using Zowe CLI
 Running commands interactively is a great way to learn the capabilities of the Zowe CLI. However, creating custom automation for your commonly repeated tasks and making use of valuable development tooling is where significant value lies. For COBOL development, significant time can be spent reviewing compiler output and testing programs. These repetitive tasks are excellent candidates for automation. 
@@ -677,31 +559,31 @@ Let’s investigate automating submitting a job and verifying the return code is
 
 ![](Images/automating-tasks/sample-package-json.png)
 
-*Figure 8. Sample package.json*
+*Figure 7. Sample package.json*
 
 Then I will create a config.json file to store all the variables I may wish to change for my project. In this case, we will set the job to submit and the maximum allowable return code for that job.
 
 ![](Images/automating-tasks/sample-config-json.png)
 
-*Figure 9. Sample config.json*
+*Figure 8. Sample config.json*
 
 Next, we will write our automation. The Zowe CLI was built with scripting in mind and can output responses in JSON format which can be easily parsed.
 
 ![](Images/automating-tasks/zowe-cli-response-format-json.png)
 
-*Figure 10. Sample Zowe CLI response format JSON output*
+*Figure 9. Sample Zowe CLI response format JSON output*
 
 Now, instead of issuing this command and reviewing it to see if the retcode is less than or equal to 4, we want to automate it. See the implementation in a node script below.
 
 ![](Images/automating-tasks/script-to-submit-job-check-rc.png)
 
-*Figure 11. Sample code to submit job and verify the output is less than or equal to a maximum allowable RC*
+*Figure 10. Sample code to submit job and verify the output is less than or equal to a maximum allowable RC*
 
 I had to make the investment to write this automation but for future job submissions I can simply issue `npm run submitJob`. IDEs like VS Code can visualize these tasks making my commonly repeated tasks as easy as clicking a button :). This job could compile, link, and/or run a COBOL program.
 
 ![](Images/automating-tasks/npm-script-button-click-and-run.png)
 
-*Figure 12. Visualization of npm script and sample run*
+*Figure 11. Visualization of npm script and sample run*
 
 More advanced code automating the compilation, deployment to test environment, and testing of a COBOL CICS application are described in this [blog](https://medium.com/zowe/continuous-integration-for-a-mainframe-app-800657e84e96). 
 
@@ -710,13 +592,13 @@ Another good example of automating tasks using Zowe CLI is when you want to inte
 
 ![](Images/automating-tasks/one-click-cobol-build.png)
 
-*Figure 13. "One Click" COBOL build process*
+*Figure 12. "One Click" COBOL build process*
 
 You can then level up this process by leveraging a CI/CD pipeline. What is a CI/CD pipeline? It is an automated way of building, testing, and deploying your application and you can do the same with your COBOL development. The figure below shows the pipeline for the same automated tasks that we did earlier.
 
 ![](Images/automating-tasks/CircleCI-pipeline.png)
 
-*Figure 14. CI/CD pipeline of the "one-click" COBOL build process*
+*Figure 13. CI/CD pipeline of the "one-click" COBOL build process*
 
 To know more about this topic, check [this](https://medium.com/@jessielaine.punongbayan/how-i-used-typescript-to-generate-my-cobol-programs-a2a180209148) out.
 
@@ -761,22 +643,22 @@ This section will cover the necessary steps and information to download and inst
 
 ### Install node.js
 
-1. Check for node.js installation and verify that the version number is v8 or higher.
+1. Check for node.js installation and verify that the version number is v18 or higher.
 
    Open your workstation's version of the command prompt (called Terminal on Mac OS X). Once the command prompt is open, use the command in Example 1.  to check if your workstation currently has a version of node.js installed.
 
 ```
 C:\Users\User> node -v
 
-V12.16.1    
+V20.15.1    
 ```
 *Example 1.  Node.js version*
 
-If you do not see a version number after you submit the command, you do not have node.js installed, or if it shows a version less than v8, you should continue following these instructions.  If you do see a version number and it is v8 or higher, you can move on to the section Install Java SDK.
+If you do not see a version number after you submit the command, you do not have node.js installed, or if it shows a version less than v18, you should continue following these instructions. If you do see a version number and it is v18 or higher, you can move on to the section Install Java SDK.
 
-2. If the node.js version is less than v8, or node isn't installed at all. 
+2. Ensure you are using a supported LTS version of Node.js. You can verify your version or find supported versions at [`https://nodejs.org/en/about/previous-releases`](https://nodejs.org/en/about/previous-releases)
 
-   Updating node.js to the appropriate version number is a relatively simple process because the installer takes care of most of the "heavy lifting".  All you will need to do is visit the Node.js download site, provided below and follow the download and installation instructions for your specific workstation platform.  Do this same process if you do not already have node.js installed.
+   Updating node.js to the appropriate version is a relatively simple process because the installer takes care of most of the "heavy lifting".  All you will need to do is visit the Node.js download site, provided below and follow the download and installation instructions for your specific workstation platform.  Do this same process if you do not already have node.js installed.
 
 [`https://nodejs.org/en/download/`](https://nodejs.org/en/download/)
 
@@ -788,24 +670,24 @@ This process will install the latest versions of Node.js and the node package ma
 
 ### Install Java SDK
 
-1. Check for Java installation and verify that the version number is v8 or higher.
+1. Check for Java installation and verify that the version number is v17 or higher.
 
-   Open your workstation's version of the command prompt, if not already open.  Once the command prompt is open, use the command in Example 2. to check if your workstation currently has a version of Java installed.  Java SDK 8 is the preferred version for these labs, however, any versions higher than that will suffice.
+   Open your workstation’s version of the command prompt, if not already open. Once the command prompt is open, use the command in Example 2. to check if your workstation currently has a version of Java installed. Java SDK 17 is the preferred version for these labs, however, any versions higher than that will suffice.
 
 ```
 C:\Users\User> java -version
 
-java version "1.8.0_241"
+java version "18.0.2.1"
 
-Java(TM) SE Runtime Environment (build 1.8.0_241-b07)
+Java(TM) SE Runtime Environment (build 18.0.2.1+1-1)
 
-Java HotSpot(TM) 64-Bit Server VM (build 25.241-b07, mixed mode)
+Java HotSpot(TM) 64-Bit Server VM (build 18.0.2.1+1-1, mixed mode)
 ```
 *Example 2.  Java version*
 
-If you do not see a version number after you submit the command, you do not have Java installed or if it shows a version less than v8, you should continue following these instructions.  The display format of the version number for Java is slightly different than what is displayed for node.js.  With Java, the second value in the displayed version number, i.e. the "8" in Example 2. , is the version number.  So, our example is showing Java SDK version 8.  If you do see a version number and it is v8 or higher, you can move on to the section Install VSCode.
+If you do not see a version number after you submit the command, you do not have Java installed or if it shows a version less than v17, you should continue following these instructions. The display format of the version number for Java is slightly different than what is displayed for node.js. The given example is showing Java SDK version 18. If you do see a version number and it is v17 or higher, you can move on to the section Install VSCode.
 
-2. If your version of Java displayed is less than v8, you need to uninstall the current version on your workstation and reinstall the correct version.  Follow the link below to uninstall instructions that represent your workstation operating system (OS).
+2. If your version of Java displayed is less than v17, you need to uninstall the current version on your workstation and reinstall the correct version. Follow the link below to uninstall instructions that represent your workstation operating system (OS).
 
 -Linux:
 
@@ -820,13 +702,11 @@ If you do not see a version number after you submit the command, you do not have
 [`https://www.java.com/en/download/help/uninstall_java.xml` ](https://www.java.com/en/download/help/uninstall_java.xml)
 
 
-3. Once Java is uninstalled from your workstation, you can click the Java JDK 8 download link below and follow the installation instructions for your specific OS.
+3. Once Java is uninstalled from your workstation, you can click the Java JDK 17 download link below and follow the installation instructions for your specific OS.
 
-[`https://www.oracle.com/java/technologies/javase-jdk8-downloads.html` ](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html)
+[`https://www.oracle.com/java/technologies/downloads/` ](https://www.oracle.com/java/technologies/downloads/)
 
 4. Verify the installation and proper version number as shown in Example 2.
-
-**Note**: You will be prompted to register a new Oracle account in order to download the installation file, please do so.  If you have an existing account, you may use that to log in and continue.
 
 ## Install VSCode
 
@@ -916,7 +796,7 @@ This chapter covers all aspects of the download and installation of Zowe CLI and
 
 ## Install prerequisites - Node.js
 
-Before installing Zowe CLI, please ensure an LTS version of Node v8.0 or higher is installed. Please refer back to the section titled "Install Node.js" if you have not already completed it. Please also verify that you have a version of Node Package Manager (npm) that is compatible with your version of Node.js. For a list of compatible versions, see [https://nodejs.org/en/download/releases/](https://nodejs.org/en/download/releases/). npm is included with the Node.js installation. Issue the command `npm --version` to view the version of npm that is installed.
+Before installing Zowe CLI, please ensure an LTS version of Node v18.0 or higher is installed. Please refer back to the section titled "Install Node.js" if you have not already completed it. Please also verify that you have a version of Node Package Manager (npm) that is compatible with your version of Node.js. For a list of compatible versions, see [https://nodejs.org/en/download/releases/](https://nodejs.org/en/download/releases/). npm is included with the Node.js installation. Issue the command `npm --version` to view the version of npm that is installed.
 
 ## Install Zowe CLI
 There are two recommended methods for installing the Zowe CLI. If you have access to the public npm registry from your workstation, we recommend using that installation method as pulling updates is seamless. If you do not have access to this registry, we recommend downloading the package from zowe.org and installing it from the bundled package.
@@ -925,7 +805,7 @@ There are two recommended methods for installing the Zowe CLI. If you have acces
 Issue the following command in your terminal (e.g. Command Prompt or if you are using VS Code, Terminal -> New Terminal):
 
 ```
-npm install -g @zowe/cli@zowe-v1-lts
+npm install -g @zowe/cli@zowe-v3-lts
 ```
 
 If the command returns an EACCESS error, refer to [Resolving EACCESS permissions errors when installing packages globally](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally) in the npm documentation.
@@ -938,12 +818,6 @@ If running Linux, please run the following command for your Linux distribution:
 - Debian/Ubuntu: `sudo apt-get install libsecret-1-dev`
 - Red Hat-based: `sudo yum install libsecret-devel`
 - Arch Linux: `sudo pacman -S libsecret`
-
-To install the Secure Credential Store Plug-in for Zowe CLI, issue the following command:
-
-```
-zowe plugins install @zowe/secure-credential-store-for-zowe-cli@zowe-v1-lts
-```
 
 User profiles, which contain connection information for interacting with various z/OS services, created after installing the plug-in will automatically store your credentials securely.
 
@@ -973,12 +847,6 @@ If running Linux, please run the following command for your Linux distribution:
 - Red Hat-based: `sudo yum install libsecret-devel`
 - Arch Linux: `sudo pacman -S libsecret`
 
-To install the Secure Credential Store Plug-in for Zowe CLI, issue the following command from where you unzipped the core CLI package contents:
-
-```
-zowe plugins install secure-credential-store-for-zowe-cli.tgz
-```
-
 User profiles, which contain connection information for interacting with various z/OS services, created after installing the plug-in will automatically store your credentials securely.
 
 To securely store credentials in existing user profiles (profiles that you created prior to installing the SCS plug-in), issue the following command:
@@ -988,10 +856,10 @@ zowe scs update
 ```
 
 ## Install Zowe CLI Plug-ins
-Zowe CLI is an extendable technology that can be enhanced by installing plug-ins. Zowe offers a number of [plug-ins](https://docs.zowe.org/stable/user-guide/cli-extending.html). At the time of this writing, these include plug-ins for [CICS](https://www.npmjs.com/package/@zowe/cics-for-zowe-cli), [Db2](https://www.npmjs.com/package/@zowe/db2-for-zowe-cli), [FTP](https://www.npmjs.com/package/@zowe/zos-ftp-for-zowe-cli), [IMS](https://www.npmjs.com/package/@zowe/ims-for-zowe-cli), and [MQ](https://www.npmjs.com/package/@zowe/mq-for-zowe-cli). There are also many vendor plug-ins, many of which are available on the [public registry](https://www.npmjs.com/search?q=zowe-cli). At the time of this writing, these include plug-ins for [CA Endevor](https://www.npmjs.com/package/@broadcom/endevor-for-zowe-cli), [CA Endevor Bridge for Git](https://www.npmjs.com/package/@broadcom/endevor-bridge-for-git-for-zowe-cli), [CA File Master Plus](https://www.npmjs.com/package/@broadcom/file-master-plus-for-zowe-cli), [CA OPS/MVS](https://www.npmjs.com/package/@broadcom/ops-for-zowe-cli), [CA View](https://www.npmjs.com/package/@broadcom/caview-for-zowe-cli), [IBM CICS Bundle Generation and Deployment](https://www.npmjs.com/package/zowe-cli-cics-deploy-plugin), and [IBM z/OS Connect EE](https://www.npmjs.com/package/@zosconnect/zosconnect-zowe-cli).
+Zowe CLI is an extendable technology that can be enhanced by installing plug-ins. Zowe offers a number of [plug-ins](https://docs.zowe.org/stable/user-guide/cli-extending.html). At the time of this writing, these include plug-ins for [CICS](https://www.npmjs.com/package/@zowe/cics-for-zowe-cli), [Db2](https://www.npmjs.com/package/@zowe/db2-for-zowe-cli), [FTP](https://www.npmjs.com/package/@zowe/zos-ftp-for-zowe-cli), and [MQ](https://www.npmjs.com/package/@zowe/mq-for-zowe-cli). There are also many vendor plug-ins, many of which are available on the [public registry](https://www.npmjs.com/search?q=zowe-cli). At the time of this writing, these include plug-ins for [CA Endevor](https://www.npmjs.com/package/@broadcom/endevor-for-zowe-cli), [CA Endevor Bridge for Git](https://www.npmjs.com/package/@broadcom/endevor-bridge-for-git-for-zowe-cli), [CA File Master Plus](https://www.npmjs.com/package/@broadcom/file-master-plus-for-zowe-cli), [CA OPS/MVS](https://www.npmjs.com/package/@broadcom/ops-for-zowe-cli), [CA View](https://www.npmjs.com/package/@broadcom/caview-for-zowe-cli), [IBM CICS Bundle Generation and Deployment](https://www.npmjs.com/package/zowe-cli-cics-deploy-plugin), and [IBM z/OS Connect EE](https://www.npmjs.com/package/@zosconnect/zosconnect-zowe-cli).
 
 ### Install from Public npm Registry 
-To install a Zowe CLI plug-in from the registry, simply locate the plug-in you wish to install, e.g. `@zowe/cics-for-zowe-cli`, find the distribution tag for the distribution you want to install, e.g. `zowe-v1-lts`, and issue the following command: 
+To install a Zowe CLI plug-in from the registry, simply locate the plug-in you wish to install, e.g. `@zowe/cics-for-zowe-cli`, find the distribution tag for the distribution you want to install, e.g. `zowe-v3-lts`, and issue the following command: 
 
 ```
 zowe plugins install <name>@<distTag>
@@ -1000,30 +868,29 @@ zowe plugins install <name>@<distTag>
 For example,
 
 ```
-zowe plugins install @zowe/cics-for-zowe-cli@zowe-v1-lts
+zowe plugins install @zowe/cics-for-zowe-cli@zowe-v3-lts
 ```
 
 Multiple plug-ins can be installed in a single command. For example, to install all Zowe CLI plug-ins available from the Zowe organization, you could issue:
 
 ```{.bash}
-zowe plugins install @zowe/cics-for-zowe-cli@zowe-v1-lts @zowe/ims-for-zowe-cli@zowe-v1-lts @zowe/mq-for-zowe-cli@zowe-v1-lts @zowe/zos-ftp-for-zowe-cli@zowe-v1-lts @zowe/db2-for-zowe-cli@zowe-v1-lts
+zowe plugins install @zowe/cics-for-zowe-cli@zowe-v3-lts @zowe/mq-for-zowe-cli@zowe-v3-lts @zowe/zos-ftp-for-zowe-cli@zowe-v3-lts @zowe/db2-for-zowe-cli@zowe-v3-lts
 ```
 
 Vendor plug-ins on the registry are installed in the same way. For example, to install the CA Endevor plug-in, you would issue
 
 ```
-zowe plugins install @broadcom/endevor-for-zowe-cli@zowe-v1-lts
+zowe plugins install @broadcom/endevor-for-zowe-cli@zowe-v3-lts
 ```
 
 ### Install from Bundled Package
 Navigate to [Zowe.org Downloads](https://www.zowe.org/#download) and click the CLI Plugins button to download the package which includes all Zowe CLI plug-ins for the Zowe organization. After accepting the EULA for Zowe, a package named `zowe-cli-plugins-v.r.m.zip` will be downloaded to your machine. Unzip the contents of `zowe-cli-plugins-v.r.m.zip` to a preferred location on your machine. You can select which plug-ins you want to install. The IBM Db2 plug-in requires [additional configuration](https://docs.zowe.org/stable/user-guide/cli-db2plugin.html#installing-from-a-local-package) when installing from a local package. To install all plug-ins you can issue:
 
 ```
-zowe plugins install cics-for-zowe-cli.tgz zos-ftp-for-zowe-cli.tgz ims-for-zowe-cli.tgz mq-for-zowe-cli.tgz db2-for-zowe-cli.tgz
+zowe plugins install cics-for-zowe-cli.tgz zos-ftp-for-zowe-cli.tgz mq-for-zowe-cli.tgz db2-for-zowe-cli.tgz
 ```
 
 For offline installation of vendor plug-ins, please reach out to the specific vendor for details.
 
 ## Summary
 In this chapter, we walked through the process of installing the prerequisite software, Node.js, and npm, as well as Zowe CLI and various plug-ins.
-
