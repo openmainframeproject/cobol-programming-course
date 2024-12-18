@@ -698,7 +698,7 @@ The extension pack contains a number of extensions that can be leveraged when wo
 
 ## Summary
 
-In this chapter, you have been introduced to VSCode and some of the extension tools available to it.  We have walked through the process of installing the pre-requisite software, Node.js and Java SDK, as well as VSCode, Zowe Explorer, IBM Z Open Editor, and Code4z.  You have also been briefly introduced to the utility of these extensions in VSCode.  In the subsequent chapters, we will delve deeper into how and when to use them and get some practice through lab assignments. 
+In this chapter, you have been introduced to VSCode and some of the extension tools available to it.  We have walked through the process of installing VSCode, Zowe Explorer, IBM Z Open Editor, and Code4z.  You have also been briefly introduced to the utility of these extensions in VSCode.  In the subsequent chapters, we will delve deeper into how and when to use them and get some practice through lab assignments. 
 
 \newpage
 
