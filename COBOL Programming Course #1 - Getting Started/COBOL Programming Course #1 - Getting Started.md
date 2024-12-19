@@ -619,11 +619,8 @@ As both a user and programmatic interface, command-line interfaces offer signifi
 
 # Installation of VSCode and extensions
 
-This chapter covers all aspects of download and installation of Visual Studio (VS) Code and any prerequisites that are needed.  It includes:
+This chapter covers all aspects of download and installation of Visual Studio (VS) Code and any extensions that are needed.  It includes:
 
-- **Install prerequisites**
-     - **Install node.js**
-     - **Install Java SDK**
 - **Install VSCode**
 
 - **Install VSCode extensions**
@@ -632,81 +629,6 @@ This chapter covers all aspects of download and installation of Visual Studio (V
      - **Code4z**
 
 - **Summary**
-
-## Install prerequisites
-
-This section will cover the necessary steps and information to download and install the prerequisites needed for the subsequent labs within this book.  This software is needed for one or more of the applications we will be utilizing in our labs throughout the book. The prerequisites include:
-
-- Install node.js
-
-- Install Java SDK
-
-### Install node.js
-
-1. Check for node.js installation and verify that the version number is v18 or higher.
-
-   Open your workstation's version of the command prompt (called Terminal on Mac OS X). Once the command prompt is open, use the command in Example 1.  to check if your workstation currently has a version of node.js installed.
-
-```
-C:\Users\User> node -v
-
-V20.15.1    
-```
-*Example 1.  Node.js version*
-
-If you do not see a version number after you submit the command, you do not have node.js installed, or if it shows a version less than v18, you should continue following these instructions. If you do see a version number and it is v18 or higher, you can move on to the section Install Java SDK.
-
-2. Ensure you are using a supported LTS version of Node.js. You can verify your version or find supported versions at [`https://nodejs.org/en/about/previous-releases`](https://nodejs.org/en/about/previous-releases)
-
-   Updating node.js to the appropriate version is a relatively simple process because the installer takes care of most of the "heavy lifting".  All you will need to do is visit the Node.js download site, provided below and follow the download and installation instructions for your specific workstation platform.  Do this same process if you do not already have node.js installed.
-
-[`https://nodejs.org/en/download/`](https://nodejs.org/en/download/)
-
-This process will install the latest versions of Node.js and the node package manager (npm) and overwrite any older version files in your system.  This removes the step of needing to manually uninstall the previous versions beforehand.
-
-3. Once completed, verify the installation and proper version number, as shown previously in Example 1.
-
-**Note**: The version numbers in our examples are provided purely for reference and may not reflect the latest versions of the software.
-
-### Install Java SDK
-
-1. Check for Java installation and verify that the version number is v17 or higher.
-
-   Open your workstation’s version of the command prompt, if not already open. Once the command prompt is open, use the command in Example 2. to check if your workstation currently has a version of Java installed. Java SDK 17 is the preferred version for these labs, however, any versions higher than that will suffice.
-
-```
-C:\Users\User> java -version
-
-java version "18.0.2.1"
-
-Java(TM) SE Runtime Environment (build 18.0.2.1+1-1)
-
-Java HotSpot(TM) 64-Bit Server VM (build 18.0.2.1+1-1, mixed mode)
-```
-*Example 2.  Java version*
-
-If you do not see a version number after you submit the command, you do not have Java installed or if it shows a version less than v17, you should continue following these instructions. The display format of the version number for Java is slightly different than what is displayed for node.js. The given example is showing Java SDK version 18. If you do see a version number and it is v17 or higher, you can move on to the section Install VSCode.
-
-2. If your version of Java displayed is less than v17, you need to uninstall the current version on your workstation and reinstall the correct version. Follow the link below to uninstall instructions that represent your workstation operating system (OS).
-
--Linux:
-
-[`https://www.java.com/en/download/help/linux_uninstall.xml` ](https://www.java.com/en/download/help/linux_uninstall.xml)
-
--Mac:
-
-[`https://www.java.com/en/download/help/mac_uninstall_java.xml` ](https://www.java.com/en/download/help/mac_uninstall_java.xml)
-
--Windows:
-
-[`https://www.java.com/en/download/help/uninstall_java.xml` ](https://www.java.com/en/download/help/uninstall_java.xml)
-
-
-3. Once Java is uninstalled from your workstation, you can click the Java JDK 17 download link below and follow the installation instructions for your specific OS.
-
-[`https://www.oracle.com/java/technologies/downloads/` ](https://www.oracle.com/java/technologies/downloads/)
-
-4. Verify the installation and proper version number as shown in Example 2.
 
 ## Install VSCode
 
@@ -722,13 +644,15 @@ If you do not already have VSCode installed on your workstation, please do so no
 
 ## Install VSCode extensions
 
-This section introduces two VSCode extensions, Zowe Explorer and IBM Z Open Editor listed in Figure  2. , and instructions on how to install them.
+This section introduces Zowe Explorer, IBM Z Open Editor, and the Code4z extension pack listed in Figure 2., and instructions on how to install them. Note that you may choose to use either IBM Z Open Editor or the Code4z extension pack.
 
 ![](Images/image026-a.png)
 
 ![](Images/image026-b.png)
 
-*Figure  2.  VSCode required extensions*
+![](Images/image026-c.png)
+
+*Figure  2.  VSCode extensions*
 
 ### Zowe Explorer
 
@@ -754,13 +678,13 @@ IBM Z Open Editor brings COBOL and PL/I language support to Microsoft VSCode.  I
 
 #### Install IBM Z Open Editor
 
+Prior to installing the extension, please review the prerequisites at https://marketplace.visualstudio.com/items?itemName=IBM.zopeneditor#prerequisites
+
 Open VSCode and in the left side tool menu select **Extensions**.  From there, in the "Search Extensions in Marketplace" search field, type `IBM Z Open Editor`.  Search results will begin populating, select **" IBM Z Open Editor "** and click **install**, depicted in Figure  4.
 
 ![](Images/image032.png)
 
 *Figure  4.  Install IBM Z Open Editor in VSCode*
-
-**Note**: There may be some limitations with IBM Z Open Editor if running a 32-bit Java version on Windows.
 
 ### Code4z
 
@@ -768,13 +692,13 @@ Code4z is an all-in-one, open-source mainframe extension package for developers 
 
 #### Install Code4z
 
-Open VSCode and in the left side tool menu select **Extensions**.  From there, in the "Search Extensions in Marketplace" search field, type `Code4z`.  Search results will begin populating, select **" Code4z "** and click **install**.
+Open VSCode and in the left side tool menu select **Extensions**.  From there, in the "Search Extensions in Marketplace" search field, type `Code4z`.  Search results will begin populating, select **"Code4z"** and click **install**.
 
 The extension pack contains a number of extensions that can be leveraged when working with the mainframe, including the COBOL Language Support extension which provides similar functionality to the Z Open Editor extension. Therefore, ensure only one of these extensions is enabled. Extensions can be disabled within VS Code by locating the extension in the Extensions menu, clicking the settings gear, and selecting `Disable`. Other extensions included in the Code4z pack will work with either COBOL Language Support or Z Open Editor.
 
 ## Summary
 
-In this chapter, you have been introduced to VSCode and some of the extension tools available to it.  We have walked through the process of installing the pre-requisite software, Node.js and Java SDK, as well as VSCode, Zowe Explorer, IBM Z Open Editor, and Code4z.  You have also been briefly introduced to the utility of these extensions in VSCode.  In the subsequent chapters, we will delve deeper into how and when to use them and get some practice through lab assignments. 
+In this chapter, you have been introduced to VSCode and some of the extension tools available to it.  We have walked through the process of installing VSCode, Zowe Explorer, IBM Z Open Editor, and Code4z.  You have also been briefly introduced to the utility of these extensions in VSCode.  In the subsequent chapters, we will delve deeper into how and when to use them and get some practice through lab assignments. 
 
 \newpage
 
@@ -796,7 +720,32 @@ This chapter covers all aspects of the download and installation of Zowe CLI and
 
 ## Install prerequisites - Node.js
 
-Before installing Zowe CLI, please ensure an LTS version of Node v18.0 or higher is installed. Please refer back to the section titled "Install Node.js" if you have not already completed it. Please also verify that you have a version of Node Package Manager (npm) that is compatible with your version of Node.js. For a list of compatible versions, see [https://nodejs.org/en/download/releases/](https://nodejs.org/en/download/releases/). npm is included with the Node.js installation. Issue the command `npm --version` to view the version of npm that is installed.
+Before installing Zowe CLI, please ensure a supported LTS (Long Term Support) version of Node.js is installed and that you have a version of npm (Node Package Manager) that is compatible with your version of Node.js. You can view the list of supported versions of Node and their associated npm version at [`https://nodejs.org/en/about/previous-releases`](https://nodejs.org/en/about/previous-releases)
+
+You can follow these steps to confirm the prerequisites are met:
+
+Open your workstation's version of the command prompt (called Terminal on Mac OS X). Once the command prompt is open, use the command in Example 1.  to check if your workstation currently has a version of node.js installed.
+
+```
+C:\Users\User> node -v
+
+V22.12.0    
+```
+*Example 1.  Node.js version*
+
+If you do not see a version number after you submit the command, you do not have node.js installed, or if it shows an unsupported version, then you need to install a recent LTS version. 
+
+Updating node.js to the appropriate version is a relatively simple process because the installer takes care of most of the "heavy lifting".  All you will need to do is visit the Node.js download site, provided below, and follow the download and installation instructions for your specific workstation platform.
+
+[`https://nodejs.org/en/download/`](https://nodejs.org/en/download/)
+
+This process will install the latest versions of Node.js and the node package manager (npm) and overwrite any older version files in your system.  This removes the step of needing to manually uninstall the previous versions beforehand.
+
+Once completed, verify the installation and proper version number, as shown previously in Example 1.
+
+**Note**: The version numbers in our examples are provided purely for reference and may not reflect the latest versions of the software.
+
+To confirm you have the correct version of npm installed, you can similarly issue `npm --version` and see if it matches the correct Node.js version at [`https://nodejs.org/en/about/previous-releases`](https://nodejs.org/en/about/previous-releases). 
 
 ## Install Zowe CLI
 There are two recommended methods for installing the Zowe CLI. If you have access to the public npm registry from your workstation, we recommend using that installation method as pulling updates is seamless. If you do not have access to this registry, we recommend downloading the package from zowe.org and installing it from the bundled package.
