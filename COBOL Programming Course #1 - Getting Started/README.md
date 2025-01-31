@@ -13,13 +13,11 @@ To complete the course, you will also need to do one of the following:
 - Select a [provider](#providers) below and follow their registration process. Once complete, you should be given system details to use in the course.
 - Upload the source code for the course (located in the Labs folder) to your mainframe environment.
 
-If you run into any issues, please don't hesitate to reach out on our [slack channel](https://openmainframeproject.slack.com/archives/C011NE32Z1T).
-
 ## Providers
 
 These materials are being used by other organizations to provide COBOL training to the community. Neither this project nor Open Mainframe Project reviews, maintains, or endorses any one of these particular providers. If you are using these materials in your training materials, feel free [to edit and issue a pull request](https://github.com/openmainframeproject/cobol-programming-course/edit/governance-docs/README.md) to have it included.
 
-- IBM has provided a [free environment for completing this lab](http://ibm.biz/cobollabs).
+- IBM has provided a [free environment for completing this lab](https://ibm.biz/cobollabs).
 
 ## Build
 
