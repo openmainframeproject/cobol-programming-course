@@ -247,7 +247,7 @@ In this chapter, we discuss the concept of unit testing in COBOL programming lan
 COBOL Check serves as a unit testing framework specifically designed to assist COBOL programmers who encounter challenges with modern development methods like test-driven development. One notable drawback of existing tools for COBOL and other mainframe languages is their limited granularity when it comes to unit testing, especially when compared to languages like Java, C++, and C# etc. However, COBOL Check offers a solution by enabling developers to conduct fine-grained unit testing using both gnuCOBOL and Enterprise COBOL.
 
 
-### Where Can you run COBOL Check?
+### Where can you run COBOL Check?
 
 COBOL Check strives to facilitate the maintenance and modernization of legacy COBOL applications on IBM zSeries systems. It achieves this by providing developers with the flexibility to work on either the mainframe platform or off-platform environments such as Windows, Unix, Linux, or OS X instances disconnected from the mainframe. By harnessing the advantages of fine-grained "micro test" development at the level of individual COBOL paragraphs. 
 
@@ -298,13 +298,13 @@ GitHub Actions allows you to automate workflows within your GitHub repository. W
 
 This YAML file can specify Zowe CLI commands to be executed along with options for handling outputs and chaining actions.
 
-Over the past few weeks, I've been working on creating a workflow that streamlines the testing process, making it easier and more efficient for developers to test their COBOL programs on the mainframe, all integrated seamlessly with GitHub.
+To that end we have created a workflow that streamlines the testing process, making it easier and more efficient for developers to test their COBOL programs on the mainframe, all integrated seamlessly with GitHub.
 
 One of the key objectives for future development is to further automate the process by extending the current workflow by incorporating the submission of jobs using JCL (Job Control Language) files.
 
-In this tutorial, I'll be walking you through the steps I've taken to create this automation, from setting up the environment to running the final GitHub Actions workflow. We'll cover everything from the basics of using cobolcheck to integrating it with GitHub Actions.
+In this tutorial, we'll be walking you through the steps we've taken to create this automation, from setting up the environment to running the final GitHub Actions workflow. We'll cover everything from the basics of using COBOL Check to integrating it with GitHub Actions.
 
-Whether you're new to COBOL or an experienced programmer looking to modernize your workflow with GitHub Actions, I hope you'll find this tutorial helpful and informative.
+Whether you're new to COBOL or an experienced programmer looking to modernize your workflow with GitHub Actions, we hope you'll find this tutorial helpful and informative.
 
 So, let's dive in and see how we can make COBOL testing a breeze with automation and GitHub Actions!
 
@@ -419,11 +419,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
+
     - name: Set up Java
       uses: actions/setup-java@v2
       with:
         java-version: '11'
+        distribution: 'adopt'
+        
+    - name: Install Zowe CLI
+      run: npm install -g @zowe/cli@latest
+      
     - name: Run COBOL Check
       env:
         ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
@@ -440,7 +446,8 @@ Let's break this down:
 - The 'steps' section outlines what the job will do:
   1. It checks out our repository.
   2. It sets up Java, which is needed for cobolcheck.
-  3. It runs our COBOL check commands.
+  3. It installs Zowe CLI, which we will need for mainframe interaction.
+  4. It runs our COBOL check commands.
 
 Notice how we're using our GitHub Secrets here. We're setting them as environment variables that our script can use, but their values are never exposed in the logs.
 
@@ -454,7 +461,7 @@ Now, let's commit this workflow file:
 2. Add a commit message like "Add GitHub Actions workflow for COBOL checking".
 3. Click 'Commit new file'.
 
-Great! We've just set up our GitHub Actions workflow. To test it, let's make a small change to our repository - maybe update the README file.
+Great! We've just set up our GitHub Actions workflow. To test it, if it hasn't already been triggered by our commit, let's make a small change to our repository - maybe update the README file.
 
 ```plaintext
 [Make a change and commit]
@@ -477,7 +484,7 @@ Let's go through this process step by step:
 
 1. Navigate to the COBOL Check GitHub repository at https://github.com/openmainframeproject/cobol-check/tree/Developer/build/distributions.
 
-2. Here, we're looking for the latest .zip file. It should be named something like 'cobol-check-0.X.X.zip'. Click on the 'View raw' button or the download button in the top right corner to download this file.
+2. Here, we're looking for the latest .zip file. It should be named something like 'cobol-check-0.X.X.zip' (as of March 2025 newest version is 2.16). Click on the 'View raw' button or the download button in the top right corner to download this file.
 
 3. Once the download is complete, let's extract the contents of the zip file.
 
@@ -493,7 +500,7 @@ Let's go through this process step by step:
     [Switch to your local repository folder]
     ```
 
-    Create a new folder in your repository called 'cobol-check' and copy the extracted files into this folder.
+    On your local environment, drag the extracted 'cobol-check-0.X.X' folder into your own repository (i.e. inside 'cobol-check-automation') and rename it to just 'cobol-check' by removing its '-0.X.X' suffix. This way, regardless of future COBOL Check versions we can always use `./cobol-check` inside our scripts to access the utility.
 
 5. Next, we need to stage these new files for commit.
 
@@ -533,12 +540,12 @@ Let's go through this process step by step:
     In the next segment, we'll update our GitHub Actions workflow to use this local copy of COBOL Check, and we'll start writing the actual commands to run our COBOL tests.
 
 ### Basic Script
-In this segment, we're going to create a crucial script for our COBOL Check automation process. This script, which we'll call `zowe_operations.sh`, is responsible for setting up our mainframe environment and uploading the necessary files for COBOL Check to run.
+In this segment, we're going to create a crucial script for our COBOL Check automation process. This script, which we'll call `zowe_operations.sh`, is responsible for setting up our mainframe environment and uploading the necessary files for COBOL Check to run there.
 
 But before we create it, let's understand why we need this script and what it does:
 
 1. **Mainframe Interaction**: This script uses Zowe CLI to interact with the mainframe. Zowe is an open-source framework that simplifies interaction with z/OS systems.
-2. **Environment Setup**: It ensures that we have the correct directory structure on the mainframe to run our COBOL Check tests.
+2. **Environment Setup**: It ensures that we have the correct directory structure on the mainframe to run our COBOL Check tests there.
 3. **File Transfer**: It uploads our COBOL Check files from our GitHub repository to the mainframe.
 
 By automating these steps, we ensure that every time our GitHub Actions workflow runs, we have the correct environment and up-to-date files on the mainframe to run our COBOL Check tests.
@@ -561,36 +568,43 @@ By automating these steps, we ensure that every time our GitHub Actions workflow
     # Check if directory exists, create if it doesn't
     if ! zowe zos-files list uss-files "/z/$LOWERCASE_USERNAME/cobolcheck" &>/dev/null; then
       echo "Directory does not exist. Creating it..."
-      zowe zos-files create uss-directory /z/$LOWERCASE_USERNAME/cobolcheck
+      zowe zos-files create uss-directory "/z/$LOWERCASE_USERNAME/cobolcheck"
     else
       echo "Directory already exists."
     fi
 
     # Upload files
-    zowe zos-files upload dir-to-uss "./cobol-check" "/z/$LOWERCASE_USERNAME/cobolcheck" --recursive --binary-files "cobol-check-0.2.9.jar"
+    zowe zos-files upload dir-to-uss "./cobol-check" "/z/$LOWERCASE_USERNAME/cobolcheck" --recursive --binary-files "cobol-check-0.2.16.jar"
 
     # Verify upload
     echo "Verifying upload:"
     zowe zos-files list uss-files "/z/$LOWERCASE_USERNAME/cobolcheck"
     ```
 
-5. Scroll down to the 'Commit new file' section.
-6. Add a commit message like "Add Zowe operations script in .github/scripts/".
-7. Ensure 'Commit directly to the main branch' is selected.
-8. Click 'Commit new file'.
+5. Please take notice of the "Upload files" section at the end. It runs a Zowe command that uploads the COBOL Check folder to the mainframe and we need to make sure that the Java binary file within it (which includes an evolving version suffix in its name) is correctly specified in the "--binary-files" flag. In this example, it's "cobol-check-0.2.16.jar". 
+6. Also, make sure this long command is typed in a single line, even if it appears to be split in this document's text.
+7. Scroll down to the 'Commit new file' section.
+8. Add a commit message like "Add Zowe operations script in .github/scripts/".
+9. Ensure 'Commit directly to the main branch' is selected.
+10. Click 'Commit new file'.
 
 Great! Now our Zowe operations script is in the repository, neatly organized in the `.github/scripts/` directory.
 
 **Next, let's update our GitHub Actions workflow to use this new script:**
 
 1. In your repository, navigate to the `.github/workflows` directory.
-2. Click on the workflow file we created earlier (it might be named `main.yml`).
+2. Click on the workflow file we created earlier (which GitHub calls `main.yml` by default).
 3. Click the pencil icon to edit the file.
 4. Find the step we previously named 'Run COBOL Check' and update it to look like this:
 
     ```yaml
     - name: Setup Mainframe Environment and Upload COBOL Check
       env:
+        ZOWE_OPT_HOST: 204.90.115.200
+        ZOWE_OPT_PORT: 10443
+        ZOWE_OPT_USER: ${{ secrets.ZOWE_USERNAME }}
+        ZOWE_OPT_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
+        ZOWE_OPT_REJECT_UNAUTHORIZED: false 
         ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
         ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
       run: |
@@ -629,7 +643,7 @@ Let's create this script directly on GitHub:
     java -version
 
     # Set ZOWE_USERNAME
-    ZOWE_USERNAME="Z99998"  # Replace with the actual username
+    ZOWE_USERNAME="Z99998"  # Replace with your actual username
 
     # Change to the cobolcheck directory
     cd cobolcheck
@@ -655,6 +669,9 @@ Let's create this script directly on GitHub:
       ./cobolcheck -p $program
       echo "Cobolcheck execution completed for $program (exceptions may have occurred)"
 
+      # Note: The "CC##99.CBL" file name below is NOT a placeholder
+      # Keep it as is in the code
+
       # Check if CC##99.CBL was created, regardless of cobolcheck exit status
       if [ -f "CC##99.CBL" ]; then
         # Copy to the MVS dataset
@@ -671,6 +688,9 @@ Let's create this script directly on GitHub:
       if [ -f "${program}.JCL" ]; then
         if cp ${program}.JCL "//'${ZOWE_USERNAME}.JCL($program)'"; then
           echo "Copied ${program}.JCL to ${ZOWE_USERNAME}.JCL($program)"
+          # Submit job to run testing version of the program
+          submit ${program}.JCL
+          echo "Submitted job ${program}.JCL"
         else
           echo "Failed to copy ${program}.JCL to ${ZOWE_USERNAME}.JCL($program)"
         fi
@@ -704,19 +724,20 @@ Add this new step after the 'Setup Mainframe Environment and Upload COBOL Check'
     ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
     ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
   run: |
-    chmod +x .github/scripts/mainframe_operations.sh
-    .github/scripts/mainframe_operations.sh
+    sshpass -p "$ZOWE_PASSWORD" ssh -o StrictHostKeyChecking=no $ZOWE_USERNAME@204.90.115.200 'sh -s' < .github/scripts/mainframe_operations.sh
 ```
 
-This new step will execute our mainframe operations script, running COBOL Check for each of our programs.
+Note that this new step will execute our mainframe operations script directly on the mainframe itself, by way of establishing a secure shell (ssh) connection and feeding our bash script into it, thus running COBOL Check for each specified program using the file structure previously uploaded to your user directory in the zOS Unix System Services (i.e. "/z/z99999/cobolcheck/").
 
-Remember to commit these changes to the workflow file.
+This is in contrast to our previous shell script which ran within the GitHub Actions environment using the files and folders located in the repository itself. Again, make sure that this long last command is typed in a single line of code.
+
+Remember to commit these changes to the workflow file with an appropiate message like "Update workflow with new mainframe step".
 
 In the GitHub Actions output for this step, you should expect to see:
 
-1. Confirmation that the script changed to the correct directory.
+1. Confirmation that the script changed to the correct directory (note that here the directory is called "cobolcheck", with no dash, as we named it when uploading the folder into mainframe earlier).
 2. Messages about making files executable.
-3. Output from COBOL Check for each program (NUMBERS, EMPPAY, DEPTPAY).
+3. Output from COBOL Check for each program (NUMBERS, EMPPAY, DEPTPAY). Note that only NUMBERS exists for now, as we will be creating the other ones on upcoming lab steps.
 4. Messages about copying files to MVS datasets.
 5. Any error messages if something goes wrong.
 
@@ -726,28 +747,26 @@ Now that we have our main COBOL Check execution script, we need to create the Jo
 **Let's start by creating the JCL file for our NUMBERS program:**
 
 1. Navigate to your GitHub repository in your web browser.
-2. Click on the 'Add file' button, then select 'Create new file'.
-3. Name the file `NUMBERS.JCL`.
-4. In the file editor, let's add our JCL content:
+2. Be sure to be inside your "cobol-check" folder.
+3. Click on the 'Add file' button, then select 'Create new file'.
+4. Name the file `NUMBERS.JCL`.
+5. In the file editor, let's add our JCL content:
 
 ```plaintext
 //NUMBERSJ JOB 1,NOTIFY=&SYSUID
 //*******************************************************
 //COBRUN  EXEC IGYWCL
-//COBOL.SYSIN  DD DSN=&SYSUID..CBL(CBL0001),DISP=SHR
-//LKED.SYSLMOD DD DSN=&SYSUID..LOAD(CBL0001),DISP=SHR
+//COBOL.SYSIN  DD DSN=&SYSUID..CBL(NUMBERS),DISP=SHR
+//LKED.SYSLMOD DD DSN=&SYSUID..LOAD(NUMBERS),DISP=SHR
 //*******************************************************
 // IF RC = 0 THEN
 //*******************************************************
 //RUN     EXEC PGM=NUMBERS
 //STEPLIB   DD DSN=&SYSUID..LOAD,DISP=SHR
-//ACCTREC   DD DSN=&SYSUID..DATA,DISP=SHR
-//PRTLINE   DD SYSOUT=*,OUTLIM=15000
 //SYSOUT    DD SYSOUT=*,OUTLIM=15000
 //CEEDUMP   DD DUMMY
 //SYSUDUMP  DD DUMMY
 //*******************************************************
-// ELSE
 // ENDIF
 ```
 
@@ -755,8 +774,8 @@ Now, let's break down what this JCL file does:
 
 1. `//NUMBERSJ JOB 1,NOTIFY=&SYSUID`: This line defines the job name and parameters.
 2. `//COBRUN  EXEC IGYWCL`: This executes the COBOL compiler and linkage editor.
-3. `//COBOL.SYSIN  DD DSN=&SYSUID..CBL(CBL0001),DISP=SHR`: This specifies the input COBOL source code.
-4. `//LKED.SYSLMOD DD DSN=&SYSUID..LOAD(CBL0001),DISP=SHR`: This specifies where to store the compiled program.
+3. `//COBOL.SYSIN  DD DSN=&SYSUID..CBL(NUMBERS),DISP=SHR`: This specifies the input COBOL source code.
+4. `//LKED.SYSLMOD DD DSN=&SYSUID..LOAD(NUMBERS),DISP=SHR`: This specifies where to store the compiled program.
 5. The `IF RC = 0 THEN` block: This checks if the compilation was successful.
 6. `//RUN     EXEC PGM=NUMBERS`: This executes the NUMBERS program.
 7. The subsequent DD statements define the necessary datasets for the program execution.
@@ -775,16 +794,16 @@ In the GitHub Actions output, you should now expect to see:
 1. A message indicating that `NUMBERS.JCL` was found.
 2. A message confirming that `NUMBERS.JCL` was copied to the appropriate MVS dataset.
 
-Remember, we still need to create similar JCL files for EMPPAY and DEPTPAY programs. In a real-world scenario, each program would have its own specific JCL file tailored to its requirements.
+Remember, we still need to create similar JCL files for the upcoming EMPPAY and DEPTPAY programs. In a real-world scenario, each program would have its own specific JCL file tailored to its requirements as file definitions and other dependencies needed to run will usually vary on a case-by-case basis. However, for this practice we'll keep it simple with minimal data definitions.
 
-**Now that we've created and committed our JCL file, let's review how we can manually submit this job using Zowe Explorer in Visual Studio Code. As you'll recall from the introductory chapter of this course, you should already have Zowe Explorer set up and configured in your VSCode environment.**
+**Now that we've created and committed our JCL file, let's review how we can also manually submit this job using Zowe Explorer in Visual Studio Code. As you'll recall from the introductory chapter of this course, you should already have Zowe Explorer set up and configured in your VSCode environment.**
 
 Let's go through the process of submitting our NUMBERS job:
 
 1. Open VSCode and locate the Zowe Explorer icon in your sidebar. Click on it to open the Zowe Explorer panel.
 2. In the Zowe Explorer panel, you should see your mainframe connection that we set up earlier in the course.
-3. Expand your connection and navigate to your JCL dataset. It should be named something like `YOURUSERID.JCL`.
-4. Find the NUMBERS member we just created.
+3. Expand your connection and navigate to your partitioned JCL dataset. It should likely be named `<YOURUSERID>.JCL`.
+4. Find the NUMBERS member we just created and uploaded via script.
 5. Right-click on the NUMBERS member and select 'Submit Job'.
 6. Zowe Explorer will submit the job to the mainframe and show you the job ID. You'll see a notification in the bottom right corner of VSCode with this information.
 7. Once the job is completed, right-click on the job in the 'Jobs' view and select 'View Job Output' to see the results of your job submission.
@@ -799,10 +818,7 @@ Now that we've set up our environment and created our JCL files, let's dive into
 **First, let's create our `EMPPAY.CBL` program:**
 
 1. Navigate to your GitHub repository in your web browser.
-2. Go to the `src/main/cobol` directory. If it doesn't exist, create it:
-   - Click `Create new file`
-   - In the name field, type `src/main/cobol/EMPPAY.CBL`
-   - This will create the directories if they don't exist
+2. Go to the `src/main/cobol` directory, where the NUMBERS.CBL file already resides.
 3. Click on the 'Add file' button, then select 'Create new file'.
 4. Name the file `EMPPAY.CBL`.
 5. In the file editor, let's add our COBOL program:
@@ -811,6 +827,7 @@ Now that we've set up our environment and created our JCL files, let's dive into
           IDENTIFICATION DIVISION.
           PROGRAM-ID. EMPPAY.
           AUTHOR. ASHIS KUMAR NAIK.
+
           DATA DIVISION.
           WORKING-STORAGE SECTION.
           77  REC-COUNTER              PIC 9(1).
@@ -831,13 +848,14 @@ Now that we've set up our environment and created our JCL files, let's dive into
               PERFORM PAYMENT-MONTHLY.
               PERFORM SHOW-OUTPUT.
               STOP RUN.
+
           INITIALIZATION.
               MOVE "Millard"           TO EMP-FNAME.
               MOVE "Fillmore"          TO EMP-LNAME.
               MOVE 19                  TO EMP-HOURS.
               MOVE 23.50               TO EMP-HOURLY-RATE.
-          PAYMENT-WEEKLY.
 
+          PAYMENT-WEEKLY.
               IF  EMP-HOURS >= 40
                   MOVE .25 TO  EMP-OT-RATE
               ELSE IF EMP-HOURS >= 50
@@ -846,14 +864,15 @@ Now that we've set up our environment and created our JCL files, let's dive into
                   MOVE ZERO TO EMP-OT-RATE.
               COMPUTE EMP-PAY-WEEK =
                     (EMP-HOURS * EMP-HOURLY-RATE) * (1 + EMP-OT-RATE).
-          PAYMENT-MONTHLY.
 
+          PAYMENT-MONTHLY.
               IF  EMP-HOURS > 150
                   MOVE .50 TO  EMP-REWARD
               ELSE
                   MOVE ZERO TO EMP-REWARD.
               COMPUTE EMP-PAY-MONTH =
                     (EMP-PAY-WEEK * 4) * (1 + EMP-REWARD).
+
           SHOW-OUTPUT.
               DISPLAY "Name: " EMP-NAME.
               DISPLAY "Hours Worked Per Week: " EMP-HOURS.
@@ -864,11 +883,11 @@ Now that we've set up our environment and created our JCL files, let's dive into
               DISPLAY "Hi Chris - how's Loretta today?".
     ```
 
-    6. Commit this new file to your repository.
+    6. Commit this new file to your repository with an appropiate message like "Add EMPPAY COBOL program".
 
     **Now that we have our EMPPAY program, let's create our test suite:**
 
-    1. In your repository, navigate to the `test` directory.
+    1. In your repository, navigate to the `test/cobol` directory.
     2. Create a new directory named `EMPPAY`.
     3. Inside the EMPPAY directory, create a new file named `EMPPAY.cut`.
     4. In this file, we'll write our test cases:
@@ -877,35 +896,35 @@ Now that we've set up our environment and created our JCL files, let's dive into
     TestSuite 'Checks the employee payment'
 
     TestCase 'checks the EMP-OT-RATE TO be 0.25'
-    MOVE 50 TO EMP-HOURS
-    MOVE 23.50 TO EMP-HOURLY-RATE
-    PERFORM PAYMENT-WEEKLY
-    EXPECT EMP-OT-RATE TO BE 0.25
+        MOVE 50 TO EMP-HOURS
+        MOVE 23.50 TO EMP-HOURLY-RATE
+        PERFORM PAYMENT-WEEKLY
+        EXPECT EMP-OT-RATE TO BE 0.25
 
     TestCase 'checks the EMP-PAY-WEEKLY > 900 if EMP-HOURS >= 40'
-    MOVE 40 TO EMP-HOURS
-    MOVE 23.50 TO EMP-HOURLY-RATE
-    PERFORM PAYMENT-WEEKLY
-    EXPECT EMP-PAY-WEEK >= 900
+        MOVE 40 TO EMP-HOURS
+        MOVE 23.50 TO EMP-HOURLY-RATE
+        PERFORM PAYMENT-WEEKLY
+        EXPECT EMP-PAY-WEEK >= 900
 
     TestCase 'checks the EMP-PAY-WEEKLY > 1600 '
-    MOVE 60 TO EMP-HOURS
-    MOVE 23.50 TO EMP-HOURLY-RATE
-    PERFORM PAYMENT-WEEKLY
-    EXPECT EMP-PAY-WEEK >= 1600
+        MOVE 60 TO EMP-HOURS
+        MOVE 23.50 TO EMP-HOURLY-RATE
+        PERFORM PAYMENT-WEEKLY
+        EXPECT EMP-PAY-WEEK >= 1600
 
     TestCase 'checks the EMP-PAY-MONTHLY to be greater than 9600'
-    MOVE 160 TO EMP-HOURS
-    MOVE 1600 TO EMP-PAY-WEEK
-    PERFORM PAYMENT-MONTHLY
-    EXPECT EMP-PAY-MONTH >= 9600
+        MOVE 160 TO EMP-HOURS
+        MOVE 1600 TO EMP-PAY-WEEK
+        PERFORM PAYMENT-MONTHLY
+        EXPECT EMP-PAY-MONTH >= 9600
     ```
 
-    5. Commit these changes to your repository.
+    5. Commit these changes to your repository with an appropiate message like "Add EMPPAY test suite".
 
     **Now that we have our EMPPAY program and its test suite, we need to create the JCL file to run it on the mainframe. Let's create `EMPPAY.JCL`:**
 
-    1. In your GitHub repository, navigate to the root directory.
+    1. In your GitHub repository, navigate to the `cobol-check` directory.
     2. Click on 'Add file', then 'Create new file'.
     3. Name the file `EMPPAY.JCL`.
     4. In the file editor, add the following JCL content:
@@ -922,15 +941,13 @@ Now that we've set up our environment and created our JCL files, let's dive into
     // IF RC = 0 THEN
     //RUN     EXEC PGM=EMPPAY
     //STEPLIB   DD DSN=&SYSUID..LOAD,DISP=SHR
-    //ACCTREC   DD DSN=&SYSUID..DATA,DISP=SHR
-    //PRTLINE   DD SYSOUT=*,OUTLIM=15000
     //SYSOUT    DD SYSOUT=*,OUTLIM=15000
     //CEEDUMP   DD DUMMY
     //SYSUDUMP  DD DUMMY
     // ENDIF
     ```
 
-5. Commit this new file to your repository.
+5. Commit this new file to your repository with an appropiate message like "Add EMPPAY JCL file".
 
 This JCL file will compile our EMPPAY program and, if successful, run it on the mainframe. It's crucial for executing our tests in the mainframe environment.
 
@@ -939,7 +956,7 @@ When we run our GitHub Actions workflow, it will now:
 1. Upload `EMPPAY.CBL` to the mainframe.
 2. Run COBOL Check on EMPPAY.
 3. Generate the `CC##99.CBL` file.
-4. Copy this file to the appropriate MVS dataset.
+4. Copy this file as `EMPPAY` to the appropriate MVS dataset.
 5. Submit the `EMPPAY.JCL` job to run the tests.
 
 In the GitHub Actions output, you should expect to see:
@@ -961,18 +978,19 @@ Now that we've seen how to write unit tests for existing code, let's explore Tes
 TestSuite "Calculation of average Salary"
 
 TestCase 'NUMBER OF PERSON TO BE 19'
-PERFORM AVERAGE-SALARY.
-EXPECT DEPT-NBR-EMPS TO BE 19
+    PERFORM AVERAGE-SALARY.
+    EXPECT DEPT-NBR-EMPS TO BE 19
 
 TestCase 'TOTAL AVERAGE SALARY TO BE 111111.11'
-PERFORM AVERAGE-SALARY.
-EXPECT DEPT-TOTAL-SALARIES TO BE 111111.11
+    PERFORM AVERAGE-SALARY.
+    EXPECT DEPT-TOTAL-SALARIES TO BE 111111.11
 ```
 2. Now, let's create our COBOL program to pass these tests. Create a new file at 'src/main/cobol/DEPTPAY.CBL':
 
 ```cobol
        IDENTIFICATION DIVISION.
        PROGRAM-ID. DEPTPAY.
+
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01  DEPT-RECORD.
@@ -984,6 +1002,7 @@ EXPECT DEPT-TOTAL-SALARIES TO BE 111111.11
            05  DEPT-NBR-EMPS        PIC 9(3).
            05  DEPT-TOTAL-SALARIES  PIC 9(7)V99.
            05  DEPT-AVG-SALARY      PIC 9(7)V99.
+
        PROCEDURE DIVISION.
            PERFORM AVERAGE-SALARY.
            PERFORM DISPLAY-DETAILS.
@@ -1008,40 +1027,42 @@ EXPECT DEPT-TOTAL-SALARIES TO BE 111111.11
            DISPLAY "Number of employees: " DEPT-NBR-EMPS.
 ```
 
-3. Now, let's create a JCL file to run our tests. Create 'DEPTPAY.JCL' in the root of your repository:
+3. Now, let's create a JCL file to run our tests. Create 'DEPTPAY.JCL' in the `cobol-check` directory of your repository:
 ```
-//DEPTPAYJ JOB 1,NOTIFY=&SYSUID
-//COPY2DS1 EXEC PGM=IKJEFT01
-//INUNIX DD PATHOPTS=(ORDONLY),
-// PATH='/z/&SYSUID./cobolcheck/CC##99.CBL'
-//OUTMVS DD DSN=&SYSUID..CBL(DEPTPAY),DISP=SHR
-//SYSTSPRT DD SYSOUT=*
-//SYSTSIN DD *
- OCOPY IND(INUNIX) OUTDD(OUTMVS) TEXT CONVERT(YES) PATHOPTS(USE)
-/*
-//COBRUN  EXEC IGYWCL
-//COBOL.SYSIN  DD DSN=&SYSUID..CBL(DEPTPAY),DISP=SHR
-//LKED.SYSLMOD DD DSN=&SYSUID..LOAD(DEPTPAY),DISP=SHR
-//RUN     EXEC PGM=DEPTPAY
-//STEPLIB   DD DSN=&SYSUID..LOAD,DISP=SHR
+  //DEPTPAYJ JOB 1,NOTIFY=&SYSUID
+  //*******************************************************
+  //* Copyright Contributors to the COBOL Programming Course
+  //* SPDX-License-Identifier: CC-BY-4.0
+  //*******************************************************
+  //COBRUN  EXEC IGYWCL
+  //COBOL.SYSIN  DD DSN=&SYSUID..CBL(DEPTPAY),DISP=SHR
+  //LKED.SYSLMOD DD DSN=&SYSUID..LOAD(DEPTPAY),DISP=SHR
+  // IF RC = 0 THEN
+  //RUN     EXEC PGM=DEPTPAY
+  //STEPLIB   DD DSN=&SYSUID..LOAD,DISP=SHR
+  //SYSOUT    DD SYSOUT=*,OUTLIM=15000
+  //CEEDUMP   DD DUMMY
+  //SYSUDUMP  DD DUMMY
+  // ENDIF
+
 ```
 
-4. Commit all these changes to your repository.
+4. Commit all these changes to your repository with an appropiate message like "Add DEPTPAY COBOL, JCL and Test files".
 
 Now, let's add a new test case to demonstrate the TDD process. Add the following to your DEPTPAY.cut file:
 
 ```
-TestCase 'average salary will be greater than 5840'
-PERFORM AVERAGE-SALARY.
-EXPECT DEPT-AVG-SALARY >= 5840
+TestCase 'AVERAGE SALARY WILL BE GREATER THAN 5840'
+    PERFORM AVERAGE-SALARY.
+    EXPECT DEPT-AVG-SALARY >= 5840
 ```
 
-Commit this change to your repository.
+Commit this change to your repository with an appropiate message like "Add DEPTPAY Test Case".
 
 When you run your GitHub Actions workflow now, it will:
-1. Run COBOL Check on DEPTPAY
-2. Copy the generated CC##99.CBL to the mainframe
-3. Submit the DEPTPAY.JCL job
+1. Run COBOL Check on `DEPTPAY`.
+2. Copy the generated `CC##99.CBL` to the mainframe as `DEPTPAY`.
+3. Submit the `DEPTPAY.JCL` job.
 
 In the job output, look for the status code. A 'CC 0000' indicates success. If you see a different code, you'll need to adjust your code or tests and rerun the workflow.
 
