@@ -1523,9 +1523,9 @@ The lab associated with this chapter demonstrates the ‘end-of-file’ COBOL co
 
 11.  View CBL0003J ABENDU4038 output, using the JOBS section:
 
-      - View the IGZ00355 abend message in RUN:SYSOUT(104) from the COBOL program execution output.
+      - View the IGZ0035S abend message in RUN:SYSOUT(104) from the COBOL program execution output.
 
-- IGZ00355 reads, program is unable to open or close ACCTREC file name, shown in Figure  11. guiding you to the root of the error.
+- IGZ0035S reads, program is unable to open or close ACCTREC file name, shown in Figure  11. guiding you to the root of the error.
 
 ![](Images/image137.png)
 
