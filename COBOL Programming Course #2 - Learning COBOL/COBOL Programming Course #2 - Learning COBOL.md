@@ -2771,7 +2771,7 @@ Your task is to understand how the current logic works in `CBL0006` to count cli
 
 This exercise develops skills in COBOL conditional processing, program structure analysis, and consistent code modification. The goal is building analytical abilities for reading and modifying existing COBOL programs, essential for legacy system maintenance.
 
-**Need Help?** If you encounter difficulties, you can refer to the complete solution code `CBL0006C` available on the project’s [GitHub](https://github.com/openmainframeproject/cobol-programming-course/tree/master/COBOL%20Programming%20Course%20%233%20-%20Advanced%20Topics/Challenges/Debugging/cbl) repository.
+**Need Help?** If you encounter difficulties, you can refer to the complete solution code `CBL0001C` available on the project’s [GitHub](https://github.com/openmainframeproject/cobol-programming-course/tree/master/COBOL%20Programming%20Course%20%232%20-%20Learning%20COBOL) repository.
 
 \newpage
 
