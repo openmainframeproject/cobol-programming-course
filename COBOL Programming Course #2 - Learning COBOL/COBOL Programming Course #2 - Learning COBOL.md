@@ -2726,6 +2726,53 @@ This lab requires two COBOL programs, CBL0006 and CBL0007, and two respective JC
 
 ![](Images/image155.png)
 
+
+## Additional Exercise: Modify the Program to Count Clients from Another State
+
+This exercise builds upon the existing COBOL program `CBL0006` and its corresponding JCL job `CBL0006J`. In the original program, logic was implemented to count clients from **Virginia** and display the total at the end of the report.
+
+This exercise challenges you to modify the program to count clients from a different state instead of Virginia.
+
+#### Objective
+
+Your task is to understand how the current logic works in `CBL0006` to count clients from Virginia, and then modify the program to count clients from another state, such as **New York**.
+
+**Prerequisites:** First examine `id.DATA` to identify available states. Use exact spelling and formatting.
+
+#### Instructions
+
+1. **Analyze the current implementation**
+   - Locate the Virginia state-checking condition in `CBL0006`
+   - Find where the client count is updated and displayed
+
+2. **Modify `CBL0006`**
+   - Replace Virginia logic with your chosen state
+   - Update paragraph names, variables, and output display
+
+   **Note:** Multiple program sections require updates, not just the state name.
+
+3. **Test your changes**
+   - Save and submit `CBL0006J`
+   - Verify successful compilation and correct output count
+
+**Expected Output:** If you chose New York, the final line of your report should display:
+
+![](Images/image0153.png)
+
+
+#### Lab Hints
+
+- Update WORKING-STORAGE variables, paragraph names, and output formatting
+- Follow COBOL naming conventions
+- Verify your chosen state exists in `id.DATA`
+- Consider state name length for proper output formatting
+
+#### Learning Objectives
+
+This exercise develops skills in COBOL conditional processing, program structure analysis, and consistent code modification. The goal is building analytical abilities for reading and modifying existing COBOL programs, essential for legacy system maintenance.
+
+**Need Help?** If you encounter difficulties, you can refer to the complete solution code `CBLC1.cobol` available in VS Code Zowe Explorer or find it on [GitHub](https://github.com/openmainframeproject/cobol-programming-course/tree/master/COBOL%20Programming%20Course%20%232%20-%20Learning%20COBOL/Labs/cbl) repository.
+
 \newpage
 
 # Arithmetic expressions
