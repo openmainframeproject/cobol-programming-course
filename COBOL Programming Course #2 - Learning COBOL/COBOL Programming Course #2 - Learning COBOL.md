@@ -3602,6 +3602,39 @@ CPU attempted to divide a number with 0.
 - Incorrectly initialized or uninitialized variables
 - Missing or incorrect data edits
 
+##  Lab 
+
+**Handling ABEND S0CB - Division by Zero** 
+
+**Objective:** Learn how to recognize and debug a common ABEND error, S0CB caused by attempting to divide by zero in a COBOL program.
+
+In COBOL, a division by zero will not result in a warning, it will immediately cause a system ABEND with code S0CB. This kind of error may compile successfully and even run, but will crash at runtime with messages like:
+
+*`CEE3211S The system detected a decimal-divide exception (System Completion Code=0CB)
+`*
+
+### Instructions
+1. Open the file `CBL0067.cbl`. Look at the line where division occurs:
+
+![](Images/image0068.png)
+
+2. In `CBL0067.cbl`, notice that DENOMINATOR is initialized to 0, causing a division-by-zero.
+
+3. Submit the JCL program: `CBL0067J.jcl`.
+
+*You should observe the job fails with a S0CB ABEND.*
+
+![](Images/image0067.png)
+
+4. Fix the error by modifying DENOMINATOR to a non-zero value like:
+
+`01 DENOMINATOR PIC 9(04) VALUE 10.
+`
+
+5. Save and resubmit the JCL. The program should now complete successfully and display:
+
+![](Images/image0069.png)
+
 ### S222/S322 - Time Out / Job Cancelled
 
 When you submit a JCL, it is possible to determine how much time you want to allocate to a job. If the job surpasses that allocated time, it will time out. Depending on how your system is set up, a job that has taken a prolonged time may be canceled either manually by the operator or automatically.
