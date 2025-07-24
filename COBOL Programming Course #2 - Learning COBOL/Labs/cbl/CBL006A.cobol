@@ -1,7 +1,7 @@
       *-----------------------
        IDENTIFICATION DIVISION.
       *-----------------------
-       PROGRAM-ID.    CBL0006
+       PROGRAM-ID.    CBL006A
        AUTHOR.        Otto B. Boolean.
       *--------------------
        ENVIRONMENT DIVISION.
