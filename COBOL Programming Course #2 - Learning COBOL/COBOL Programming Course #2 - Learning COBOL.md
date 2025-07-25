@@ -2773,6 +2773,77 @@ This exercise develops skills in COBOL conditional processing, program structure
 
 **Need Help?** If you encounter difficulties, you can refer to the complete solution code `CBLC1.cobol` available in VS Code Zowe Explorer or find it on [GitHub](https://github.com/openmainframeproject/cobol-programming-course/tree/master/COBOL%20Programming%20Course%20%232%20-%20Learning%20COBOL/Labs/cbl) repository.
 
+# Case Sensitive Nature of COBOL Conditions
+
+COBOL syntax is not case-sensitive for keywords and identifiers, but string literal comparisons in conditional expressions ARE case-sensitive. This distinction between language syntax and data comparisons can lead to programming errors that cause issues when your program interacts with:
+
+- **External input data**, such as text files or database records
+- **Conditional expressions** that depend on exact string matches
+- **Third-party systems** that expect a specific case format
+
+## Why It Matters
+
+The most dangerous aspect of case sensitivity errors is that they often go unnoticed during initial testing. Programs **compile successfully**, **run without errors**, but **produce incorrect results**. These kinds of "silent failures" can persist in production systems for long periods, potentially resulting in:
+
+- Inaccurate or misleading reports
+- Logic failures (e.g., skipping conditional branches)
+- Reports that appear complete but miss values
+- Data corruption or misrouting
+
+### Real-World Example
+
+Modern COBOL treats statements like:
+`MOVE MY-NUMBER TO YOUR-NUMBER` 
+and 
+`Move my-Number to your-Number`    as **equivalent** because keywords and identifiers are case-insensitive.
+
+However, **COBOL conditions** are case-sensitive when checking **string values**:
+
+`IF USA-STATE = 'new York'` = Fails, mismatch due to case
+
+`IF USA-STATE = 'New York'` = Succeeds, case matches
+
+The comparison **fails silently** COBOL won't throw an error, but the result won't be as expected.
+
+## Lab 
+
+**Case Sensitivity in Data Comparison:**
+Understand how case sensitivity in COBOL string comparisons can cause logical errors and learn to identify and fix these issues.
+
+**Scenario:** You'll investigate why a program designed to count "New York" clients returns zero when New York clients actually exist in the input data file (id.DATA).
+
+**Required Files:**
+
+- `CBL006A.cobol` - COBOL program source
+- `CBL006AJ.jcl` - JCL job to compile and execute
+- `id.DATA` - Input data file
+
+All files are available in your VS Code Zowe Explorer.
+
+### Instructions
+
+1. Open `CBL006A.cobol` from your VS Code Zowe Explorer.
+    
+    This program reads account records and counts how many clients are from `"New York"`.
+    
+2. Submit the JCL job `CBL006AJ.jcl`. View the job output from the JOBS section.
+- Confirm that no syntax or runtime errors occurred.
+- Now carefully read the final line of the report. `New York Clients = 000`
+
+ ![](Images/image071.png)
+
+Ask yourself: *Is this the number of New York clients you expected?* 
+
+3. Based on your understanding, where do you think the bug lies?
+- Consider the case format of both the **comparison string** and the **actual data** from the file (id.DATA).
+4. Go and update the source code `CBL006A.cobol` . 
+- Modify the string literal in the IF condition to match the exact case format found in the data file
+5. Save your changes to `CBL006A.cobol`
+6. Recompile and resubmit the job `CBL006AJ.jcl`
+7. Verify that the report now correctly shows: `New York Clients = 005`
+
+![](Images/image072.png)
+
 \newpage
 
 # Arithmetic expressions
