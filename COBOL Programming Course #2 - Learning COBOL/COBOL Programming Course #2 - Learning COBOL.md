@@ -2814,19 +2814,18 @@ Understand how case sensitivity in COBOL string comparisons can cause logical er
 
 **Required Files:**
 
-- `CBL0066.cbl` - COBOL program source
-- `CBL0066J.jcl` - JCL job to compile and execute
+- `CBL006A.cobol` - COBOL program source
+- `CBL006AJ.jcl` - JCL job to compile and execute
 - `id.DATA` - Input data file
 
 All files are available in your VS Code Zowe Explorer.
 
 ### Instructions
 
-1. Open `CBL0066.cbl` from your VS Code Zowe Explorer.
-    
+1. Open `CBL006A.cobol` from your VS Code Zowe Explorer.
     This program reads account records and counts how many clients are from `"New York"`.
-    
-2. Submit the JCL job `CBL0066J.jcl`. View the job output from the JOBS section.
+
+2. Submit the JCL job `CBL006AJ.jcl`. View the job output from the JOBS section.
 - Confirm that no syntax or runtime errors occurred.
 - Now carefully read the final line of the report. `New York Clients = 000`
 
@@ -2836,10 +2835,10 @@ Ask yourself: *Is this the number of New York clients you expected?*
 
 3. Based on your understanding, where do you think the bug lies?
 - Consider the case format of both the **comparison string** and the **actual data** from the file (id.DATA).
-4. Go and update the source code CBL0066.cbl . 
+4. Go and update the source code `CBL006A.cobol` . 
 - Modify the string literal in the IF condition to match the exact case format found in the data file
-5. Save your changes to `CBL0066.cbl`
-6. Recompile and resubmit the job `CBL0006J.jcl`
+5. Save your changes to `CBL006A.cobol`
+6. Recompile and resubmit the job `CBL006AJ.jcl`
 7. Verify that the report now correctly shows: `New York Clients = 005`
 
 ![](Images/image072.png)
@@ -2850,7 +2849,7 @@ Ask yourself: *Is this the number of New York clients you expected?*
 
 This chapter aims to introduce the concept of implementing arithmetic expressions in COBOL programs.  We will review the basic concept of arithmetic expressions, operators, statements, limitations, statement operands, as well as precedence of operation within the expressions.  You will be able to follow along with a comprehensive example exhibiting the usage of arithmetic expressions in a COBOL program that you have seen in previous chapters and labs.  Following the chapter is a lab to practice the implementation of what you have learned. 
 
- 
+
 
 - **What is an arithmetic expression?**
 
