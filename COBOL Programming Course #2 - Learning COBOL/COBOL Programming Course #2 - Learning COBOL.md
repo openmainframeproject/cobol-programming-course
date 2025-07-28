@@ -3613,13 +3613,13 @@ In COBOL, a division by zero will not result in a warning, it will immediately c
 `*
 
 ### Instructions
-1. Open the file `CBL0067.cbl`. Look at the line where division occurs:
+1. Open the file `CBL0013.cobol`. Look at the line where division occurs:
 
 ![](Images/image0068.png)
 
-2. In `CBL0067.cbl`, notice that DENOMINATOR is initialized to 0, causing a division-by-zero.
+2. In `CBL0013.cobol`, notice that DENOMINATOR is initialized to 0, causing a division-by-zero.
 
-3. Submit the JCL program: `CBL0067J.jcl`.
+3. Submit the JCL program: `CBL0013J.jcl`.
 
 *You should observe the job fails with a S0CB ABEND.*
 
