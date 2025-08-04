@@ -1,0 +1,15 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. CBL0014.
+       AUTHOR. Athar Ramzan.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 JUNK-FIELD      PIC X(05) VALUE "ABCDE".
+       01 NUM-FIELD-BAD   REDEFINES JUNK-FIELD PIC S9(05) COMP-3.
+       01 RESULT          PIC S9(06) COMP-3.
+
+       PROCEDURE DIVISION.
+           DISPLAY "Triggering S0C7...".
+           ADD 100 TO NUM-FIELD-BAD GIVING RESULT.
+           DISPLAY "Result: " RESULT.
+           STOP RUN.
