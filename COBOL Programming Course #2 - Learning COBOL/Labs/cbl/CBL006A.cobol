@@ -2,7 +2,7 @@
        IDENTIFICATION DIVISION.
       *-----------------------
        PROGRAM-ID.    CBL006A
-       AUTHOR.        Otto B. Boolean.
+       AUTHOR.       Athar Ramzan
       *--------------------
        ENVIRONMENT DIVISION.
       *--------------------

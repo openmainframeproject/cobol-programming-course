@@ -2823,9 +2823,8 @@ All files are available in your VS Code Zowe Explorer.
 ### Instructions
 
 1. Open `CBL006A.cobol` from your VS Code Zowe Explorer.
-    
     This program reads account records and counts how many clients are from `"New York"`.
-    
+
 2. Submit the JCL job `CBL006AJ.jcl`. View the job output from the JOBS section.
 - Confirm that no syntax or runtime errors occurred.
 - Now carefully read the final line of the report. `New York Clients = 000`
@@ -2850,7 +2849,7 @@ Ask yourself: *Is this the number of New York clients you expected?*
 
 This chapter aims to introduce the concept of implementing arithmetic expressions in COBOL programs.  We will review the basic concept of arithmetic expressions, operators, statements, limitations, statement operands, as well as precedence of operation within the expressions.  You will be able to follow along with a comprehensive example exhibiting the usage of arithmetic expressions in a COBOL program that you have seen in previous chapters and labs.  Following the chapter is a lab to practice the implementation of what you have learned. 
 
- 
+
 
 - **What is an arithmetic expression?**
 
@@ -3601,6 +3600,39 @@ CPU attempted to divide a number with 0.
 **Frequent Causes:**
 - Incorrectly initialized or uninitialized variables
 - Missing or incorrect data edits
+
+##  Lab 
+
+**Handling ABEND S0CB - Division by Zero** 
+
+**Objective:** Learn how to recognize and debug a common ABEND error, S0CB caused by attempting to divide by zero in a COBOL program.
+
+In COBOL, a division by zero will not result in a warning, it will immediately cause a system ABEND with code S0CB. This kind of error may compile successfully and even run, but will crash at runtime with messages like:
+
+*`CEE3211S The system detected a decimal-divide exception (System Completion Code=0CB)
+`*
+
+### Instructions
+1. Open the file `CBL0013.cobol`. Look at the line where division occurs:
+
+![](Images/image0068.png)
+
+2. In `CBL0013.cobol`, notice that DENOMINATOR is initialized to 0, causing a division-by-zero.
+
+3. Submit the JCL program: `CBL0013J.jcl`.
+
+*You should observe the job fails with a S0CB ABEND.*
+
+![](Images/image0067.png)
+
+4. Fix the error by modifying DENOMINATOR to a non-zero value like:
+
+`01 DENOMINATOR PIC 9(04) VALUE 10.
+`
+
+5. Save and resubmit the JCL. The program should now complete successfully and display:
+
+![](Images/image0069.png)
 
 ### S222/S322 - Time Out / Job Cancelled
 
