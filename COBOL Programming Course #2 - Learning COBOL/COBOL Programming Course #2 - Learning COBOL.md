@@ -3590,6 +3590,77 @@ With S0C7, the program is expecting numeric data, however, it found other invali
 - Incorrect MOVE CORRESPONDING
 - Incorrect assignment statements when MOVE from one field to another
 
+## Lab
+
+**Handling ABEND S0C7 - Data Exception**
+
+**Objective:** Learn how to recognize and debug a common ABEND error, S0C7, caused by performing arithmetic on invalid numeric data in a COBOL program.
+
+### What is S0C7?
+
+S0C7 is a **runtime error** (called an **ABEND**, short for *abnormal end*) that happens when your COBOL program tries to perform arithmetic on invalid numeric data.
+
+You will typically see an error message like:
+
+`CEE3207S The system detected a data exception (System Completion Code=0C7)`
+
+### Why does this error happen?
+
+COBOL uses **PIC 9** or **COMP-3** for numeric fields. If these fields contain **non-numeric data** (like letters or symbols), and you try to perform arithmetic on them, the program crashes with a **S0C7 ABEND**.
+
+### Here's a simple example:
+
+```
+01 JUNK-FIELD      PIC X(05) VALUE "ABCDE".
+01 NUM-FIELD-BAD   REDEFINES JUNK-FIELD PIC S9(05) COMP-3.
+...
+ADD 100 TO NUM-FIELD-BAD.
+
+```
+
+- `"ABCDE"` is not a number.
+- But `NUM-FIELD-BAD` is defined as a packed decimal (`COMP-3`).
+- This mismatch causes the crash.
+
+### Instructions
+
+1. Open the COBOL file `CBL0014.cobol`. Analyze the code carefully. Notice that it uses `REDEFINES` to treat text as a numeric field.
+2. Look at the value assigned to `JUNK-FIELD`. It is initialized with `"ABCDE"`, which is not a valid numeric value.
+3. Observe how `NUM-FIELD-BAD`, a numeric `COMP-3` field, reuses the same memory space as `JUNK-FIELD`.
+4. Submit the JCL program: `CBL0014J.jcl`.
+    
+    *You should observe the job fails with a S0C7 ABEND.*
+    
+![](Images/image014.png)
+
+### How to Fix It
+
+To avoid getting this ABEND:
+1. We need to modify the CBL0014.cobol 
+
+For example:
+
+```
+       IDENTIFICATION DIVISION.
+        PROGRAM-ID. CBL0014.
+        DATA DIVISION.
+        WORKING-STORAGE SECTION.
+        01 TEXT-FIELD PIC X(05) VALUE "00012".
+        01 NUM-FIELD PIC 9(05).
+        01 RESULT PIC 9(06).
+        PROCEDURE DIVISION.
+           DISPLAY "Moving text to numeric field...".
+           MOVE TEXT-FIELD TO NUM-FIELD.
+           DISPLAY "Performing calculation...".
+           ADD 100 TO NUM-FIELD GIVING RESULT.
+           DISPLAY "Result: " RESULT.
+           STOP RUN.
+```
+
+2. Save the `CBL0014.cobol`file and resubmit the `CBL0014J.jcl`. The program should now run successfully and display the result of the arithmetic.
+
+![](Images/image014j.png)
+
 ### S0CB - Division by Zero
 
 Just like mathematics, attempting to divide a number with 0 in Enterprise COBOL is an undefined operation.
