@@ -3720,6 +3720,98 @@ Timeout, likely due to program logic getting caught in a loop with no possible e
 - PERFORM THRU a wrong exit
 - PERFORM UNTIL End-Of-File without changing the EOF switch
 
+## Lab
+
+**Handling ABEND S322 - Time Out**
+
+**Objective:** Learn how to recognize and debug a common ABEND error, S322, caused when a COBOL program runs too long and exceeds the time limit set by the system.
+
+### What is S322?
+
+S322 is a **runtime error** (called an **ABEND**, short for *abnormal end*) that happens when your COBOL program **takes too much time to complete** and exceeds the CPU time limit.
+
+You will typically see an error message like:
+
+`IEF450I JOBNAME - ABEND=S322 U0000 REASON=00000000` or `System Completion Code=S322`
+
+### Why does this error happen?
+
+Think of it like this: when you submit a job in z/OS, the system gives your program a certain amount of time to finish its work. This time limit is set either by:
+
+- The **TIME parameter** in your JCL (like TIME=(0,30) means 30 seconds)
+- System defaults if you don't specify a time limit
+
+When your program runs in an **endless loop** (a loop that never stops), it keeps using CPU time without ever finishing. Once the time limit is reached, the system automatically cancels your job with an **S322 ABEND**.
+
+**Common situations that cause S322:**
+
+- **Infinite loops** - loops that never end because the exit condition is never met
+- **Incorrect loop conditions** - using wrong logic that prevents the loop from stopping
+- **Variables that don't change** - loop conditions that depend on variables that never get updated
+- **Missing file end checks** - reading files without proper end-of-file handling
+
+Here's a simple example of the problem:
+
+![](images/image171.png)
+
+**What's wrong here?**
+
+- The loop says "keep going until KEEP-GOING equals 'N'"
+- But KEEP-GOING starts as 'Y' and **never changes** inside the loop
+- Since it never becomes 'N', the loop runs forever
+- This uses up all the CPU time and causes S322
+
+### Instructions
+
+1. **Open the COBOL file `CBL0015.cobol`**. Read through the code carefully and try to understand what it's doing.
+2. **Look for the problem area**:
+    - Find the variable called `ALWAYS-TRUE` - notice it's set to 'Y'
+    - Find the `PERFORM UNTIL` loop
+    - See that the loop checks if `ALWAYS-TRUE = 'N'` but this never happens
+3. **Notice what the loop does**:
+    - It adds numbers together continuously
+    - It never changes the `ALWAYS-TRUE` variable
+    - It has no way to stop naturally
+4. **Submit the JCL program: `CBL0015J.jcl`**
+    - Watch what happens
+    - The job will start running but never finish
+    - After some time, you'll see the S322 ABEND message
+
+**What you should see:**
+
+- The job starts normally
+- It begins the loop and processes for a while
+
+![](images/image172.png)
+
+- Eventually, the system kills the job with S322 because it ran too long
+
+![](images/image173.png)
+
+### How to Fix It
+
+The problem is that the loop **never terminates**. To fix it, we add a proper exit condition.
+
+**Your Task:** Fix the infinite loop by giving it a proper exit condition.
+
+**Hints to guide you:**
+
+1. **The Problem**: ALWAYS-TRUE never changes inside the loop, so the condition is never met.
+2. **The Solution**: Replace `PERFORM UNTIL ALWAYS-TRUE = 'N'` with `PERFORM VARYING WRK1 FROM 1 BY 1 UNTIL WRK1 > [some number]`
+3. **What to do**:
+    - Remove the ALWAYS-TRUE variable
+    - Use PERFORM VARYING with WRK1 as the counter
+    - Set a reasonable limit (try 1,000,000)
+    - Add a success message
+
+**Test**: Save and resubmit `CBL0015J.jcl`. The program should complete within 5 seconds.
+
+![](images/image174.png)
+
+**Can't Figure It Out?**
+
+If you're stuck after trying the hints above, check the complete solution in file: `CBLC2.cobol`
+
 ### S806 - Module Not Found
 
 We have seen previously that it is possible to CALL a subroutine in COBOL. To allow the compiler to know what subroutine we want to call, we need to specify them on the JCL. If you do not indicate them, the compiler will attempt to check the system libraries first before failing.
