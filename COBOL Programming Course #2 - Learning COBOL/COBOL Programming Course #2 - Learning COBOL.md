@@ -1420,7 +1420,6 @@ READ-NEXT-RECORD repeatedly executes READ-RECORD and WRITE-RECORD until the last
 *Figure  6.  Reading and writing records*
 
 **Note:** COBOL is English-like and COBOL reserved words are English-like.  The programmer is free to use English-like variable names to help remember the purpose of the variable names.  The PROCEDURE DIVISION structure is English-like.  A paragraph contains one or more sentences.  A sentence contains one or more statements.  The implicit scope terminator, a period (.), terminates a sentence or terminates several consecutive statements which would be analogous to a compounded sentence where ‘and’ joins potentially independent sentences together. 
-###
 
 
 ### READ-NEXT-RECORD paragraph execution
