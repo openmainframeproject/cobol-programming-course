@@ -1813,7 +1813,7 @@ The most analogous way to think about a paragraph in COBOL is to think of a func
 A paragraph is defined within the procedure division and starts at column eight and can have any name that the user likes, apart from a COBOL keyword, and the declaration of the paragraph is completed with a period (.).  A paragraph can contain one to many COBOL sentences and is terminated either by the start of another paragraph or the physical end of the program. 
 
 
-**Note:** A paragraph can also be ended by END-PROGRAM, END-METHOD, END FACTORY OR END-OBJECT.  Most of these are used within Object Orientated COBOL which is not discussed here.
+**Note:** A paragraph can also be ended by END-PROGRAM, END-METHOD, END FACTORY or END-OBJECT.  Most of these are used within Object Orientated COBOL which is not discussed here.
 
 
 Considering that a program can be made up of multiple paragraphs and that the PERFORM keyword can be used to call the paragraph, either conditionally or as part of a loop, it is easy to see that good paragraph design really helps makes your COBOL more structured and readable.
