@@ -182,8 +182,8 @@
       *    ADD ACCT-BALANCE TO TBALANCE.
       *    Or, alternatively specifying the target variable:
       *    ADD ACCT-LIMIT TO TLIMIT GIVING TLIMIT. 
-      *    ADD ACCT-BALANCE TO TBALANCE GIVING TLIMIT.
-      *    A END-COMPUTE or END-ADD stetement is optional.
+      *    ADD ACCT-BALANCE TO TBALANCE GIVING TBALANCE.
+      *    An END-COMPUTE or END-ADD statement is optional.
       *
        WRITE-RECORD.
            MOVE ACCT-NO      TO  ACCT-NO-O.
