@@ -25,7 +25,7 @@ This section provides useful resources in the form of manuals and videos to assi
 
 ## Professional manuals
 
-As Enterprise COBOL experience advances, the need for professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of December 2022, the current release of Enterprise COBOL is V6.4.  Highlight the V6.4 tab, then select product documentation.
+As Enterprise COBOL experience advances, the need for professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of February 2026, the current release of Enterprise COBOL is V6.5.  Highlight the V6.5 tab, then select product documentation.
 
 [https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library](https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library)
 
@@ -34,15 +34,15 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
 1. Language Reference - Describes the COBOL language such as program structure, reserved words, etc. 
 
-   [https://publibfp.dhe.ibm.com/epubs/pdf/igy6lr40.pdf](https://publibfp.dhe.ibm.com/epubs/pdf/igy6lr40.pdf)
+   [https://www.ibm.com/docs/en/SS6SG3_6.5/pdf/lrmvs.pdf](https://www.ibm.com/docs/en/SS6SG3_6.5/pdf/lrmvs.pdf)
 
 2. Programming Guide - Describes advanced topics such as COBOL compiler options, program performance optimization, handling errors, etc.
 
-   [https://publibfp.dhe.ibm.com/epubs/pdf/igy6pg40.pdf](https://publibfp.dhe.ibm.com/epubs/pdf/igy6pg40.pdf)
+   [https://www.ibm.com/docs/en/SS6SG3_6.5/pdf/pgmvs.pdf](https://www.ibm.com/docs/en/SS6SG3_6.5/pdf/pgmvs.pdf)
 
 3. Messages and Codes - To better understand certain COBOL compiler messages and return codes to diagnose problems.
 
-   [https://publibfp.dhe.ibm.com/epubs/pdf/c2746482.pdf](https://publibfp.dhe.ibm.com/epubs/pdf/c2746482.pdf)
+   [https://www.ibm.com/docs/en/SS6SG3_6.5/pdf/msg.pdf](https://www.ibm.com/docs/en/SS6SG3_6.5/pdf/msg.pdf)
 
 ## Learn more about recent COBOL advancements
 
@@ -61,6 +61,10 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 - What’s New in Enterprise COBOL for z/OS V6.4:
 
    [https://www.ibm.com/docs/en/cobol-zos/6.4?topic=wn-what-is-new-in-enterprise-cobol-zos-64-cobol-64-ptfs-installed](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=wn-what-is-new-in-enterprise-cobol-zos-64-cobol-64-ptfs-installed)
+
+- What's New in Enterprise COBOL for z/OS V6.5:
+
+   [https://www.ibm.com/docs/en/cobol-zos/6.5.0?topic=whats-new-in-enterprise-cobol-zos-65-cobol-65-ptfs-installed](https://www.ibm.com/docs/en/cobol-zos/6.5.0?topic=whats-new-in-enterprise-cobol-zos-65-cobol-65-ptfs-installed)
 
 \newpage
 
