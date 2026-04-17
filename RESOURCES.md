@@ -23,7 +23,6 @@ These resources are provided for the benefit of the community. Neither this proj
 - [IBM z/OS 3.2 Documentation](https://www.ibm.com/docs/en/zos/3.2.0)
 
 ### Additional Training & Hands-on Opportunities
-- [z/OS Introduction and Workshop for IT Professionals](https://ibm.biz/zOSclass)
 - [IBM Z Xplore](https://www.ibm.com/it-infrastructure/z/education/zxplore)
 
 ### DFSORT
@@ -33,7 +32,7 @@ IBM DFSORT's ICETOOL can often replace the need to write COBOL program(s), when 
 - [DFSORT Home Page](https://www.ibm.com/support/pages/dfsort)
 
 ### Subsystems
-- [Db2 12 for z/OS Documentation](https://www.ibm.com/support/pages/db2-12-zos-product-documentation)
+- [Db2 13 for z/OS Documentation](https://www.ibm.com/docs/en/db2-for-zos/13.0.0)
 - [CICS TS 6.x for z/OS Documentation](https://www.ibm.com/docs/en/cics-ts/6.x)
 - [Introduction to CICS - an IBM Redbooks Course](https://www.redbooks.ibm.com/redbooks.nsf/redbookabstracts/crse0303.html?Open)
 
