@@ -46,19 +46,18 @@ Continuously updated to incorporate modernized and proven programming paradigms 
 
 COBOL is omnipresent, and it's highly likely that you've interacted with a COBOL application today. Let's take a look at some compelling statistics:
 
-- Approximately 95% of ATM transactions rely on COBOL codes.
-- COBOL powers 80% of face-to-face transactions.
-- Each day, COBOL systems facilitate a staggering $3 trillion in commerce.
+- Approximately 95% of ATM transactions rely on COBOL codes.[^1]
+- COBOL powers 80% of face-to-face transactions.$^1$
+- Each day, COBOL systems facilitate a staggering $3 trillion in commerce.[^2]
+- Presently, there are over 250 billion lines of actively running COBOL programs.[^3]
 
-To truly grasp the extent of COBOL's prevalence, consider these mind-boggling facts:
-
-- On a daily basis, there are 200 times more COBOL transactions executed than there are Google searches.
-- Presently, there are over 250 billion lines of actively running COBOL programs, accounting for roughly 80% of the world's actively utilized code.
-- Every year, approximately 1.5 billion lines of new COBOL code are written.
+[^1]: Travis Hartman, 2017, "COBOL Blues", Reuters Graphics [https://www.reuters.com/graphics/USA-BANKS-COBOL/010040KH18J/](https://www.reuters.com/graphics/USA-BANKS-COBOL/010040KH18J/)
+[^2]: Anna Irrera, 2017, "Banks scramble to fix old systems as IT 'cowboys' ride into sunset", Reuters, [https://www.reuters.com/article/technology/banks-scramble-to-fix-old-systems-as-it-cowboys-ride-into-sunset-idUSKBN17C0CN/](https://www.reuters.com/article/technology/banks-scramble-to-fix-old-systems-as-it-cowboys-ride-into-sunset-idUSKBN17C0CN/)
+[^3]: Reg Harbeck, 2021, "The Uncommonly Common Sense of COBOL", Open Mainframe Project's COBOL Working Group, [https://openmainframeproject.org/blog/the-uncommonly-common-sense-of-cobol/](https://openmainframeproject.org/blog/the-uncommonly-common-sense-of-cobol/)
 
 ## What insights does the survey conducted by Open Mainframe Project's COBOL Working Group provide?
 
-Highlights from the survey conducted by the Open Mainframe Project's COBOL Working Group in 2021 shed further light on the use of COBOL in today's era:
+Highlights from the survey$^3$ conducted by the Open Mainframe Project's COBOL Working Group in 2021 shed further light on the use of COBOL in today's era:
 
 1. **Over 250 billion lines of COBOL are currently in production worldwide**, marking a notable increase from previous estimates. This figure indicates that COBOL's relevance is not waning; in fact, it continues to play a vital role.
 
@@ -78,7 +77,9 @@ The point is - whatever you read or hear about COBOL, be very skeptical.  If you
 
 Add the following to your awareness of COBOL.  It is an absolute myth that you must be at least 50 years old to be good with COBOL.  COBOL is incredibly easy to learn and understand.  One of the many reasons financial institutions like COBOL is the fact that it is not necessary to be a programmer to read and understand the logic.  This is important because critical business logic code is subject to audit.  Auditors are not programmers. However, auditors are responsible for ensuring the business financial statements are presented fairly.  It is COBOL processing that frequently results in the business ledger updates and subsequent financial statements.
 
-Now for a real-world lesson.  A comment recently made in a well-known business journal by someone with a suspect agenda was quoted as saying, "COBOL is a computing language used in business and finance.  It was first designed in 1959 and is pretty old and slow."  A highly experienced business technology person knows the only true part of that last sentence was that COBOL was first designed in 1959.
+Now for a real-world lesson.  A comment recently made in a well-known business journal by someone with a suspect agenda was quoted as saying, "COBOL is a computing language used in business and finance.  It was first designed in 1959 and is pretty old and slow."[^4] A highly experienced business technology person knows the only true part of that last sentence was that COBOL was first designed in 1959.
+
+[^4]: Oscar Williams-Grut, 2015, "A City veteran thinks this technology could 'do for finance what containers did for shipping'", Business Insider, [https://www.businessinsider.com/setl-raising-millions-for-blockchain-as-sir-david-walker-named-chairman-2015-12](https://www.businessinsider.com/setl-raising-millions-for-blockchain-as-sir-david-walker-named-chairman-2015-12) 
 
 It's no secret that lots of banks still run millions of lines of COBOL on mainframes.  They probably want to replace that at some point.  So why haven't they?  Most banks have been around long enough to still feel the pain from the ~1960's software crisis.  After spending enormous amounts of money, and time, on developing their computer systems, they finally ended up with a fully functional, well-tested, stable COBOL core system.
 
@@ -346,7 +347,7 @@ This section provides useful resources in the form of manuals and videos to assi
 
 ### Professional manuals
 
-As Enterprise COBOL experience advances, the need for professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of December 2022, the current release of Enterprise COBOL is V6.4.  Highlight the V6.4 tab, then select product documentation.
+As Enterprise COBOL experience advances, the need for professional documentation is greater.  An internet search for Enterprise COBOL manuals includes: “Enterprise COBOL for z/OS documentation library - IBM”, link provided below.  The site content has tabs for each COBOL release level.  As of February 2026, the current release of Enterprise COBOL is V6.5.  Highlight the V6.5 tab, then select product documentation.
 
 [https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library](https://www.ibm.com/support/pages/enterprise-cobol-zos-documentation-library)
 
@@ -355,15 +356,15 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 
 1. Language Reference - Describes the COBOL language such as program structure, reserved words, etc. 
 
-   [https://publibfp.dhe.ibm.com/epubs/pdf/igy6lr40.pdf](https://publibfp.dhe.ibm.com/epubs/pdf/igy6lr40.pdf)
+   [https://www.ibm.com/docs/en/SS6SG3_6.5/pdf/lrmvs.pdf](https://www.ibm.com/docs/en/SS6SG3_6.5/pdf/lrmvs.pdf)
 
 2. Programming Guide - Describes advanced topics such as COBOL compiler options, program performance optimization, handling errors, etc.
 
-   [https://publibfp.dhe.ibm.com/epubs/pdf/igy6pg40.pdf](https://publibfp.dhe.ibm.com/epubs/pdf/igy6pg40.pdf)
+   [https://www.ibm.com/docs/en/SS6SG3_6.5/pdf/pgmvs.pdf](https://www.ibm.com/docs/en/SS6SG3_6.5/pdf/pgmvs.pdf)
 
 3. Messages and Codes - To better understand certain COBOL compiler messages and return codes to diagnose problems.
 
-   [https://publibfp.dhe.ibm.com/epubs/pdf/c2746482.pdf](https://publibfp.dhe.ibm.com/epubs/pdf/c2746482.pdf)
+   [https://www.ibm.com/docs/en/SS6SG3_6.5/pdf/msg.pdf](https://www.ibm.com/docs/en/SS6SG3_6.5/pdf/msg.pdf)
 
 ### Learn more about recent COBOL advancements
 
@@ -382,6 +383,10 @@ Three ‘Enterprise COBOL for z/OS” manuals are referenced throughout the chap
 - What’s New in Enterprise COBOL for z/OS V6.4:
 
    [https://www.ibm.com/docs/en/cobol-zos/6.4?topic=wn-what-is-new-in-enterprise-cobol-zos-64-cobol-64-ptfs-installed](https://www.ibm.com/docs/en/cobol-zos/6.4?topic=wn-what-is-new-in-enterprise-cobol-zos-64-cobol-64-ptfs-installed)
+
+- What's New in Enterprise COBOL for z/OS V6.5:
+
+   [https://www.ibm.com/docs/en/cobol-zos/6.5.0?topic=whats-new-in-enterprise-cobol-zos-65-cobol-65-ptfs-installed](https://www.ibm.com/docs/en/cobol-zos/6.5.0?topic=whats-new-in-enterprise-cobol-zos-65-cobol-65-ptfs-installed)
 
 ## Lab
 
@@ -1420,7 +1425,6 @@ READ-NEXT-RECORD repeatedly executes READ-RECORD and WRITE-RECORD until the last
 *Figure  6.  Reading and writing records*
 
 **Note:** COBOL is English-like and COBOL reserved words are English-like.  The programmer is free to use English-like variable names to help remember the purpose of the variable names.  The PROCEDURE DIVISION structure is English-like.  A paragraph contains one or more sentences.  A sentence contains one or more statements.  The implicit scope terminator, a period (.), terminates a sentence or terminates several consecutive statements which would be analogous to a compounded sentence where ‘and’ joins potentially independent sentences together. 
-###
 
 
 ### READ-NEXT-RECORD paragraph execution
@@ -1814,7 +1818,7 @@ The most analogous way to think about a paragraph in COBOL is to think of a func
 A paragraph is defined within the procedure division and starts at column eight and can have any name that the user likes, apart from a COBOL keyword, and the declaration of the paragraph is completed with a period (.).  A paragraph can contain one to many COBOL sentences and is terminated either by the start of another paragraph or the physical end of the program. 
 
 
-**Note:** A paragraph can also be ended by END-PROGRAM, END-METHOD, END FACTORY OR END-OBJECT.  Most of these are used within Object Orientated COBOL which is not discussed here.
+**Note:** A paragraph can also be ended by END-PROGRAM, END-METHOD, END FACTORY or END-OBJECT.  Most of these are used within Object Orientated COBOL which is not discussed here.
 
 
 Considering that a program can be made up of multiple paragraphs and that the PERFORM keyword can be used to call the paragraph, either conditionally or as part of a loop, it is easy to see that good paragraph design really helps makes your COBOL more structured and readable.
