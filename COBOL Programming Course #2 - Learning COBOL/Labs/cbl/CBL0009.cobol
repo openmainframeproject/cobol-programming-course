@@ -151,7 +151,7 @@
            .
       * 
        WRITE-TLIMIT-TBALANCE.
-           MOVE TLIMIT   TO TLIMIT-O.
+           MOVE TLIMITED TO TLIMIT-O.
            MOVE TBALANCE TO TBALANCE-O.
            WRITE PRINT-REC FROM TRAILER-1.
            WRITE PRINT-REC FROM TRAILER-2.
@@ -171,19 +171,19 @@
       *     in order to calculate the final limit and balance report.
       *
        LIMIT-BALANCE-TOTAL.
-           COMPUTE TLIMIT   = TLIMIT   + ACCT-LIMIT   END-COMPUTE
+           COMPUTE TLIMITED = TLIMITED + ACCT-LIMIT   END-COMPUTE
            COMPUTE TBALANCE = TBALANCE + ACCT-BALANCE END-COMPUTE
            .
       *    The COMPUTE verb assigns the value of the arithmetic 
-      *    expression to the TLIMIT and TBALANCE data items.
+      *    expression to the TLIMITED and TBALANCE data items.
       *    Since the expression only includes an addition operation,
       *    the statements can also be written as:
-      *    ADD ACCT-LIMIT TO TLIMIT.
+      *    ADD ACCT-LIMIT TO TLIMITED.
       *    ADD ACCT-BALANCE TO TBALANCE.
       *    Or, alternatively specifying the target variable:
-      *    ADD ACCT-LIMIT TO TLIMIT GIVING TLIMIT. 
-      *    ADD ACCT-BALANCE TO TBALANCE GIVING TLIMIT.
-      *    A END-COMPUTE or END-ADD stetement is optional.
+      *    ADD ACCT-LIMIT TO TLIMITED GIVING TLIMITED. 
+      *    ADD ACCT-BALANCE TO TBALANCE GIVING TBALANCE.
+      *    An END-COMPUTE or END-ADD statement is optional.
       *
        WRITE-RECORD.
            MOVE ACCT-NO      TO  ACCT-NO-O.
