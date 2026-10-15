@@ -2867,9 +2867,9 @@ This chapter aims to introduce the concept of implementing arithmetic expression
 
 - **Arithmetic expression limitations**
 
-- **Arithmetic statement operands**
+     - **Arithmetic statement operands**
 
-     - **Size of operands**
+          - **Size of operands**
 
 - **Examples of COBOL arithmetic statements**
 
@@ -2959,11 +2959,11 @@ Exponents in fixed-point exponential expressions cannot contain more than nine d
 
 Detailed explanation of fixed-point exponential expressions is an advanced topic and beyond the scope of the chapter.  However, reference is made to fixed-point exponential expressions for your awareness as you advance your experience level with COBOL programming and arithmetic applied to internal data representations.
 
-## Arithmetic statement operands
+### Arithmetic statement operands
 
 The data descriptions of operands in an arithmetic statement need not be the same. Throughout the calculation, the compiler performs any necessary data conversion and decimal point alignment.
 
-### Size of operands
+#### Size of operands
 
 If the ARITH(COMPAT) compiler option is in effect, the maximum size of each operand is 18 decimal digits.  If the ARITH(EXTEND) compiler option is in effect, the maximum size of each operand is 31 decimal digits. 
 
