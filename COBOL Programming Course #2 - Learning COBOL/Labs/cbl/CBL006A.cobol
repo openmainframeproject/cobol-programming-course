@@ -154,7 +154,7 @@
       *   - Adds to NEWYORK-CLIENTS counter
       
        IS-STATE-NEWYORK.
-           IF USA-STATE = 'new York' THEN
+           IF USA-STATE = 'New York' THEN
               ADD 1 TO NEWYORK-CLIENTS
            END-IF.
          
