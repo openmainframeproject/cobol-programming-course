@@ -2377,7 +2377,7 @@ The Boolean IF verb operates on two operands or identifiers.  In the example abo
 
 ### COBOL conditional expressions and operators
 
-Three of the most common type of COBOL conditional expressions are:
+Three of the most common types of COBOL conditional expressions are:
 
   1.  General relation condition
 
